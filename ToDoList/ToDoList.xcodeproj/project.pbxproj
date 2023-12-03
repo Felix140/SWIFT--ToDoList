@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		492E29792B1D4BE600021383 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E29782B1D4BE600021383 /* HeaderView.swift */; };
 		49B862C12B1BC45200FED137 /* ToDoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B862C02B1BC45200FED137 /* ToDoListApp.swift */; };
 		49B862C32B1BC45200FED137 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B862C22B1BC45200FED137 /* MainView.swift */; };
 		49B862C52B1BC45500FED137 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B862C42B1BC45500FED137 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		492E29782B1D4BE600021383 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		49B862BD2B1BC45200FED137 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B862C02B1BC45200FED137 /* ToDoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListApp.swift; sourceTree = "<group>"; };
 		49B862C22B1BC45200FED137 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */,
 				49FE572E2B1CDA5100E4A0E2 /* LoginView.swift */,
 				49FE57302B1CDA7800E4A0E2 /* RegisterView.swift */,
+				492E29782B1D4BE600021383 /* HeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */,
+				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
 				49FE572F2B1CDA5100E4A0E2 /* LoginView.swift in Sources */,
 				49FE57462B1CDBED00E4A0E2 /* RegisterViewViewModel.swift in Sources */,
 				49FE57392B1CDB3C00E4A0E2 /* MainViewViewModel.swift in Sources */,
