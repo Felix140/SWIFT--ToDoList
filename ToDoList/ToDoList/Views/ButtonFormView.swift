@@ -34,7 +34,7 @@ struct ButtonFormView: View {
                     .font(.system(size: 20))
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
-                    .frame(height: 20)
+                    .frame(height: 16)
             }
         })
     }

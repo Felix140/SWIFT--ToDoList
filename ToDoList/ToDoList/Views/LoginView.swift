@@ -25,6 +25,12 @@ struct LoginView: View {
             }
             
             // Create Account
+            VStack {
+                Text("Non hai un account?")
+                Button("Clicca qui per creare un Account") {
+                    // qui registrazione
+                }
+            }
             
             
             Spacer()
