@@ -4,8 +4,7 @@ struct LoginView: View {
     
     var body: some View {
         
-        @State var emailField = ""
-        @State var passField = ""
+        @StateObject var viewModel = LoginViewViewModel()
         
         NavigationView {
             VStack {
@@ -17,9 +16,9 @@ struct LoginView: View {
                 
                 // Login Form
                 Form {
-                    TextField("Email", text: $emailField)
+                    TextField("Email", text: $viewModel.emailField)
                         .textInputAutocapitalization(.none)
-                    SecureField("Password", text: $passField)
+                    SecureField("Password", text: $viewModel.passField)
                     
                     // Login Button
                     ButtonFormView(textBtn: "Log In", action: {
