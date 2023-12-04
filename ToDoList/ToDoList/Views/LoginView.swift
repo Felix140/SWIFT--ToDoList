@@ -7,33 +7,35 @@ struct LoginView: View {
         @State var emailField: String = ""
         @State var passField: String = ""
         
-        VStack {
-            // Header
-            HeaderView()
-            
-            // Login Form
-            Form {
-                // Email
-                TextField("Email", text: $emailField)
-                // Password
-                SecureField("Password", text: $passField)
-                
-                // Login Button
-                ButtonFormView(textBtn: "Log In")
-                    .padding(20)
-                
-            }
-            
-            // Create Account
+        NavigationView {
             VStack {
-                Text("Non hai un account?")
-                Button("Clicca qui per creare un Account") {
-                    // qui registrazione
+                // Header
+                HeaderView()
+                
+                // Login Form
+                Form {
+                    // Email
+                    TextField("Email", text: $emailField)
+                    // Password
+                    SecureField("Password", text: $passField)
+                    
+                    // Login Button
+                    ButtonFormView(textBtn: "Log In")
+                        .padding([.top, .bottom], 20)
+                    
                 }
+                
+                // Create Account
+                VStack {
+                    Text("Non hai un account?")
+                    
+                    /// creo qui un link che mi porta al componente RegisterView()
+                    NavigationLink("Clicca qui per creare un Account", destination: RegisterView())
+                }
+                
+                
+                Spacer()
             }
-            
-            
-            Spacer()
         }
     }
 }

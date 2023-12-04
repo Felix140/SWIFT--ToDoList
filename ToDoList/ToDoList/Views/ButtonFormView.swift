@@ -28,13 +28,12 @@ struct ButtonFormView: View {
                         )
                     )
                     .cornerRadius(15.0)
-                    .frame(height: 70)
+                    .frame(height: 50)
                 
                 Text(textBtn)
                     .font(.system(size: 20))
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
-                    .frame(height: 16)
             }
         })
     }
@@ -44,5 +43,6 @@ struct ButtonFormView_Previews: PreviewProvider {
     
     static var previews: some View {
         ButtonFormView(textBtn: "Text Button")
+            .previewLayout(.sizeThatFits)
     }
 }
