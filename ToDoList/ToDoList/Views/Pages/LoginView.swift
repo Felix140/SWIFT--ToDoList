@@ -4,8 +4,8 @@ struct LoginView: View {
     
     var body: some View {
         
-        @State var emailField: String = ""
-        @State var passField: String = ""
+        @State var emailField = ""
+        @State var passField = ""
         
         NavigationView {
             VStack {
@@ -17,14 +17,15 @@ struct LoginView: View {
                 
                 // Login Form
                 Form {
-                    // Email
                     TextField("Email", text: $emailField)
-                    // Password
+                        .textInputAutocapitalization(.none)
                     SecureField("Password", text: $passField)
                     
                     // Login Button
-                    ButtonFormView(textBtn: "Log In")
-                        .padding([.top, .bottom], 20)
+                    ButtonFormView(textBtn: "Log In", action: {
+                        
+                    })
+                        .padding([.top, .bottom])
                     
                 }
                 .offset(y: -70)

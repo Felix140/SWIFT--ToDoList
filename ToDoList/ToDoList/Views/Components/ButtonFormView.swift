@@ -9,10 +9,13 @@ import SwiftUI
 
 struct ButtonFormView: View {
     
-    @State var textBtn: String 
+    @State var textBtn: String
+    let action: () -> Void
     
     var body: some View {
         Button(action: {
+            
+            action()
             
         }, label: {
             ZStack {
@@ -42,7 +45,7 @@ struct ButtonFormView: View {
 struct ButtonFormView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ButtonFormView(textBtn: "Text Button")
+        ButtonFormView(textBtn: "Text Button", action: {})
             .previewLayout(.sizeThatFits)
     }
 }
