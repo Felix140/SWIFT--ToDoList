@@ -2,9 +2,9 @@ import SwiftUI
 
 struct LoginView: View {
     
+    @StateObject var viewModel = LoginViewViewModel()
+    
     var body: some View {
-        
-        @StateObject var viewModel = LoginViewViewModel()
         
         NavigationView {
             VStack {
@@ -21,10 +21,11 @@ struct LoginView: View {
                     SecureField("Password", text: $viewModel.passField)
                     
                     // Login Button
-                    ButtonFormView(textBtn: "Log In", action: {
-                        
-                    })
-                        .padding([.top, .bottom])
+                    ButtonFormView(
+                        textBtn: "Log In",
+                        action: { viewModel.login() }
+                    )
+                    .padding([.top, .bottom])
                     
                 }
                 .offset(y: -70)

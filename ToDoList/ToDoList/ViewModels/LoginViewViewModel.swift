@@ -12,7 +12,8 @@ class LoginViewViewModel: ObservableObject {
     /// Creo qui le funzionalità della LOGIN
     
     func login() {
-        
+        guard !emailField.isEmpty, !passField.isEmpty else { return }
+        print("Login effettuato")
     }
     
     func validate() {
