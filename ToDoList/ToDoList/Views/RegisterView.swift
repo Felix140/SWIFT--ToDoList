@@ -2,7 +2,15 @@ import SwiftUI
 
 struct RegisterView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            // Header
+            HeaderView(title: "Register",
+                       subTitle: "Inizia ora ad organizzarti!",
+                       icon: "",
+                       angle: -15)
+            
+            Spacer()
+        }
     }
 }
 

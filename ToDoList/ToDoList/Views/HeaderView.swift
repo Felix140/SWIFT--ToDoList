@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct HeaderView: View {
+    
+    let title: String
+    let subTitle: String
+    let icon: String
+    let angle: Double
+    
     var body: some View {
         ZStack {
             
@@ -22,20 +28,20 @@ struct HeaderView: View {
                         endPoint: UnitPoint(x: 0.5, y: 1)
                     )
                 )
-                .rotationEffect(Angle(degrees: 15))
+                .rotationEffect(Angle(degrees: angle))
                 .offset(y: -100)
             
             
             VStack {
-                Text("To Do List")
+                Text(title)
                     .font(.system(size: 40))
                     .fontWeight(.bold)
                     .foregroundColor(Color.white)
                 
                 HStack {
-                    Text("Get Things DONE")
+                    Text(subTitle)
                         .foregroundColor(Color.white)
-                    Image(systemName: "checkmark.seal.fill")
+                    Image(systemName: icon)
                         .foregroundColor(Color.white)
                 }
             }
@@ -49,7 +55,10 @@ struct HeaderView: View {
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView()
+        HeaderView(title: "Titolo",
+                   subTitle: "SottoTitolo",
+                   icon: "",
+                   angle: 15)
             .previewLayout(.sizeThatFits)
     }
 }

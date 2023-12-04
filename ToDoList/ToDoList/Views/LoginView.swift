@@ -10,7 +10,10 @@ struct LoginView: View {
         NavigationView {
             VStack {
                 // Header
-                HeaderView()
+                HeaderView(title: "To Do List",
+                           subTitle: "Let's get things DONE",
+                           icon: "checkmark.seal.fill",
+                           angle: 15)
                 
                 // Login Form
                 Form {
