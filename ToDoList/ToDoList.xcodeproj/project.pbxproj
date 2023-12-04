@@ -110,18 +110,34 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		49FE57222B1CD81200E4A0E2 /* Views */ = {
+		49C32CA12B1E5F98003B44EA /* Pages */ = {
 			isa = PBXGroup;
 			children = (
 				49B862C22B1BC45200FED137 /* MainView.swift */,
 				49FE57262B1CD99000E4A0E2 /* ProfileView.swift */,
 				49FE57322B1CDA9D00E4A0E2 /* ToDoListView.swift */,
 				49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */,
-				49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */,
 				49FE572E2B1CDA5100E4A0E2 /* LoginView.swift */,
 				49FE57302B1CDA7800E4A0E2 /* RegisterView.swift */,
-				492E29782B1D4BE600021383 /* HeaderView.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		49C32CA22B1E5FB5003B44EA /* Components */ = {
+			isa = PBXGroup;
+			children = (
 				492E297A2B1D522900021383 /* ButtonFormView.swift */,
+				492E29782B1D4BE600021383 /* HeaderView.swift */,
+				49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		49FE57222B1CD81200E4A0E2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				49C32CA12B1E5F98003B44EA /* Pages */,
+				49C32CA22B1E5FB5003B44EA /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";

@@ -29,7 +29,7 @@ struct HeaderView: View {
                     )
                 )
                 .rotationEffect(Angle(degrees: angle))
-                .offset(y: -100)
+                .offset(y: -135)
             
             
             VStack {
@@ -45,7 +45,7 @@ struct HeaderView: View {
                         .foregroundColor(Color.white)
                 }
             }
-            .padding(.bottom, 80)
+            .padding(.bottom, 100)
             
         }
         .frame(width: UIScreen.main.bounds.width * 3, height: 350)
