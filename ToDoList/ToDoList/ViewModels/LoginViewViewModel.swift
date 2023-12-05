@@ -1,4 +1,5 @@
 import Foundation
+import FirebaseAuth /// Da funzionalità per effettuare la Login su Firebase
 
 /// La ViewModel astrae tutta la logica della View
 
@@ -13,6 +14,19 @@ class LoginViewViewModel: ObservableObject {
     /// Creo qui le funzionalità della LOGIN
     
     func login() {
+        
+        // Funzionalità di CHECK
+        guard validate() else {
+            return /// Se non si effettua la validazione si Stoppa ed esce fuori
+        }
+        
+        //Effettua la login
+        Auth.auth().signIn(withEmail: emailField, password: passField)
+        
+        print("Login effettuato")
+    }
+    
+    func validate() -> Bool {
         /// resetta il messaggio di Errore
         errorMessage = ""
         
@@ -21,7 +35,7 @@ class LoginViewViewModel: ObservableObject {
                 !passField.trimmingCharacters(in: .whitespaces).isEmpty else {
             errorMessage = "Riempi i campi testo."
             print("testo da riempire")
-            return
+            return false
         }
         
         /// CHECK verifica se il campo input email contiene "@" oppure il punto "."
@@ -35,13 +49,9 @@ class LoginViewViewModel: ObservableObject {
                 print("Email non contiene il punto")
             }
             
-            return
+            return false
         }
         
-        print("Login effettuato")
-    }
-    
-    func validate() {
-        
+        return true
     }
 }
