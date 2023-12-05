@@ -2,10 +2,7 @@ import SwiftUI
 
 struct RegisterView: View {
     
-    @State var fullName = ""
-    @State var email = ""
-    @State var password = ""
-    @State var repeatPass = ""
+    @StateObject var viewModel = RegisterViewViewModel()
     
     var body: some View {
         VStack {
@@ -17,17 +14,23 @@ struct RegisterView: View {
             
             // Form
             Form {
-                TextField("UserName", text: $fullName)
+                if !viewModel.errorMessage.isEmpty {
+                    Text(viewModel.errorMessage)
+                        .foregroundColor(Color.red)
+                        .font(.subheadline)
+                }
+                
+                TextField("UserName", text: $viewModel.fullName)
                     .autocorrectionDisabled()
-                TextField("Email", text: $email)
+                TextField("Email", text: $viewModel.email)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.none)
-                SecureField("Password", text: $password)
-                SecureField("Repeat Password", text: $repeatPass)
+                SecureField("Password", text: $viewModel.password)
+                SecureField("Repeat Password", text: $viewModel.repeatPass)
                 
                 // Register Button
                 ButtonFormView(textBtn: "Registrati", action: {
-                    
+                    viewModel.register()
                 })
                     .padding([.bottom, .top])
             }
