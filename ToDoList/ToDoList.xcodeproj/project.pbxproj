@@ -13,6 +13,7 @@
 		49B862C32B1BC45200FED137 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B862C22B1BC45200FED137 /* MainView.swift */; };
 		49B862C52B1BC45500FED137 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B862C42B1BC45500FED137 /* Assets.xcassets */; };
 		49B862C82B1BC45500FED137 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B862C72B1BC45500FED137 /* Preview Assets.xcassets */; };
+		49E11F922B1FC989009E72E8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E11F912B1FC989009E72E8 /* Extensions.swift */; };
 		49FE571B2B1CB65500E4A0E2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571A2B1CB65500E4A0E2 /* FirebaseAuth */; };
 		49FE571D2B1CB65500E4A0E2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571C2B1CB65500E4A0E2 /* FirebaseFirestore */; };
 		49FE571F2B1CB65500E4A0E2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571E2B1CB65500E4A0E2 /* FirebaseFirestoreSwift */; };
@@ -42,6 +43,7 @@
 		49B862C22B1BC45200FED137 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		49B862C42B1BC45500FED137 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49B862C72B1BC45500FED137 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		49E11F912B1FC989009E72E8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49FE57262B1CD99000E4A0E2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				49B862C42B1BC45500FED137 /* Assets.xcassets */,
 				49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */,
 				49B862C02B1BC45200FED137 /* ToDoListApp.swift */,
+				49E11F912B1FC989009E72E8 /* Extensions.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				49FE57272B1CD99000E4A0E2 /* ProfileView.swift in Sources */,
 				49FE573D2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift in Sources */,
 				49FE57312B1CDA7800E4A0E2 /* RegisterView.swift in Sources */,
+				49E11F922B1FC989009E72E8 /* Extensions.swift in Sources */,
 				492E297B2B1D522900021383 /* ButtonFormView.swift in Sources */,
 				49FE57372B1CDAEF00E4A0E2 /* ToDoListItem.swift in Sources */,
 				49B862C12B1BC45200FED137 /* ToDoListApp.swift in Sources */,

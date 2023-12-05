@@ -1,5 +1,6 @@
 import Foundation
 import FirebaseAuth /// Da funzionalità per effettuare la Login su Firebase
+import FirebaseFirestore
 
 
 class RegisterViewViewModel: ObservableObject {
@@ -32,7 +33,18 @@ class RegisterViewViewModel: ObservableObject {
     // Inserisce l'utente dentro il FireStore DB
     private func insertUserRecord(id: String) {
         
-    }
+        var newUser = User( 
+            id: id,
+            name: fullName,
+            email: email,
+            joined: Date().timeIntervalSince1970)
+        
+        let db = Firestore.firestore()
+        
+        db.collection("users")
+            .document(id)
+            .setData(newUser.asDictionary())
+     }
     
     
     func validate() -> Bool {
