@@ -33,7 +33,7 @@ class RegisterViewViewModel: ObservableObject {
     // Inserisce l'utente dentro il FireStore DB
     private func insertUserRecord(id: String) {
         
-        var newUser = User( 
+        let newUser = User(
             id: id,
             name: fullName,
             email: email,
@@ -71,7 +71,7 @@ class RegisterViewViewModel: ObservableObject {
             }
             return false
         }
-        /// CHECK verifica se i campi password e repeatPass coincidono
+        /// CHECK verifica se i campi password ha almeno 8 caratteri
         guard password.count >= 8 else {
             errorMessage = "La password deve essere di almeno 8 caratteri"
             return false
