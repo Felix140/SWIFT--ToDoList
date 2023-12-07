@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		492B54C52B2266DF00041139 /* ListItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B54C42B2266DF00041139 /* ListItemViewViewModel.swift */; };
 		492E29792B1D4BE600021383 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E29782B1D4BE600021383 /* HeaderView.swift */; };
 		492E297B2B1D522900021383 /* ButtonFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E297A2B1D522900021383 /* ButtonFormView.swift */; };
 		49B862C12B1BC45200FED137 /* ToDoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B862C02B1BC45200FED137 /* ToDoListApp.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		492B54C42B2266DF00041139 /* ListItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemViewViewModel.swift; sourceTree = "<group>"; };
 		492E29782B1D4BE600021383 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		492E297A2B1D522900021383 /* ButtonFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFormView.swift; sourceTree = "<group>"; };
 		49B862BD2B1BC45200FED137 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +152,7 @@
 				49FE57382B1CDB3C00E4A0E2 /* MainViewViewModel.swift */,
 				49FE573A2B1CDB6100E4A0E2 /* ProfileViewViewModel.swift */,
 				49FE573C2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift */,
+				492B54C42B2266DF00041139 /* ListItemViewViewModel.swift */,
 				49FE573E2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift */,
 				49FE57402B1CDBCD00E4A0E2 /* CalendarViewViewModel.swift */,
 				49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */,
@@ -269,6 +272,7 @@
 				49FE57412B1CDBCD00E4A0E2 /* CalendarViewViewModel.swift in Sources */,
 				49B862C32B1BC45200FED137 /* MainView.swift in Sources */,
 				49FE57352B1CDADC00E4A0E2 /* User.swift in Sources */,
+				492B54C52B2266DF00041139 /* ListItemViewViewModel.swift in Sources */,
 				49FE57272B1CD99000E4A0E2 /* ProfileView.swift in Sources */,
 				49FE573D2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift in Sources */,
 				49FE57312B1CDA7800E4A0E2 /* RegisterView.swift in Sources */,

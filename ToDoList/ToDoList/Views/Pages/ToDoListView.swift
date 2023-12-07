@@ -1,8 +1,31 @@
 import SwiftUI
 
 struct ToDoListView: View {
+    
+    @StateObject var viewModel = ToDoListViewViewModel()
+    @State var isPresentingView = false
+
+    
     var body: some View {
-        Text("Welcome to ToDoList APP")
+        NavigationView {
+            VStack {
+                
+            }
+            .navigationTitle("To Do List")
+            .toolbar{
+                Button(action: {
+                    isPresentingView = true
+                }) {
+                    Image(systemName: "plus")
+                }
+                .accessibilityLabel("Add new Item")
+            }
+        }
+        .sheet(isPresented: $isPresentingView) {
+            NavigationStack {
+                    NewItemView()
+            }
+        }
     }
 }
 

@@ -8,22 +8,27 @@ struct MainView: View {
         if viewModel.isSignedIn,
            !viewModel.currentUserId.isEmpty {
             
-            TabView { /// Navbar
-                ToDoListView()
-                    .tabItem {
-                        Label("Home", systemImage: "house")
-                    }
-                
-                ProfileView()
-                    .tabItem {
-                        Label("Profile", systemImage: "person.crop.circle")
-                    }
-            }
+           navbar
             
         } else {
             LoginView()
         }
         
+    }
+    
+    @ViewBuilder
+    var navbar: some View {
+        TabView { /// Navbar
+            ToDoListView()
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+            
+            ProfileView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.crop.circle")
+                }
+        }
     }
 }
 
