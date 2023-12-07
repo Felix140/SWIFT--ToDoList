@@ -7,7 +7,19 @@ struct MainView: View {
         
         if viewModel.isSignedIn,
            !viewModel.currentUserId.isEmpty {
-            ToDoListView()
+            
+            TabView { /// Navbar
+                ToDoListView()
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
+                
+                ProfileView()
+                    .tabItem {
+                        Label("Profile", systemImage: "person.crop.circle")
+                    }
+            }
+            
         } else {
             LoginView()
         }
