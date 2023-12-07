@@ -3,7 +3,7 @@ import SwiftUI
 struct ToDoListView: View {
     
     @StateObject var viewModel = ToDoListViewViewModel()
-    @State var isPresentingView = false
+    
     private var userId: String
 
     init(userId: String) {
@@ -18,16 +18,16 @@ struct ToDoListView: View {
             .navigationTitle("To Do List")
             .toolbar{
                 Button(action: {
-                    isPresentingView = true
+                    viewModel.isPresentingView = true
                 }) {
                     Image(systemName: "plus")
                 }
                 .accessibilityLabel("Add new Item")
             }
         }
-        .sheet(isPresented: $isPresentingView) {
+        .sheet(isPresented: $viewModel.isPresentingView) {
             NavigationStack {
-                    NewItemView()
+                NewItemView(toggleView: $viewModel.isPresentingView)
             }
         }
     }
