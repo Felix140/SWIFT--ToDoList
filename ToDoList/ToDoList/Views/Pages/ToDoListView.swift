@@ -4,7 +4,11 @@ struct ToDoListView: View {
     
     @StateObject var viewModel = ToDoListViewViewModel()
     @State var isPresentingView = false
+    private var userId: String
 
+    init(userId: String) {
+        self.userId = userId
+    }
     
     var body: some View {
         NavigationView {
@@ -31,6 +35,6 @@ struct ToDoListView: View {
 
 struct ToDoListView_Previews: PreviewProvider {
     static var previews: some View {
-        ToDoListView()
+        ToDoListView(userId: "")
     }
 }

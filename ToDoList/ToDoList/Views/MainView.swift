@@ -19,7 +19,7 @@ struct MainView: View {
     @ViewBuilder
     var navbar: some View {
         TabView { /// Navbar
-            ToDoListView()
+            ToDoListView(userId: viewModel.currentUserId)
                 .tabItem {
                     Label("Home", systemImage: "house")
                 }
