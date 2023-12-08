@@ -7,26 +7,44 @@ struct NewItemView: View {
     
     var body: some View {
         VStack {
+            
+            //Component Title
             Text("New Item")
                 .font(.system(size: 30))
                 .fontWeight(.bold)
                 .padding(.top, 30)
             
+            // Form
             Form {
                 TextField("Item title", text: $viewModel.title)
+                    .textInputAutocapitalization(.none)
+                    .autocapitalization(.none)
                 
                 DatePicker("Due date", selection: $viewModel.date)
                     .datePickerStyle(GraphicalDatePickerStyle())
             }
             .frame(height: 500)
             
+            // Button
             ButtonFormView(textBtn: "Save", action: {
-                viewModel.save()
-                toggleView = false
+                
+                if viewModel.canSave() {
+                    viewModel.save()
+                    toggleView = false
+                } else {
+                    viewModel.showAlert = true
+                }
+                
             })
             .padding([.trailing, .leading, .top], 30)
             
             Spacer()
+        }
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(
+                title: Text("Errore"),
+                message: Text("Inserisci il campo testo o eventualmente il giorno in maniera corretta")
+            )
         }
     }
 }
