@@ -5,7 +5,7 @@ struct ToDoListItem: Identifiable, Codable {
     let title: String
     let dueDate: TimeInterval
     let createdDate: TimeInterval
-    let isDone: Bool
+    var isDone: Bool
    
     init(id: String, title: String, dueDate: TimeInterval, createdDate: TimeInterval, isDone: Bool) {
         self.id = id
@@ -15,7 +15,7 @@ struct ToDoListItem: Identifiable, Codable {
         self.isDone = isDone
     }
     
-    mutating func setDone(_ state: Bool) -> Bool {
-        return state
+    mutating func setDone(_ state: Bool) {
+        isDone = state
     }
 }
