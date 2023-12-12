@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ToDoListItemView: View {
     
+    @StateObject var viewModel = ListItemViewViewModel()
     let listItem: ToDoListItem
     
     var body: some View {
@@ -9,9 +10,9 @@ struct ToDoListItemView: View {
             VStack(alignment: .leading) {
                 // Titolo
                 Text(listItem.title)
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                // Data
-                Text("\(Date(timeIntervalSince1970: listItem.dueDate))")
+                    .font(.body)
+                // Data + Ora
+                Text("\(Date(timeIntervalSince1970: listItem.dueDate).formatted(date: .abbreviated, time: .shortened))")
                     .font(.footnote)
                     .foregroundColor(Color(.secondaryLabel))
             }
@@ -20,7 +21,7 @@ struct ToDoListItemView: View {
             
             // Checkbox
             Button {
-                
+                viewModel.toggleIsDone(item: listItem)
             } label: {
                 Image(systemName: listItem.isDone ? "checkmark.circle.fill" : "circle")
             }
@@ -31,8 +32,8 @@ struct ToDoListItemView: View {
 struct ToDoListItemView_Previews: PreviewProvider {
     static var previews: some View {
         ToDoListItemView(listItem: .init(
-            id: "123",
-            title: "123",
+            id: "IdUser",
+            title: "Title",
             dueDate: 122312,
             createdDate: 123123,
             isDone: false))

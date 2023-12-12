@@ -16,7 +16,7 @@ struct NewItemView: View {
             
             // Form
             Form {
-                TextField("Item title", text: $viewModel.title)
+                TextField("Item", text: $viewModel.title)
                     .textInputAutocapitalization(.none)
                     .autocapitalization(.none)
                 
