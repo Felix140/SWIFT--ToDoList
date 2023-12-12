@@ -7,6 +7,7 @@ struct ToDoListView: View {
     private var userId: String
 
     init(userId: String) {
+        /// users/<id>/todos/<entries>
         self.userId = userId
     }
     
