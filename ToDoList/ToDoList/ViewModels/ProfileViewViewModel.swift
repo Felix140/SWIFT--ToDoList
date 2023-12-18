@@ -34,6 +34,10 @@ class ProfileViewViewModel: ObservableObject {
     }
     
     func logOut() {
-        
+        do {
+            try Auth.auth().signOut() /// Metodo di FirebaseAuth
+        } catch {
+            print(error)
+        }
     }
 }
