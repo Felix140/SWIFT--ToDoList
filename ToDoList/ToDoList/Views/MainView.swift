@@ -11,7 +11,7 @@ struct MainView: View {
            navbar
             
         } else {
-            LoginView()
+            StartView()
         }
         
     }

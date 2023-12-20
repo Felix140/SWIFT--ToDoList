@@ -6,12 +6,6 @@ struct RegisterView: View {
     
     var body: some View {
         VStack {
-            // Header
-            HeaderView(title: "Register",
-                       subTitle: "Inizia ora ad organizzarti!",
-                       icon: "",
-                       angle: -15)
-            
             // Form
             Form {
                 if !viewModel.errorMessage.isEmpty {
@@ -32,24 +26,26 @@ struct RegisterView: View {
                 SecureField("Password", text: $viewModel.password)
                 SecureField("Repeat Password", text: $viewModel.repeatPass)
                 
-                // Register Button
-                ButtonFormView(textBtn: "Registrati", action: {
-                    viewModel.register()
-                })
-                    .padding([.bottom, .top])
             }
-            .offset(y: -50)
+            .frame(height: 300)
+            
+            // Register Button
+            ButtonFormView(textBtn: "Registrati", action: {
+                viewModel.register()
+            })
+            .frame(width: UIScreen.main.bounds.width / 1.1)
             
             // Login
             VStack {
                 Text("Hai già un account?")
                 
-                /// creo qui un link che mi porta al componente RegisterView()
+                /// creo qui un link che mi porta al componente LoginView()
                 NavigationLink("Clicca qui Accedere!", destination: LoginView())
             }
             
             Spacer()
         }
+        .padding(.top, 50)
     }
 }
 

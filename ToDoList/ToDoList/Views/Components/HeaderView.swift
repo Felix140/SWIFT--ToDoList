@@ -21,15 +21,14 @@ struct HeaderView: View {
                 .overlay(
                     LinearGradient(
                         stops: [
-                            Gradient.Stop(color: Color(red: 0.96, green: 0.22, blue: 0.31), location: 0.00),
-                            Gradient.Stop(color: Color(red: 1, green: 0.01, blue: 0.31), location: 1.00),
+                            Gradient.Stop(color: Color(red: 0.94, green: 0.31, blue: 0.31), location: 0.00),
+                            Gradient.Stop(color: Color(red: 1, green: 0.09, blue: 0.37), location: 1.00),
                         ],
                         startPoint: UnitPoint(x: 0.5, y: 0),
                         endPoint: UnitPoint(x: 0.5, y: 1)
                     )
                 )
                 .rotationEffect(Angle(degrees: angle))
-                .offset(y: -135)
             
             
             VStack {
@@ -45,10 +44,9 @@ struct HeaderView: View {
                         .foregroundColor(Color.white)
                 }
             }
-            .padding(.bottom, 100)
             
         }
-        .frame(width: UIScreen.main.bounds.width * 3, height: 350)
+        .frame(width: UIScreen.main.bounds.width * 3, height: 400)
         
     }
 }
@@ -58,7 +56,7 @@ struct HeaderView_Previews: PreviewProvider {
         HeaderView(title: "Titolo",
                    subTitle: "SottoTitolo",
                    icon: "",
-                   angle: 15)
-            .previewLayout(.sizeThatFits)
+                   angle: 0)
+        .previewLayout(.sizeThatFits)
     }
 }
