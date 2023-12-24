@@ -16,14 +16,17 @@ struct NewItemView: View {
             
             // Form
             Form {
-                TextField("Item", text: $viewModel.title)
-                    .textInputAutocapitalization(.none)
-                    .autocapitalization(.none)
+                Section(header: Text("Titolo task")) {
+                    TextField("Inserisci qui il titolo", text: $viewModel.title)
+                        .textInputAutocapitalization(.none)
+                        .autocapitalization(.none)
+                }
                 
                 DatePicker("Due date", selection: $viewModel.date)
                     .datePickerStyle(GraphicalDatePickerStyle())
+                
             }
-            .frame(height: 500)
+            .frame(height: 550)
             
             // Button
             ButtonFormView(textBtn: "Save", action: {

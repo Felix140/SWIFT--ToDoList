@@ -10,7 +10,7 @@ struct ToDoListItemView: View {
             VStack(alignment: .leading) {
                 // Titolo
                 Text(listItem.title)
-                    .font(.body)
+                    .font(.title2)
                 // Data + Ora
                 Text("\(Date(timeIntervalSince1970: listItem.dueDate).formatted(date: .abbreviated, time: .shortened))")
                     .font(.footnote)

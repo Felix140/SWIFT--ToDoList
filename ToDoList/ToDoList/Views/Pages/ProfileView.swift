@@ -31,7 +31,7 @@ struct ProfileView: View {
     @ViewBuilder
     func profile(user: User) -> some View {
         //Avatar
-        ProfileImageView()
+        ProfileImageView(profileImg: "turtlerock")
             .padding(.top, 50)
         
         //Info: Name, Email, Member Since
