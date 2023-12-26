@@ -14,7 +14,9 @@ struct StartView: View {
                            angle: 10)
                 .offset(y: -100)
                 
-                Button(action: { }, label: {
+                Button(action: { 
+                    self.navigateToLogin = true
+                }, label: {
                     ZStack {
                         Rectangle()
                             .overlay(
@@ -30,7 +32,7 @@ struct StartView: View {
                             .cornerRadius(15.0)
                             .frame(height: 50)
                         
-                        NavigationLink("Clicca qui per iniziare", destination: LoginView())
+                        Text("Clicca qui per iniziare")
                             .font(.system(size: 20))
                             .fontWeight(.medium)
                             .foregroundColor(Color.white)
@@ -40,6 +42,9 @@ struct StartView: View {
                 
                 Spacer()
             }
+            .fullScreenCover(isPresented: $navigateToLogin, content: {
+                LoginView()
+            })
         }
     }
 }
