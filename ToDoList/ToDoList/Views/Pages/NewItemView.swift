@@ -22,11 +22,13 @@ struct NewItemView: View {
                         .autocapitalization(.none)
                 }
                 
-                DatePicker("Due date", selection: $viewModel.date)
-                    .datePickerStyle(GraphicalDatePickerStyle())
-                
+                Section(header: Text("Data della Task")) {
+                    NavigationLink(destination: CalendarView(dateSelected: $viewModel.date)) {
+                        Label("Seleziona una data", systemImage: "timer")
+                    }
+                }
             }
-            .frame(height: 550)
+            .frame(height: 250)
             
             // Button
             ButtonFormView(textBtn: "Save", action: {

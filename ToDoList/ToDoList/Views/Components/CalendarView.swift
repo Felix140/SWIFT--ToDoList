@@ -1,13 +1,17 @@
 import SwiftUI
 
 struct CalendarView: View {
+    
+    @Binding var dateSelected: Date
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        DatePicker("Due date", selection: $dateSelected)
+            .datePickerStyle(GraphicalDatePickerStyle())
     }
 }
 
 struct CalendarView_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarView()
+        CalendarView(dateSelected: .constant(Date()))
     }
 }
