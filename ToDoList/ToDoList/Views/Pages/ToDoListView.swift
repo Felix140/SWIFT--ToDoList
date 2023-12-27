@@ -8,7 +8,32 @@ struct ToDoListView: View {
     /// passargli il parametro dello userId, inizializzato a sua volta nell'init() di "ToDoListViewViewModel()"
     @StateObject var viewModel: ToDoListViewViewModel
     @FirestoreQuery var fetchedItems: [ToDoListItem]
-
+    
+    // TODAY items
+    private var itemsForToday: [ToDoListItem] {
+        fetchedItems.filter { item in
+            let itemDate = Date(timeIntervalSince1970: item.dueDate) /// convert to Date
+            return Calendar.current.isDateInToday(itemDate)
+        }
+    }
+    
+    // TOMORROW items
+    private var itemsForTomorrow: [ToDoListItem] {
+        fetchedItems.filter { item in
+            let itemDate = Date(timeIntervalSince1970: item.dueDate) /// converto to Date
+            return Calendar.current.isDateInTomorrow(itemDate)
+        }
+    }
+    
+    // AFTER TOMORROW items
+    private var itemsAfterTomorrow: [ToDoListItem] {
+        fetchedItems.filter { item in
+            let calendar = Calendar.current
+            let tomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: Date()))!
+            let itemDate = Date(timeIntervalSince1970: item.dueDate)
+            return itemDate > tomorrow
+        }
+    }
     
     init(userId: String) {
         
@@ -23,14 +48,30 @@ struct ToDoListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(fetchedItems) { fetched in
-                    ToDoListItemView(listItem: fetched)
-                        .swipeActions {
-                            Button("Delete") {
-                                viewModel.delete(idItem: fetched.id)
-                            }
-                            .tint(.red)
+                List {
+                    Section(header: Text("Today").font(.headline)) {
+                        ForEach(itemsForToday) { item in
+                            ToDoListItemView(listItem: item)
+                                .swipeActions {
+                                    Button("Delete") {
+                                        viewModel.delete(idItem: item.id)
+                                    }
+                                    .tint(.red)
+                                }
                         }
+                    }
+                    
+                    Section(header: Text("Tomorrow").font(.headline)) {
+                        ForEach(itemsForTomorrow) { item in
+                            ToDoListItemView(listItem: item)
+                                .swipeActions {
+                                    Button("Delete") {
+                                        viewModel.delete(idItem: item.id)
+                                    }
+                                    .tint(.red)
+                                }
+                        }
+                    }
                 }
                 .listStyle(PlainListStyle())
             }

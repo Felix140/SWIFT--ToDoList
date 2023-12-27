@@ -5,9 +5,13 @@ struct CalendarView: View {
     @Binding var dateSelected: Date
     
     var body: some View {
-        DatePicker("Due date", selection: $dateSelected)
-            .datePickerStyle(GraphicalDatePickerStyle())
+        VStack {
+            DatePicker("Due date", selection: $dateSelected)
+                .datePickerStyle(GraphicalDatePickerStyle())
+        }
+        .padding([.leading, .trailing], 25)
     }
+    
 }
 
 struct CalendarView_Previews: PreviewProvider {
