@@ -9,7 +9,7 @@ struct NewItemView: View {
         VStack {
             
             //Component Title
-            Text("New Item")
+            Text("TooDoo Task")
                 .font(.system(size: 30))
                 .fontWeight(.bold)
                 .padding(.top, 30)

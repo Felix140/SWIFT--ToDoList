@@ -88,7 +88,7 @@ struct ToDoListView: View {
                 }
                 .listStyle(PlainListStyle())
             }
-            .navigationTitle("To Do List")
+            .navigationTitle("TooDoo List")
             .toolbar{
                 Button(action: {
                     viewModel.isPresentingView = true

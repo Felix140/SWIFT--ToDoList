@@ -8,11 +8,11 @@ struct StartView: View {
         NavigationView {
             VStack(spacing: 100) {
                 // Header
-                HeaderView(title: "To Do List",
+                HeaderView(title: "TooDoo",
                            subTitle: "Let's get things DONE",
                            icon: "checkmark.seal.fill",
                            angle: 10)
-                .offset(y: -100)
+                .offset(y: -90)
                 
                 Button(action: { 
                     self.navigateToLogin = true
@@ -41,6 +41,9 @@ struct StartView: View {
                 .frame(width: UIScreen.main.bounds.width / 1.1)
                 
                 Spacer()
+                
+                Text("Powered by FelixSPA")
+                    .font(.footnote)
             }
             .fullScreenCover(isPresented: $navigateToLogin, content: {
                 LoginView()
