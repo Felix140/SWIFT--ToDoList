@@ -4,13 +4,14 @@ struct ToDoListItemView: View {
     
     @StateObject var viewModel = ListItemViewViewModel()
     let listItem: ToDoListItem
+    @State var fontSize: Int
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 // Titolo
                 Text(listItem.title)
-                    .font(.title2)
+                    .font(.system(size: CGFloat(fontSize)))
                 // Data + Ora
                 Text("\(Date(timeIntervalSince1970: listItem.dueDate).formatted(date: .abbreviated, time: .shortened))")
                     .font(.footnote)
@@ -32,11 +33,14 @@ struct ToDoListItemView: View {
 
 struct ToDoListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        ToDoListItemView(listItem: .init(
+        ToDoListItemView(
+            listItem: .init(
             id: "IdUser",
             title: "Title",
             dueDate: 122312,
             createdDate: 123123,
-            isDone: false))
+            isDone: false), 
+            fontSize: 25
+        )
     }
 }

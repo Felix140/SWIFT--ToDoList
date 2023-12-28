@@ -29,9 +29,10 @@ struct ToDoListView: View {
     private var itemsAfterTomorrow: [ToDoListItem] {
         fetchedItems.filter { item in
             let calendar = Calendar.current
-            let tomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: Date()))!
+            // Ottieni l'inizio del giorno dopo domani
+            let dayAfterTomorrow = calendar.date(byAdding: .day, value: 2, to: calendar.startOfDay(for: Date()))!
             let itemDate = Date(timeIntervalSince1970: item.dueDate)
-            return itemDate > tomorrow
+            return itemDate >= dayAfterTomorrow
         }
     }
     
@@ -49,9 +50,9 @@ struct ToDoListView: View {
         NavigationView {
             VStack {
                 List {
-                    Section(header: Text("Today").font(.headline)) {
+                    Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
                         ForEach(itemsForToday) { item in
-                            ToDoListItemView(listItem: item)
+                            ToDoListItemView(listItem: item, fontSize: 20)
                                 .swipeActions {
                                     Button("Delete") {
                                         viewModel.delete(idItem: item.id)
@@ -63,7 +64,19 @@ struct ToDoListView: View {
                     
                     Section(header: Text("Tomorrow").font(.headline)) {
                         ForEach(itemsForTomorrow) { item in
-                            ToDoListItemView(listItem: item)
+                            ToDoListItemView(listItem: item, fontSize: 15)
+                                .swipeActions {
+                                    Button("Delete") {
+                                        viewModel.delete(idItem: item.id)
+                                    }
+                                    .tint(.red)
+                                }
+                        }
+                    }
+                    
+                    Section(header: Text("After Tomorrow").font(.headline)) {
+                        ForEach(itemsAfterTomorrow) { item in
+                            ToDoListItemView(listItem: item, fontSize: 15)
                                 .swipeActions {
                                     Button("Delete") {
                                         viewModel.delete(idItem: item.id)
