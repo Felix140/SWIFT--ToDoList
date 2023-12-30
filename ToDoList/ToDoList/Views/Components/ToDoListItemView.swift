@@ -18,6 +18,9 @@ struct ToDoListItemView: View {
                     .font(.footnote)
                     .foregroundColor(Color(.secondaryLabel))
             }
+            .onTapGesture { /// quando clicco sull'item NON MI APRE LA MODALE, isolando l'evento
+                viewModel.toggleIsDone(item: listItem)
+            }
             
             Spacer()
             
@@ -30,6 +33,9 @@ struct ToDoListItemView: View {
                 viewModel.toggleIsDone(item: listItem)
             } label: {
                 Image(systemName: listItem.isDone ? "checkmark.circle.fill" : "circle")
+            }
+            .onTapGesture { /// quando clicco sull'item NON MI APRE LA MODALE, isolando l'evento
+                viewModel.toggleIsDone(item: listItem)
             }
             .foregroundColor(Color.green)
         }
@@ -61,6 +67,9 @@ struct ToDoListItemView: View {
                     .foregroundColor(Color.white)
             }
         })
+        .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
+            pomodoroIsClicked = true
+        })
         .frame(width: 100 / 1.1)
         
         Spacer()
@@ -71,12 +80,12 @@ struct ToDoListItemView_Previews: PreviewProvider {
     static var previews: some View {
         ToDoListItemView(
             listItem: .init(
-            id: "IdUser",
-            title: "Title",
-            dueDate: 122312,
-            createdDate: 123123,
-            isDone: false,
-            pomodoro: true),
+                id: "IdUser",
+                title: "Title",
+                dueDate: 122312,
+                createdDate: 123123,
+                isDone: false,
+                pomodoro: true),
             
             fontSize: 25,
             pomodoroIsClicked: .constant(false)
