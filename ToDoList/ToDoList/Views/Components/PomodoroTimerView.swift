@@ -1,18 +1,47 @@
-//
-//  PomodoroTimerView.swift
-//  ToDoList
-//
-//  Created by Felix Valdez on 30/12/23.
-//
-
 import SwiftUI
 
 struct PomodoroTimerView: View {
+    // Stato per tenere traccia del tempo rimanente (in secondi)
+    @State private var timeRemaining = 40 * 60 // 25 minuti
+    
+    // Stato per controllare se il timer è attivo
+    @State private var isActive = false
+
+    // Timer che scatta ogni secondo
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     var body: some View {
-        Text("Questa è la pomodoro view")
+        VStack {
+            Text(timeString(time: timeRemaining))
+                .font(.largeTitle)
+
+            Button(action: {
+                self.isActive.toggle()
+                if self.isActive {
+                    self.timeRemaining = 40 * 60 // Reset del timer a 25 minuti
+                }
+            }) {
+                Text(isActive ? "Stop" : "Start")
+                    .font(.title)
+            }
+        }
+        .onReceive(timer) { _ in
+            if self.isActive && self.timeRemaining > 0 {
+                self.timeRemaining -= 1
+            }
+        }
+    }
+
+    // Funzione per convertire il tempo in secondi in una stringa formattata
+    func timeString(time: Int) -> String {
+        let minutes = time / 60
+        let seconds = time % 60
+        return String(format: "%02i:%02i", minutes, seconds)
     }
 }
 
-#Preview {
-    PomodoroTimerView()
+struct PomodoroTimerView_Previews: PreviewProvider {
+    static var previews: some View {
+        PomodoroTimerView()
+    }
 }
