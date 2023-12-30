@@ -39,6 +39,7 @@ struct NewItemView: View {
             ButtonFormView(textBtn: "Save", action: {
                 
                 if viewModel.canSave() {
+                    viewModel.isOnPomodoro = isOnPomodoro
                     viewModel.save()
                     toggleView = false
                 } else {
