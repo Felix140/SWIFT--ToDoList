@@ -4,6 +4,7 @@ struct NewItemView: View {
     
     @StateObject var viewModel = NewItemViewViewModel()
     @Binding var toggleView: Bool
+    @Binding var isOnPomodoro: Bool
     
     var body: some View {
         VStack {
@@ -27,8 +28,12 @@ struct NewItemView: View {
                         Label("Seleziona una data", systemImage: "timer")
                     }
                 }
+                
+                Toggle(isOn: $isOnPomodoro) {
+                    Text("Pomodoro Timer")
+                }
             }
-            .frame(height: 250)
+            .frame(height: 350)
             
             // Button
             ButtonFormView(textBtn: "Save", action: {
@@ -56,6 +61,6 @@ struct NewItemView: View {
 
 struct NewItemView_Previews: PreviewProvider {
     static var previews: some View {
-        NewItemView(toggleView: .constant(false))
+        NewItemView(toggleView: .constant(false), isOnPomodoro: .constant(false))
     }
 }

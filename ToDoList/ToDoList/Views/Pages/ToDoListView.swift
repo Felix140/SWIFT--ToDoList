@@ -52,7 +52,9 @@ struct ToDoListView: View {
                 List {
                     Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
                         ForEach(itemsForToday) { item in
-                            ToDoListItemView(listItem: item, fontSize: 20)
+                            ToDoListItemView(
+                                listItem: item, fontSize: 20,
+                                pomodoroIsClicked: $viewModel.isOpenPomodoroModel)
                                 .swipeActions {
                                     Button("Delete") {
                                         viewModel.delete(idItem: item.id)
@@ -61,10 +63,17 @@ struct ToDoListView: View {
                                 }
                         }
                     }
+                    .sheet(isPresented: $viewModel.isOpenPomodoroModel) {
+                        NavigationStack {
+                            PomodoroTimerView()
+                        }
+                    }
                     
                     Section(header: Text("Tomorrow").font(.headline)) {
                         ForEach(itemsForTomorrow) { item in
-                            ToDoListItemView(listItem: item, fontSize: 15)
+                            ToDoListItemView(
+                                listItem: item, fontSize: 15,
+                                pomodoroIsClicked: $viewModel.isOpenPomodoroModel)
                                 .swipeActions {
                                     Button("Delete") {
                                         viewModel.delete(idItem: item.id)
@@ -76,7 +85,9 @@ struct ToDoListView: View {
                     
                     Section(header: Text("After Tomorrow").font(.headline)) {
                         ForEach(itemsAfterTomorrow) { item in
-                            ToDoListItemView(listItem: item, fontSize: 15)
+                            ToDoListItemView(
+                                listItem: item, fontSize: 15,
+                                pomodoroIsClicked: $viewModel.isOpenPomodoroModel)
                                 .swipeActions {
                                     Button("Delete") {
                                         viewModel.delete(idItem: item.id)
@@ -100,7 +111,9 @@ struct ToDoListView: View {
         }
         .sheet(isPresented: $viewModel.isPresentingView) {
             NavigationStack {
-                NewItemView(toggleView: $viewModel.isPresentingView)
+                NewItemView(
+                    toggleView: $viewModel.isPresentingView,
+                    isOnPomodoro: $viewModel.isOnPomodoro)
             }
         }
     }

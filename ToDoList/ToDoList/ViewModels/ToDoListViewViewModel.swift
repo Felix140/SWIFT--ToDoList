@@ -4,6 +4,8 @@ import FirebaseFirestore
 class ToDoListViewViewModel: ObservableObject {
     
     @Published var isPresentingView: Bool = false
+    @Published var isOpenPomodoroModel: Bool = false
+    @Published var isOnPomodoro: Bool = false
     private var userId: String
     
     init(userId: String) {
