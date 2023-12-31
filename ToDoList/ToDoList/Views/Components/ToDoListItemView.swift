@@ -18,14 +18,14 @@ struct ToDoListItemView: View {
                     .font(.footnote)
                     .foregroundColor(Color(.secondaryLabel))
             }
-            .onTapGesture { /// quando clicco sull'item NON MI APRE LA MODALE, isolando l'evento
-                viewModel.toggleIsDone(item: listItem)
-            }
             
             Spacer()
             
             if listItem.pomodoro {
                 viewPomodoroButton()
+                    .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
+                        pomodoroIsClicked = true
+                    })
             }
             
             // Checkbox
@@ -34,10 +34,10 @@ struct ToDoListItemView: View {
             } label: {
                 Image(systemName: listItem.isDone ? "checkmark.circle.fill" : "circle")
             }
-            .onTapGesture { /// quando clicco sull'item NON MI APRE LA MODALE, isolando l'evento
-                viewModel.toggleIsDone(item: listItem)
-            }
             .foregroundColor(Color.green)
+        }
+        .onTapGesture { /// quando clicco sull'item NON MI APRE LA MODALE, isolando l'evento
+            viewModel.toggleIsDone(item: listItem)
         }
     }
     
@@ -47,7 +47,7 @@ struct ToDoListItemView: View {
             pomodoroIsClicked = true
         }, label: {
             ZStack {
-                Rectangle()
+                Circle()
                     .overlay(
                         LinearGradient(
                             stops: [
@@ -58,8 +58,8 @@ struct ToDoListItemView: View {
                             endPoint: UnitPoint(x: 0.5, y: 1)
                         )
                     )
-                    .cornerRadius(10.0)
-                    .frame(height: 50)
+                    .cornerRadius(100.0)
+                    .frame(width: 50, height: 50)
                 
                 Image(systemName: "timer")
                     .font(.system(size: 25))
@@ -67,12 +67,10 @@ struct ToDoListItemView: View {
                     .foregroundColor(Color.white)
             }
         })
-        .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
-            pomodoroIsClicked = true
-        })
-        .frame(width: 100 / 1.1)
+        .frame(width: 50 / 1.1)
         
         Spacer()
+            .frame(width: 25)
     }
 }
 

@@ -25,12 +25,14 @@ struct NewItemView: View {
                 
                 Section(header: Text("Data della Task")) {
                     NavigationLink(destination: CalendarView(dateSelected: $viewModel.date)) {
-                        Label("Seleziona una data", systemImage: "timer")
+                        Label("Seleziona una data", systemImage: "calendar.badge.clock")
                     }
                 }
                 
-                Toggle(isOn: $isOnPomodoro) {
-                    Text("Pomodoro Timer")
+                Section(header: Text("Metodo pomodoro")){
+                    Toggle(isOn: $isOnPomodoro) {
+                        Label("Pomodoro Time", systemImage: "timer")
+                    }
                 }
             }
             .frame(height: 350)
