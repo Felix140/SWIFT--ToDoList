@@ -36,6 +36,16 @@ struct ToDoListView: View {
         }
     }
     
+    // PROGRESSBAR value items
+    private var isDoneItemsForToday: [ToDoListItem] {
+        itemsForToday.filter { itemIsDone in
+            if itemIsDone.isDone == true {
+                return itemIsDone.isDone
+            }
+            return itemIsDone.isDone
+        }
+    }
+    
     init(userId: String) {
         
         /// users/<id>/todos/<entries>
@@ -49,7 +59,9 @@ struct ToDoListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ProgressBarView(valueBar: .constant(0.6))
+                
+                ProgressBarView(valueBar: .constant(Double(isDoneItemsForToday.count)), totalValueBar: .constant(Double(itemsForToday.count)))
+                
                 List {
                     Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
                         ForEach(itemsForToday) { item in

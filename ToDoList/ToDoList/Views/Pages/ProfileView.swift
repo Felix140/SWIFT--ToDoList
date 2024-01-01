@@ -7,7 +7,7 @@ struct ProfileView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ProgressBarView(valueBar: .constant(0.6))
+                ProgressBarView(valueBar: .constant(0.6), totalValueBar: .constant(100))
                 
                 if let user = viewModel.user {
                     profile(user: user)
