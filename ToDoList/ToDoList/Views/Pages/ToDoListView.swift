@@ -49,6 +49,7 @@ struct ToDoListView: View {
     var body: some View {
         NavigationView {
             VStack {
+                ProgressBarView(valueBar: .constant(0.6))
                 List {
                     Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
                         ForEach(itemsForToday) { item in

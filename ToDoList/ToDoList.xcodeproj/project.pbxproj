@@ -18,6 +18,7 @@
 		49B862C32B1BC45200FED137 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B862C22B1BC45200FED137 /* MainView.swift */; };
 		49B862C52B1BC45500FED137 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B862C42B1BC45500FED137 /* Assets.xcassets */; };
 		49B862C82B1BC45500FED137 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B862C72B1BC45500FED137 /* Preview Assets.xcassets */; };
+		49C61BC62B436B3D00F1999C /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C61BC52B436B3D00F1999C /* ProgressBarView.swift */; };
 		49D5CE562B291824009CF312 /* ToDoListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5CE552B291824009CF312 /* ToDoListItemView.swift */; };
 		49E11F922B1FC989009E72E8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E11F912B1FC989009E72E8 /* Extensions.swift */; };
 		49FE571B2B1CB65500E4A0E2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571A2B1CB65500E4A0E2 /* FirebaseAuth */; };
@@ -54,6 +55,7 @@
 		49B862C22B1BC45200FED137 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		49B862C42B1BC45500FED137 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49B862C72B1BC45500FED137 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		49C61BC52B436B3D00F1999C /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		49D5CE552B291824009CF312 /* ToDoListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListItemView.swift; sourceTree = "<group>"; };
 		49E11F912B1FC989009E72E8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				49D5CE552B291824009CF312 /* ToDoListItemView.swift */,
 				496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */,
 				4916EA932B403CA90031B40C /* PomodoroTimerView.swift */,
+				49C61BC52B436B3D00F1999C /* ProgressBarView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				49FE57332B1CDA9D00E4A0E2 /* ToDoListView.swift in Sources */,
 				49FE573B2B1CDB6100E4A0E2 /* ProfileViewViewModel.swift in Sources */,
 				49D5CE562B291824009CF312 /* ToDoListItemView.swift in Sources */,
+				49C61BC62B436B3D00F1999C /* ProgressBarView.swift in Sources */,
 				49FE57412B1CDBCD00E4A0E2 /* CalendarViewViewModel.swift in Sources */,
 				49B862C32B1BC45200FED137 /* MainView.swift in Sources */,
 				4916EA942B403CA90031B40C /* PomodoroTimerView.swift in Sources */,
