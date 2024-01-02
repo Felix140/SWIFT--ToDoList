@@ -9,9 +9,15 @@ struct PomodoroTimerView: View {
 
     // Timer che scatta ogni secondo
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    var progress: Double {
+        return Double(timeRemaining) / (40 * 60)
+    }
 
     var body: some View {
         VStack {
+            TimerView(progress: progress)
+            
             Text(timeString(time: timeRemaining))
                 .font(.largeTitle)
 
