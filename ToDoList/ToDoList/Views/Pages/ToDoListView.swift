@@ -66,7 +66,7 @@ struct ToDoListView: View {
                     Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
                         ForEach(itemsForToday) { item in
                             ToDoListItemView(
-                                listItem: item, fontSize: 20,
+                                listItem: item, fontSize: 18,
                                 pomodoroIsClicked: $viewModel.isOpenPomodoroModel)
                                 .swipeActions {
                                     Button("Delete") {

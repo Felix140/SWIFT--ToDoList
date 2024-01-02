@@ -9,7 +9,11 @@ struct ToDoListItemView: View {
     
     var body: some View {
         HStack {
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 4.0) {
+                // Categoria
+                Text("#\(listItem.category)")
+                    .font(.subheadline)
+                    .foregroundStyle(Color(.secondaryLabel))
                 // Titolo
                 Text(listItem.title)
                     .font(.system(size: CGFloat(fontSize)))
@@ -74,7 +78,8 @@ struct ToDoListItemView_Previews: PreviewProvider {
                 dueDate: 122312,
                 createdDate: 123123,
                 isDone: false,
-                pomodoro: true),
+                pomodoro: true,
+                category: "Work"),
             
             fontSize: 25,
             pomodoroIsClicked: .constant(false)

@@ -29,13 +29,19 @@ struct NewItemView: View {
                     }
                 }
                 
+                Section(header: Text("Seleziona una categoria")){
+                    TextField("Inserisci qui la categoria", text: $viewModel.category)
+                        .textInputAutocapitalization(.none)
+                        .autocapitalization(.none)
+                }
+                
                 Section(header: Text("Metodo pomodoro")){
                     Toggle(isOn: $isOnPomodoro) {
                         Label("Pomodoro Time", systemImage: "timer")
                     }
                 }
             }
-            .frame(height: 350)
+            .frame(height: 400)
             
             // Button
             ButtonFormView(textBtn: "Save", action: {
