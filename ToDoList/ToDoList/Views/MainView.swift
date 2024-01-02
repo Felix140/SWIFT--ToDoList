@@ -21,7 +21,7 @@ struct MainView: View {
         TabView { /// Navbar
             ToDoListView(userId: viewModel.currentUserId)
                 .tabItem {
-                    Label("Home", systemImage: "house")
+                    Label("Task", systemImage: "list.bullet.circle.fill")
                 }
             
             ProfileView()

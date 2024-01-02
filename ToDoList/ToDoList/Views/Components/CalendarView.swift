@@ -8,6 +8,8 @@ struct CalendarView: View {
         VStack {
             DatePicker("Due date", selection: $dateSelected)
                 .datePickerStyle(GraphicalDatePickerStyle())
+            
+            Spacer()
         }
         .padding([.leading, .trailing], 25)
     }

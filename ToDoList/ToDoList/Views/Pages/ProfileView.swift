@@ -7,7 +7,6 @@ struct ProfileView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ProgressBarView(valueBar: .constant(0.6), totalValueBar: .constant(100))
                 
                 if let user = viewModel.user {
                     profile(user: user)
@@ -17,11 +16,12 @@ struct ProfileView: View {
                 
                 // SignOut
                 ButtonFormView(textBtn: "Log Out", action: { viewModel.logOut() })
-                    .frame(width: 300)
+                    .frame(width: UIScreen.main.bounds.width / 1.1)
+                
                 Spacer()
             }
             .navigationTitle("Profile")
-
+            
         }
         .onAppear {
             viewModel.fetchUser()
