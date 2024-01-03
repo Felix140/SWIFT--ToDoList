@@ -6,6 +6,7 @@ struct ToDoListItemView: View {
     let listItem: ToDoListItem
     @State var fontSize: Int
     @Binding var pomodoroIsClicked: Bool
+    @Binding var descriptionIsClicked: Bool
     
     var body: some View {
         HStack {
@@ -32,6 +33,13 @@ struct ToDoListItemView: View {
                     })
             }
             
+            if listItem.description != "" {
+                viewDescription()
+                    .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
+                        descriptionIsClicked = true
+                    })
+            }
+            
             // Checkbox
             Button {
                 viewModel.toggleIsDone(item: listItem)
@@ -54,10 +62,10 @@ struct ToDoListItemView: View {
                 Circle()
                     .fill(Theme.redGradient.gradient)
                     .cornerRadius(100.0)
-                    .frame(width: 50, height: 50)
+                    .frame(width: 40, height: 40)
                 
                 Image(systemName: "timer")
-                    .font(.system(size: 25))
+                    .font(.system(size: 18))
                     .fontWeight(.medium)
                     .foregroundColor(Color.white)
             }
@@ -65,7 +73,34 @@ struct ToDoListItemView: View {
         .frame(width: 50 / 1.1)
         
         Spacer()
-            .frame(width: 25)
+            .frame(width: 10)
+    }
+    
+    
+    @ViewBuilder
+    func viewDescription() -> some View {
+        Button(action: {
+            descriptionIsClicked = true
+        }, label: {
+            ZStack {
+                Circle()
+                    .fill(Theme.redGradient.gradient)
+                    .cornerRadius(100.0)
+                    .frame(width: 40, height: 40)
+                
+                Image(systemName: "pencil.and.list.clipboard")
+                    .font(.system(size: 18))
+                    .fontWeight(.medium)
+                    .foregroundColor(Color.white)
+            }
+        })
+        .frame(width: 50 / 1.1)
+        .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
+            descriptionIsClicked = true
+        })
+        
+        Spacer()
+            .frame(width: 20)
     }
 }
 
@@ -79,10 +114,12 @@ struct ToDoListItemView_Previews: PreviewProvider {
                 createdDate: 123123,
                 isDone: false,
                 pomodoro: true,
-                category: "Work"),
+                category: "Work",
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."),
             
             fontSize: 25,
-            pomodoroIsClicked: .constant(false)
+            pomodoroIsClicked: .constant(false),
+            descriptionIsClicked: .constant(false)
         )
     }
 }

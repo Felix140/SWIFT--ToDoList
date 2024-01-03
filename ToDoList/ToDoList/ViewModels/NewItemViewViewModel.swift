@@ -9,6 +9,7 @@ class NewItemViewViewModel: ObservableObject {
     @Published var date = Date()
     @Published var showAlert = false
     @Published var isOnPomodoro = false
+    @Published var description = ""
     
     init() {}
     
@@ -31,7 +32,8 @@ class NewItemViewViewModel: ObservableObject {
                                    createdDate: Date().timeIntervalSince1970, // La data senza la proprietà @Published
                                    isDone: false,
                                    pomodoro: isOnPomodoro, 
-                                   category: category)
+                                   category: category,
+                                   description: description)
         
         /// Salvare il Modello nel DB
         let db = Firestore.firestore()

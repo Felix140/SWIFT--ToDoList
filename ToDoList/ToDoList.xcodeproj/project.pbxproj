@@ -10,6 +10,8 @@
 		4916EA942B403CA90031B40C /* PomodoroTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916EA932B403CA90031B40C /* PomodoroTimerView.swift */; };
 		4928F3A32B460B21008B2F94 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A22B460B21008B2F94 /* SettingsView.swift */; };
 		4928F3A52B4611DD008B2F94 /* SettingsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A42B4611DD008B2F94 /* SettingsViewViewModel.swift */; };
+		4928F3A72B4614B2008B2F94 /* InsertDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */; };
+		4928F3A92B461A8F008B2F94 /* InfoToDoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */; };
 		492B54C52B2266DF00041139 /* ListItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B54C42B2266DF00041139 /* ListItemViewViewModel.swift */; };
 		492E29792B1D4BE600021383 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E29782B1D4BE600021383 /* HeaderView.swift */; };
 		492E297B2B1D522900021383 /* ButtonFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E297A2B1D522900021383 /* ButtonFormView.swift */; };
@@ -51,6 +53,8 @@
 		4916EA932B403CA90031B40C /* PomodoroTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerView.swift; sourceTree = "<group>"; };
 		4928F3A22B460B21008B2F94 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4928F3A42B4611DD008B2F94 /* SettingsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewViewModel.swift; sourceTree = "<group>"; };
+		4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertDescriptionView.swift; sourceTree = "<group>"; };
+		4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToDoItemView.swift; sourceTree = "<group>"; };
 		492B54C42B2266DF00041139 /* ListItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemViewViewModel.swift; sourceTree = "<group>"; };
 		492E29782B1D4BE600021383 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		492E297A2B1D522900021383 /* ButtonFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFormView.swift; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 				492E297A2B1D522900021383 /* ButtonFormView.swift */,
 				492E29782B1D4BE600021383 /* HeaderView.swift */,
 				49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */,
+				4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */,
+				4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */,
 				49D5CE552B291824009CF312 /* ToDoListItemView.swift */,
 				496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */,
 				49C61BC52B436B3D00F1999C /* ProgressBarView.swift */,
@@ -310,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4928F3A92B461A8F008B2F94 /* InfoToDoItemView.swift in Sources */,
 				49C61BCA2B4385C300F1999C /* TimerArc.swift in Sources */,
 				49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */,
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
@@ -320,6 +327,7 @@
 				49FE57432B1CDBD800E4A0E2 /* LoginViewViewModel.swift in Sources */,
 				49FE572B2B1CD9DA00E4A0E2 /* CalendarView.swift in Sources */,
 				49FE57332B1CDA9D00E4A0E2 /* ToDoListView.swift in Sources */,
+				4928F3A72B4614B2008B2F94 /* InsertDescriptionView.swift in Sources */,
 				49C61BC82B43852300F1999C /* TimerView.swift in Sources */,
 				49FE573B2B1CDB6100E4A0E2 /* ProfileViewViewModel.swift in Sources */,
 				49D5CE562B291824009CF312 /* ToDoListItemView.swift in Sources */,

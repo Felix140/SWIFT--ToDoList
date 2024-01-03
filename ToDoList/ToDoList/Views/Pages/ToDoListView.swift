@@ -64,15 +64,21 @@ struct ToDoListView: View {
                 
                 List {
                     Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
-                        ForEach(itemsForToday) { item in
+                        ForEach(itemsForToday) { itemToday in
                             ToDoListItemView(
-                                listItem: item, fontSize: 18,
-                                pomodoroIsClicked: $viewModel.isOpenPomodoroModel)
+                                listItem: itemToday, fontSize: 18,
+                                pomodoroIsClicked: $viewModel.isOpenPomodoroModel,
+                                descriptionIsClicked: $viewModel.isOpenDescription)
                                 .swipeActions {
                                     Button("Delete") {
-                                        viewModel.delete(idItem: item.id)
+                                        viewModel.delete(idItem: itemToday.id)
                                     }
                                     .tint(.red)
+                                }
+                                .sheet(isPresented: $viewModel.isOpenDescription) {
+                                    NavigationStack {
+                                        InfoToDoItemView(descriptionText: itemToday.description)
+                                    }
                                 }
                         }
                     }
@@ -83,29 +89,41 @@ struct ToDoListView: View {
                     }
                     
                     Section(header: Text("Tomorrow").font(.headline)) {
-                        ForEach(itemsForTomorrow) { item in
+                        ForEach(itemsForTomorrow) { itemTomorrow in
                             ToDoListItemView(
-                                listItem: item, fontSize: 15,
-                                pomodoroIsClicked: $viewModel.isOpenPomodoroModel)
+                                listItem: itemTomorrow, fontSize: 15,
+                                pomodoroIsClicked: $viewModel.isOpenPomodoroModel,
+                                descriptionIsClicked: $viewModel.isOpenDescription)
                                 .swipeActions {
                                     Button("Delete") {
-                                        viewModel.delete(idItem: item.id)
+                                        viewModel.delete(idItem: itemTomorrow.id)
                                     }
                                     .tint(.red)
+                                }
+                                .sheet(isPresented: $viewModel.isOpenDescription) {
+                                    NavigationStack {
+                                        InfoToDoItemView(descriptionText: itemTomorrow.description)
+                                    }
                                 }
                         }
                     }
                     
                     Section(header: Text("After Tomorrow").font(.headline)) {
-                        ForEach(itemsAfterTomorrow) { item in
+                        ForEach(itemsAfterTomorrow) { itemAfter in
                             ToDoListItemView(
-                                listItem: item, fontSize: 15,
-                                pomodoroIsClicked: $viewModel.isOpenPomodoroModel)
+                                listItem: itemAfter, fontSize: 15,
+                                pomodoroIsClicked: $viewModel.isOpenPomodoroModel,
+                                descriptionIsClicked: $viewModel.isOpenDescription)
                                 .swipeActions {
                                     Button("Delete") {
-                                        viewModel.delete(idItem: item.id)
+                                        viewModel.delete(idItem: itemAfter.id)
                                     }
                                     .tint(.red)
+                                }
+                                .sheet(isPresented: $viewModel.isOpenDescription) {
+                                    NavigationStack {
+                                        InfoToDoItemView(descriptionText: itemAfter.description)
+                                    }
                                 }
                         }
                     }

@@ -8,8 +8,9 @@ struct ToDoListItem: Identifiable, Codable {
     var isDone: Bool
     var pomodoro: Bool
     let category: String
+    let description: String
    
-    init(id: String, title: String, dueDate: TimeInterval, createdDate: TimeInterval, isDone: Bool, pomodoro: Bool, category: String) {
+    init(id: String, title: String, dueDate: TimeInterval, createdDate: TimeInterval, isDone: Bool, pomodoro: Bool, category: String, description: String) {
         self.id = id
         self.title = title
         self.dueDate = dueDate
@@ -17,6 +18,7 @@ struct ToDoListItem: Identifiable, Codable {
         self.isDone = isDone
         self.pomodoro = pomodoro
         self.category = category
+        self.description = description
     }
     
     mutating func setDone(_ state: Bool) {

@@ -21,6 +21,9 @@ struct NewItemView: View {
                     TextField("Inserisci qui il titolo", text: $viewModel.title)
                         .textInputAutocapitalization(.none)
                         .autocapitalization(.none)
+                    NavigationLink(destination: InsertDescriptionView(textDescription: $viewModel.description)) {
+                        Label("Aggiungi una descrizione", systemImage: "pencil.and.list.clipboard")
+                    }
                 }
                 
                 Section(header: Text("Data della Task")) {
@@ -41,21 +44,21 @@ struct NewItemView: View {
                     }
                 }
             }
-            .frame(height: 400)
+            .frame(height: 440)
             
-            // Button
-            ButtonFormView(textBtn: "Save", action: {
-                
-                if viewModel.canSave() {
-                    viewModel.isOnPomodoro = isOnPomodoro
-                    viewModel.save()
-                    toggleView = false
-                } else {
-                    viewModel.showAlert = true
-                }
-                
-            })
-            .padding([.trailing, .leading, .top], 30)
+//            // Button SAVE
+//            ButtonFormView(textBtn: "Save", action: {
+//                
+//                if viewModel.canSave() {
+//                    viewModel.isOnPomodoro = isOnPomodoro
+//                    viewModel.save()
+//                    toggleView = false
+//                } else {
+//                    viewModel.showAlert = true
+//                }
+//                
+//            })
+//            .padding([.trailing, .leading, .top], 30)
             
             Spacer()
         }
@@ -64,6 +67,25 @@ struct NewItemView: View {
                 title: Text("Errore"),
                 message: Text("Inserisci il campo testo o eventualmente il giorno in maniera corretta")
             )
+        }
+        .toolbar { /// aggiunge i bottoni di edit dello .sheet (modale)
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
+                    toggleView = false
+                }
+            }
+            
+            ToolbarItem(placement: .confirmationAction) {
+                Button("Done") {
+                    if viewModel.canSave() {
+                        viewModel.isOnPomodoro = isOnPomodoro
+                        viewModel.save()
+                        toggleView = false
+                    } else {
+                        viewModel.showAlert = true
+                    }
+                }
+            }
         }
     }
 }
