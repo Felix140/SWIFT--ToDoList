@@ -33,7 +33,7 @@ struct StartView: View {
                 
                 Spacer()
                 
-                Text("Powered by FelixSPA")
+                Text("Powered by: Felix")
                     .font(.footnote)
             }
             .fullScreenCover(isPresented: $navigateToLogin, content: {

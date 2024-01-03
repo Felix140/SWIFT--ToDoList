@@ -14,6 +14,13 @@ struct ProfileView: View {
                     Text("Loading profile...")
                 }
                 
+                Form {
+                    NavigationLink(destination: SettingsView()) {
+                        Label("Impostazioni", systemImage: "gear")
+                            .foregroundColor(Color.white)
+                    }
+                }
+                
                 // SignOut
                 ButtonFormView(textBtn: "Log Out", action: { viewModel.logOut() })
                     .frame(width: UIScreen.main.bounds.width / 1.1)

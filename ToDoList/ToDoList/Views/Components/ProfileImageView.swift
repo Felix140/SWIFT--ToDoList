@@ -7,7 +7,7 @@ struct ProfileImageView: View {
     var body: some View {
         Image(profileImg)
             .resizable()
-            .frame(width: 125, height: 125)
+            .frame(width: 80, height: 80)
             .clipShape(Circle())
             .overlay {
                 Circle()
