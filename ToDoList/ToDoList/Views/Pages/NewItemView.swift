@@ -14,7 +14,7 @@ struct NewItemView: View {
             Text("TooDoo Task")
                 .font(.title2)
                 .fontWeight(.bold)
-                .padding(.top, 10)
+                .padding(.top, 15)
                 .padding(.leading, 20)
             
             // Form
