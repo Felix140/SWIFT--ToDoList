@@ -10,11 +10,34 @@ struct ToDoListItemView: View {
     
     var body: some View {
         HStack {
+            Spacer()
+                .frame(width: 10)
+            
+            // Checkbox
+            Button {
+                viewModel.toggleIsDone(item: listItem)
+            } label: {
+                Image(systemName: listItem.isDone ? "checkmark.circle.fill" : "circle")
+            }
+            .foregroundColor(Color.green)
+            
+            Spacer()
+                .frame(width: 20)
+            
             VStack(alignment: .leading, spacing: 4.0) {
                 // Categoria
-                Text("#\(listItem.category)")
-                    .font(.subheadline)
-                    .foregroundStyle(Color(.secondaryLabel))
+                if listItem.category != .none {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 4.0)
+                            .fill(Color.secondary)
+                            .frame(width: 90, height: 20)
+                        
+                        Text("#\(listItem.category.categoryName)")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundColor(Color(.secondaryLabel))
+                    }
+                }
                 // Titolo
                 Text(listItem.title)
                     .font(.system(size: CGFloat(fontSize)))
@@ -40,13 +63,6 @@ struct ToDoListItemView: View {
                     })
             }
             
-            // Checkbox
-            Button {
-                viewModel.toggleIsDone(item: listItem)
-            } label: {
-                Image(systemName: listItem.isDone ? "checkmark.circle.fill" : "circle")
-            }
-            .foregroundColor(Color.green)
         }
         .onTapGesture { /// quando clicco sull'item NON MI APRE LA MODALE, isolando l'evento
             viewModel.toggleIsDone(item: listItem)
@@ -100,7 +116,7 @@ struct ToDoListItemView: View {
         })
         
         Spacer()
-            .frame(width: 20)
+            .frame(width: 10)
     }
 }
 
@@ -114,7 +130,7 @@ struct ToDoListItemView_Previews: PreviewProvider {
                 createdDate: 123123,
                 isDone: false,
                 pomodoro: true,
-                category: "Work",
+                category: CategoryTask(rawValue: "Work") ?? .none,
                 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."),
             
             fontSize: 25,

@@ -11,7 +11,7 @@ struct NewItemView: View {
             
             //Component Title
             Text("TooDoo Task")
-                .font(.system(size: 30))
+                .font(.title2)
                 .fontWeight(.bold)
                 .padding(.top, 30)
             
@@ -32,10 +32,13 @@ struct NewItemView: View {
                     }
                 }
                 
-                Section(header: Text("Seleziona una categoria")){
-                    TextField("Inserisci qui la categoria", text: $viewModel.category)
-                        .textInputAutocapitalization(.none)
-                        .autocapitalization(.none)
+                Section(header: Text("Seleziona una categoria")) {
+                    Picker("Categoria", selection: $viewModel.selectedCategory) {
+                        ForEach(viewModel.categories, id: \.self) { category in
+                            Text(category.categoryName).tag(category)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
                 }
                 
                 Section(header: Text("Metodo pomodoro")){
@@ -45,20 +48,6 @@ struct NewItemView: View {
                 }
             }
             .frame(height: 440)
-            
-//            // Button SAVE
-//            ButtonFormView(textBtn: "Save", action: {
-//                
-//                if viewModel.canSave() {
-//                    viewModel.isOnPomodoro = isOnPomodoro
-//                    viewModel.save()
-//                    toggleView = false
-//                } else {
-//                    viewModel.showAlert = true
-//                }
-//                
-//            })
-//            .padding([.trailing, .leading, .top], 30)
             
             Spacer()
         }

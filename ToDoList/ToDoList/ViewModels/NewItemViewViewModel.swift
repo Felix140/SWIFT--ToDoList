@@ -10,6 +10,8 @@ class NewItemViewViewModel: ObservableObject {
     @Published var showAlert = false
     @Published var isOnPomodoro = false
     @Published var description = ""
+    @Published var selectedCategory: CategoryTask = .none
+    let categories = CategoryTask.allCases
     
     init() {}
     
@@ -23,7 +25,7 @@ class NewItemViewViewModel: ObservableObject {
         guard let userId = Auth.auth().currentUser?.uid else {
             return
         }
-
+        
         /// Creazione Modello da mandare
         let newId = UUID().uuidString
         let newItem = ToDoListItem(id: newId,
@@ -31,8 +33,8 @@ class NewItemViewViewModel: ObservableObject {
                                    dueDate: date.timeIntervalSince1970,
                                    createdDate: Date().timeIntervalSince1970, // La data senza la proprietà @Published
                                    isDone: false,
-                                   pomodoro: isOnPomodoro, 
-                                   category: category,
+                                   pomodoro: isOnPomodoro,
+                                   category: selectedCategory,
                                    description: description)
         
         /// Salvare il Modello nel DB

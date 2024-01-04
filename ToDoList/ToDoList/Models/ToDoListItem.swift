@@ -7,10 +7,10 @@ struct ToDoListItem: Identifiable, Codable {
     let createdDate: TimeInterval
     var isDone: Bool
     var pomodoro: Bool
-    let category: String
+    let category: CategoryTask
     let description: String
    
-    init(id: String, title: String, dueDate: TimeInterval, createdDate: TimeInterval, isDone: Bool, pomodoro: Bool, category: String, description: String) {
+    init(id: String, title: String, dueDate: TimeInterval, createdDate: TimeInterval, isDone: Bool, pomodoro: Bool, category: CategoryTask, description: String) {
         self.id = id
         self.title = title
         self.dueDate = dueDate
