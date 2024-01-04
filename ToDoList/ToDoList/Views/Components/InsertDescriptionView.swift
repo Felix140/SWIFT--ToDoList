@@ -2,7 +2,7 @@ import SwiftUI
 
 struct InsertDescriptionView: View {
     
-    
+    @StateObject var viewModel = NewItemViewViewModel()
     @Binding var textDescription: String
     @Binding var isPresented: Bool
     
@@ -50,14 +50,27 @@ struct InsertDescriptionView: View {
             
         }
         .padding(.horizontal, 20)
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(
+                title: Text("Errore"),
+                message: Text("Inserisci la descrizione")
+            )
+        }
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Aggiungi") {
-                    isPresented = false
+                    viewModel.description = textDescription
+                    
+                    if viewModel.canAddDescription() {
+                        isPresented = false
+                    } else {
+                        viewModel.showAlert = true
+                    }
                 }
             }
-            ToolbarItem(placement: .bottomBar) {
-                Button("Cancel Text") {
+            ToolbarItem(placement: .cancellationAction) {
+                Button("Cancel") {
+                    isPresented = false
                     textDescription = ""
                 }
             }

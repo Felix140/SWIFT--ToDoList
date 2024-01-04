@@ -64,5 +64,14 @@ class NewItemViewViewModel: ObservableObject {
         return true
     }
     
+    func canAddDescription() -> Bool {
+        guard !description.trimmingCharacters(in: .whitespaces).isEmpty else {
+            print("Riempi la descrizione")
+            return false
+        }
+        
+        return true
+    }
+    
     
 }

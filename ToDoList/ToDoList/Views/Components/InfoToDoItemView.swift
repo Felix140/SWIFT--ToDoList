@@ -2,7 +2,7 @@ import SwiftUI
 
 struct InfoToDoItemView: View {
     
-    @State var descriptionText: String
+    var descriptionText: String
     
     var body: some View {
         

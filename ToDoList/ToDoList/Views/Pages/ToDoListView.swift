@@ -60,7 +60,9 @@ struct ToDoListView: View {
         NavigationView {
             VStack {
                 
-                ProgressBarView(valueBar: .constant(Double(isDoneItemsForToday.count)), totalValueBar: .constant(Double(itemsForToday.count)))
+                ProgressBarView(
+                    valueBar: .constant(Double(isDoneItemsForToday.count)),
+                    totalValueBar: .constant(Double(itemsForToday.count)))
                 
                 List {
                     Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
@@ -80,13 +82,14 @@ struct ToDoListView: View {
                                         InfoToDoItemView(descriptionText: itemToday.description)
                                     }
                                 }
+                                .sheet(isPresented: $viewModel.isOpenPomodoroModel) {
+                                    NavigationStack {
+                                        PomodoroTimerView()
+                                    }
+                                }
                         }
                     }
-                    .sheet(isPresented: $viewModel.isOpenPomodoroModel) {
-                        NavigationStack {
-                            PomodoroTimerView()
-                        }
-                    }
+
                     
                     Section(header: Text("Tomorrow").font(.headline)) {
                         ForEach(itemsForTomorrow) { itemTomorrow in
@@ -123,6 +126,11 @@ struct ToDoListView: View {
                                 .sheet(isPresented: $viewModel.isOpenDescription) {
                                     NavigationStack {
                                         InfoToDoItemView(descriptionText: itemAfter.description)
+                                    }
+                                }
+                                .sheet(isPresented: $viewModel.isOpenPomodoroModel) {
+                                    NavigationStack {
+                                        PomodoroTimerView()
                                     }
                                 }
                         }
