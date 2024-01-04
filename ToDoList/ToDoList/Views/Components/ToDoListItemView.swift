@@ -29,13 +29,19 @@ struct ToDoListItemView: View {
                 if listItem.category != .none {
                     ZStack {
                         RoundedRectangle(cornerRadius: 4.0)
-                            .fill(Color.secondary)
-                            .frame(width: 90, height: 20)
+                            .fill(Color.blue)
+                            .frame(width: 90, height: 18)
                         
-                        Text("#\(listItem.category.categoryName)")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                            .foregroundColor(Color(.secondaryLabel))
+                        HStack {
+                            Text("#\(listItem.category.categoryName)")
+                                .font(.caption)
+                                .fontWeight(.semibold)
+                                .foregroundColor(Color.white)
+                                .padding(.leading, 5)
+                            
+                            Spacer()
+                        }
+                        .frame(width: 90, height: 18)
                     }
                 }
                 // Titolo

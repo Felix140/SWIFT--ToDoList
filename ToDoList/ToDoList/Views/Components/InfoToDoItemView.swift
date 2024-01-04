@@ -5,11 +5,14 @@ struct InfoToDoItemView: View {
     @State var descriptionText: String
     
     var body: some View {
+        
         VStack(alignment: .leading) {
             
             Text("Descrizione")
                 .font(.title2)
                 .fontWeight(.bold)
+            
+            Divider()
             
             Text(descriptionText)
                

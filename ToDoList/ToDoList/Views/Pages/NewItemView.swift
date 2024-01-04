@@ -5,15 +5,17 @@ struct NewItemView: View {
     @StateObject var viewModel = NewItemViewViewModel()
     @Binding var toggleView: Bool
     @Binding var isOnPomodoro: Bool
+    @State private var showDescriptionView = false
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             
             //Component Title
             Text("TooDoo Task")
                 .font(.title2)
                 .fontWeight(.bold)
-                .padding(.top, 30)
+                .padding(.top, 10)
+                .padding(.leading, 20)
             
             // Form
             Form {
@@ -21,9 +23,9 @@ struct NewItemView: View {
                     TextField("Inserisci qui il titolo", text: $viewModel.title)
                         .textInputAutocapitalization(.none)
                         .autocapitalization(.none)
-                    NavigationLink(destination: InsertDescriptionView(textDescription: $viewModel.description)) {
-                        Label("Aggiungi una descrizione", systemImage: "pencil.and.list.clipboard")
-                    }
+                    
+                    descriptionSelection()
+                    
                 }
                 
                 Section(header: Text("Data della Task")) {
@@ -77,10 +79,31 @@ struct NewItemView: View {
             }
         }
     }
+    
+    @ViewBuilder
+    func descriptionSelection() -> some View {
+        
+        Button(action: {
+            self.showDescriptionView = true
+        }) {
+            Label("Aggiungi una descrizione", systemImage: "pencil.and.list.clipboard")
+        }
+        .sheet(isPresented: $showDescriptionView) {
+            NavigationView {
+                InsertDescriptionView(
+                    textDescription: $viewModel.description,
+                    isPresented: $showDescriptionView
+                )
+            }
+        }
+    }
 }
 
 struct NewItemView_Previews: PreviewProvider {
     static var previews: some View {
-        NewItemView(toggleView: .constant(false), isOnPomodoro: .constant(false))
+        NewItemView(
+            toggleView: .constant(false),
+            isOnPomodoro: .constant(false)
+        )
     }
 }

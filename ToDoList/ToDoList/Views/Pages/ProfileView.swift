@@ -17,7 +17,7 @@ struct ProfileView: View {
                 Form {
                     NavigationLink(destination: SettingsView()) {
                         Label("Impostazioni", systemImage: "gear")
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color.primary)
                     }
                 }
                 
@@ -26,6 +26,7 @@ struct ProfileView: View {
                     .frame(width: UIScreen.main.bounds.width / 1.1)
                 
                 Spacer()
+                    .frame(height: 100)
             }
             .navigationTitle("Profile")
             
