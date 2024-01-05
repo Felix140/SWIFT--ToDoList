@@ -10,47 +10,66 @@ struct PomodoroTimerView: View {
     @State private var isWorkTimer = true
     @State private var isTimerStarted = false
     
-    // Contatore per cicli completati
-    @State private var cyclesCompleted = 0
+    // Contatore per cicli di lavoro completati
+    @State private var workCyclesCompleted = 0
     
     // Timer che scatta ogni secondo
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
+            
+            HStack {
+                ForEach(0..<4, id: \.self) { index in
+                    Image(systemName: "checkmark.circle")
+                        .foregroundColor(index < workCyclesCompleted ? .green : .gray)
+                        .scaleEffect(2.0)
+                        .padding()
+                }
+            }
+            
+            // Bottone per passare al timer successivo
+            HStack {
+                if isTimerStarted && isActive {
+                    Button("Next") {
+                        self.nextTimer()
+                    }
+                    .font(.title)
+                }
+            }
+            
             TimerView(progress: progress)
             
             Text(isWorkTimer ? timeString(time: workTimeRemaining) : timeString(time: breakTimeRemaining))
                 .font(.largeTitle)
             
-            // Bottone per passare al timer successivo
-            if isTimerStarted && isActive {
-                Button("Next") {
-                    self.nextTimer()
-                }
-                .font(.title)
-            }
             
-            // Bottone per pausa e ripresa
-            Button(action: {
-                self.isActive.toggle()
-            }) {
-                Text(isActive ? "Pausa" : "Riprendi")
-                    .font(.title)
-            }
-            .disabled(!isTimerStarted)
             
-            // Bottone per iniziare o resettare il timer
-            Button(action: {
-                if isTimerStarted {
-                    self.resetTimer()
-                } else {
-                    self.startTimer()
+            HStack {
+                // Bottone per pausa e ripresa
+                Button(action: {
+                    self.isActive.toggle()
+                }) {
+                    Text(isActive ? "Pausa" : "Riprendi")
+                        .font(.title)
                 }
-            }) {
-                Text(isTimerStarted ? "Reset" : "Start")
-                    .font(.title)
+                .disabled(!isTimerStarted)
+                
+                Spacer()
+                
+                // Bottone per iniziare o resettare il timer
+                Button(action: {
+                    if isTimerStarted {
+                        self.resetTimer()
+                    } else {
+                        self.startTimer()
+                    }
+                }) {
+                    Text(isTimerStarted ? "Reset" : "Start")
+                        .font(.title)
+                }
             }
+            .padding(.horizontal, 80)
         }
         .onReceive(timer) { _ in
             self.updateTimer()
@@ -61,12 +80,12 @@ struct PomodoroTimerView: View {
         // Funzione per passare al timer successivo
         if isWorkTimer {
             isWorkTimer = false
+            workCyclesCompleted += 1
             breakTimeRemaining = 5 * 60
         } else {
-            cyclesCompleted += 1
             isWorkTimer = true
             workTimeRemaining = 40 * 60
-            if cyclesCompleted >= 4 {
+            if workCyclesCompleted >= 4 {
                 isActive = false
             }
         }
@@ -82,19 +101,21 @@ struct PomodoroTimerView: View {
         // Resetta il timer completamente
         workTimeRemaining = 40 * 60
         breakTimeRemaining = 5 * 60
-        cyclesCompleted = 0
+        workCyclesCompleted = 0
         isWorkTimer = true
         isActive = false
         isTimerStarted = false
     }
     
     private func updateTimer() {
-        // Aggiorna il timer in base allo stato corrente
         guard isActive else { return }
+        
         if isWorkTimer {
             if workTimeRemaining > 0 {
                 workTimeRemaining -= 1
             } else {
+                // Completa il ciclo di lavoro
+                workCyclesCompleted += 1
                 nextTimer()
             }
         } else {
