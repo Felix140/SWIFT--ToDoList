@@ -3,9 +3,11 @@ import AVFoundation
 
 struct PomodoroTimerView: View {
     
-    // Timer per lavoro e pausa
-    @State private var workTimeRemaining = 40 * 60 // 40 minuti
-    @State private var breakTimeRemaining = 5 * 60 // 5 minuti
+    @State private var selectedWorkTime = 40 /// Tempo di lavoro predefinito (in minuti)
+    @State private var selectedBreakTime = 5 /// Tempo di pausa predefinito (in minuti)
+    @State private var workTimeRemaining: Int = 40 * 60 // Imposta il valore iniziale
+    @State private var breakTimeRemaining: Int = 5 * 60 // Imposta il valore iniziale
+    
     // Stati per controllare se il timer è attivo, il tipo di timer, e se è stato avviato
     @State private var isActive = false
     @State private var isWorkTimer = true
@@ -14,6 +16,13 @@ struct PomodoroTimerView: View {
     @State private var workCyclesCompleted = 0 /// Contatore per cicli di lavoro completati
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect() /// Timer che scatta ogni secondo
     @State private var showAlert = false /// Alert
+    ///
+    
+    init() {
+        // Imposta i tempi iniziali in secondi
+        _workTimeRemaining = State(initialValue: selectedWorkTime * 60)
+        _breakTimeRemaining = State(initialValue: selectedBreakTime * 60)
+    }
     
     var body: some View {
         VStack {
@@ -43,7 +52,30 @@ struct PomodoroTimerView: View {
                 }
             }
             
-            TimerView(progress: progress)
+            // Selezioni per i tempi di lavoro e pausa
+            if !isTimerStarted {
+                
+                Picker("Work Time", selection: $selectedWorkTime) {
+                    ForEach(20...60, id: \.self) { time in
+                        Text("\(time) minutes").tag(time)
+                    }
+                }
+                .pickerStyle(.wheel)
+                
+                Picker("Break Time", selection: $selectedBreakTime) {
+                    ForEach(1...15, id: \.self) { time in
+                        Text("\(time) minutes").tag(time)
+                    }
+                }
+                .pickerStyle(.wheel)
+                
+            }
+            
+            
+            if isTimerStarted {
+                TimerView(progress: progress)
+            }
+            
             
             Text(isWorkTimer ? timeString(time: workTimeRemaining) : timeString(time: breakTimeRemaining))
                 .font(.largeTitle)
@@ -78,7 +110,7 @@ struct PomodoroTimerView: View {
             .alert(isPresented: $showAlert) {
                 Alert(
                     title: Text("Fai Una Pausa"),
-                    message: Text("Il periodo di lavoro è finito. È ora di una pausa di 5 minuti."),
+                    message: Text("Il periodo di lavoro è finito. È ora di una pausa di \(selectedBreakTime) minuti."),
                     dismissButton: .default(Text("OK"))
                 )
             }
@@ -97,14 +129,13 @@ struct PomodoroTimerView: View {
     }
     
     private func nextTimer() {
-        // Funzione per passare al timer successivo
         if isWorkTimer {
             isWorkTimer = false
             workCyclesCompleted += 1
-            breakTimeRemaining = 5 * 60
+            breakTimeRemaining = selectedBreakTime * 60 /// Utilizza il valore selezionato per la pausa
         } else {
             isWorkTimer = true
-            workTimeRemaining = 40 * 60
+            workTimeRemaining = selectedWorkTime * 60 /// Utilizza il valore selezionato per il lavoro
             if workCyclesCompleted >= 4 {
                 isActive = false
             }
@@ -115,6 +146,9 @@ struct PomodoroTimerView: View {
         // Avvia il timer
         isActive = true
         isTimerStarted = true
+        // Aggiorna i tempi rimanenti basandosi sui valori selezionati
+        workTimeRemaining = selectedWorkTime * 60
+        breakTimeRemaining = selectedBreakTime * 60
     }
     
     private func resetTimer() {
@@ -149,8 +183,11 @@ struct PomodoroTimerView: View {
     }
     
     var progress: Double {
-        // Calcola il progresso per la visualizzazione
-        isWorkTimer ? Double(workTimeRemaining) / (40 * 60) : Double(breakTimeRemaining) / (5 * 60)
+        if isWorkTimer {
+            return Double(workTimeRemaining) / Double(selectedWorkTime * 60) // Calcola il progresso per il lavoro
+        } else {
+            return Double(breakTimeRemaining) / Double(selectedBreakTime * 60) // Calcola il progresso per la pausa
+        }
     }
     
     func timeString(time: Int) -> String {
