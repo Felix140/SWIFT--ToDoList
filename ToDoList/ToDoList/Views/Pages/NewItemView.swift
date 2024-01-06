@@ -86,7 +86,12 @@ struct NewItemView: View {
         Button(action: {
             self.showDescriptionView = true
         }) {
-            Label("Aggiungi una descrizione", systemImage: "pencil.and.list.clipboard")
+            if viewModel.description.isEmpty {
+                Label("Aggiungi una descrizione", systemImage: "square.and.pencil")
+            } else {
+                Label("Aggiungi una descrizione", systemImage: "checkmark.square")
+                    .foregroundColor(Color.green)
+            }
         }
         .sheet(isPresented: $showDescriptionView) {
             NavigationView {
