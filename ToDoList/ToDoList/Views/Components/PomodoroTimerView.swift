@@ -55,19 +55,25 @@ struct PomodoroTimerView: View {
             // Selezioni per i tempi di lavoro e pausa
             if !isTimerStarted {
                 
-                Picker("Work Time", selection: $selectedWorkTime) {
-                    ForEach(20...60, id: \.self) { time in
-                        Text("\(time) minutes").tag(time)
-                    }
-                }
-                .pickerStyle(.wheel)
+                Spacer()
                 
-                Picker("Break Time", selection: $selectedBreakTime) {
-                    ForEach(1...15, id: \.self) { time in
-                        Text("\(time) minutes").tag(time)
+                HStack {
+                    Picker("Work Time", selection: $selectedWorkTime) {
+                        ForEach(20...60, id: \.self) { time in
+                            Text("\(time) minutes").tag(time)
+                        }
                     }
+                    .pickerStyle(.wheel)
+                    
+                    Picker("Break Time", selection: $selectedBreakTime) {
+                        ForEach(1...15, id: \.self) { time in
+                            Text("\(time) minutes").tag(time)
+                        }
+                    }
+                    .pickerStyle(.wheel)
                 }
-                .pickerStyle(.wheel)
+                
+                Spacer()
                 
             }
             
