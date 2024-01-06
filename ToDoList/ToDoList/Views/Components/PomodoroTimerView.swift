@@ -1,20 +1,19 @@
 import SwiftUI
+import AVFoundation
 
 struct PomodoroTimerView: View {
+    
     // Timer per lavoro e pausa
     @State private var workTimeRemaining = 40 * 60 // 40 minuti
     @State private var breakTimeRemaining = 5 * 60 // 5 minuti
-    
     // Stati per controllare se il timer è attivo, il tipo di timer, e se è stato avviato
     @State private var isActive = false
     @State private var isWorkTimer = true
     @State private var isTimerStarted = false
     
-    // Contatore per cicli di lavoro completati
-    @State private var workCyclesCompleted = 0
-    
-    // Timer che scatta ogni secondo
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var workCyclesCompleted = 0 /// Contatore per cicli di lavoro completati
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect() /// Timer che scatta ogni secondo
+    @State private var showAlert = false /// Alert
     
     var body: some View {
         VStack {
@@ -35,6 +34,12 @@ struct PomodoroTimerView: View {
                         self.nextTimer()
                     }
                     .font(.title)
+                }
+                
+                Spacer()
+                
+                Button("Click") {
+                    showAlert = true
                 }
             }
             
@@ -70,6 +75,21 @@ struct PomodoroTimerView: View {
                 }
             }
             .padding(.horizontal, 80)
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Fai Una Pausa"),
+                    message: Text("Il periodo di lavoro è finito. È ora di una pausa di 5 minuti."),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
+            .onReceive(timer) { _ in
+                if showAlert {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                        showAlert = false /// faccio chiudere l'alert dopo 4 secondi
+                    }
+                }
+            }
+            
         }
         .onReceive(timer) { _ in
             self.updateTimer()
@@ -116,6 +136,7 @@ struct PomodoroTimerView: View {
             } else {
                 // Completa il ciclo di lavoro
                 workCyclesCompleted += 1
+                showAlert = true
                 nextTimer()
             }
         } else {
