@@ -8,9 +8,9 @@ struct ToDoListItem: Identifiable, Codable {
     var isDone: Bool
     var pomodoro: Bool
     let category: CategoryTask
-    let description: String
+    let description: InfoToDoItem
    
-    init(id: String, title: String, dueDate: TimeInterval, createdDate: TimeInterval, isDone: Bool, pomodoro: Bool, category: CategoryTask, description: String) {
+    init(id: String, title: String, dueDate: TimeInterval, createdDate: TimeInterval, isDone: Bool, pomodoro: Bool, category: CategoryTask, description: InfoToDoItem) {
         self.id = id
         self.title = title
         self.dueDate = dueDate

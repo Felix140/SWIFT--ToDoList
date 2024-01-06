@@ -35,7 +35,8 @@ class NewItemViewViewModel: ObservableObject {
                                    isDone: false,
                                    pomodoro: isOnPomodoro,
                                    category: selectedCategory,
-                                   description: description)
+                                   description: InfoToDoItem(id: newId,
+                                                             description: description))
         
         /// Salvare il Modello nel DB
         let db = Firestore.firestore()

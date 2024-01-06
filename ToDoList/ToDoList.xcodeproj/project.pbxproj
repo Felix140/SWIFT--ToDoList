@@ -28,6 +28,8 @@
 		49C61BC82B43852300F1999C /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C61BC72B43852300F1999C /* TimerView.swift */; };
 		49C61BCA2B4385C300F1999C /* TimerArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C61BC92B4385C300F1999C /* TimerArc.swift */; };
 		49D5CE562B291824009CF312 /* ToDoListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5CE552B291824009CF312 /* ToDoListItemView.swift */; };
+		49DB4B9B2B49866300811C93 /* InfoToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */; };
+		49DB4B9D2B49868000811C93 /* InfoToDoItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DB4B9C2B49868000811C93 /* InfoToDoItemViewViewModel.swift */; };
 		49DDA1802B44BF7B009218C4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DDA17F2B44BF7B009218C4 /* Theme.swift */; };
 		49E11F922B1FC989009E72E8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E11F912B1FC989009E72E8 /* Extensions.swift */; };
 		49FE571B2B1CB65500E4A0E2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571A2B1CB65500E4A0E2 /* FirebaseAuth */; };
@@ -46,7 +48,6 @@
 		49FE573B2B1CDB6100E4A0E2 /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE573A2B1CDB6100E4A0E2 /* ProfileViewViewModel.swift */; };
 		49FE573D2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE573C2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift */; };
 		49FE573F2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE573E2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift */; };
-		49FE57412B1CDBCD00E4A0E2 /* CalendarViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE57402B1CDBCD00E4A0E2 /* CalendarViewViewModel.swift */; };
 		49FE57432B1CDBD800E4A0E2 /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */; };
 		49FE57462B1CDBED00E4A0E2 /* RegisterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE57452B1CDBED00E4A0E2 /* RegisterViewViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -74,6 +75,8 @@
 		49C61BC72B43852300F1999C /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		49C61BC92B4385C300F1999C /* TimerArc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerArc.swift; sourceTree = "<group>"; };
 		49D5CE552B291824009CF312 /* ToDoListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListItemView.swift; sourceTree = "<group>"; };
+		49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToDoItem.swift; sourceTree = "<group>"; };
+		49DB4B9C2B49868000811C93 /* InfoToDoItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToDoItemViewViewModel.swift; sourceTree = "<group>"; };
 		49DDA17F2B44BF7B009218C4 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		49E11F912B1FC989009E72E8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -89,7 +92,6 @@
 		49FE573A2B1CDB6100E4A0E2 /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
 		49FE573C2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewViewModel.swift; sourceTree = "<group>"; };
 		49FE573E2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewViewModel.swift; sourceTree = "<group>"; };
-		49FE57402B1CDBCD00E4A0E2 /* CalendarViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewViewModel.swift; sourceTree = "<group>"; };
 		49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
 		49FE57452B1CDBED00E4A0E2 /* RegisterViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,10 +214,10 @@
 				49FE573C2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift */,
 				492B54C42B2266DF00041139 /* ListItemViewViewModel.swift */,
 				49FE573E2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift */,
-				49FE57402B1CDBCD00E4A0E2 /* CalendarViewViewModel.swift */,
 				49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */,
 				49FE57452B1CDBED00E4A0E2 /* RegisterViewViewModel.swift */,
 				4928F3A42B4611DD008B2F94 /* SettingsViewViewModel.swift */,
+				49DB4B9C2B49868000811C93 /* InfoToDoItemViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -225,6 +227,7 @@
 			children = (
 				49FE57342B1CDADC00E4A0E2 /* User.swift */,
 				49FE57362B1CDAEF00E4A0E2 /* ToDoListItem.swift */,
+				49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */,
 				49DDA1812B44C2B6009218C4 /* Enums */,
 			);
 			path = Models;
@@ -325,6 +328,7 @@
 				4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */,
 				4928F3A92B461A8F008B2F94 /* InfoToDoItemView.swift in Sources */,
 				49C61BCA2B4385C300F1999C /* TimerArc.swift in Sources */,
+				49DB4B9D2B49868000811C93 /* InfoToDoItemViewViewModel.swift in Sources */,
 				49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */,
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
 				49FE572F2B1CDA5100E4A0E2 /* LoginView.swift in Sources */,
@@ -339,7 +343,7 @@
 				49FE573B2B1CDB6100E4A0E2 /* ProfileViewViewModel.swift in Sources */,
 				49D5CE562B291824009CF312 /* ToDoListItemView.swift in Sources */,
 				49C61BC62B436B3D00F1999C /* ProgressBarView.swift in Sources */,
-				49FE57412B1CDBCD00E4A0E2 /* CalendarViewViewModel.swift in Sources */,
+				49DB4B9B2B49866300811C93 /* InfoToDoItem.swift in Sources */,
 				4928F3A32B460B21008B2F94 /* SettingsView.swift in Sources */,
 				49B862C32B1BC45200FED137 /* MainView.swift in Sources */,
 				4916EA942B403CA90031B40C /* PomodoroTimerView.swift in Sources */,

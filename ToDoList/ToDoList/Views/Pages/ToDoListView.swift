@@ -79,7 +79,7 @@ struct ToDoListView: View {
                                 }
                                 .sheet(isPresented: $viewModel.isOpenDescription) {
                                     NavigationStack {
-                                        InfoToDoItemView(descriptionText: itemToday.description)
+                                        InfoToDoItemView(descriptionText: .constant(itemToday.description.description))
                                     }
                                 }
                                 .sheet(isPresented: $viewModel.isOpenPomodoroModel) {
@@ -105,7 +105,7 @@ struct ToDoListView: View {
                                 }
                                 .sheet(isPresented: $viewModel.isOpenDescription) {
                                     NavigationStack {
-                                        InfoToDoItemView(descriptionText: itemTomorrow.description)
+                                        InfoToDoItemView(descriptionText: .constant(itemTomorrow.description.description))
                                     }
                                 }
                         }
@@ -125,7 +125,7 @@ struct ToDoListView: View {
                                 }
                                 .sheet(isPresented: $viewModel.isOpenDescription) {
                                     NavigationStack {
-                                        InfoToDoItemView(descriptionText: itemAfter.description)
+                                        InfoToDoItemView(descriptionText: .constant(itemAfter.description.description))
                                     }
                                 }
                                 .sheet(isPresented: $viewModel.isOpenPomodoroModel) {

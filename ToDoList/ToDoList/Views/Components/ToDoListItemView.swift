@@ -62,7 +62,7 @@ struct ToDoListItemView: View {
                     })
             }
             
-            if listItem.description != "" {
+            if listItem.description.description != "" {
                 viewDescription()
                     .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
                         descriptionIsClicked = true
@@ -137,7 +137,10 @@ struct ToDoListItemView_Previews: PreviewProvider {
                 isDone: false,
                 pomodoro: true,
                 category: CategoryTask(rawValue: "Work") ?? .none,
-                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."),
+                description: 
+                    InfoToDoItem(
+                    id: "IdUser",
+                    description: "Lorem ipsum")),
             
             fontSize: 25,
             pomodoroIsClicked: .constant(false),
