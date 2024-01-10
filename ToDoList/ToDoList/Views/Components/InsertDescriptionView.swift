@@ -15,6 +15,8 @@ struct InsertDescriptionView: View {
                     hideKeyboard() /// nascondi la tastiera se clicca sul titolo
                 }
             
+            Divider()
+            
             Spacer()
                 .frame(height: 25)
                 .onTapGesture {
@@ -37,11 +39,7 @@ struct InsertDescriptionView: View {
                 
             }
             .frame(height: 200)
-            .cornerRadius(10)
-            .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color.secondary, lineWidth: 0.6)
-            )
+
             
             Spacer()
                 .onTapGesture {

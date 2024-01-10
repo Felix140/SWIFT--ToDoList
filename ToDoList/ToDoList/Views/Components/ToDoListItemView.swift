@@ -81,15 +81,26 @@ struct ToDoListItemView: View {
             pomodoroIsClicked = true
         }, label: {
             ZStack {
-                Circle()
-                    .fill(Theme.redGradient.gradient)
-                    .cornerRadius(100.0)
-                    .frame(width: 40, height: 40)
+                
+                if #available(iOS 17.0, *) {
+                    Circle()
+                        .stroke(Theme.redGradient.gradient, lineWidth: 3)
+                        .fill(Color.clear)
+                        .cornerRadius(100.0)
+                        .frame(width: 38)
+                } else {
+                    Circle()
+                        .fill(Theme.redGradient.gradient)
+                        .cornerRadius(100.0)
+                        .frame(width: 38)
+                }
                 
                 Image(systemName: "timer")
                     .font(.system(size: 18))
-                    .fontWeight(.medium)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.clear) // Make the original icon transparent
+                    .background(Theme.redGradient.gradient) // Apply the gradient as background
+                    .mask(Image(systemName: "timer").font(.system(size: 18))) // gee=nerate a mask
+                
             }
         })
         .frame(width: 50 / 1.1)
@@ -105,15 +116,25 @@ struct ToDoListItemView: View {
             descriptionIsClicked = true
         }, label: {
             ZStack {
-                Circle()
-                    .fill(Theme.redGradient.gradient)
-                    .cornerRadius(100.0)
-                    .frame(width: 40, height: 40)
                 
-                Image(systemName: "pencil.and.list.clipboard")
+                if #available(iOS 17.0, *) {
+                    Circle()
+                        .stroke(Theme.redGradient.gradient, lineWidth: 3)
+                        .fill(Color.clear)
+                        .cornerRadius(100.0)
+                        .frame(width: 38)
+                } else {
+                    Circle()
+                        .fill(Theme.redGradient.gradient)
+                        .cornerRadius(100.0)
+                        .frame(width: 38)
+                }
+                
+                Image(systemName: "list.bullet")
                     .font(.system(size: 18))
-                    .fontWeight(.medium)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.clear) // Make the original icon transparent
+                    .background(Theme.redGradient.gradient) // Apply the gradient as background
+                    .mask(Image(systemName: "list.bullet").font(.system(size: 18))) // gee=nerate a mask
             }
         })
         .frame(width: 50 / 1.1)
@@ -139,8 +160,8 @@ struct ToDoListItemView_Previews: PreviewProvider {
                 category: CategoryTask(rawValue: "Work") ?? .none,
                 description: 
                     InfoToDoItem(
-                    id: "IdUser",
-                    description: "Lorem ipsum")),
+                        id: "IdUser",
+                        description: "Lorem ipsum")),
             
             fontSize: 25,
             pomodoroIsClicked: .constant(false),

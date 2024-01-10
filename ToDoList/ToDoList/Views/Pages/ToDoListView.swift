@@ -61,8 +61,8 @@ struct ToDoListView: View {
             VStack {
                 
                 ProgressBarView(
-                    valueBar: .constant(Double(isDoneItemsForToday.count)),
-                    totalValueBar: .constant(Double(itemsForToday.count)))
+                    valueBar: Double(isDoneItemsForToday.count),
+                    totalValueBar: Double(itemsForToday.count))
                 
                 List {
                     Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
@@ -79,7 +79,7 @@ struct ToDoListView: View {
                                 }
                                 .sheet(isPresented: $viewModel.isOpenDescription) {
                                     NavigationStack {
-                                        InfoToDoItemView(descriptionText: .constant(itemToday.description.description))
+                                        InfoToDoItemView(descriptionText: itemToday.description.description)
                                     }
                                 }
                                 .sheet(isPresented: $viewModel.isOpenPomodoroModel) {
@@ -105,7 +105,7 @@ struct ToDoListView: View {
                                 }
                                 .sheet(isPresented: $viewModel.isOpenDescription) {
                                     NavigationStack {
-                                        InfoToDoItemView(descriptionText: .constant(itemTomorrow.description.description))
+                                        InfoToDoItemView(descriptionText: itemTomorrow.description.description)
                                     }
                                 }
                         }
@@ -125,7 +125,7 @@ struct ToDoListView: View {
                                 }
                                 .sheet(isPresented: $viewModel.isOpenDescription) {
                                     NavigationStack {
-                                        InfoToDoItemView(descriptionText: .constant(itemAfter.description.description))
+                                        InfoToDoItemView(descriptionText: itemAfter.description.description)
                                     }
                                 }
                                 .sheet(isPresented: $viewModel.isOpenPomodoroModel) {
