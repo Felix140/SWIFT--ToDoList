@@ -143,7 +143,7 @@ struct ToDoListView: View {
                 Button(action: {
                     viewModel.isPresentingView = true
                 }) {
-                    Image(systemName: "plus")
+                    Image(systemName: "plus.circle")
                 }
                 .accessibilityLabel("Add new Item")
             }

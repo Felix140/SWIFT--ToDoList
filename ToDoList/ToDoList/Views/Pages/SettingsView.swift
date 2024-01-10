@@ -6,16 +6,19 @@ struct SettingsView: View {
     @StateObject var viewModel = SettingViewViewModel()
     
     var body: some View {
-        NavigationView {
             VStack(alignment: .leading){
-                Text("Nome")
-                Text("Cognome")
-                Text("Email")
-                Text("Password")
+                Form {
+                    Section {
+                        Text("Nome: ")
+                        Text("Cognome: ")
+                        Text("Email: ")
+                        Text("Password: ")
+                    }
+                }
+                
                 Spacer()
             }
             .navigationTitle("Settings")
-        }
     }
 }
 

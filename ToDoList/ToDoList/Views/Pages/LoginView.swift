@@ -21,7 +21,7 @@ struct LoginView: View {
                     
                     SecureField("Password", text: $viewModel.passField)
                 }
-                .frame(height: 300)
+                .frame(height: 200)
                 
                 
                 // Create Account
@@ -41,7 +41,8 @@ struct LoginView: View {
                 
                 Spacer()
             }
-            .padding(.top, 50)
+            .navigationTitle("Login")
+            .padding(.top, 20)
         }
     }
 }

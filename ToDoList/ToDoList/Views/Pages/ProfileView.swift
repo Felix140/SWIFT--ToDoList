@@ -14,12 +14,6 @@ struct ProfileView: View {
                     Text("Loading profile...")
                 }
                 
-                Form {
-                    NavigationLink(destination: SettingsView()) {
-                        Label("Impostazioni", systemImage: "gear")
-                            .foregroundColor(Color.primary)
-                    }
-                }
                 
                 // SignOut
                 ButtonFormView(textBtn: "Log Out", action: { viewModel.logOut() })
@@ -29,7 +23,13 @@ struct ProfileView: View {
                     .frame(height: 100)
             }
             .navigationTitle("Profile")
-            
+            .toolbar {
+                // Pulsante che porta a SettingsView
+                NavigationLink(destination: SettingsView()) {
+                    Image(systemName: "gear")
+                }
+                .accessibilityLabel("Impostazioni")
+            }
         }
         .onAppear {
             viewModel.fetchUser()
