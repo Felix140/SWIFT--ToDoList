@@ -7,6 +7,7 @@ struct ToDoListItemView: View {
     @State var fontSize: Int
     @Binding var pomodoroIsClicked: Bool
     @Binding var descriptionIsClicked: Bool
+    var haptic = HapticTrigger()
     
     var body: some View {
         HStack {
@@ -15,6 +16,7 @@ struct ToDoListItemView: View {
             
             // Checkbox
             Button {
+                self.haptic.feedbackLight()
                 viewModel.toggleIsDone(item: listItem)
             } label: {
                 Image(systemName: listItem.isDone ? "checkmark.circle.fill" : "circle")
@@ -78,6 +80,7 @@ struct ToDoListItemView: View {
     @ViewBuilder
     func viewPomodoroButton() -> some View {
         Button(action: {
+            self.haptic.feedbackLight()
             pomodoroIsClicked = true
         }, label: {
             ZStack {
@@ -113,6 +116,7 @@ struct ToDoListItemView: View {
     @ViewBuilder
     func viewDescription() -> some View {
         Button(action: {
+            self.haptic.feedbackLight()
             descriptionIsClicked = true
         }, label: {
             ZStack {

@@ -8,6 +8,7 @@ struct ToDoListView: View {
     /// passargli il parametro dello userId, inizializzato a sua volta nell'init() di "ToDoListViewViewModel()"
     @StateObject var viewModel: ToDoListViewViewModel
     @FirestoreQuery var fetchedItems: [ToDoListItem]
+    private var haptic = HapticTrigger()
     
     // TODAY items
     private var itemsForToday: [ToDoListItem] {
@@ -99,6 +100,7 @@ struct ToDoListView: View {
                                 descriptionIsClicked: $viewModel.isOpenDescription)
                                 .swipeActions {
                                     Button("Delete") {
+                                        self.haptic.feedbackLight()
                                         viewModel.delete(idItem: itemTomorrow.id)
                                     }
                                     .tint(.red)
@@ -142,6 +144,7 @@ struct ToDoListView: View {
             .toolbar{
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
+                        self.haptic.feedbackMedium()
                         viewModel.isPresentingView = true
                     }) {
                         Image(systemName: "plus.circle")

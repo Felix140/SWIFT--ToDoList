@@ -3,6 +3,7 @@ import SwiftUI
 struct ProfileView: View {
     
     @StateObject var viewModel = ProfileViewViewModel()
+    var haptic = HapticTrigger()
     
     var body: some View {
         NavigationView {
@@ -16,8 +17,11 @@ struct ProfileView: View {
                 
                 
                 // SignOut
-                ButtonFormView(textBtn: "Log Out", action: { viewModel.logOut() })
-                    .frame(width: UIScreen.main.bounds.width / 1.1)
+                ButtonFormView(textBtn: "Log Out", action: {
+                    self.haptic.feedbackHeavy()
+                    viewModel.logOut()
+                })
+                .frame(width: UIScreen.main.bounds.width / 1.1)
                 
                 Spacer()
                     .frame(height: 100)

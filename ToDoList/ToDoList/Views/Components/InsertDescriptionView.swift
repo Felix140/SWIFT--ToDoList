@@ -5,6 +5,7 @@ struct InsertDescriptionView: View {
     @StateObject var viewModel = NewItemViewViewModel()
     @Binding var textDescription: String
     @Binding var isPresented: Bool
+    var haptic = HapticTrigger()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -57,6 +58,7 @@ struct InsertDescriptionView: View {
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Aggiungi") {
+                    self.haptic.feedbackMedium()
                     viewModel.description = textDescription
                     
                     if viewModel.canAddDescription() {

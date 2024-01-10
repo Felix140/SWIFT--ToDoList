@@ -3,6 +3,8 @@ import SwiftUI
 struct StartView: View {
     
     @State private var navigateToLogin = false
+    var haptic = HapticTrigger()
+    
     
     var body: some View {
         NavigationView {
@@ -15,6 +17,7 @@ struct StartView: View {
                 .offset(y: -20)
                 
                 Button(action: { 
+                    self.haptic.feedbackHeavy()
                     self.navigateToLogin = true
                 }, label: {
                     ZStack {

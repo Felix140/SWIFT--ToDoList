@@ -6,6 +6,7 @@ struct NewItemView: View {
     @Binding var toggleView: Bool
     @Binding var isOnPomodoro: Bool
     @State private var showDescriptionView = false
+    var haptic = HapticTrigger()
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -70,10 +71,12 @@ struct NewItemView: View {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Done") {
                     if viewModel.canSave() {
+                        self.haptic.feedbackMedium()
                         viewModel.isOnPomodoro = isOnPomodoro
                         viewModel.save()
                         toggleView = false
                     } else {
+                        self.haptic.feedbackHeavy()
                         viewModel.showAlert = true
                     }
                 }
@@ -85,6 +88,7 @@ struct NewItemView: View {
     func descriptionSelection() -> some View {
         
         Button(action: {
+            self.haptic.feedbackMedium()
             self.showDescriptionView = true
         }) {
             if viewModel.description.isEmpty {

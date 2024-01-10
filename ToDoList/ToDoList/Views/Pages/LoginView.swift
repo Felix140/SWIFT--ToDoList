@@ -3,6 +3,7 @@ import SwiftUI
 struct LoginView: View {
     
     @StateObject var viewModel = LoginViewViewModel()
+    var haptic = HapticTrigger()
     
     var body: some View {
 
@@ -30,7 +31,10 @@ struct LoginView: View {
                     // Login Button
                     ButtonFormView(
                         textBtn: "Log In",
-                        action: { viewModel.login() }
+                        action: {
+                            self.haptic.feedbackHeavy()
+                            viewModel.login()
+                        }
                     )
                     .frame(width: UIScreen.main.bounds.width / 1.1)
                     
