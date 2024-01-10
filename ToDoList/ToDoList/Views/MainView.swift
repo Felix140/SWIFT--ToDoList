@@ -24,6 +24,11 @@ struct MainView: View {
                     Label("Task", systemImage: "list.bullet.circle.fill")
                 }
             
+            DoneListView()
+                .tabItem {
+                    Label("Done", systemImage: "checklist.checked")
+                }
+            
             ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.crop.circle")

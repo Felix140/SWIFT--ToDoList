@@ -140,12 +140,14 @@ struct ToDoListView: View {
             }
             .navigationTitle("TooDoo List")
             .toolbar{
-                Button(action: {
-                    viewModel.isPresentingView = true
-                }) {
-                    Image(systemName: "plus.circle")
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(action: {
+                        viewModel.isPresentingView = true
+                    }) {
+                        Image(systemName: "plus.circle")
+                    }
+                    .accessibilityLabel("Add new Item")
                 }
-                .accessibilityLabel("Add new Item")
             }
         }
         .sheet(isPresented: $viewModel.isPresentingView) {

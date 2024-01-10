@@ -30,7 +30,7 @@ struct HeaderView: View {
             }
             
         }
-        .frame(width: UIScreen.main.bounds.width * 3, height: 400)
+        .frame(width: UIScreen.main.bounds.width * 3, height: 600)
         
     }
 }

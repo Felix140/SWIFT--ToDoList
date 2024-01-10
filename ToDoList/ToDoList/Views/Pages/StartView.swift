@@ -11,8 +11,8 @@ struct StartView: View {
                 HeaderView(title: "TooDoo",
                            subTitle: "Let's get things DONE",
                            icon: "checkmark.seal.fill",
-                           angle: 10)
-                .offset(y: -90)
+                           angle: 0)
+                .offset(y: -20)
                 
                 Button(action: { 
                     self.navigateToLogin = true

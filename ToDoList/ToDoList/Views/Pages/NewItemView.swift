@@ -50,6 +50,7 @@ struct NewItemView: View {
                 }
             }
             .frame(height: 440)
+            .scrollDisabled(true)
             
             Spacer()
         }

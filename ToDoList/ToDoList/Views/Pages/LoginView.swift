@@ -21,7 +21,8 @@ struct LoginView: View {
                     
                     SecureField("Password", text: $viewModel.passField)
                 }
-                .frame(height: 200)
+                .frame(height: 230)
+                .scrollDisabled(true)
                 
                 
                 // Create Account

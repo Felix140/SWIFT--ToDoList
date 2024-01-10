@@ -15,6 +15,7 @@ struct SettingsView: View {
                         Text("Password: ")
                     }
                 }
+                .scrollDisabled(true)
                 
                 Spacer()
             }

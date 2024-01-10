@@ -28,8 +28,8 @@ struct RegisterView: View {
                         SecureField("Repeat Password", text: $viewModel.repeatPass)
                     }
                 }
-                .frame(height: 200)
-                .background(Color.clear)
+                .frame(height: 230)
+                .scrollDisabled(true)
                 
                 
                 

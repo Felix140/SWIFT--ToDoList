@@ -20,6 +20,8 @@
 		496F10002B331957005CCA4B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496F0FFF2B331957005CCA4B /* StartView.swift */; };
 		4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970661E2B462C4200C16D88 /* CategoryTask.swift */; };
 		499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E1DDF2B46FA5200A7EF9A /* Routes.swift */; };
+		49B19B9A2B4F48250063C755 /* DoneListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B19B992B4F48250063C755 /* DoneListView.swift */; };
+		49B19B9C2B4F4CC90063C755 /* DoneListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B19B9B2B4F4CC90063C755 /* DoneListViewViewModel.swift */; };
 		49B862C12B1BC45200FED137 /* ToDoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B862C02B1BC45200FED137 /* ToDoListApp.swift */; };
 		49B862C32B1BC45200FED137 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B862C22B1BC45200FED137 /* MainView.swift */; };
 		49B862C52B1BC45500FED137 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B862C42B1BC45500FED137 /* Assets.xcassets */; };
@@ -66,6 +68,8 @@
 		496F0FFF2B331957005CCA4B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		4970661E2B462C4200C16D88 /* CategoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTask.swift; sourceTree = "<group>"; };
 		499E1DDF2B46FA5200A7EF9A /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		49B19B992B4F48250063C755 /* DoneListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneListView.swift; sourceTree = "<group>"; };
+		49B19B9B2B4F4CC90063C755 /* DoneListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneListViewViewModel.swift; sourceTree = "<group>"; };
 		49B862BD2B1BC45200FED137 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B862C02B1BC45200FED137 /* ToDoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListApp.swift; sourceTree = "<group>"; };
 		49B862C22B1BC45200FED137 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -150,12 +154,13 @@
 			isa = PBXGroup;
 			children = (
 				496F0FFF2B331957005CCA4B /* StartView.swift */,
+				49FE572E2B1CDA5100E4A0E2 /* LoginView.swift */,
+				49FE57302B1CDA7800E4A0E2 /* RegisterView.swift */,
 				49FE57262B1CD99000E4A0E2 /* ProfileView.swift */,
 				4928F3A22B460B21008B2F94 /* SettingsView.swift */,
 				49FE57322B1CDA9D00E4A0E2 /* ToDoListView.swift */,
-				49FE572E2B1CDA5100E4A0E2 /* LoginView.swift */,
-				49FE57302B1CDA7800E4A0E2 /* RegisterView.swift */,
 				49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */,
+				49B19B992B4F48250063C755 /* DoneListView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -163,8 +168,8 @@
 		49C32CA22B1E5FB5003B44EA /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				492E297A2B1D522900021383 /* ButtonFormView.swift */,
 				492E29782B1D4BE600021383 /* HeaderView.swift */,
+				492E297A2B1D522900021383 /* ButtonFormView.swift */,
 				49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */,
 				4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */,
 				4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */,
@@ -212,6 +217,7 @@
 				49FE57382B1CDB3C00E4A0E2 /* MainViewViewModel.swift */,
 				49FE573A2B1CDB6100E4A0E2 /* ProfileViewViewModel.swift */,
 				49FE573C2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift */,
+				49B19B9B2B4F4CC90063C755 /* DoneListViewViewModel.swift */,
 				492B54C42B2266DF00041139 /* ListItemViewViewModel.swift */,
 				49FE573E2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift */,
 				49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */,
@@ -328,9 +334,11 @@
 				4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */,
 				4928F3A92B461A8F008B2F94 /* InfoToDoItemView.swift in Sources */,
 				49C61BCA2B4385C300F1999C /* TimerArc.swift in Sources */,
+				49B19B9C2B4F4CC90063C755 /* DoneListViewViewModel.swift in Sources */,
 				49DB4B9D2B49868000811C93 /* InfoToDoItemViewViewModel.swift in Sources */,
 				49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */,
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
+				49B19B9A2B4F48250063C755 /* DoneListView.swift in Sources */,
 				49FE572F2B1CDA5100E4A0E2 /* LoginView.swift in Sources */,
 				496F10002B331957005CCA4B /* StartView.swift in Sources */,
 				49FE57462B1CDBED00E4A0E2 /* RegisterViewViewModel.swift in Sources */,
