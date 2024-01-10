@@ -158,11 +158,12 @@
 				496F0FFF2B331957005CCA4B /* StartView.swift */,
 				49FE572E2B1CDA5100E4A0E2 /* LoginView.swift */,
 				49FE57302B1CDA7800E4A0E2 /* RegisterView.swift */,
-				49FE57262B1CD99000E4A0E2 /* ProfileView.swift */,
 				4928F3A22B460B21008B2F94 /* SettingsView.swift */,
 				49FE57322B1CDA9D00E4A0E2 /* ToDoListView.swift */,
 				49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */,
 				49B19B992B4F48250063C755 /* DoneListView.swift */,
+				4916EA932B403CA90031B40C /* PomodoroTimerView.swift */,
+				49FE57262B1CD99000E4A0E2 /* ProfileView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -172,13 +173,12 @@
 			children = (
 				492E29782B1D4BE600021383 /* HeaderView.swift */,
 				492E297A2B1D522900021383 /* ButtonFormView.swift */,
+				49D5CE552B291824009CF312 /* ToDoListItemView.swift */,
 				49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */,
 				4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */,
 				4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */,
-				49D5CE552B291824009CF312 /* ToDoListItemView.swift */,
 				496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */,
 				49C61BC52B436B3D00F1999C /* ProgressBarView.swift */,
-				4916EA932B403CA90031B40C /* PomodoroTimerView.swift */,
 				49C61BCB2B43862600F1999C /* Timer */,
 			);
 			path = Components;

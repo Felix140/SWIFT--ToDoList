@@ -8,7 +8,6 @@ class NewItemViewViewModel: ObservableObject {
     @Published var category = ""
     @Published var date = Date()
     @Published var showAlert = false
-    @Published var isOnPomodoro = false
     @Published var description = ""
     @Published var selectedCategory: CategoryTask = .none
     let categories = CategoryTask.allCases
@@ -33,7 +32,6 @@ class NewItemViewViewModel: ObservableObject {
                                    dueDate: date.timeIntervalSince1970,
                                    createdDate: Date().timeIntervalSince1970, // La data senza la proprietà @Published
                                    isDone: false,
-                                   pomodoro: isOnPomodoro,
                                    category: selectedCategory,
                                    description: InfoToDoItem(id: newId,
                                                              description: description))

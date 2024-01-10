@@ -70,7 +70,6 @@ struct ToDoListView: View {
                         ForEach(itemsForToday) { itemToday in
                             ToDoListItemView(
                                 listItem: itemToday, fontSize: 18,
-                                pomodoroIsClicked: $viewModel.isOpenPomodoroModel,
                                 descriptionIsClicked: $viewModel.isOpenDescription)
                                 .swipeActions {
                                     Button("Delete") {
@@ -83,11 +82,6 @@ struct ToDoListView: View {
                                         InfoToDoItemView(descriptionText: itemToday.description.description)
                                     }
                                 }
-                                .sheet(isPresented: $viewModel.isOpenPomodoroModel) {
-                                    NavigationStack {
-                                        PomodoroTimerView()
-                                    }
-                                }
                         }
                     }
 
@@ -96,7 +90,6 @@ struct ToDoListView: View {
                         ForEach(itemsForTomorrow) { itemTomorrow in
                             ToDoListItemView(
                                 listItem: itemTomorrow, fontSize: 15,
-                                pomodoroIsClicked: $viewModel.isOpenPomodoroModel,
                                 descriptionIsClicked: $viewModel.isOpenDescription)
                                 .swipeActions {
                                     Button("Delete") {
@@ -117,7 +110,6 @@ struct ToDoListView: View {
                         ForEach(itemsAfterTomorrow) { itemAfter in
                             ToDoListItemView(
                                 listItem: itemAfter, fontSize: 15,
-                                pomodoroIsClicked: $viewModel.isOpenPomodoroModel,
                                 descriptionIsClicked: $viewModel.isOpenDescription)
                                 .swipeActions {
                                     Button("Delete") {
@@ -128,11 +120,6 @@ struct ToDoListView: View {
                                 .sheet(isPresented: $viewModel.isOpenDescription) {
                                     NavigationStack {
                                         InfoToDoItemView(descriptionText: itemAfter.description.description)
-                                    }
-                                }
-                                .sheet(isPresented: $viewModel.isOpenPomodoroModel) {
-                                    NavigationStack {
-                                        PomodoroTimerView()
                                     }
                                 }
                         }
@@ -156,8 +143,8 @@ struct ToDoListView: View {
         .sheet(isPresented: $viewModel.isPresentingView) {
             NavigationStack {
                 NewItemView(
-                    toggleView: $viewModel.isPresentingView,
-                    isOnPomodoro: $viewModel.isOnPomodoro)
+                    toggleView: $viewModel.isPresentingView
+                )
             }
         }
     }

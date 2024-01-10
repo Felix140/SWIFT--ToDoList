@@ -5,7 +5,6 @@ struct ToDoListItemView: View {
     @StateObject var viewModel = ListItemViewViewModel()
     let listItem: ToDoListItem
     @State var fontSize: Int
-    @Binding var pomodoroIsClicked: Bool
     @Binding var descriptionIsClicked: Bool
     var haptic = HapticTrigger()
     
@@ -57,13 +56,6 @@ struct ToDoListItemView: View {
             
             Spacer()
             
-            if listItem.pomodoro {
-                viewPomodoroButton()
-                    .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
-                        pomodoroIsClicked = true
-                    })
-            }
-            
             if listItem.description.description != "" {
                 viewDescription()
                     .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
@@ -77,40 +69,6 @@ struct ToDoListItemView: View {
         }
     }
     
-    @ViewBuilder
-    func viewPomodoroButton() -> some View {
-        Button(action: {
-            self.haptic.feedbackLight()
-            pomodoroIsClicked = true
-        }, label: {
-            ZStack {
-                
-                if #available(iOS 17.0, *) {
-                    Circle()
-                        .stroke(Theme.redGradient.gradient, lineWidth: 3)
-                        .fill(Color.clear)
-                        .cornerRadius(100.0)
-                        .frame(width: 38)
-                } else {
-                    Circle()
-                        .fill(Theme.redGradient.gradient)
-                        .cornerRadius(100.0)
-                        .frame(width: 38)
-                }
-                
-                Image(systemName: "timer")
-                    .font(.system(size: 18))
-                    .foregroundColor(Color.clear) // Make the original icon transparent
-                    .background(Theme.redGradient.gradient) // Apply the gradient as background
-                    .mask(Image(systemName: "timer").font(.system(size: 18))) // gee=nerate a mask
-                
-            }
-        })
-        .frame(width: 50 / 1.1)
-        
-        Spacer()
-            .frame(width: 10)
-    }
     
     
     @ViewBuilder
@@ -160,7 +118,6 @@ struct ToDoListItemView_Previews: PreviewProvider {
                 dueDate: 122312,
                 createdDate: 123123,
                 isDone: false,
-                pomodoro: true,
                 category: CategoryTask(rawValue: "Work") ?? .none,
                 description: 
                     InfoToDoItem(
@@ -168,7 +125,6 @@ struct ToDoListItemView_Previews: PreviewProvider {
                         description: "Lorem ipsum")),
             
             fontSize: 25,
-            pomodoroIsClicked: .constant(false),
             descriptionIsClicked: .constant(false)
         )
     }

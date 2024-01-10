@@ -29,6 +29,11 @@ struct MainView: View {
                     Label("Done", systemImage: "checklist.checked")
                 }
             
+            PomodoroTimerView()
+                .tabItem {
+                    Label("Pomodoro", systemImage: "microbe")
+                }
+            
             ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.crop.circle")

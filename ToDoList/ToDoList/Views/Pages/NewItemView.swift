@@ -4,7 +4,6 @@ struct NewItemView: View {
     
     @StateObject var viewModel = NewItemViewViewModel()
     @Binding var toggleView: Bool
-    @Binding var isOnPomodoro: Bool
     @State private var showDescriptionView = false
     var haptic = HapticTrigger()
     
@@ -43,12 +42,6 @@ struct NewItemView: View {
                     }
                     .pickerStyle(MenuPickerStyle())
                 }
-                
-                Section(header: Text("Metodo pomodoro")){
-                    Toggle(isOn: $isOnPomodoro) {
-                        Label("Pomodoro Time", systemImage: "timer")
-                    }
-                }
             }
             .frame(height: 440)
             .scrollDisabled(true)
@@ -72,7 +65,6 @@ struct NewItemView: View {
                 Button("Done") {
                     if viewModel.canSave() {
                         self.haptic.feedbackMedium()
-                        viewModel.isOnPomodoro = isOnPomodoro
                         viewModel.save()
                         toggleView = false
                     } else {
@@ -112,8 +104,7 @@ struct NewItemView: View {
 struct NewItemView_Previews: PreviewProvider {
     static var previews: some View {
         NewItemView(
-            toggleView: .constant(false),
-            isOnPomodoro: .constant(false)
+            toggleView: .constant(false)
         )
     }
 }
