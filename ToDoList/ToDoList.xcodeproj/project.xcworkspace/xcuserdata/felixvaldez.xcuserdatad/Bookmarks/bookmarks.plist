@@ -18,7 +18,7 @@
 					<key>StartingLineNumber</key>
 					<string>80</string>
 					<key>Timestamp</key>
-					<string>726618932.333119</string>
+					<string>726696756.8859791</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -57,15 +57,15 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>0</string>
+					<string>9</string>
 					<key>EndingLineNumber</key>
-					<string>45</string>
+					<string>49</string>
 					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>9</string>
 					<key>StartingLineNumber</key>
-					<string>44</string>
+					<string>49</string>
 					<key>Timestamp</key>
-					<string>726618932.333094</string>
+					<string>726696809.902113</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -81,16 +81,15 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>            Spacer()
-</string>
+				<string></string>
 				<key>leading</key>
-				<string>
+				<string>                }
             
-</string>
+        }</string>
 				<key>trailing</key>
-				<string>                .onTapGesture {
-                    hideKeyboard() /// nascondi la tastiera se clicca nello spazio vuoto
-                }
+				<string>
+        .padding(.horizontal, 20)
+        .alert(isPresented: $viewModel.showAlert) {
 </string>
 			</dict>
 			<key>title</key>

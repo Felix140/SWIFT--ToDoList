@@ -6,19 +6,26 @@ struct InfoToDoItemView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            
-            Text("Descrizione")
-                .font(.title2)
-                .fontWeight(.bold)
-            
-            Divider()
-            
-            Text(descriptionText)
-            
-            Spacer()
+        NavigationStack {
+            VStack(alignment: .leading) {
+                
+                Text("Descrizione")
+                    .font(.title2)
+                    .fontWeight(.bold)
+                
+                Divider()
+                
+                Text(descriptionText)
+                
+                Spacer()
+            }
+            .padding()
         }
-        .padding()
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                Image(systemName: "info.circle")
+            }
+        }
     }
 }
 
