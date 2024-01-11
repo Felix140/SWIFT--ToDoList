@@ -35,6 +35,7 @@
 		49DB4B9D2B49868000811C93 /* InfoToDoItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DB4B9C2B49868000811C93 /* InfoToDoItemViewViewModel.swift */; };
 		49DDA1802B44BF7B009218C4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DDA17F2B44BF7B009218C4 /* Theme.swift */; };
 		49E11F922B1FC989009E72E8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E11F912B1FC989009E72E8 /* Extensions.swift */; };
+		49E946882B50848700148273 /* SharedToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E946872B50848700148273 /* SharedToDoListView.swift */; };
 		49FE571B2B1CB65500E4A0E2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571A2B1CB65500E4A0E2 /* FirebaseAuth */; };
 		49FE571D2B1CB65500E4A0E2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571C2B1CB65500E4A0E2 /* FirebaseFirestore */; };
 		49FE571F2B1CB65500E4A0E2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571E2B1CB65500E4A0E2 /* FirebaseFirestoreSwift */; };
@@ -85,6 +86,7 @@
 		49DB4B9C2B49868000811C93 /* InfoToDoItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToDoItemViewViewModel.swift; sourceTree = "<group>"; };
 		49DDA17F2B44BF7B009218C4 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		49E11F912B1FC989009E72E8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		49E946872B50848700148273 /* SharedToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedToDoListView.swift; sourceTree = "<group>"; };
 		49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49FE57262B1CD99000E4A0E2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				49FE57322B1CDA9D00E4A0E2 /* ToDoListView.swift */,
 				49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */,
 				49B19B992B4F48250063C755 /* DoneListView.swift */,
+				49E946872B50848700148273 /* SharedToDoListView.swift */,
 				4916EA932B403CA90031B40C /* PomodoroTimerView.swift */,
 				49FE57262B1CD99000E4A0E2 /* ProfileView.swift */,
 			);
@@ -341,6 +344,7 @@
 				49DB4B9D2B49868000811C93 /* InfoToDoItemViewViewModel.swift in Sources */,
 				49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */,
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
+				49E946882B50848700148273 /* SharedToDoListView.swift in Sources */,
 				49B19B9A2B4F48250063C755 /* DoneListView.swift in Sources */,
 				49FE572F2B1CDA5100E4A0E2 /* LoginView.swift in Sources */,
 				496F10002B331957005CCA4B /* StartView.swift in Sources */,

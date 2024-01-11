@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MainView: View {
+    
     @StateObject var viewModel = MainViewViewModel()
     
     var body: some View {
@@ -18,7 +19,7 @@ struct MainView: View {
     
     @ViewBuilder
     var navbar: some View {
-        TabView { /// Navbar
+        TabView { /// TAB NAV
             ToDoListView(userId: viewModel.currentUserId)
                 .tabItem {
                     Label("Task", systemImage: "list.bullet.circle.fill")
@@ -27,6 +28,11 @@ struct MainView: View {
             DoneListView()
                 .tabItem {
                     Label("Done", systemImage: "checklist.checked")
+                }
+            
+            SharedToDoListView(userId: viewModel.currentUserId)
+                .tabItem {
+                    Label("Shared", systemImage: "rectangle.stack.badge.person.crop")
                 }
             
             PomodoroTimerView()
