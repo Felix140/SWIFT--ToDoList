@@ -69,7 +69,7 @@ struct ToDoListView: View {
                 HStack {
                     if #available(iOS 17.0, *) {
                         Picker("TooDoo List", selection: $selectedPicker) {
-                            Text("Task").tag(0)
+                            Text("All Task").tag(0)
                             Text("To Do").tag(1)
                             Text("Done").tag(2)
                         }
@@ -77,7 +77,7 @@ struct ToDoListView: View {
                     } else {
                         
                         Picker("TooDoo List", selection: $selectedPicker) {
-                            Text("Task").tag(0)
+                            Text("All Task").tag(0)
                             Text("To Do").tag(1)
                             Text("Done").tag(3)
                         }
@@ -88,8 +88,19 @@ struct ToDoListView: View {
                 .padding(.horizontal, 10)
                 
                 
-                // TASK LIST
-                taskList()
+                if selectedPicker == 0 {
+                    // TASK LIST ALL
+                    taskListAll()
+                }
+                if selectedPicker == 1 {
+                    // TODO LIST
+                    filterToDoList()
+                }
+                if selectedPicker == 2 {
+                    // DONE LIST
+                    filterDoneList()
+                }
+                
             }
             .navigationTitle("TooDoo List")
             .toolbar{
@@ -115,7 +126,7 @@ struct ToDoListView: View {
     }
     
     @ViewBuilder
-    func taskList() -> some View {
+    func taskListAll() -> some View {
         
         List {
             Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
@@ -181,10 +192,58 @@ struct ToDoListView: View {
     }
     
     @ViewBuilder
-    func filteredToDoList() -> some View { }
+    func filterToDoList() -> some View {
+        List {
+            Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
+                ForEach(itemsForToday) { itemToday in
+                    if !itemToday.isDone {
+                        ToDoListItemView(
+                            listItem: itemToday, fontSize: 18,
+                            descriptionIsClicked: $viewModel.isOpenDescription)
+                        .swipeActions {
+                            Button("Delete") {
+                                viewModel.delete(idItem: itemToday.id)
+                            }
+                            .tint(.red)
+                        }
+                        .sheet(isPresented: $viewModel.isOpenDescription) {
+                            NavigationStack {
+                                InfoToDoItemView(descriptionText: itemToday.description.description)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .listStyle(InsetGroupedListStyle())
+    }
     
     @ViewBuilder
-    func filteredDoneList() -> some View { }
+    func filterDoneList() -> some View { 
+        List {
+            Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
+                ForEach(itemsForToday) { itemToday in
+                    if itemToday.isDone {
+                        ToDoListItemView(
+                            listItem: itemToday, fontSize: 18,
+                            descriptionIsClicked: $viewModel.isOpenDescription)
+                        .swipeActions {
+                            Button("Delete") {
+                                viewModel.delete(idItem: itemToday.id)
+                            }
+                            .tint(.red)
+                        }
+                        .sheet(isPresented: $viewModel.isOpenDescription) {
+                            NavigationStack {
+                                InfoToDoItemView(descriptionText: itemToday.description.description)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .listStyle(InsetGroupedListStyle())
+    }
 }
 
 struct ToDoListView_Previews: PreviewProvider {
