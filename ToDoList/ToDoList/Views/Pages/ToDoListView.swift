@@ -9,6 +9,7 @@ struct ToDoListView: View {
     @StateObject var viewModel: ToDoListViewViewModel
     @FirestoreQuery var fetchedItems: [ToDoListItem]
     private var haptic = HapticTrigger()
+    @State private var selectedPicker = 0
     
     // TODAY items
     private var itemsForToday: [ToDoListItem] {
@@ -65,67 +66,30 @@ struct ToDoListView: View {
                     valueBar: Double(isDoneItemsForToday.count),
                     totalValueBar: Double(itemsForToday.count))
                 
-                List {
-                    Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
-                        ForEach(itemsForToday) { itemToday in
-                            ToDoListItemView(
-                                listItem: itemToday, fontSize: 18,
-                                descriptionIsClicked: $viewModel.isOpenDescription)
-                                .swipeActions {
-                                    Button("Delete") {
-                                        viewModel.delete(idItem: itemToday.id)
-                                    }
-                                    .tint(.red)
-                                }
-                                .sheet(isPresented: $viewModel.isOpenDescription) {
-                                    NavigationStack {
-                                        InfoToDoItemView(descriptionText: itemToday.description.description)
-                                    }
-                                }
+                HStack {
+                    if #available(iOS 17.0, *) {
+                        Picker("TooDoo List", selection: $selectedPicker) {
+                            Text("Task").tag(0)
+                            Text("To Do").tag(1)
+                            Text("Done").tag(2)
                         }
-                    }
-
-                    
-                    Section(header: Text("Tomorrow").font(.headline)) {
-                        ForEach(itemsForTomorrow) { itemTomorrow in
-                            ToDoListItemView(
-                                listItem: itemTomorrow, fontSize: 15,
-                                descriptionIsClicked: $viewModel.isOpenDescription)
-                                .swipeActions {
-                                    Button("Delete") {
-                                        self.haptic.feedbackLight()
-                                        viewModel.delete(idItem: itemTomorrow.id)
-                                    }
-                                    .tint(.red)
-                                }
-                                .sheet(isPresented: $viewModel.isOpenDescription) {
-                                    NavigationStack {
-                                        InfoToDoItemView(descriptionText: itemTomorrow.description.description)
-                                    }
-                                }
+                        .pickerStyle(.palette)
+                    } else {
+                        
+                        Picker("TooDoo List", selection: $selectedPicker) {
+                            Text("Task").tag(0)
+                            Text("To Do").tag(1)
+                            Text("Done").tag(3)
                         }
+                        .pickerStyle(.segmented)
                     }
                     
-                    Section(header: Text("After Tomorrow").font(.headline)) {
-                        ForEach(itemsAfterTomorrow) { itemAfter in
-                            ToDoListItemView(
-                                listItem: itemAfter, fontSize: 15,
-                                descriptionIsClicked: $viewModel.isOpenDescription)
-                                .swipeActions {
-                                    Button("Delete") {
-                                        viewModel.delete(idItem: itemAfter.id)
-                                    }
-                                    .tint(.red)
-                                }
-                                .sheet(isPresented: $viewModel.isOpenDescription) {
-                                    NavigationStack {
-                                        InfoToDoItemView(descriptionText: itemAfter.description.description)
-                                    }
-                                }
-                        }
-                    }
                 }
-                .listStyle(PlainListStyle())
+                .padding(.horizontal, 10)
+                
+                
+                // TASK LIST
+                taskList()
             }
             .navigationTitle("TooDoo List")
             .toolbar{
@@ -139,6 +103,7 @@ struct ToDoListView: View {
                     .accessibilityLabel("Add new Item")
                 }
             }
+            
         }
         .sheet(isPresented: $viewModel.isPresentingView) {
             NavigationStack {
@@ -148,6 +113,78 @@ struct ToDoListView: View {
             }
         }
     }
+    
+    @ViewBuilder
+    func taskList() -> some View {
+        
+        List {
+            Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
+                ForEach(itemsForToday) { itemToday in
+                    ToDoListItemView(
+                        listItem: itemToday, fontSize: 18,
+                        descriptionIsClicked: $viewModel.isOpenDescription)
+                    .swipeActions {
+                        Button("Delete") {
+                            viewModel.delete(idItem: itemToday.id)
+                        }
+                        .tint(.red)
+                    }
+                    .sheet(isPresented: $viewModel.isOpenDescription) {
+                        NavigationStack {
+                            InfoToDoItemView(descriptionText: itemToday.description.description)
+                        }
+                    }
+                }
+            }
+            
+            
+            Section(header: Text("Tomorrow").font(.headline)) {
+                ForEach(itemsForTomorrow) { itemTomorrow in
+                    ToDoListItemView(
+                        listItem: itemTomorrow, fontSize: 15,
+                        descriptionIsClicked: $viewModel.isOpenDescription)
+                    .swipeActions {
+                        Button("Delete") {
+                            self.haptic.feedbackLight()
+                            viewModel.delete(idItem: itemTomorrow.id)
+                        }
+                        .tint(.red)
+                    }
+                    .sheet(isPresented: $viewModel.isOpenDescription) {
+                        NavigationStack {
+                            InfoToDoItemView(descriptionText: itemTomorrow.description.description)
+                        }
+                    }
+                }
+            }
+            
+            Section(header: Text("After Tomorrow").font(.headline)) {
+                ForEach(itemsAfterTomorrow) { itemAfter in
+                    ToDoListItemView(
+                        listItem: itemAfter, fontSize: 15,
+                        descriptionIsClicked: $viewModel.isOpenDescription)
+                    .swipeActions {
+                        Button("Delete") {
+                            viewModel.delete(idItem: itemAfter.id)
+                        }
+                        .tint(.red)
+                    }
+                    .sheet(isPresented: $viewModel.isOpenDescription) {
+                        NavigationStack {
+                            InfoToDoItemView(descriptionText: itemAfter.description.description)
+                        }
+                    }
+                }
+            }
+        }
+        .listStyle(PlainListStyle())
+    }
+    
+    @ViewBuilder
+    func filteredToDoList() -> some View { }
+    
+    @ViewBuilder
+    func filteredDoneList() -> some View { }
 }
 
 struct ToDoListView_Previews: PreviewProvider {

@@ -25,10 +25,6 @@ struct MainView: View {
                     Label("Task", systemImage: "list.bullet.circle.fill")
                 }
             
-            DoneListView()
-                .tabItem {
-                    Label("Done", systemImage: "checklist.checked")
-                }
             
             SharedToDoListView(userId: viewModel.currentUserId)
                 .tabItem {
