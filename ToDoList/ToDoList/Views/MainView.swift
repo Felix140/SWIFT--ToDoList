@@ -35,11 +35,6 @@ struct MainView: View {
                     Label("Shared", systemImage: "rectangle.stack.badge.person.crop")
                 }
             
-            PomodoroTimerView()
-                .tabItem {
-                    Label("Pomodoro", systemImage: "microbe")
-                }
-            
             ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.crop.circle")

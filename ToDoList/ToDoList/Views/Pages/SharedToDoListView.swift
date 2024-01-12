@@ -4,6 +4,7 @@ struct SharedToDoListView: View {
     
     @StateObject var viewModel: ToDoListViewViewModel
     private var haptic = HapticTrigger()
+    @State private var selectionPicker = 0
     
     init(userId: String) {
         self._viewModel = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
@@ -12,9 +13,30 @@ struct SharedToDoListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Shared View")
+                Picker("menu", selection: $selectionPicker) {
+                    Text("Notifications").tag(0)
+                    Text("Requests").tag(1)
+                    Text("Done").tag(2)
+                }
+                .pickerStyle(.segmented)
+                
+                Spacer()
+                
+                if selectionPicker == 0 {
+                    
+                }
+                
+                if selectionPicker == 1 {
+                    
+                }
+                
+                if selectionPicker == 2 {
+                    
+                }
+                
             }
             .navigationTitle("Shared")
+            .padding()
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {

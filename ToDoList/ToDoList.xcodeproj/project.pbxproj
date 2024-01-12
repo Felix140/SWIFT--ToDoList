@@ -165,7 +165,6 @@
 				49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */,
 				49B19B992B4F48250063C755 /* DoneListView.swift */,
 				49E946872B50848700148273 /* SharedToDoListView.swift */,
-				4916EA932B403CA90031B40C /* PomodoroTimerView.swift */,
 				49FE57262B1CD99000E4A0E2 /* ProfileView.swift */,
 			);
 			path = Pages;
@@ -182,6 +181,7 @@
 				4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */,
 				496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */,
 				49C61BC52B436B3D00F1999C /* ProgressBarView.swift */,
+				4916EA932B403CA90031B40C /* PomodoroTimerView.swift */,
 				49C61BCB2B43862600F1999C /* Timer */,
 			);
 			path = Components;
