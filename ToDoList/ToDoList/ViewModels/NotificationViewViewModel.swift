@@ -4,7 +4,7 @@ import FirebaseFirestore
 
 class NotificationViewViewModel: ObservableObject {
     
-    @Published var title = ""
+    @Published var messageTitle = ""
     @Published var category = ""
     @Published var date = Date()
     @Published var showAlert = false
@@ -14,7 +14,7 @@ class NotificationViewViewModel: ObservableObject {
     
     init() {}
     
-    func sendRequest(request: Notification) {
+    func sendRequest(request: Notification, sendTo: String) {
         var copyItem = request /// trasformo in variabile VAR perchè item è una costante
         copyItem.setAccepted(!request.isAccepted)
         
@@ -22,53 +22,39 @@ class NotificationViewViewModel: ObservableObject {
             return
         }
         
-        //Update DB
-        let db = Firestore.firestore()
-        db.collection("notifications")
-            .document(userId)
-            .collection("sendTo")
-            .document(copyItem.recipient.name)
-            .setData(copyItem.asDictionary()) 
-    }
-    
-    func sendResponseAccepted() { }
-    
-    func save() {
-        /// Check canSave() function
-        guard  canSave() else {
-            return
-        }
-        
-        /// Get userID corrente
-        guard let userId = Auth.auth().currentUser?.uid else {
-            return
-        }
-        
-        /// Creazione Modello da mandare
+        /// Creazione Notifica + Modello da mandare
         let newId = UUID().uuidString
-        let newItem = ToDoListItem(id: newId,
-                                   title: title,
-                                   dueDate: date.timeIntervalSince1970,
-                                   createdDate: Date().timeIntervalSince1970, // La data senza la proprietà @Published
-                                   isDone: false,
-                                   category: selectedCategory,
-                                   description: InfoToDoItem(id: newId,
-                                                             description: description))
+        let newNotification = Notification(id: newId,
+                                           sender: userId,
+                                           recipient: sendTo,
+                                           task: ToDoListItem(id: newId,
+                                                              title: messageTitle,
+                                                              dueDate: date.timeIntervalSince1970,
+                                                              createdDate: Date().timeIntervalSince1970,
+                                                              isDone: false,
+                                                              category: selectedCategory,
+                                                              description: InfoToDoItem(id: newId,
+                                                                                        description: description)),
+                                           isAccepted: false)
         
         /// Salvare il Modello nel DB
         let db = Firestore.firestore()
         db.collection("users")
             .document(userId)
-            .collection("ToDos")
-            .document(newId)
-            .setData(newItem.asDictionary())
+            .collection("sendTo")
+            .document(sendTo)
+            .setData(newNotification.asDictionary())
         
         print("Request Sended")
+        
     }
+    
+    func sendResponseAccepted() { }
+    
     
     /// Check dei campi prima del salvataggio
     func canSave() -> Bool {
-        guard !title.trimmingCharacters(in: .whitespaces).isEmpty else {
+        guard !messageTitle.trimmingCharacters(in: .whitespaces).isEmpty else {
             print("Riempi il titolo")
             return false
         }

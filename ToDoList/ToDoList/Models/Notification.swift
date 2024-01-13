@@ -3,13 +3,13 @@ import Foundation
 struct Notification: Identifiable, Codable {
     
     let id: String
-    let sender: User
-    let recipient: User
+    let sender: String
+    let recipient: String
     let task: ToDoListItem
     var isAccepted: Bool
     
     
-    init(id: String, sender: User, recipient: User, task: ToDoListItem, isAccepted: Bool) {
+    init(id: String, sender: String, recipient: String, task: ToDoListItem, isAccepted: Bool) {
         self.id = id
         self.sender = sender
         self.recipient = recipient
