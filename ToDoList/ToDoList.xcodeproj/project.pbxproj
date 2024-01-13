@@ -21,8 +21,10 @@
 		4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970661E2B462C4200C16D88 /* CategoryTask.swift */; };
 		499531132B52083700547910 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499531122B52083700547910 /* NotificationView.swift */; };
 		499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E1DDF2B46FA5200A7EF9A /* Routes.swift */; };
-		49B19B9C2B4F4CC90063C755 /* DoneListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B19B9B2B4F4CC90063C755 /* DoneListViewViewModel.swift */; };
 		49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */; };
+		49B584F22B5211B200F3D004 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B584F12B5211B200F3D004 /* Notification.swift */; };
+		49B584F42B5213D300F3D004 /* NotificationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B584F32B5213D300F3D004 /* NotificationViewViewModel.swift */; };
+		49B584F62B52178800F3D004 /* RequestNewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B584F52B52178800F3D004 /* RequestNewItemView.swift */; };
 		49B862C12B1BC45200FED137 /* ToDoListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B862C02B1BC45200FED137 /* ToDoListApp.swift */; };
 		49B862C32B1BC45200FED137 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B862C22B1BC45200FED137 /* MainView.swift */; };
 		49B862C52B1BC45500FED137 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B862C42B1BC45500FED137 /* Assets.xcassets */; };
@@ -71,8 +73,10 @@
 		4970661E2B462C4200C16D88 /* CategoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTask.swift; sourceTree = "<group>"; };
 		499531122B52083700547910 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		499E1DDF2B46FA5200A7EF9A /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
-		49B19B9B2B4F4CC90063C755 /* DoneListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneListViewViewModel.swift; sourceTree = "<group>"; };
 		49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTrigger.swift; sourceTree = "<group>"; };
+		49B584F12B5211B200F3D004 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		49B584F32B5213D300F3D004 /* NotificationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewViewModel.swift; sourceTree = "<group>"; };
+		49B584F52B52178800F3D004 /* RequestNewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestNewItemView.swift; sourceTree = "<group>"; };
 		49B862BD2B1BC45200FED137 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49B862C02B1BC45200FED137 /* ToDoListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListApp.swift; sourceTree = "<group>"; };
 		49B862C22B1BC45200FED137 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				499531122B52083700547910 /* NotificationView.swift */,
+				49B584F52B52178800F3D004 /* RequestNewItemView.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 		499531162B52091B00547910 /* Task */ = {
 			isa = PBXGroup;
 			children = (
+				49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */,
 				49D5CE552B291824009CF312 /* ToDoListItemView.swift */,
 				4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */,
 				49C61BC52B436B3D00F1999C /* ProgressBarView.swift */,
@@ -188,11 +194,10 @@
 				496F0FFF2B331957005CCA4B /* StartView.swift */,
 				49FE572E2B1CDA5100E4A0E2 /* LoginView.swift */,
 				49FE57302B1CDA7800E4A0E2 /* RegisterView.swift */,
-				4928F3A22B460B21008B2F94 /* SettingsView.swift */,
 				49FE57322B1CDA9D00E4A0E2 /* ToDoListView.swift */,
-				49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */,
 				49E946872B50848700148273 /* SharedToDoListView.swift */,
 				49FE57262B1CD99000E4A0E2 /* ProfileView.swift */,
+				4928F3A22B460B21008B2F94 /* SettingsView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -245,8 +250,8 @@
 			children = (
 				49FE57382B1CDB3C00E4A0E2 /* MainViewViewModel.swift */,
 				49FE573A2B1CDB6100E4A0E2 /* ProfileViewViewModel.swift */,
+				49B584F32B5213D300F3D004 /* NotificationViewViewModel.swift */,
 				49FE573C2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift */,
-				49B19B9B2B4F4CC90063C755 /* DoneListViewViewModel.swift */,
 				492B54C42B2266DF00041139 /* ListItemViewViewModel.swift */,
 				49FE573E2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift */,
 				49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */,
@@ -263,6 +268,7 @@
 				49FE57342B1CDADC00E4A0E2 /* User.swift */,
 				49FE57362B1CDAEF00E4A0E2 /* ToDoListItem.swift */,
 				49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */,
+				49B584F12B5211B200F3D004 /* Notification.swift */,
 				49DDA1812B44C2B6009218C4 /* Enums */,
 			);
 			path = Models;
@@ -364,10 +370,10 @@
 				4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */,
 				4928F3A92B461A8F008B2F94 /* InfoToDoItemView.swift in Sources */,
 				49C61BCA2B4385C300F1999C /* TimerArc.swift in Sources */,
-				49B19B9C2B4F4CC90063C755 /* DoneListViewViewModel.swift in Sources */,
 				49DB4B9D2B49868000811C93 /* InfoToDoItemViewViewModel.swift in Sources */,
 				49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */,
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
+				49B584F62B52178800F3D004 /* RequestNewItemView.swift in Sources */,
 				49E946882B50848700148273 /* SharedToDoListView.swift in Sources */,
 				49FE572F2B1CDA5100E4A0E2 /* LoginView.swift in Sources */,
 				496F10002B331957005CCA4B /* StartView.swift in Sources */,
@@ -387,6 +393,7 @@
 				4928F3A32B460B21008B2F94 /* SettingsView.swift in Sources */,
 				49B862C32B1BC45200FED137 /* MainView.swift in Sources */,
 				4916EA942B403CA90031B40C /* PomodoroTimerView.swift in Sources */,
+				49B584F42B5213D300F3D004 /* NotificationViewViewModel.swift in Sources */,
 				49FE57352B1CDADC00E4A0E2 /* User.swift in Sources */,
 				499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */,
 				492B54C52B2266DF00041139 /* ListItemViewViewModel.swift in Sources */,
@@ -394,6 +401,7 @@
 				49FE573D2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift in Sources */,
 				4928F3A52B4611DD008B2F94 /* SettingsViewViewModel.swift in Sources */,
 				496E1BCA2B2D10D30036AC23 /* ProfileImageView.swift in Sources */,
+				49B584F22B5211B200F3D004 /* Notification.swift in Sources */,
 				49FE57312B1CDA7800E4A0E2 /* RegisterView.swift in Sources */,
 				49E11F922B1FC989009E72E8 /* Extensions.swift in Sources */,
 				492E297B2B1D522900021383 /* ButtonFormView.swift in Sources */,
