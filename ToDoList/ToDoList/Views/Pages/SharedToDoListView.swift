@@ -56,9 +56,7 @@ struct SharedToDoListView: View {
         }
         .sheet(isPresented: $viewModel.isPresentingView) {
             NavigationStack {
-                NewItemView(
-                    toggleView: $viewModel.isPresentingView
-                )
+                RequestNewItemView(toggleView: $viewModel.isPresentingView)
             }
         }
         

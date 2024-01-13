@@ -64,7 +64,7 @@ struct RequestNewItemView: View {
                 Button("Done") {
                     if viewModel.canSave() {
                         self.haptic.feedbackMedium()
-                        viewModel.save()
+                        viewModel.sendRequest(sendTo: "PincoPallo")
                         toggleView = false
                     } else {
                         self.haptic.feedbackHeavy()
