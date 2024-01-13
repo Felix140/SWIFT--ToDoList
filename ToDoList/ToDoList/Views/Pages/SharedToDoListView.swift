@@ -13,30 +13,35 @@ struct SharedToDoListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Picker("menu", selection: $selectionPicker) {
-                    Text("Notifications").tag(0)
-                    Text("Requests").tag(1)
-                    Text("Done").tag(2)
+                
+                Divider()
+                
+                HStack {
+                    Picker("menu", selection: $selectionPicker) {
+                        Text("Notifications").tag(0)
+                        Text("Send Requests").tag(1)
+                        Text("Done").tag(2)
+                    }
+                    .pickerStyle(.segmented)
                 }
-                .pickerStyle(.segmented)
+                .padding(.horizontal, 10)
                 
                 Spacer()
                 
                 if selectionPicker == 0 {
-                    
+                    notifications()
                 }
                 
                 if selectionPicker == 1 {
-                    
+                    sendRequests()
                 }
                 
                 if selectionPicker == 2 {
-                    
+                    doneListRequested()
                 }
                 
             }
             .navigationTitle("Shared")
-            .padding()
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
@@ -57,6 +62,39 @@ struct SharedToDoListView: View {
             }
         }
         
+    }
+    
+    func notifications() -> some View {
+        List {
+            
+            ForEach(0..<10) { request in
+                NotificationView()
+            }
+            
+        }
+        .listStyle(PlainListStyle())
+    }
+    
+    func sendRequests() -> some View {
+        List {
+            
+            ForEach(0..<10) { request in
+                NotificationView()
+            }
+            
+        }
+        .listStyle(SidebarListStyle())
+    }
+    
+    func doneListRequested() -> some View {
+        List {
+            
+            ForEach(0..<10) { request in
+                NotificationView()
+            }
+            
+        }
+        .listStyle(SidebarListStyle())
     }
 }
 

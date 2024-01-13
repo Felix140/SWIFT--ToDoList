@@ -19,6 +19,7 @@
 		496E1BCA2B2D10D30036AC23 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */; };
 		496F10002B331957005CCA4B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496F0FFF2B331957005CCA4B /* StartView.swift */; };
 		4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970661E2B462C4200C16D88 /* CategoryTask.swift */; };
+		499531132B52083700547910 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499531122B52083700547910 /* NotificationView.swift */; };
 		499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E1DDF2B46FA5200A7EF9A /* Routes.swift */; };
 		49B19B9C2B4F4CC90063C755 /* DoneListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B19B9B2B4F4CC90063C755 /* DoneListViewViewModel.swift */; };
 		49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */; };
@@ -68,6 +69,7 @@
 		496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		496F0FFF2B331957005CCA4B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		4970661E2B462C4200C16D88 /* CategoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTask.swift; sourceTree = "<group>"; };
+		499531122B52083700547910 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		499E1DDF2B46FA5200A7EF9A /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		49B19B9B2B4F4CC90063C755 /* DoneListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneListViewViewModel.swift; sourceTree = "<group>"; };
 		49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTrigger.swift; sourceTree = "<group>"; };
@@ -116,6 +118,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		499531142B5208CD00547910 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				499531122B52083700547910 /* NotificationView.swift */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		499531152B5208FF00547910 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		499531162B52091B00547910 /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				49D5CE552B291824009CF312 /* ToDoListItemView.swift */,
+				4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */,
+				49C61BC52B436B3D00F1999C /* ProgressBarView.swift */,
+				49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */,
+				4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
 		49B862B42B1BC45200FED137 = {
 			isa = PBXGroup;
 			children = (
@@ -172,13 +202,9 @@
 			children = (
 				492E29782B1D4BE600021383 /* HeaderView.swift */,
 				492E297A2B1D522900021383 /* ButtonFormView.swift */,
-				49D5CE552B291824009CF312 /* ToDoListItemView.swift */,
-				49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */,
-				4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */,
-				4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */,
-				496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */,
-				49C61BC52B436B3D00F1999C /* ProgressBarView.swift */,
-				4916EA932B403CA90031B40C /* PomodoroTimerView.swift */,
+				499531162B52091B00547910 /* Task */,
+				499531152B5208FF00547910 /* Profile */,
+				499531142B5208CD00547910 /* Requests */,
 				49C61BCB2B43862600F1999C /* Timer */,
 			);
 			path = Components;
@@ -187,6 +213,7 @@
 		49C61BCB2B43862600F1999C /* Timer */ = {
 			isa = PBXGroup;
 			children = (
+				4916EA932B403CA90031B40C /* PomodoroTimerView.swift */,
 				49C61BC72B43852300F1999C /* TimerView.swift */,
 				49C61BC92B4385C300F1999C /* TimerArc.swift */,
 			);
@@ -353,6 +380,7 @@
 				4928F3A72B4614B2008B2F94 /* InsertDescriptionView.swift in Sources */,
 				49C61BC82B43852300F1999C /* TimerView.swift in Sources */,
 				49FE573B2B1CDB6100E4A0E2 /* ProfileViewViewModel.swift in Sources */,
+				499531132B52083700547910 /* NotificationView.swift in Sources */,
 				49D5CE562B291824009CF312 /* ToDoListItemView.swift in Sources */,
 				49C61BC62B436B3D00F1999C /* ProgressBarView.swift in Sources */,
 				49DB4B9B2B49866300811C93 /* InfoToDoItem.swift in Sources */,
