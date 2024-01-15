@@ -31,6 +31,12 @@ struct MainView: View {
                     Label("Shared", systemImage: "rectangle.stack.badge.person.crop")
                 }
             
+            ContactsView()
+                .tabItem {
+                    Label("Contacts", systemImage: "person.2.circle")
+                }
+                
+            
             ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.crop.circle")

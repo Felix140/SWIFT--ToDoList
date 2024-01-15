@@ -39,6 +39,9 @@
 		49DDA1802B44BF7B009218C4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DDA17F2B44BF7B009218C4 /* Theme.swift */; };
 		49E11F922B1FC989009E72E8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E11F912B1FC989009E72E8 /* Extensions.swift */; };
 		49E946882B50848700148273 /* SharedToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E946872B50848700148273 /* SharedToDoListView.swift */; };
+		49F0D3722B5566BA0053206A /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0D3712B5566BA0053206A /* ContactsView.swift */; };
+		49F0D3742B5567860053206A /* ContactsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0D3732B5567860053206A /* ContactsViewViewModel.swift */; };
+		49F0D3762B5569F30053206A /* ContactItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0D3752B5569F30053206A /* ContactItemView.swift */; };
 		49FE571B2B1CB65500E4A0E2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571A2B1CB65500E4A0E2 /* FirebaseAuth */; };
 		49FE571D2B1CB65500E4A0E2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571C2B1CB65500E4A0E2 /* FirebaseFirestore */; };
 		49FE571F2B1CB65500E4A0E2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571E2B1CB65500E4A0E2 /* FirebaseFirestoreSwift */; };
@@ -93,6 +96,9 @@
 		49DDA17F2B44BF7B009218C4 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		49E11F912B1FC989009E72E8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		49E946872B50848700148273 /* SharedToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedToDoListView.swift; sourceTree = "<group>"; };
+		49F0D3712B5566BA0053206A /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
+		49F0D3732B5567860053206A /* ContactsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewViewModel.swift; sourceTree = "<group>"; };
+		49F0D3752B5569F30053206A /* ContactItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactItemView.swift; sourceTree = "<group>"; };
 		49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49FE57262B1CD99000E4A0E2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
@@ -199,6 +205,7 @@
 				49FE57322B1CDA9D00E4A0E2 /* ToDoListView.swift */,
 				49E946872B50848700148273 /* SharedToDoListView.swift */,
 				49FE57262B1CD99000E4A0E2 /* ProfileView.swift */,
+				49F0D3712B5566BA0053206A /* ContactsView.swift */,
 				4928F3A22B460B21008B2F94 /* SettingsView.swift */,
 			);
 			path = Pages;
@@ -213,6 +220,7 @@
 				499531152B5208FF00547910 /* Profile */,
 				499531142B5208CD00547910 /* Requests */,
 				49C61BCB2B43862600F1999C /* Timer */,
+				49F0D3752B5569F30053206A /* ContactItemView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -260,6 +268,7 @@
 				49FE57452B1CDBED00E4A0E2 /* RegisterViewViewModel.swift */,
 				4928F3A42B4611DD008B2F94 /* SettingsViewViewModel.swift */,
 				49DB4B9C2B49868000811C93 /* InfoToDoItemViewViewModel.swift */,
+				49F0D3732B5567860053206A /* ContactsViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -384,6 +393,7 @@
 				49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */,
 				49FE57462B1CDBED00E4A0E2 /* RegisterViewViewModel.swift in Sources */,
 				49FE57392B1CDB3C00E4A0E2 /* MainViewViewModel.swift in Sources */,
+				49F0D3742B5567860053206A /* ContactsViewViewModel.swift in Sources */,
 				49FE57432B1CDBD800E4A0E2 /* LoginViewViewModel.swift in Sources */,
 				49FE572B2B1CD9DA00E4A0E2 /* CalendarView.swift in Sources */,
 				49FE57332B1CDA9D00E4A0E2 /* ToDoListView.swift in Sources */,
@@ -393,6 +403,7 @@
 				499531132B52083700547910 /* NotificationView.swift in Sources */,
 				49D5CE562B291824009CF312 /* ToDoListItemView.swift in Sources */,
 				49C61BC62B436B3D00F1999C /* ProgressBarView.swift in Sources */,
+				49F0D3762B5569F30053206A /* ContactItemView.swift in Sources */,
 				49DB4B9B2B49866300811C93 /* InfoToDoItem.swift in Sources */,
 				4928F3A32B460B21008B2F94 /* SettingsView.swift in Sources */,
 				49B862C32B1BC45200FED137 /* MainView.swift in Sources */,
@@ -401,6 +412,7 @@
 				49FE57352B1CDADC00E4A0E2 /* User.swift in Sources */,
 				499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */,
 				492B54C52B2266DF00041139 /* ListItemViewViewModel.swift in Sources */,
+				49F0D3722B5566BA0053206A /* ContactsView.swift in Sources */,
 				49FE57272B1CD99000E4A0E2 /* ProfileView.swift in Sources */,
 				49FE573D2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift in Sources */,
 				4928F3A52B4611DD008B2F94 /* SettingsViewViewModel.swift in Sources */,
