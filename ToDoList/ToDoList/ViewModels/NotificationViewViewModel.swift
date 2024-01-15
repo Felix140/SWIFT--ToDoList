@@ -24,7 +24,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             return
         }
         
-        guard let userId = Auth.auth().currentUser?.uid else {
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
             return
         }
         
@@ -32,18 +32,24 @@ class NotificationViewViewModel: NewItemViewViewModel {
         let newIdNotification = UUID().uuidString
         let newIdTask = UUID().uuidString
         
-        let newNotification = Notification(id: newIdNotification,
-                                           sender: userId,
-                                           recipient: userId,
-                                           task: ToDoListItem(id: newIdTask,
-                                                              title: title,
-                                                              dueDate: date.timeIntervalSince1970,
-                                                              createdDate: Date().timeIntervalSince1970,
-                                                              isDone: false,
-                                                              category: selectedCategory,
-                                                              description: InfoToDoItem(id: newIdTask,
-                                                                                        description: description)),
-                                           isAccepted: false)
+        let newNotification = Notification(
+            id: newIdNotification,
+            sender: currentUserID, // Imposta il mittente come l'utente corrente
+            recipient: userId, // Imposta il destinatario come l'utente selezionato
+            task: ToDoListItem(
+                id: newIdTask,
+                title: title,
+                dueDate: date.timeIntervalSince1970,
+                createdDate: Date().timeIntervalSince1970,
+                isDone: false,
+                category: selectedCategory,
+                description: InfoToDoItem(
+                    id: newIdTask,
+                    description: description
+                )
+            ),
+            isAccepted: false
+        )
         
         /// Salvare il Modello nel DB  NOTIFICHE IN UTENTE
         let dbUserSender = Firestore.firestore()
@@ -113,7 +119,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 }
             }
     }
-
+    
     
     
     func sendResponseAccepted() { }

@@ -2,10 +2,13 @@ import SwiftUI
 import FirebaseAuth
 
 struct RequestNewItemView: View {
+    
     @StateObject var viewModelNotification = NotificationViewViewModel()
     @StateObject var viewModelTest = ProfileViewViewModel()
+    @StateObject var viewModelContacts = ContactsViewViewModel()
     @Binding var toggleView: Bool
     @State private var showDescriptionView = false
+    @State var selectedUser: User? = nil //opzionale
     var haptic = HapticTrigger()
     
     var body: some View {
@@ -43,6 +46,20 @@ struct RequestNewItemView: View {
                     }
                     .pickerStyle(MenuPickerStyle())
                 }
+                
+                Section(header: Text("Send To")) {
+                    Picker("Users", selection: $selectedUser) {
+                        ForEach(viewModelContacts.privateContacts, id: \.self) { contact in
+                            Text(contact.name).tag(contact as User?)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                    .onAppear {
+                        if selectedUser == nil, let firstUser = viewModelContacts.privateContacts.first {
+                            selectedUser = firstUser
+                        }
+                    }
+                }
             }
             .frame(height: 440)
             .scrollDisabled(true)
@@ -64,10 +81,9 @@ struct RequestNewItemView: View {
             
             ToolbarItem(placement: .confirmationAction) {
                 Button("Done") {
-                    if viewModelNotification.canSave() {
+                    if let selectedUserId = selectedUser?.id,viewModelNotification.canSave() {
                         self.haptic.feedbackMedium()
-                        let currentUserId = Auth.auth().currentUser?.uid
-                        viewModelNotification.sendRequest(sendTo: String(describing: currentUserId))
+                        viewModelNotification.sendRequest(sendTo: selectedUserId)
                         toggleView = false
                         
                     } else {
@@ -76,6 +92,9 @@ struct RequestNewItemView: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            viewModelContacts.fetchPrivateContacts()
         }
     }
     
@@ -104,10 +123,10 @@ struct RequestNewItemView: View {
     }
 }
 
-struct RequestNewItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        RequestNewItemView(
-            toggleView: .constant(false)
-        )
-    }
-}
+//struct RequestNewItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RequestNewItemView(
+//            toggleView: .constant(false)
+//        )
+//    }
+//}
