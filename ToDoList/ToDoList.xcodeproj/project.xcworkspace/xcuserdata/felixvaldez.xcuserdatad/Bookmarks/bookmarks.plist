@@ -239,53 +239,6 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>85</string>
-					<key>StartingColumnNumber</key>
-					<string>0</string>
-					<key>StartingLineNumber</key>
-					<string>84</string>
-					<key>Timestamp</key>
-					<string>727028791.881182</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>ToDoList/Views/Components/Requests/RequestNewItemView.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>                        self.haptic.feedbackMedium()
-</string>
-				<key>leading</key>
-				<string>                Button("Done") {
-                    if let selectedUserId = selectedUser?.id,viewModelNotification.canSave() {
-</string>
-				<key>trailing</key>
-				<string>                        viewModelNotification.sendRequest(sendTo: selectedUserId)
-                        toggleView = false
-                        
-</string>
-			</dict>
-			<key>title</key>
-			<string>Aggiungere il contatto del destinatario</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>0</string>
-					<key>EndingLineNumber</key>
 					<string>40</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
@@ -332,13 +285,13 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>126</string>
-					<key>StartingColumnNumber</key>
-					<string>55</string>
-					<key>StartingLineNumber</key>
 					<string>125</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>124</string>
 					<key>Timestamp</key>
-					<string>727035453.980335</string>
+					<string>727049423.395869</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -354,12 +307,12 @@ class DoneListViewViewModel: ObservableObject {
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>//struct RequestNewItemView_Previews: PreviewProvider {
 </string>
 				<key>leading</key>
 				<string>}
 
-//struct RequestNewItemView_Previews: PreviewProvider {</string>
+</string>
 				<key>trailing</key>
 				<string>//    static var previews: some View {
 //        RequestNewItemView(
@@ -367,7 +320,54 @@ class DoneListViewViewModel: ObservableObject {
 </string>
 			</dict>
 			<key>title</key>
-			<string>Sistemare</string>
+			<string>codice commentato</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>37</string>
+					<key>StartingColumnNumber</key>
+					<string>52</string>
+					<key>StartingLineNumber</key>
+					<string>36</string>
+					<key>Timestamp</key>
+					<string>727048895.702981</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>ToDoList/Views/Components/ContactItemView.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>}
+
+//struct ContactItemView_Previews: PreviewProvider {</string>
+				<key>trailing</key>
+				<string>//    static var previews: some View {
+//        ContactItemView(
+//            user: User(
+</string>
+			</dict>
+			<key>title</key>
+			<string>codice commentato</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>

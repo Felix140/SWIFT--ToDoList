@@ -33,7 +33,9 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 let currentUser = try? document.data(as: User.self)
                 // Qui estraggo il nome dell'utente corrente
                 let currentUserName = currentUser?.name ?? "Unknown"
+                print("Utente mittente: \(currentUserName)")
                 self?.createAndSendNotification(senderName: currentUserName, sendTo: userId)
+                print("Richiesta inviata")
             } else {
                 print("Document does not exist")
             }

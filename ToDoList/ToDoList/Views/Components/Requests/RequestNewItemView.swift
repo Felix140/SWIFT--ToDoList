@@ -32,6 +32,20 @@ struct RequestNewItemView: View {
                     
                 }
                 
+                Section(header: Text("Send To")) {
+                    Picker("Select the user", selection: $selectedUser) {
+                        ForEach(viewModelContacts.privateContacts, id: \.self) { contact in
+                            Text(contact.name).tag(contact as User?)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                    .onAppear {
+                        if selectedUser == nil, let firstUser = viewModelContacts.privateContacts.first {
+                            selectedUser = firstUser
+                        }
+                    }
+                }
+                
                 Section(header: Text("Data della Task")) {
                     NavigationLink(destination: CalendarView(dateSelected: $viewModelNotification.date)) {
                         Label("Seleziona una data", systemImage: "calendar.badge.clock")
@@ -45,20 +59,6 @@ struct RequestNewItemView: View {
                         }
                     }
                     .pickerStyle(MenuPickerStyle())
-                }
-                
-                Section(header: Text("Send To")) {
-                    Picker("Users", selection: $selectedUser) {
-                        ForEach(viewModelContacts.privateContacts, id: \.self) { contact in
-                            Text(contact.name).tag(contact as User?)
-                        }
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                    .onAppear {
-                        if selectedUser == nil, let firstUser = viewModelContacts.privateContacts.first {
-                            selectedUser = firstUser
-                        }
-                    }
                 }
             }
             .frame(height: 440)
@@ -80,12 +80,11 @@ struct RequestNewItemView: View {
             }
             
             ToolbarItem(placement: .confirmationAction) {
-                Button("Done") {
-                    if let selectedUserId = selectedUser?.id,viewModelNotification.canSave() {
+                Button("Send") {
+                    if let selectedUserId = selectedUser?.id, viewModelNotification.canSave() {
                         self.haptic.feedbackMedium()
                         viewModelNotification.sendRequest(sendTo: selectedUserId)
                         toggleView = false
-                        
                     } else {
                         self.haptic.feedbackHeavy()
                         viewModelNotification.showAlert = true
