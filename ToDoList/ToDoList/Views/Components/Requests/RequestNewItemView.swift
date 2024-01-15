@@ -1,7 +1,9 @@
 import SwiftUI
+import FirebaseAuth
 
 struct RequestNewItemView: View {
-    @StateObject var viewModel = NotificationViewViewModel()
+    @StateObject var viewModelNotification = NotificationViewViewModel()
+    @StateObject var viewModelTest = ProfileViewViewModel()
     @Binding var toggleView: Bool
     @State private var showDescriptionView = false
     var haptic = HapticTrigger()
@@ -19,7 +21,7 @@ struct RequestNewItemView: View {
             // Form
             Form {
                 Section(header: Text("Titolo task")) {
-                    TextField("Inserisci qui il titolo", text: $viewModel.title)
+                    TextField("Inserisci qui il titolo", text: $viewModelNotification.title)
                         .textInputAutocapitalization(.none)
                         .autocapitalization(.none)
                     
@@ -28,14 +30,14 @@ struct RequestNewItemView: View {
                 }
                 
                 Section(header: Text("Data della Task")) {
-                    NavigationLink(destination: CalendarView(dateSelected: $viewModel.date)) {
+                    NavigationLink(destination: CalendarView(dateSelected: $viewModelNotification.date)) {
                         Label("Seleziona una data", systemImage: "calendar.badge.clock")
                     }
                 }
                 
                 Section(header: Text("Seleziona una categoria")) {
-                    Picker("Categoria", selection: $viewModel.selectedCategory) {
-                        ForEach(viewModel.categories, id: \.self) { category in
+                    Picker("Categoria", selection: $viewModelNotification.selectedCategory) {
+                        ForEach(viewModelNotification.categories, id: \.self) { category in
                             Text(category.categoryName).tag(category)
                         }
                     }
@@ -47,7 +49,7 @@ struct RequestNewItemView: View {
             
             Spacer()
         }
-        .alert(isPresented: $viewModel.showAlert) {
+        .alert(isPresented: $viewModelNotification.showAlert) {
             Alert(
                 title: Text("Errore"),
                 message: Text("Inserisci il campo testo o eventualmente il giorno in maniera corretta")
@@ -62,13 +64,15 @@ struct RequestNewItemView: View {
             
             ToolbarItem(placement: .confirmationAction) {
                 Button("Done") {
-                    if viewModel.canSave() {
+                    if viewModelNotification.canSave() {
                         self.haptic.feedbackMedium()
-                        viewModel.sendRequest(sendTo: "PincoPallo")
+                        let currentUserId = Auth.auth().currentUser?.uid
+                        viewModelNotification.sendRequest(sendTo: String(describing: currentUserId))
                         toggleView = false
+                        
                     } else {
                         self.haptic.feedbackHeavy()
-                        viewModel.showAlert = true
+                        viewModelNotification.showAlert = true
                     }
                 }
             }
@@ -82,7 +86,7 @@ struct RequestNewItemView: View {
             self.haptic.feedbackMedium()
             self.showDescriptionView = true
         }) {
-            if viewModel.description.isEmpty {
+            if viewModelNotification.description.isEmpty {
                 Label("Aggiungi una descrizione", systemImage: "square.and.pencil")
             } else {
                 Label("Aggiungi una descrizione", systemImage: "checkmark.square")
@@ -92,7 +96,7 @@ struct RequestNewItemView: View {
         .sheet(isPresented: $showDescriptionView) {
             NavigationView {
                 InsertDescriptionView(
-                    textDescription: $viewModel.description,
+                    textDescription: $viewModelNotification.description,
                     isPresented: $showDescriptionView
                 )
             }

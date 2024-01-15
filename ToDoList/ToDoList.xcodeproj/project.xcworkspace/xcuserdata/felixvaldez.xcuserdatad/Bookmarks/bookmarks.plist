@@ -239,13 +239,13 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>67</string>
+					<string>69</string>
 					<key>StartingColumnNumber</key>
-					<string>67</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>66</string>
+					<string>68</string>
 					<key>Timestamp</key>
-					<string>726849628.68378</string>
+					<string>727010787.883147</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -261,16 +261,16 @@ class DoneListViewViewModel: ObservableObject {
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>                        let currentUserId = Auth.auth().currentUser?.uid
 </string>
 				<key>leading</key>
-				<string>                    if viewModel.canSave() {
+				<string>                    if viewModelNotification.canSave() {
                         self.haptic.feedbackMedium()
-                        viewModel.sendRequest(sendTo: "PincoPallo")</string>
+</string>
 				<key>trailing</key>
-				<string>                        toggleView = false
-                    } else {
-                        self.haptic.feedbackHeavy()
+				<string>                        viewModelNotification.sendRequest(sendTo: String(describing: currentUserId))
+                        toggleView = false
+                        
 </string>
 			</dict>
 			<key>title</key>

@@ -79,7 +79,7 @@ struct ToDoListView: View {
                         Picker("TooDoo List", selection: $selectedPicker) {
                             Text("All Task").tag(0)
                             Text("To Do").tag(1)
-                            Text("Done").tag(3)
+                            Text("Done").tag(2)
                         }
                         .pickerStyle(.segmented)
                     }

@@ -2,12 +2,13 @@ import SwiftUI
 
 struct SharedToDoListView: View {
     
-    @StateObject var viewModel: ToDoListViewViewModel
+    @StateObject var viewModelToDoList: ToDoListViewViewModel
+    @StateObject var viewModelNotification = NotificationViewViewModel()
     private var haptic = HapticTrigger()
     @State private var selectionPicker = 0
     
     init(userId: String) {
-        self._viewModel = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
+        self._viewModelToDoList = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
     }
     
     var body: some View {
@@ -46,7 +47,7 @@ struct SharedToDoListView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
                         self.haptic.feedbackMedium()
-                        viewModel.isPresentingView = true
+                        viewModelToDoList.isPresentingView = true
                     }) {
                         Image(systemName: "plus")
                     }
@@ -54,31 +55,28 @@ struct SharedToDoListView: View {
                 }
             }
         }
-        .sheet(isPresented: $viewModel.isPresentingView) {
+        .sheet(isPresented: $viewModelToDoList.isPresentingView) {
             NavigationStack {
-                RequestNewItemView(toggleView: $viewModel.isPresentingView)
+                RequestNewItemView(toggleView: $viewModelToDoList.isPresentingView)
             }
         }
         
     }
     
     func notifications() -> some View {
-        List {
-            
-            ForEach(0..<10) { request in
-                NotificationView()
-            }
-            
+        List(viewModelNotification.notifications) { notification in
+            NotificationView(textTask: notification.task.title, sendFrom: notification.sender)
         }
         .listStyle(PlainListStyle())
+        .onAppear {
+            viewModelNotification.fetchNotifications()
+        }
     }
     
     func sendRequests() -> some View {
         List {
             
-            ForEach(0..<10) { request in
-                NotificationView()
-            }
+            
             
         }
         .listStyle(SidebarListStyle())
@@ -87,9 +85,7 @@ struct SharedToDoListView: View {
     func doneListRequested() -> some View {
         List {
             
-            ForEach(0..<10) { request in
-                NotificationView()
-            }
+           
             
         }
         .listStyle(SidebarListStyle())

@@ -5,17 +5,20 @@ import FirebaseFirestore
 /// Questa classe eredita le proprietà di NewItemViewViewModel
 class NotificationViewViewModel: NewItemViewViewModel {
     
-///    @Published var messageTitle = ""
-///    @Published var category = ""
-///    @Published var date = Date()
-///    @Published var showAlert = false
-///    @Published var description = ""
-///    @Published var selectedCategory: CategoryTask = .none
-///    let categories = CategoryTask.allCases
+    ///    @Published var messageTitle = ""
+    ///    @Published var category = ""
+    ///    @Published var date = Date()
+    ///    @Published var showAlert = false
+    ///    @Published var description = ""
+    ///    @Published var selectedCategory: CategoryTask = .none
+    ///    let categories = CategoryTask.allCases
+    @Published var notifications: [Notification] = []
     
-    override init() {}
+    override init() {
+        super.init() // Chiamata al costruttore della superclasse
+    }
     
-    func sendRequest(sendTo: String) {
+    func sendRequest(sendTo userId: String) {
         
         guard  canSave() else {
             return
@@ -31,7 +34,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
         
         let newNotification = Notification(id: newIdNotification,
                                            sender: userId,
-                                           recipient: sendTo,
+                                           recipient: userId,
                                            task: ToDoListItem(id: newIdTask,
                                                               title: title,
                                                               dueDate: date.timeIntervalSince1970,
@@ -49,7 +52,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .collection("sendTo")
             .document(newNotification.recipient)
             .collection("notifications")
-            .document(newIdNotification)
+            .document(newNotification.id)
             .setData(newNotification.asDictionary())
         
         /// Salvare il Modello nel DB NOTIFICHE IN DESTINATARIO
@@ -58,15 +61,61 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .document(newNotification.recipient)
             .collection("requests")
             .document(newIdNotification)
-            .collection("sender")
-            .document(newNotification.sender)
             .setData(newNotification.asDictionary())
         
         print("Request Sended")
         
     }
     
+    func fetchNotifications() {
+        guard let userId = Auth.auth().currentUser?.uid else {
+            return
+        }
+        
+        let db = Firestore.firestore()
+        db.collection("notifications")
+            .document(userId)
+            .collection("requests")
+            .getDocuments { [weak self] (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    var fetchedNotifications: [Notification] = []
+                    
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        
+                        // Converti il campo 'task' in ToDoListItem
+                        var task: ToDoListItem?
+                        if let taskData = data["task"] as? [String: Any],
+                           let jsonData = try? JSONSerialization.data(withJSONObject: taskData),
+                           let decodedTask = try? JSONDecoder().decode(ToDoListItem.self, from: jsonData) {
+                            task = decodedTask
+                        }
+                        
+                        // Crea un'istanza di Notification se task esiste
+                        if let task = task {
+                            let newNotification = Notification(
+                                id: data["id"] as? String ?? "",
+                                sender: data["sender"] as? String ?? "",
+                                recipient: data["recipient"] as? String ?? "",
+                                task: task,
+                                isAccepted: data["isAccepted"] as? Bool ?? false
+                            )
+                            fetchedNotifications.append(newNotification)
+                        }
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self?.notifications = fetchedNotifications // Aggiorna l'array di notifiche
+                    }
+                }
+            }
+    }
+    
+    
     func sendResponseAccepted() { }
     
     
 }
+
