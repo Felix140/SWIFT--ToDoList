@@ -64,8 +64,12 @@ struct SharedToDoListView: View {
     }
     
     func notifications() -> some View {
-        List(viewModelNotification.notifications) { notification in
-            NotificationView(textTask: notification.task.title, sendFrom: notification.sender)
+        List{
+            ForEach(viewModelNotification.notifications) { notification in
+                NotificationView(
+                    textTask: notification.task.title,
+                    sendFrom: notification.senderName)
+            }
         }
         .listStyle(PlainListStyle())
         .onAppear {
@@ -85,7 +89,7 @@ struct SharedToDoListView: View {
     func doneListRequested() -> some View {
         List {
             
-           
+            
             
         }
         .listStyle(SidebarListStyle())

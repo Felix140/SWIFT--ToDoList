@@ -25,7 +25,7 @@ struct ContactItemView: View {
             
             Spacer()
             
-            Button("Save") {
+            Button("Add") {
                 viewModel.saveContact(user)
             }
         }

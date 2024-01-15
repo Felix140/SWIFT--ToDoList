@@ -19,8 +19,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
     }
     
     func sendRequest(sendTo userId: String) {
-        
-        guard  canSave() else {
+        guard canSave() else {
             return
         }
         
@@ -28,14 +27,31 @@ class NotificationViewViewModel: NewItemViewViewModel {
             return
         }
         
-        /// Creazione Notifica + Modello da mandare
+        let db = Firestore.firestore()
+        db.collection("users").document(currentUserID).getDocument { [weak self] document, error in
+            if let document = document, document.exists {
+                let currentUser = try? document.data(as: User.self)
+                // Qui estraggo il nome dell'utente corrente
+                let currentUserName = currentUser?.name ?? "Unknown"
+                self?.createAndSendNotification(senderName: currentUserName, sendTo: userId)
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+
+    
+    
+    func createAndSendNotification(senderName: String, sendTo userId: String) {
         let newIdNotification = UUID().uuidString
         let newIdTask = UUID().uuidString
+        let currentUserID = Auth.auth().currentUser?.uid ?? ""
         
         let newNotification = Notification(
             id: newIdNotification,
-            sender: currentUserID, // Imposta il mittente come l'utente corrente
-            recipient: userId, // Imposta il destinatario come l'utente selezionato
+            sender: currentUserID,
+            senderName: senderName, // Assegna il nome recuperato
+            recipient: userId,
             task: ToDoListItem(
                 id: newIdTask,
                 title: title,
@@ -51,7 +67,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             isAccepted: false
         )
         
-        /// Salvare il Modello nel DB  NOTIFICHE IN UTENTE
+        // Salva la notifica nel database...
         let dbUserSender = Firestore.firestore()
         dbUserSender.collection("users")
             .document(userId)
@@ -70,8 +86,8 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .setData(newNotification.asDictionary())
         
         print("Request Sended")
-        
     }
+    
     
     func fetchNotifications() {
         guard let userId = Auth.auth().currentUser?.uid else {
@@ -106,6 +122,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                         let newNotification = Notification(
                             id: data["id"] as? String ?? "",
                             sender: data["sender"] as? String ?? "",
+                            senderName: data["senderName"] as? String ?? "Unknown", // Assicurati che questo campo sia assegnato correttamente
                             recipient: data["recipient"] as? String ?? "",
                             task: task,
                             isAccepted: data["isAccepted"] as? Bool ?? false

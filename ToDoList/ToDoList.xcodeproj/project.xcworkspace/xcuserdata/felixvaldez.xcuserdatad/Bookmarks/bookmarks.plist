@@ -324,6 +324,53 @@ class DoneListViewViewModel: ObservableObject {
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>126</string>
+					<key>StartingColumnNumber</key>
+					<string>55</string>
+					<key>StartingLineNumber</key>
+					<string>125</string>
+					<key>Timestamp</key>
+					<string>727035453.980335</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>ToDoList/Views/Components/Requests/RequestNewItemView.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>}
+
+//struct RequestNewItemView_Previews: PreviewProvider {</string>
+				<key>trailing</key>
+				<string>//    static var previews: some View {
+//        RequestNewItemView(
+//            toggleView: .constant(false)
+</string>
+			</dict>
+			<key>title</key>
+			<string>Sistemare</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
 	</array>
 </dict>
 </plist>
