@@ -39,14 +39,16 @@ class ContactsViewViewModel: ObservableObject {
         db.collection("users")
             .document(currentUserId)
             .collection("contacts")
-            .getDocuments { (querySnapshot, error) in
+            .addSnapshotListener { [weak self] (querySnapshot, error) in /// addSnapshotListener è come getDocument, soloche si tiene sempre in ascolto(asincrona)
+                ///
                 if let error = error {
                     print("Error getting documents: \(error.localizedDescription)")
                 } else {
-                    self.privateContacts = querySnapshot?.documents.compactMap { document in
+                    self?.privateContacts = querySnapshot?.documents.compactMap { document in
                         try? document.data(as: User.self)
                     } ?? []
                 }
+                
             }
     }
     

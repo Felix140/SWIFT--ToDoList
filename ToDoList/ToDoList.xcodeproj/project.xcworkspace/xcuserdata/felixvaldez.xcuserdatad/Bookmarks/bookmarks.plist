@@ -371,6 +371,100 @@ class DoneListViewViewModel: ObservableObject {
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>58</string>
+					<key>StartingColumnNumber</key>
+					<string>21</string>
+					<key>StartingLineNumber</key>
+					<string>57</string>
+					<key>Timestamp</key>
+					<string>727052837.394033</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>ToDoList/Views/Pages/ContactsView.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>    func listContacts() -&gt; some View {
+        List {
+            Section {</string>
+				<key>trailing</key>
+				<string>                if searchText.count &gt;= 1 {  // Modifica qui
+                    ForEach(fetchedUser.filter { user in
+                        user.name.lowercased().contains(searchText.lowercased())
+</string>
+			</dict>
+			<key>title</key>
+			<string>NON fetchare il proprio contatto</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>137</string>
+					<key>StartingColumnNumber</key>
+					<string>8</string>
+					<key>StartingLineNumber</key>
+					<string>136</string>
+					<key>Timestamp</key>
+					<string>727053758.034948</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>ToDoList/ViewModels/NotificationViewViewModel.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>        let db = Firestore.firestore()
+        db.collection("users")
+        </string>
+				<key>trailing</key>
+				<string>    }
+    
+    func sendResponseAccepted() { }
+</string>
+			</dict>
+			<key>title</key>
+			<string>Aggiungere percorso DB per recuperare le richieste inviate</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
 	</array>
 </dict>
 </plist>

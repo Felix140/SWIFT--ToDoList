@@ -7,19 +7,16 @@ class NotificationViewViewModel: NewItemViewViewModel {
     
 
     @Published var notifications: [Notification] = []
+    @Published var sendRequests: [Notification] = []
     
     override init() {
         super.init() /// Chiamata al costruttore della superclasse
     }
     
     func sendRequest(sendTo userId: String) {
-        guard canSave() else {
-            return
-        }
         
-        guard let currentUserID = Auth.auth().currentUser?.uid else {
-            return
-        }
+        guard canSave() else { return }
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
         
         let db = Firestore.firestore()
         db.collection("users").document(currentUserID).getDocument { [weak self] document, error in
@@ -39,6 +36,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
     
     
     func createAndSendNotification(senderName: String, sendTo userId: String) {
+        
         let newIdNotification = UUID().uuidString
         let newIdTask = UUID().uuidString
         let currentUserID = Auth.auth().currentUser?.uid ?? ""
@@ -86,9 +84,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
     
     
     func fetchNotifications() {
-        guard let userId = Auth.auth().currentUser?.uid else {
-            return
-        }
+        guard let userId = Auth.auth().currentUser?.uid else { return }
         
         let db = Firestore.firestore()
         db.collection("notifications")
@@ -133,7 +129,13 @@ class NotificationViewViewModel: NewItemViewViewModel {
             }
     }
     
-    
+    func allRequests() {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        let db = Firestore.firestore()
+        db.collection("users")
+        
+    }
     
     func sendResponseAccepted() { }
     

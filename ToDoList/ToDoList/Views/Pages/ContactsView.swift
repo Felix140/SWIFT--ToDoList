@@ -16,10 +16,7 @@ struct ContactsView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                
-                Text(searchText)
-                    .navigationTitle("Contacts")
-                
+                                
                 HStack {
                     if #available(iOS 17.0, *) {
                         Picker("TooDoo List", selection: $selectedPicker) {
@@ -51,21 +48,27 @@ struct ContactsView: View {
         }
         .searchable(text: $searchText, prompt: "Search")
         .onAppear {
-                    viewModel.fetchPrivateContacts()
-                }
+            viewModel.fetchPrivateContacts()
+        }
     }
     
     
     func listContacts() -> some View {
         List {
             Section {
-                ForEach(fetchedUser) {  user in
-                    ContactItemView(user: user)
-                }
+                if searchText.count >= 1 {  // Modifica qui
+                    ForEach(fetchedUser.filter { user in
+                        user.name.lowercased().contains(searchText.lowercased())
+                    }) { user in
+                        ContactItemView(user: user)
+                    }
+                } 
             }
         }
         .listStyle(PlainListStyle())
     }
+    
+    
     
     func saveContacts()-> some View {
         List {
@@ -75,7 +78,7 @@ struct ContactsView: View {
         }
         .listStyle(PlainListStyle())
     }
-        
+    
 }
 
 struct ContactsView_Preview: PreviewProvider {
