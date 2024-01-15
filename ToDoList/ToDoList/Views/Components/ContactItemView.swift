@@ -3,7 +3,9 @@ import SwiftUI
 struct ContactItemView: View {
     
     
-    var username: String
+    @StateObject var viewModel = ContactsViewViewModel()
+    var user: User
+    
     
     var body: some View {
         
@@ -13,10 +15,10 @@ struct ContactItemView: View {
             VStack(alignment: .leading, spacing: 4.0) {
                 
                 
-                Text(username)
+                Text(user.name)
                     .font(.caption)
                 
-                Text("Esempiotesto 2")
+                Text(user.email)
                     .font(.footnote)
                     .foregroundColor(Color(.secondaryLabel))
             }
@@ -24,7 +26,7 @@ struct ContactItemView: View {
             Spacer()
             
             Button("Save") {
-                
+                viewModel.saveContact(user)
             }
         }
         
@@ -32,10 +34,15 @@ struct ContactItemView: View {
     }
 }
 
-struct ContactItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContactItemView(
-            username: "Nome Utente"
-        )
-    }
-}
+//struct ContactItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContactItemView(
+//            user: User(
+//                id: "ciao",
+//                name: "utente test", 
+//                email: "utente@utente.com",
+//                joined: ,
+//                contacts: [])
+//        )
+//    }
+//}

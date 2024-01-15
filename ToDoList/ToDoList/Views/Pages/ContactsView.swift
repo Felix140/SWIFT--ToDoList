@@ -4,7 +4,9 @@ import FirebaseFirestoreSwift
 struct ContactsView: View {
     
     @State private var searchText: String = ""
+    @StateObject var viewModel = ContactsViewViewModel()
     @FirestoreQuery var fetchedUser: [User]
+    @State var selectedPicker: Int = 0
     
     init() {
         self._fetchedUser = FirestoreQuery(collectionPath: "users/") // GET all users
@@ -14,14 +16,43 @@ struct ContactsView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                
                 Text(searchText)
                     .navigationTitle("Contacts")
                 
+                HStack {
+                    if #available(iOS 17.0, *) {
+                        Picker("TooDoo List", selection: $selectedPicker) {
+                            Text("All Users").tag(0)
+                            Text("Saved").tag(1)
+                        }
+                        .pickerStyle(.palette)
+                    } else {
+                        
+                        Picker("TooDoo List", selection: $selectedPicker) {
+                            Text("All Users").tag(0)
+                            Text("Saved").tag(1)
+                        }
+                        .pickerStyle(.segmented)
+                    }
+                    
+                }
+                .padding(.horizontal, 10)
                 
-                listContacts()
+                
+                if selectedPicker == 0 {
+                    listContacts()
+                }
+                
+                if selectedPicker == 1 {
+                    saveContacts()
+                }
             }
         }
         .searchable(text: $searchText, prompt: "Search")
+        .onAppear {
+                    viewModel.fetchPrivateContacts()
+                }
     }
     
     
@@ -29,12 +60,22 @@ struct ContactsView: View {
         List {
             Section {
                 ForEach(fetchedUser) {  user in
-                    ContactItemView(username: user.name)
+                    ContactItemView(user: user)
                 }
             }
         }
         .listStyle(PlainListStyle())
     }
+    
+    func saveContacts()-> some View {
+        List {
+            ForEach(viewModel.privateContacts) { privateUser in
+                ContactItemView(user: privateUser)
+            }
+        }
+        .listStyle(PlainListStyle())
+    }
+        
 }
 
 struct ContactsView_Preview: PreviewProvider {

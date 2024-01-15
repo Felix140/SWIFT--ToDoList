@@ -278,6 +278,52 @@ class DoneListViewViewModel: ObservableObject {
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>40</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>40</string>
+					<key>Timestamp</key>
+					<string>727024043.24341</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>ToDoList/ViewModels/RegisterViewViewModel.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string></string>
+				<key>leading</key>
+				<string>            email: email,
+            joined: Date().timeIntervalSince1970)
+</string>
+				<key>trailing</key>
+				<string>        
+        let db = Firestore.firestore()
+        
+</string>
+			</dict>
+			<key>title</key>
+			<string>Ricontrollare</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
 	</array>
 </dict>
 </plist>
