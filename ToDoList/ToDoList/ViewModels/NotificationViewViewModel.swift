@@ -76,42 +76,44 @@ class NotificationViewViewModel: NewItemViewViewModel {
         db.collection("notifications")
             .document(userId)
             .collection("requests")
-            .getDocuments { [weak self] (querySnapshot, err) in
+            .addSnapshotListener { [weak self] (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
-                } else {
-                    var fetchedNotifications: [Notification] = []
+                    return
+                }
+                
+                var fetchedNotifications: [Notification] = []
+                
+                for document in querySnapshot!.documents {
+                    let data = document.data()
                     
-                    for document in querySnapshot!.documents {
-                        let data = document.data()
-                        
-                        // Converti il campo 'task' in ToDoListItem
-                        var task: ToDoListItem?
-                        if let taskData = data["task"] as? [String: Any],
-                           let jsonData = try? JSONSerialization.data(withJSONObject: taskData),
-                           let decodedTask = try? JSONDecoder().decode(ToDoListItem.self, from: jsonData) {
-                            task = decodedTask
-                        }
-                        
-                        // Crea un'istanza di Notification se task esiste
-                        if let task = task {
-                            let newNotification = Notification(
-                                id: data["id"] as? String ?? "",
-                                sender: data["sender"] as? String ?? "",
-                                recipient: data["recipient"] as? String ?? "",
-                                task: task,
-                                isAccepted: data["isAccepted"] as? Bool ?? false
-                            )
-                            fetchedNotifications.append(newNotification)
-                        }
+                    // Converti il campo 'task' in ToDoListItem
+                    var task: ToDoListItem?
+                    if let taskData = data["task"] as? [String: Any],
+                       let jsonData = try? JSONSerialization.data(withJSONObject: taskData),
+                       let decodedTask = try? JSONDecoder().decode(ToDoListItem.self, from: jsonData) {
+                        task = decodedTask
                     }
                     
-                    DispatchQueue.main.async {
-                        self?.notifications = fetchedNotifications // Aggiorna l'array di notifiche
+                    // Crea un'istanza di Notification se task esiste
+                    if let task = task {
+                        let newNotification = Notification(
+                            id: data["id"] as? String ?? "",
+                            sender: data["sender"] as? String ?? "",
+                            recipient: data["recipient"] as? String ?? "",
+                            task: task,
+                            isAccepted: data["isAccepted"] as? Bool ?? false
+                        )
+                        fetchedNotifications.append(newNotification)
                     }
+                }
+                
+                DispatchQueue.main.async {
+                    self?.notifications = fetchedNotifications
                 }
             }
     }
+
     
     
     func sendResponseAccepted() { }
