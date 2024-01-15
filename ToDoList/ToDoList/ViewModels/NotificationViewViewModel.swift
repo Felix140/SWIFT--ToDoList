@@ -5,17 +5,11 @@ import FirebaseFirestore
 /// Questa classe eredita le proprietà di NewItemViewViewModel
 class NotificationViewViewModel: NewItemViewViewModel {
     
-    ///    @Published var messageTitle = ""
-    ///    @Published var category = ""
-    ///    @Published var date = Date()
-    ///    @Published var showAlert = false
-    ///    @Published var description = ""
-    ///    @Published var selectedCategory: CategoryTask = .none
-    ///    let categories = CategoryTask.allCases
+
     @Published var notifications: [Notification] = []
     
     override init() {
-        super.init() // Chiamata al costruttore della superclasse
+        super.init() /// Chiamata al costruttore della superclasse
     }
     
     func sendRequest(sendTo userId: String) {
@@ -52,7 +46,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
         let newNotification = Notification(
             id: newIdNotification,
             sender: currentUserID,
-            senderName: senderName, // Assegna il nome recuperato
+            senderName: senderName, /// Assegna il nome recuperato
             recipient: userId,
             task: ToDoListItem(
                 id: newIdTask,
@@ -69,7 +63,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             isAccepted: false
         )
         
-        // Salva la notifica nel database...
+        /// Salva la notifica nel database
         let dbUserSender = Firestore.firestore()
         dbUserSender.collection("users")
             .document(userId)
@@ -111,7 +105,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 for document in querySnapshot!.documents {
                     let data = document.data()
                     
-                    // Converti il campo 'task' in ToDoListItem
+                    /// Converti il campo 'task' in ToDoListItem
                     var task: ToDoListItem?
                     if let taskData = data["task"] as? [String: Any],
                        let jsonData = try? JSONSerialization.data(withJSONObject: taskData),
@@ -119,12 +113,12 @@ class NotificationViewViewModel: NewItemViewViewModel {
                         task = decodedTask
                     }
                     
-                    // Crea un'istanza di Notification se task esiste
+                    /// Crea un'istanza di Notification se task esiste
                     if let task = task {
                         let newNotification = Notification(
                             id: data["id"] as? String ?? "",
                             sender: data["sender"] as? String ?? "",
-                            senderName: data["senderName"] as? String ?? "Unknown", // Assicurati che questo campo sia assegnato correttamente
+                            senderName: data["senderName"] as? String ?? "Unknown",
                             recipient: data["recipient"] as? String ?? "",
                             task: task,
                             isAccepted: data["isAccepted"] as? Bool ?? false
@@ -142,6 +136,8 @@ class NotificationViewViewModel: NewItemViewViewModel {
     
     
     func sendResponseAccepted() { }
+    
+    func sendResponseRejected() { }
     
     
 }

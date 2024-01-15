@@ -30,7 +30,7 @@ class NewItemViewViewModel: ObservableObject {
         let newItem = ToDoListItem(id: newId,
                                    title: title,
                                    dueDate: date.timeIntervalSince1970,
-                                   createdDate: Date().timeIntervalSince1970, // La data senza la proprietà @Published
+                                   createdDate: Date().timeIntervalSince1970,
                                    isDone: false,
                                    category: selectedCategory,
                                    description: InfoToDoItem(id: newId,
