@@ -21,6 +21,7 @@
 		4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970661E2B462C4200C16D88 /* CategoryTask.swift */; };
 		499531132B52083700547910 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499531122B52083700547910 /* NotificationView.swift */; };
 		499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E1DDF2B46FA5200A7EF9A /* Routes.swift */; };
+		49A60C242B55299800A2C133 /* UserContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A60C232B55299800A2C133 /* UserContacts.swift */; };
 		49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */; };
 		49B584F22B5211B200F3D004 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B584F12B5211B200F3D004 /* Notification.swift */; };
 		49B584F42B5213D300F3D004 /* NotificationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B584F32B5213D300F3D004 /* NotificationViewViewModel.swift */; };
@@ -73,6 +74,7 @@
 		4970661E2B462C4200C16D88 /* CategoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTask.swift; sourceTree = "<group>"; };
 		499531122B52083700547910 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		499E1DDF2B46FA5200A7EF9A /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		49A60C232B55299800A2C133 /* UserContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContacts.swift; sourceTree = "<group>"; };
 		49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTrigger.swift; sourceTree = "<group>"; };
 		49B584F12B5211B200F3D004 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		49B584F32B5213D300F3D004 /* NotificationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewViewModel.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				49FE57362B1CDAEF00E4A0E2 /* ToDoListItem.swift */,
 				49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */,
 				49B584F12B5211B200F3D004 /* Notification.swift */,
+				49A60C232B55299800A2C133 /* UserContacts.swift */,
 				49DDA1812B44C2B6009218C4 /* Enums */,
 			);
 			path = Models;
@@ -375,6 +378,7 @@
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
 				49B584F62B52178800F3D004 /* RequestNewItemView.swift in Sources */,
 				49E946882B50848700148273 /* SharedToDoListView.swift in Sources */,
+				49A60C242B55299800A2C133 /* UserContacts.swift in Sources */,
 				49FE572F2B1CDA5100E4A0E2 /* LoginView.swift in Sources */,
 				496F10002B331957005CCA4B /* StartView.swift in Sources */,
 				49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */,

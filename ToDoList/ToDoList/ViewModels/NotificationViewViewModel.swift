@@ -42,14 +42,24 @@ class NotificationViewViewModel: NewItemViewViewModel {
                                                                                         description: description)),
                                            isAccepted: false)
         
-        /// Salvare il Modello nel DB
-        let db = Firestore.firestore()
-        db.collection("users")
+        /// Salvare il Modello nel DB  NOTIFICHE IN UTENTE
+        let dbUserSender = Firestore.firestore()
+        dbUserSender.collection("users")
             .document(userId)
             .collection("sendTo")
             .document(newNotification.recipient)
             .collection("notifications")
             .document(newIdNotification)
+            .setData(newNotification.asDictionary())
+        
+        /// Salvare il Modello nel DB NOTIFICHE IN DESTINATARIO
+        let dbNotifications = Firestore.firestore()
+        dbNotifications.collection("notifications")
+            .document(newNotification.recipient)
+            .collection("requests")
+            .document(newIdNotification)
+            .collection("sender")
+            .document(newNotification.sender)
             .setData(newNotification.asDictionary())
         
         print("Request Sended")
