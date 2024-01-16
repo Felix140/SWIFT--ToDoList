@@ -239,59 +239,13 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>40</string>
+					<string>67</string>
 					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>67</string>
 					<key>StartingLineNumber</key>
-					<string>40</string>
+					<string>66</string>
 					<key>Timestamp</key>
-					<string>727024043.24341</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>ToDoList/ViewModels/RegisterViewViewModel.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string></string>
-				<key>leading</key>
-				<string>            email: email,
-            joined: Date().timeIntervalSince1970)
-</string>
-				<key>trailing</key>
-				<string>        
-        let db = Firestore.firestore()
-        
-</string>
-			</dict>
-			<key>title</key>
-			<string>Ricontrollare</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>0</string>
-					<key>EndingLineNumber</key>
-					<string>125</string>
-					<key>StartingColumnNumber</key>
-					<string>0</string>
-					<key>StartingLineNumber</key>
-					<string>124</string>
-					<key>Timestamp</key>
-					<string>727049423.395869</string>
+					<string>726849628.68378</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -307,20 +261,20 @@ class DoneListViewViewModel: ObservableObject {
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>//struct RequestNewItemView_Previews: PreviewProvider {
+				<string>
 </string>
 				<key>leading</key>
-				<string>}
-
-</string>
+				<string>                    if viewModel.canSave() {
+                        self.haptic.feedbackMedium()
+                        viewModel.sendRequest(sendTo: "PincoPallo")</string>
 				<key>trailing</key>
-				<string>//    static var previews: some View {
-//        RequestNewItemView(
-//            toggleView: .constant(false)
+				<string>                        toggleView = false
+                    } else {
+                        self.haptic.feedbackHeavy()
 </string>
 			</dict>
 			<key>title</key>
-			<string>codice commentato</string>
+			<string>Aggiungere il contatto del destinatario</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
@@ -332,13 +286,13 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>37</string>
+					<string>88</string>
 					<key>StartingColumnNumber</key>
-					<string>52</string>
+					<string>47</string>
 					<key>StartingLineNumber</key>
-					<string>36</string>
+					<string>87</string>
 					<key>Timestamp</key>
-					<string>727048895.702981</string>
+					<string>727141446.415707</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -347,7 +301,7 @@ class DoneListViewViewModel: ObservableObject {
 					<key>payload</key>
 					<dict>
 						<key>relative-path</key>
-						<string>ToDoList/Views/Components/ContactItemView.swift</string>
+						<string>ToDoList/Views/Pages/SharedToDoListView.swift</string>
 					</dict>
 				</dict>
 			</dict>
@@ -357,111 +311,17 @@ class DoneListViewViewModel: ObservableObject {
 				<string>
 </string>
 				<key>leading</key>
-				<string>}
-
-//struct ContactItemView_Previews: PreviewProvider {</string>
+				<string>                NotificationView(
+                    textTask: sended.task.title,
+                    sendFrom: sended.recipient)</string>
 				<key>trailing</key>
-				<string>//    static var previews: some View {
-//        ContactItemView(
-//            user: User(
+				<string>            }
+        }
+        .listStyle(SidebarListStyle())
 </string>
 			</dict>
 			<key>title</key>
-			<string>codice commentato</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>0</string>
-					<key>EndingLineNumber</key>
-					<string>58</string>
-					<key>StartingColumnNumber</key>
-					<string>21</string>
-					<key>StartingLineNumber</key>
-					<string>57</string>
-					<key>Timestamp</key>
-					<string>727052837.394033</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>ToDoList/Views/Pages/ContactsView.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>
-</string>
-				<key>leading</key>
-				<string>    func listContacts() -&gt; some View {
-        List {
-            Section {</string>
-				<key>trailing</key>
-				<string>                if searchText.count &gt;= 1 {  // Modifica qui
-                    ForEach(fetchedUser.filter { user in
-                        user.name.lowercased().contains(searchText.lowercased())
-</string>
-			</dict>
-			<key>title</key>
-			<string>NON fetchare il proprio contatto</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>0</string>
-					<key>EndingLineNumber</key>
-					<string>137</string>
-					<key>StartingColumnNumber</key>
-					<string>8</string>
-					<key>StartingLineNumber</key>
-					<string>136</string>
-					<key>Timestamp</key>
-					<string>727053758.034948</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>ToDoList/ViewModels/NotificationViewViewModel.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>
-</string>
-				<key>leading</key>
-				<string>        let db = Firestore.firestore()
-        db.collection("users")
-        </string>
-				<key>trailing</key>
-				<string>    }
-    
-    func sendResponseAccepted() { }
-</string>
-			</dict>
-			<key>title</key>
-			<string>Aggiungere percorso DB per recuperare le richieste inviate</string>
+			<string>Creare notifica MANDATO A:</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>

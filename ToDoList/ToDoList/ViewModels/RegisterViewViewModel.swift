@@ -10,6 +10,7 @@ class RegisterViewViewModel: ObservableObject {
     @Published var password = ""
     @Published var repeatPass = ""
     @Published var errorMessage = ""
+    let db = Firestore.firestore()
     
     init() {}
     
@@ -38,8 +39,6 @@ class RegisterViewViewModel: ObservableObject {
             name: fullName,
             email: email,
             joined: Date().timeIntervalSince1970)
-        
-        let db = Firestore.firestore()
         
         db.collection("users")
             .document(id)

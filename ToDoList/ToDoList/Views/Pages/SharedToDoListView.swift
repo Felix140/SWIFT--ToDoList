@@ -1,14 +1,17 @@
 import SwiftUI
+import FirebaseFirestore
 
 struct SharedToDoListView: View {
     
     @StateObject var viewModelToDoList: ToDoListViewViewModel
     @StateObject var viewModelNotification = NotificationViewViewModel()
+    @FirestoreQuery var sendNotifications: [Notification]
     private var haptic = HapticTrigger()
     @State private var selectionPicker = 0
     
     init(userId: String) {
         self._viewModelToDoList = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
+        self._sendNotifications = FirestoreQuery(collectionPath: "users/\(userId)/sendNotifications/")
     }
     
     var body: some View {
@@ -79,9 +82,11 @@ struct SharedToDoListView: View {
     
     func sendRequests() -> some View {
         List {
-            
-            
-            
+            ForEach(sendNotifications) { sended in
+                NotificationView(
+                    textTask: sended.task.title,
+                    sendFrom: sended.recipient)
+            }
         }
         .listStyle(SidebarListStyle())
     }

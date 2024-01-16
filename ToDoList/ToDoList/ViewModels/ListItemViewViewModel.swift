@@ -4,6 +4,8 @@ import FirebaseFirestore
 
 class ListItemViewViewModel: ObservableObject {
     
+    let db = Firestore.firestore()
+    
     init() {}
     
     func toggleIsDone(item: ToDoListItem) {
@@ -14,11 +16,9 @@ class ListItemViewViewModel: ObservableObject {
             return
         }
         
-        //Update DB
-        let db = Firestore.firestore()
         db.collection("users")
             .document(userId)
-            .collection("ToDos")
+            .collection("todos")
             .document(copyItem.id) /// booleano modificato
             .setData(copyItem.asDictionary()) /// booleano modificato
     }

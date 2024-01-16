@@ -40,7 +40,7 @@ class NewItemViewViewModel: ObservableObject {
         let db = Firestore.firestore()
         db.collection("users")
             .document(userId)
-            .collection("ToDos")
+            .collection("todos")
             .document(newId)
             .setData(newItem.asDictionary())
         

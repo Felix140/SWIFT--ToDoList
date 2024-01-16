@@ -5,9 +5,10 @@ import FirebaseFirestore
 /// Questa classe eredita le proprietà di NewItemViewViewModel
 class NotificationViewViewModel: NewItemViewViewModel {
     
-
+    
     @Published var notifications: [Notification] = []
     @Published var sendRequests: [Notification] = []
+    let db = Firestore.firestore()
     
     override init() {
         super.init() /// Chiamata al costruttore della superclasse
@@ -18,24 +19,28 @@ class NotificationViewViewModel: NewItemViewViewModel {
         guard canSave() else { return }
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
         
-        let db = Firestore.firestore()
-        db.collection("users").document(currentUserID).getDocument { [weak self] document, error in
-            if let document = document, document.exists {
-                let currentUser = try? document.data(as: User.self)
-                // Qui estraggo il nome dell'utente corrente
-                let currentUserName = currentUser?.name ?? "Unknown"
-                print("Utente mittente: \(currentUserName)")
-                self?.createAndSendNotification(senderName: currentUserName, sendTo: userId)
-                print("Richiesta inviata")
-            } else {
-                print("Document does not exist")
+        db.collection("users")
+            .document(currentUserID)
+            .getDocument { [weak self] document, error in
+                if let document = document, document.exists {
+                    do {
+                        let currentUser = try document.data(as: User.self)
+                        // Qui estraggo il nome dell'utente corrente
+                        let currentUserName = currentUser.name
+                        print("Utente mittente: \(currentUserName)")
+                        self?.createAndSendNotification(senderName: currentUserName, sendTo: userId)
+                        print("Richiesta inviata")
+                    } catch {
+                        print(error)
+                    }
+                } else {
+                    print("Documento NON esistente")
+                }
             }
-        }
     }
-
     
     
-    func createAndSendNotification(senderName: String, sendTo userId: String) {
+    func createAndSendNotification(senderName: String, sendTo: String) {
         
         let newIdNotification = UUID().uuidString
         let newIdTask = UUID().uuidString
@@ -45,7 +50,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             id: newIdNotification,
             sender: currentUserID,
             senderName: senderName, /// Assegna il nome recuperato
-            recipient: userId,
+            recipient: sendTo,
             task: ToDoListItem(
                 id: newIdTask,
                 title: title,
@@ -61,19 +66,24 @@ class NotificationViewViewModel: NewItemViewViewModel {
             isAccepted: false
         )
         
-        /// Salva la notifica nel database
-        let dbUserSender = Firestore.firestore()
-        dbUserSender.collection("users")
-            .document(userId)
+        /// Salva la notifica nel database users SENDTO
+        db.collection("users")
+            .document(currentUserID)
             .collection("sendTo")
             .document(newNotification.recipient)
             .collection("notifications")
             .document(newNotification.id)
             .setData(newNotification.asDictionary())
         
+        /// Salva la notifica nel database users sendNotifications
+        db.collection("users")
+            .document(currentUserID)
+            .collection("sendNotifications")
+            .document(newNotification.id)
+            .setData(newNotification.asDictionary())
+        
         /// Salvare il Modello nel DB NOTIFICHE IN DESTINATARIO
-        let dbNotifications = Firestore.firestore()
-        dbNotifications.collection("notifications")
+        db.collection("notifications")
             .document(newNotification.recipient)
             .collection("requests")
             .document(newIdNotification)
@@ -86,7 +96,6 @@ class NotificationViewViewModel: NewItemViewViewModel {
     func fetchNotifications() {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
-        let db = Firestore.firestore()
         db.collection("notifications")
             .document(userId)
             .collection("requests")
@@ -127,14 +136,6 @@ class NotificationViewViewModel: NewItemViewViewModel {
                     self?.notifications = fetchedNotifications
                 }
             }
-    }
-    
-    func allRequests() {
-        guard let userId = Auth.auth().currentUser?.uid else { return }
-        
-        let db = Firestore.firestore()
-        db.collection("users")
-        
     }
     
     func sendResponseAccepted() { }

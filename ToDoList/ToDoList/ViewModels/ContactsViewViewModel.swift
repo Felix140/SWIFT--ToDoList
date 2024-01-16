@@ -5,6 +5,7 @@ import FirebaseFirestore
 class ContactsViewViewModel: ObservableObject {
     
     @Published var privateContacts = [User]()
+    let db = Firestore.firestore()
     
     init() {}
     
@@ -13,7 +14,6 @@ class ContactsViewViewModel: ObservableObject {
     func saveContact(_ contact: User) {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
         
-        let db = Firestore.firestore()
         db.collection("users")
             .document(currentUserId)
             .collection("contacts")
@@ -35,12 +35,10 @@ class ContactsViewViewModel: ObservableObject {
     func fetchPrivateContacts() {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
         
-        let db = Firestore.firestore()
         db.collection("users")
             .document(currentUserId)
             .collection("contacts")
             .addSnapshotListener { [weak self] (querySnapshot, error) in /// addSnapshotListener è come getDocument, soloche si tiene sempre in ascolto(asincrona)
-                ///
                 if let error = error {
                     print("Error getting documents: \(error.localizedDescription)")
                 } else {
@@ -48,7 +46,6 @@ class ContactsViewViewModel: ObservableObject {
                         try? document.data(as: User.self)
                     } ?? []
                 }
-                
             }
     }
     
