@@ -5,16 +5,14 @@ import FirebaseFirestore
 class ProfileViewViewModel: ObservableObject {
     
     @Published var user: User? = nil
+    let db = Firestore.firestore()
     
     init() {}
     
     func fetchUser() {
-        guard let userId = Auth.auth().currentUser?.uid else {
-            return
-        }
+        guard let userId = Auth.auth().currentUser?.uid else { return }
         
         // Fetching User
-        let db = Firestore.firestore()
         db.collection("users")
             .document(userId)
             .getDocument { [weak self] snapshot, error in
