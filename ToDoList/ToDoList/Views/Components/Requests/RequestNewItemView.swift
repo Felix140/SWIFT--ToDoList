@@ -46,11 +46,15 @@ struct RequestNewItemView: View {
                     }
                 }
                 
-                Section(header: Text("Data della Task")) {
-                    NavigationLink(destination: CalendarView(dateSelected: $viewModelNotification.date)) {
-                        Label("Seleziona una data", systemImage: "calendar.badge.clock")
+                HStack {
+                    Text("Date")
+                    Spacer()
+                    DatePicker(selection: $viewModelNotification.date, displayedComponents: [.date, .hourAndMinute]) {
+                        EmptyView()
                     }
+                    .fixedSize()
                 }
+                .frame(maxWidth: .infinity)
                 
                 Section(header: Text("Seleziona una categoria")) {
                     Picker("Categoria", selection: $viewModelNotification.selectedCategory) {

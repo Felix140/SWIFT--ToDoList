@@ -47,7 +47,6 @@
 		49FE571F2B1CB65500E4A0E2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571E2B1CB65500E4A0E2 /* FirebaseFirestoreSwift */; };
 		49FE57212B1CB85400E4A0E2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */; };
 		49FE57272B1CD99000E4A0E2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE57262B1CD99000E4A0E2 /* ProfileView.swift */; };
-		49FE572B2B1CD9DA00E4A0E2 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */; };
 		49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */; };
 		49FE572F2B1CDA5100E4A0E2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE572E2B1CDA5100E4A0E2 /* LoginView.swift */; };
 		49FE57312B1CDA7800E4A0E2 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE57302B1CDA7800E4A0E2 /* RegisterView.swift */; };
@@ -101,7 +100,6 @@
 		49F0D3752B5569F30053206A /* ContactItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactItemView.swift; sourceTree = "<group>"; };
 		49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49FE57262B1CD99000E4A0E2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemView.swift; sourceTree = "<group>"; };
 		49FE572E2B1CDA5100E4A0E2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		49FE57302B1CDA7800E4A0E2 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 				49D5CE552B291824009CF312 /* ToDoListItemView.swift */,
 				4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */,
 				49C61BC52B436B3D00F1999C /* ProgressBarView.swift */,
-				49FE572A2B1CD9DA00E4A0E2 /* CalendarView.swift */,
 				4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */,
 			);
 			path = Task;
@@ -395,7 +392,6 @@
 				49FE57392B1CDB3C00E4A0E2 /* MainViewViewModel.swift in Sources */,
 				49F0D3742B5567860053206A /* ContactsViewViewModel.swift in Sources */,
 				49FE57432B1CDBD800E4A0E2 /* LoginViewViewModel.swift in Sources */,
-				49FE572B2B1CD9DA00E4A0E2 /* CalendarView.swift in Sources */,
 				49FE57332B1CDA9D00E4A0E2 /* ToDoListView.swift in Sources */,
 				4928F3A72B4614B2008B2F94 /* InsertDescriptionView.swift in Sources */,
 				49C61BC82B43852300F1999C /* TimerView.swift in Sources */,

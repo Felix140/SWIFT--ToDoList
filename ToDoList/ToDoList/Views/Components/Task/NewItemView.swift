@@ -28,11 +28,17 @@ struct NewItemView: View {
                     
                 }
                 
-                Section(header: Text("Data della Task")) {
-                    NavigationLink(destination: CalendarView(dateSelected: $viewModel.date)) {
-                        Label("Seleziona una data", systemImage: "calendar.badge.clock")
+                
+                HStack {
+                    Text("Date")
+                    Spacer()
+                    DatePicker(selection: $viewModel.date, displayedComponents: [.date, .hourAndMinute]) {
+                        EmptyView()
                     }
+                    .fixedSize()
                 }
+                .frame(maxWidth: .infinity)
+                
                 
                 Section(header: Text("Seleziona una categoria")) {
                     Picker("Categoria", selection: $viewModel.selectedCategory) {
@@ -76,6 +82,7 @@ struct NewItemView: View {
         }
     }
     
+    // MARK: - Description
     @ViewBuilder
     func descriptionSelection() -> some View {
         

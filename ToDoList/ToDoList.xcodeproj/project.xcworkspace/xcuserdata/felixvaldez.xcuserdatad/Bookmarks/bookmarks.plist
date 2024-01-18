@@ -239,13 +239,13 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>67</string>
+					<string>71</string>
 					<key>StartingColumnNumber</key>
-					<string>67</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>66</string>
+					<string>70</string>
 					<key>Timestamp</key>
-					<string>726849628.68378</string>
+					<string>727296952.708715</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -261,67 +261,20 @@ class DoneListViewViewModel: ObservableObject {
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>            Spacer()
 </string>
 				<key>leading</key>
-				<string>                    if viewModel.canSave() {
-                        self.haptic.feedbackMedium()
-                        viewModel.sendRequest(sendTo: "PincoPallo")</string>
+				<string>            .scrollDisabled(true)
+            
+</string>
 				<key>trailing</key>
-				<string>                        toggleView = false
-                    } else {
-                        self.haptic.feedbackHeavy()
+				<string>        }
+        .alert(isPresented: $viewModelNotification.showAlert) {
+            Alert(
 </string>
 			</dict>
 			<key>title</key>
 			<string>Aggiungere il contatto del destinatario</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>0</string>
-					<key>EndingLineNumber</key>
-					<string>88</string>
-					<key>StartingColumnNumber</key>
-					<string>47</string>
-					<key>StartingLineNumber</key>
-					<string>87</string>
-					<key>Timestamp</key>
-					<string>727141446.415707</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>ToDoList/Views/Pages/SharedToDoListView.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>
-</string>
-				<key>leading</key>
-				<string>                NotificationView(
-                    textTask: sended.task.title,
-                    sendFrom: sended.recipient)</string>
-				<key>trailing</key>
-				<string>            }
-        }
-        .listStyle(SidebarListStyle())
-</string>
-			</dict>
-			<key>title</key>
-			<string>Creare notifica MANDATO A:</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>
