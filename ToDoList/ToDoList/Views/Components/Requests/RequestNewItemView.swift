@@ -47,6 +47,7 @@ struct RequestNewItemView: View {
                 }
                 
                 HStack {
+                    Image(systemName: "calendar")
                     Text("Date")
                     Spacer()
                     DatePicker(selection: $viewModelNotification.date, displayedComponents: [.date, .hourAndMinute]) {
