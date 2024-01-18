@@ -8,7 +8,6 @@ class NotificationViewViewModel: NewItemViewViewModel {
     
     @Published var notifications: [Notification] = []
     @Published var sendRequests: [Notification] = []
-    let db = Firestore.firestore()
     
     override init() {
         super.init() /// Chiamata al costruttore della superclasse
@@ -19,7 +18,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
         guard canSave() else { return }
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
         
-        db.collection("users")
+        db.collection("users") /// DB ereditato
             .document(currentUserID)
             .getDocument { [weak self] document, error in
                 if let document = document, document.exists {

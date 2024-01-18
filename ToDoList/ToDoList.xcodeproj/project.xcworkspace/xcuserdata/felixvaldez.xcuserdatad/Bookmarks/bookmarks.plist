@@ -239,13 +239,13 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>72</string>
+					<string>62</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>71</string>
+					<string>61</string>
 					<key>Timestamp</key>
-					<string>727297218.698475</string>
+					<string>727305241.742111</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -275,6 +275,53 @@ class DoneListViewViewModel: ObservableObject {
 			</dict>
 			<key>title</key>
 			<string>Aggiungere il contatto del destinatario</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>213</string>
+					<key>StartingColumnNumber</key>
+					<string>75</string>
+					<key>StartingLineNumber</key>
+					<string>212</string>
+					<key>Timestamp</key>
+					<string>727302946.873317</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>ToDoList/Views/Pages/ToDoListView.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>e
+</string>
+				<key>leading</key>
+				<string>                        .swipeActions {
+                            Button("Edit") {
+                                /// modifica SE la task è stata creata da t</string>
+				<key>trailing</key>
+				<string>                            }
+                            .tint(.blue)
+                        }
+</string>
+			</dict>
+			<key>title</key>
+			<string>Aggiungere MODIFICA TASK</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>

@@ -52,7 +52,7 @@ struct SharedToDoListView: View {
                         self.haptic.feedbackMedium()
                         viewModelToDoList.isPresentingView = true
                     }) {
-                        Image(systemName: "plus")
+                        Image(systemName: "paperplane.fill")
                     }
                     .accessibilityLabel("Add new Item")
                 }

@@ -134,15 +134,18 @@ struct ToDoListView: View {
                     ToDoListItemView(
                         listItem: itemToday, fontSize: 18,
                         descriptionIsClicked: $viewModel.isOpenDescription)
-                    .swipeActions {
-                        Button("Delete") {
-                            viewModel.delete(idItem: itemToday.id)
-                        }
-                        .tint(.red)
-                    }
                     .sheet(isPresented: $viewModel.isOpenDescription) {
                         NavigationStack {
                             InfoToDoItemView(descriptionText: itemToday.description.description)
+                        }
+                    }
+                }
+                .onDelete { indexSet in
+                    withAnimation {
+                        // Esegui l'eliminazione degli elementi qui, avvolta da withAnimation
+                        for index in indexSet {
+                            self.haptic.feedbackLight()
+                            viewModel.delete(idItem: itemsForToday[index].id)
                         }
                     }
                 }
@@ -154,16 +157,18 @@ struct ToDoListView: View {
                     ToDoListItemView(
                         listItem: itemTomorrow, fontSize: 15,
                         descriptionIsClicked: $viewModel.isOpenDescription)
-                    .swipeActions {
-                        Button("Delete") {
-                            self.haptic.feedbackLight()
-                            viewModel.delete(idItem: itemTomorrow.id)
-                        }
-                        .tint(.red)
-                    }
                     .sheet(isPresented: $viewModel.isOpenDescription) {
                         NavigationStack {
                             InfoToDoItemView(descriptionText: itemTomorrow.description.description)
+                        }
+                    }
+                }
+                .onDelete { indexSet in
+                    withAnimation {
+                        // Esegui l'eliminazione degli elementi qui, avvolta da withAnimation
+                        for index in indexSet {
+                            self.haptic.feedbackLight()
+                            viewModel.delete(idItem: itemsForTomorrow[index].id)
                         }
                     }
                 }
@@ -174,15 +179,18 @@ struct ToDoListView: View {
                     ToDoListItemView(
                         listItem: itemAfter, fontSize: 15,
                         descriptionIsClicked: $viewModel.isOpenDescription)
-                    .swipeActions {
-                        Button("Delete") {
-                            viewModel.delete(idItem: itemAfter.id)
-                        }
-                        .tint(.red)
-                    }
                     .sheet(isPresented: $viewModel.isOpenDescription) {
                         NavigationStack {
                             InfoToDoItemView(descriptionText: itemAfter.description.description)
+                        }
+                    }
+                }
+                .onDelete { indexSet in
+                    withAnimation {
+                        // Esegui l'eliminazione degli elementi qui, avvolta da withAnimation
+                        for index in indexSet {
+                            self.haptic.feedbackLight()
+                            viewModel.delete(idItem: itemsAfterTomorrow[index].id)
                         }
                     }
                 }
@@ -201,10 +209,10 @@ struct ToDoListView: View {
                             listItem: itemToday, fontSize: 18,
                             descriptionIsClicked: $viewModel.isOpenDescription)
                         .swipeActions {
-                            Button("Delete") {
-                                viewModel.delete(idItem: itemToday.id)
+                            Button("Edit") {
+                                /// modifica SE la task è stata creata da te
                             }
-                            .tint(.red)
+                            .tint(.blue)
                         }
                         .sheet(isPresented: $viewModel.isOpenDescription) {
                             NavigationStack {
@@ -219,7 +227,7 @@ struct ToDoListView: View {
     }
     
     @ViewBuilder
-    func filterDoneList() -> some View { 
+    func filterDoneList() -> some View {
         List {
             Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
                 ForEach(itemsForToday) { itemToday in
@@ -227,16 +235,19 @@ struct ToDoListView: View {
                         ToDoListItemView(
                             listItem: itemToday, fontSize: 18,
                             descriptionIsClicked: $viewModel.isOpenDescription)
-                        .swipeActions {
-                            Button("Delete") {
-                                viewModel.delete(idItem: itemToday.id)
-                            }
-                            .tint(.red)
-                        }
                         .sheet(isPresented: $viewModel.isOpenDescription) {
                             NavigationStack {
                                 InfoToDoItemView(descriptionText: itemToday.description.description)
                             }
+                        }
+                    }
+                }
+                .onDelete { indexSet in
+                    withAnimation {
+                        // Esegui l'eliminazione degli elementi qui, avvolta da withAnimation
+                        for index in indexSet {
+                            self.haptic.feedbackLight()
+                            viewModel.delete(idItem: itemsForToday[index].id)
                         }
                     }
                 }

@@ -23,6 +23,10 @@ struct RequestNewItemView: View {
             
             // Form
             Form {
+                Section(header: Text("Send To")) {
+                    conctactSelection()
+                }
+                
                 Section(header: Text("Titolo task")) {
                     TextField("Inserisci qui il titolo", text: $viewModelNotification.title)
                         .textInputAutocapitalization(.none)
@@ -30,20 +34,6 @@ struct RequestNewItemView: View {
                     
                     descriptionSelection()
                     
-                }
-                
-                Section(header: Text("Send To")) {
-                    Picker("Select the user", selection: $selectedUser) {
-                        ForEach(viewModelContacts.privateContacts, id: \.self) { contact in
-                            Text(contact.name).tag(contact as User?)
-                        }
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                    .onAppear {
-                        if selectedUser == nil, let firstUser = viewModelContacts.privateContacts.first {
-                            selectedUser = firstUser
-                        }
-                    }
                 }
                 
                 HStack {
@@ -74,7 +64,7 @@ struct RequestNewItemView: View {
         .alert(isPresented: $viewModelNotification.showAlert) {
             Alert(
                 title: Text("Errore"),
-                message: Text("Inserisci il campo testo o eventualmente il giorno in maniera corretta")
+                message: Text("Inserisci il titolo e/o il contatto correttamente")
             )
         }
         .toolbar { /// aggiunge i bottoni di edit dello .sheet (modale)
@@ -86,10 +76,15 @@ struct RequestNewItemView: View {
             
             ToolbarItem(placement: .confirmationAction) {
                 Button("Send") {
-                    if let selectedUserId = selectedUser?.id, viewModelNotification.canSave() {
-                        self.haptic.feedbackMedium()
-                        viewModelNotification.sendRequest(sendTo: selectedUserId)
-                        toggleView = false
+                    if selectedUser == nil {
+                        self.haptic.feedbackHeavy()
+                        viewModelNotification.showAlert = true
+                    } else if viewModelNotification.canSave() {
+                        if let selectedUserId = selectedUser?.id {
+                            self.haptic.feedbackMedium()
+                            viewModelNotification.sendRequest(sendTo: selectedUserId)
+                            toggleView = false
+                        }
                     } else {
                         self.haptic.feedbackHeavy()
                         viewModelNotification.showAlert = true
@@ -123,6 +118,35 @@ struct RequestNewItemView: View {
                     isPresented: $showDescriptionView
                 )
             }
+        }
+    }
+    
+    @ViewBuilder
+    func conctactSelection() -> some View {
+        if selectedUser == nil {
+            HStack {
+                Image(systemName: "person")
+                Picker("Select the user", selection: $selectedUser) {
+                    Text("List contacts").tag(nil as User?)
+                    ForEach(viewModelContacts.privateContacts, id: \.self) { contact in
+                        Text(contact.name).tag(contact as User?)
+                    }
+                }
+                .pickerStyle(.navigationLink)
+            }
+        } else {
+            HStack {
+                Image(systemName: "person.fill")
+                Picker("Select the user", selection: $selectedUser) {
+                    Text("List contacts").tag(nil as User?)
+                    ForEach(viewModelContacts.privateContacts, id: \.self) { contact in
+                        Text(contact.name).tag(contact as User?)
+                            .fontWeight(.bold)
+                    }
+                }
+                .pickerStyle(.navigationLink)
+            }
+            .foregroundColor(Color.green)
         }
     }
 }

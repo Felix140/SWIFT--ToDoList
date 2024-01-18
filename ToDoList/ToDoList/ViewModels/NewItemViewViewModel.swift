@@ -11,6 +11,7 @@ class NewItemViewViewModel: ObservableObject {
     @Published var description = ""
     @Published var selectedCategory: CategoryTask = .none
     let categories = CategoryTask.allCases
+    let db = Firestore.firestore()
     
     init() {}
     
@@ -37,7 +38,6 @@ class NewItemViewViewModel: ObservableObject {
                                                              description: description))
         
         /// Salvare il Modello nel DB
-        let db = Firestore.firestore()
         db.collection("users")
             .document(userId)
             .collection("todos")
