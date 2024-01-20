@@ -104,6 +104,7 @@ struct ToDoListView: View {
             }
             .navigationTitle("TooDoo List")
             .toolbar{
+                
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
                         self.haptic.feedbackMedium()
@@ -112,6 +113,16 @@ struct ToDoListView: View {
                         Image(systemName: "plus.circle")
                     }
                     .accessibilityLabel("Add new Item")
+                }
+                
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(action: {
+                        self.haptic.feedbackMedium()
+                        // Select All Items (Picker)
+                    }) {
+                        Image(systemName: "ellipsis")
+                    }
+                    .accessibilityLabel("Edit Item")
                 }
             }
             

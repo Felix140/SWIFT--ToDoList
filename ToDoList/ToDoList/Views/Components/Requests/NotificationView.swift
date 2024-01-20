@@ -7,6 +7,8 @@ struct NotificationView: View {
     var sendFrom: String
     var haptic = HapticTrigger()
     
+    @Binding var alert: Bool
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -38,35 +40,18 @@ struct NotificationView: View {
     func acceptButton() -> some View {
         Button(action: {
             self.haptic.feedbackLight()
+            alert = true
             viewModel.sendResponseAccepted()
         }, label: {
-            ZStack {
-                
-                if #available(iOS 17.0, *) {
-                    Circle()
-                        .stroke(Theme.redGradient.gradient, lineWidth: 3)
-                        .fill(Color.clear)
-                        .cornerRadius(100.0)
-                        .frame(width: 38)
-                } else {
-                    Circle()
-                        .fill(Theme.redGradient.gradient)
-                        .cornerRadius(100.0)
-                        .frame(width: 38)
-                }
-                
-                Image(systemName: "checkmark")
-                    .font(.system(size: 18))
-                    .foregroundColor(Color.clear)
-                    .background(Theme.redGradient.gradient)
-                    .mask(Image(systemName: "checkmark").font(.system(size: 18)))
-                    .fontWeight(.bold)
-            }
+            Image(systemName: "checkmark.circle.fill")
+                .font(.system(size: 38))
+                .accentColor(.green)
         })
         .frame(width: 50 / 1.1)
-        .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
-            
-        })
+        // .simultaneousGesture(TapGesture().onEnded {
+        /// previene il BUBBLING
+        //
+        // })
         
         Spacer()
             .frame(width: 10)
@@ -77,30 +62,12 @@ struct NotificationView: View {
     func rejectButton() -> some View {
         Button(action: {
             self.haptic.feedbackLight()
+            alert = true
             viewModel.sendResponseRejected()
         }, label: {
-            ZStack {
-                
-                if #available(iOS 17.0, *) {
-                    Circle()
-                        .stroke(Theme.redGradient.gradient, lineWidth: 3)
-                        .fill(Color.clear)
-                        .cornerRadius(100.0)
-                        .frame(width: 38)
-                } else {
-                    Circle()
-                        .fill(Theme.redGradient.gradient)
-                        .cornerRadius(100.0)
-                        .frame(width: 38)
-                }
-                
-                Image(systemName: "xmark")
-                    .font(.system(size: 18))
-                    .foregroundColor(Color.clear)
-                    .background(Theme.redGradient.gradient)
-                    .mask(Image(systemName: "xmark").font(.system(size: 18)))
-                    .fontWeight(.bold)
-            }
+            Image(systemName: "xmark.circle.fill")
+                .font(.system(size: 38))
+                .accentColor(.red)
         })
         .frame(width: 50 / 1.1)
         .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
@@ -114,6 +81,9 @@ struct NotificationView: View {
 
 struct NotificationView_Preview: PreviewProvider {
     static var previews: some View {
-        NotificationView(textTask: "Questa è una task", sendFrom: "mittente")
+        NotificationView(
+            textTask: "Questa è una task",
+            sendFrom: "mittente",
+            alert: .constant(false))
     }
 }

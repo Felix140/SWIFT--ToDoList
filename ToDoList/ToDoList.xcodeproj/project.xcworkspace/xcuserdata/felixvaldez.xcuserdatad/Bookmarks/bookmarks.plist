@@ -286,13 +286,13 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>213</string>
+					<string>224</string>
 					<key>StartingColumnNumber</key>
-					<string>75</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>212</string>
+					<string>223</string>
 					<key>Timestamp</key>
-					<string>727302946.873317</string>
+					<string>727477510.268357</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -308,12 +308,12 @@ class DoneListViewViewModel: ObservableObject {
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>e
+				<string>                                /// modifica SE la task è stata creata da te
 </string>
 				<key>leading</key>
 				<string>                        .swipeActions {
                             Button("Edit") {
-                                /// modifica SE la task è stata creata da t</string>
+</string>
 				<key>trailing</key>
 				<string>                            }
                             .tint(.blue)
@@ -322,6 +322,100 @@ class DoneListViewViewModel: ObservableObject {
 			</dict>
 			<key>title</key>
 			<string>Aggiungere MODIFICA TASK</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>121</string>
+					<key>StartingColumnNumber</key>
+					<string>24</string>
+					<key>StartingLineNumber</key>
+					<string>120</string>
+					<key>Timestamp</key>
+					<string>727477673.793766</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>ToDoList/Views/Pages/ToDoListView.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>                    Button(action: {
+                        self.haptic.feedbackMedium()
+                        // Select All Items (Picker)</string>
+				<key>trailing</key>
+				<string>                    }) {
+                        Image(systemName: "ellipsis")
+                    }
+</string>
+			</dict>
+			<key>title</key>
+			<string>Add SELECT LIST ITEMS</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>79</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>78</string>
+					<key>Timestamp</key>
+					<string>727479704.220299</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>ToDoList/Views/Pages/SharedToDoListView.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>            ForEach(viewModelNotification.notifications) { notification in
+</string>
+				<key>leading</key>
+				<string>    func notifications() -&gt; some View {
+        List{
+</string>
+				<key>trailing</key>
+				<string>                NotificationView(
+                    textTask: notification.task.title,
+                    sendFrom: notification.senderName,
+</string>
+			</dict>
+			<key>title</key>
+			<string>Inserire lista delle richieste inviate, creare componente</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>

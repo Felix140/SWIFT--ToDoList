@@ -9,6 +9,8 @@ struct SharedToDoListView: View {
     private var haptic = HapticTrigger()
     @State private var selectionPicker = 0
     
+    @State private var alertTest: Bool = false
+    
     init(userId: String) {
         self._viewModelToDoList = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
         self._sendNotifications = FirestoreQuery(collectionPath: "users/\(userId)/sendNotifications/")
@@ -52,10 +54,16 @@ struct SharedToDoListView: View {
                         self.haptic.feedbackMedium()
                         viewModelToDoList.isPresentingView = true
                     }) {
-                        Image(systemName: "paperplane.fill")
+                        Image(systemName: "paperplane")
                     }
                     .accessibilityLabel("Add new Item")
                 }
+            }
+            .alert(isPresented: $alertTest) {
+                Alert(
+                    title: Text("Test"),
+                    message: Text("Bottone cliccato: ")
+                )
             }
         }
         .sheet(isPresented: $viewModelToDoList.isPresentingView) {
@@ -71,7 +79,9 @@ struct SharedToDoListView: View {
             ForEach(viewModelNotification.notifications) { notification in
                 NotificationView(
                     textTask: notification.task.title,
-                    sendFrom: notification.senderName)
+                    sendFrom: notification.senderName,
+                    alert: $alertTest
+                )
             }
         }
         .listStyle(PlainListStyle())
@@ -85,7 +95,8 @@ struct SharedToDoListView: View {
             ForEach(sendNotifications) { sended in
                 NotificationView(
                     textTask: sended.task.title,
-                    sendFrom: sended.recipient)
+                    sendFrom: sended.recipient,
+                    alert: $alertTest)
             }
         }
         .listStyle(SidebarListStyle())
