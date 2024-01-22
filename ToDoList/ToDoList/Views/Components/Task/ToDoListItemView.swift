@@ -58,9 +58,6 @@ struct ToDoListItemView: View {
             
             if listItem.description.description != "" {
                 viewDescription()
-                    .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
-                        descriptionIsClicked = true
-                    })
             }
             
         }
@@ -74,8 +71,8 @@ struct ToDoListItemView: View {
     @ViewBuilder
     func viewDescription() -> some View {
         Button(action: {
-            self.haptic.feedbackLight()
-            descriptionIsClicked = true
+//            self.haptic.feedbackLight()
+//            descriptionIsClicked = true
         }, label: {
             ZStack {
                 
@@ -101,6 +98,7 @@ struct ToDoListItemView: View {
         })
         .frame(width: 50 / 1.1)
         .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
+            self.haptic.feedbackLight()
             descriptionIsClicked = true
         })
         

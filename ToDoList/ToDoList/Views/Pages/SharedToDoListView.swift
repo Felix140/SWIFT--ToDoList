@@ -83,6 +83,12 @@ struct SharedToDoListView: View {
                     alert: $alertTest
                 )
             }
+            .swipeActions {
+                Button("Delete") {
+                    /// Elimina notifica
+                }
+                .tint(.red)
+            }
         }
         .listStyle(PlainListStyle())
         .onAppear {

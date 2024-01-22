@@ -2,7 +2,7 @@ import SwiftUI
 
 struct NotificationView: View {
     
-    @EnvironmentObject var viewModel: NotificationViewViewModel
+    @StateObject var viewModel = NotificationViewViewModel()
     var textTask: String
     var sendFrom: String
     var haptic = HapticTrigger()
@@ -38,20 +38,17 @@ struct NotificationView: View {
     
     @ViewBuilder
     func acceptButton() -> some View {
-        Button(action: {
-            self.haptic.feedbackLight()
-            alert = true
-            viewModel.sendResponseAccepted()
-        }, label: {
+        Button(action: {}, label: {
             Image(systemName: "checkmark.circle.fill")
                 .font(.system(size: 38))
                 .accentColor(.green)
         })
         .frame(width: 50 / 1.1)
-        // .simultaneousGesture(TapGesture().onEnded {
-        /// previene il BUBBLING
-        //
-        // })
+        .simultaneousGesture(TapGesture().onEnded {
+            self.haptic.feedbackLight()
+            alert = true
+            viewModel.sendResponseAccepted()
+        })
         
         Spacer()
             .frame(width: 10)
@@ -60,18 +57,16 @@ struct NotificationView: View {
     
     @ViewBuilder
     func rejectButton() -> some View {
-        Button(action: {
-            self.haptic.feedbackLight()
-            alert = true
-            viewModel.sendResponseRejected()
-        }, label: {
+        Button(action: {}, label: {
             Image(systemName: "xmark.circle.fill")
                 .font(.system(size: 38))
                 .accentColor(.red)
         })
         .frame(width: 50 / 1.1)
         .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
-            
+            self.haptic.feedbackLight()
+            alert = true
+            viewModel.sendResponseRejected()
         })
         
         Spacer()

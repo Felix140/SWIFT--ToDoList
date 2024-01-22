@@ -57,99 +57,6 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>9</string>
-					<key>EndingLineNumber</key>
-					<string>49</string>
-					<key>StartingColumnNumber</key>
-					<string>9</string>
-					<key>StartingLineNumber</key>
-					<string>49</string>
-					<key>Timestamp</key>
-					<string>726696809.902113</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>ToDoList/Views/Components/InsertDescriptionView.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string></string>
-				<key>leading</key>
-				<string>                }
-            
-        }</string>
-				<key>trailing</key>
-				<string>
-        .padding(.horizontal, 20)
-        .alert(isPresented: $viewModel.showAlert) {
-</string>
-			</dict>
-			<key>title</key>
-			<string>Non Funziona</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
-					<string>0</string>
-					<key>EndingLineNumber</key>
-					<string>6</string>
-					<key>StartingColumnNumber</key>
-					<string>4</string>
-					<key>StartingLineNumber</key>
-					<string>5</string>
-					<key>Timestamp</key>
-					<string>726791969.530308</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>ToDoList/Views/Pages/DoneListView.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string>
-</string>
-				<key>leading</key>
-				<string>    
-    @ObservedObject var viewModel = DoneListViewViewModel()
-    </string>
-				<key>trailing</key>
-				<string>    var body: some View {
-        NavigationView {
-            VStack {
-</string>
-			</dict>
-			<key>title</key>
-			<string>Creare una view per la lista delle task fatte di TODAY</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
 					<string>1</string>
@@ -355,12 +262,12 @@ class DoneListViewViewModel: ObservableObject {
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>// Select All Items (Picker)
 </string>
 				<key>leading</key>
 				<string>                    Button(action: {
                         self.haptic.feedbackMedium()
-                        // Select All Items (Picker)</string>
+                        </string>
 				<key>trailing</key>
 				<string>                    }) {
                         Image(systemName: "ellipsis")
@@ -416,6 +323,53 @@ class DoneListViewViewModel: ObservableObject {
 			</dict>
 			<key>title</key>
 			<string>Inserire lista delle richieste inviate, creare componente</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>88</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>87</string>
+					<key>Timestamp</key>
+					<string>727574411.651867</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>ToDoList/Views/Pages/SharedToDoListView.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>                    /// Elimina notifica
+</string>
+				<key>leading</key>
+				<string>            .swipeActions {
+                Button("Delete") {
+</string>
+				<key>trailing</key>
+				<string>                }
+                .tint(.red)
+            }
+</string>
+			</dict>
+			<key>title</key>
+			<string>Aggiungere  eliminazione NOTIFICA</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>

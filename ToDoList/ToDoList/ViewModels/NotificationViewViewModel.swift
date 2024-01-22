@@ -137,9 +137,13 @@ class NotificationViewViewModel: NewItemViewViewModel {
             }
     }
     
-    func sendResponseAccepted() { }
+    func sendResponseAccepted() {
+        print("Accepted")
+    }
     
-    func sendResponseRejected() { }
+    func sendResponseRejected() { 
+        print("Rejected")
+    }
     
     
 }
