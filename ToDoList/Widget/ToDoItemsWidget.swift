@@ -33,17 +33,29 @@ extension ToDoItemsWidget {
 
 extension ToDoItemsWidget {
     struct EntryView: View {
+        
+        
         let entry: Entry
+        var tasks: [String] {
+            return entry.documentNames
+        }
         
         var body: some View {
-            VStack(alignment: .leading, spacing: 5) {
-                Text("Firestore Data").font(.headline)
-                ForEach(entry.documentNames, id: \.self) { documentName in
-                    Text(documentName).font(.caption)
+            HStack {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Task for Today:").font(.headline)
+                    ForEach(entry.documentNames, id: \.self) { documentName in
+                        HStack {
+                            Image(systemName: "circle")
+                            Text(documentName).font(.caption)
+                        }
+                    }
                 }
+                .widgetBackground(Theme.redGradient.gradient)
+                .padding(12)
+                
+                Spacer()
             }
-            .widgetBackground(Color.black)
-            .padding(12)
         }
     }
 }
@@ -77,7 +89,8 @@ extension ToDoItemsWidget {
             
             
             fetchDataFromFirebase { documentNames in
-                let entry = Entry(date: Date(), documentNames: documentNames)
+                let lastThreeEntries: [String] = documentNames.suffix(3)
+                let entry = Entry(date: Date(), documentNames: lastThreeEntries)
                 completion(Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(3600))))
             }
         }
@@ -85,7 +98,7 @@ extension ToDoItemsWidget {
         func fetchDataFromFirebase(completion: @escaping ([String]) -> Void) {
             let db = Firestore.firestore()
 
-            var arrTest: [String] = []
+            var arr: [String] = []
 
             db.collection("users").document("fcEziy2Qz7ONdyXCdqwVEefgOG02").collection("todos").getDocuments { (querySnapshot, error) in
                 do {
@@ -93,22 +106,30 @@ extension ToDoItemsWidget {
                         throw error
                     }
 
-                    for document in querySnapshot!.documents {
-                        let data = document.data()
-
-                        if let taskTitle = data["title"] as? String {
-                            arrTest.append(taskTitle)
+                    var itemsForToday: [String] {
+                        let today = Calendar.current.startOfDay(for: Date()) // Data odierna
+                        return querySnapshot!.documents.compactMap { document in
+                            let data = document.data()
+                            if let itemDateTimestamp = data["dueDate"] as? TimeInterval, let taskTitle = data["title"] as? String {
+                                let itemDate = Date(timeIntervalSince1970: itemDateTimestamp) // Converti la data in un oggetto Date
+                                if Calendar.current.isDate(itemDate, inSameDayAs: today) {
+                                    return taskTitle // Restituisci solo il titolo dell'attività se è stata pubblicata oggi
+                                }
+                            }
+                            return nil // Se l'oggetto non ha una data o non è di oggi, lo escludiamo
                         }
                     }
 
-                    completion(arrTest)
+                    arr.append(contentsOf: itemsForToday)
+
+                    completion(arr)
                 } catch {
                     print("Errore nel recupero dei dati da Firebase: \(error)")
-                    arrTest.append("ciaeeee")
-                    completion(arrTest)
+                    completion([])
                 }
             }
         }
+
 
     }
 }

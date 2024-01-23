@@ -32,6 +32,7 @@
 		4991E1562B5F41EE00D6ED63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */; };
 		4991E1582B5F440200D6ED63 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4991E1572B5F440200D6ED63 /* FirebaseAuth */; };
 		4991E15A2B5F440200D6ED63 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4991E1592B5F440200D6ED63 /* FirebaseFirestore */; };
+		4991E1622B5F5CA700D6ED63 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DDA17F2B44BF7B009218C4 /* Theme.swift */; };
 		499531132B52083700547910 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499531122B52083700547910 /* NotificationView.swift */; };
 		499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E1DDF2B46FA5200A7EF9A /* Routes.swift */; };
 		49A60C242B55299800A2C133 /* UserContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A60C232B55299800A2C133 /* UserContacts.swift */; };
@@ -500,6 +501,7 @@
 			files = (
 				4941EF082B5DE8BA000A759D /* WidgetBundle.swift in Sources */,
 				4941EF0A2B5DE8BA000A759D /* ToDoItemsWidget.swift in Sources */,
+				4991E1622B5F5CA700D6ED63 /* Theme.swift in Sources */,
 				4941EF1C2B5DE9E9000A759D /* Shared.swift in Sources */,
 				4941EF192B5DE999000A759D /* WidgetType.swift in Sources */,
 			);
