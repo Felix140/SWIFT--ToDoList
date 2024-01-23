@@ -21,7 +21,12 @@ class LoginViewViewModel: ObservableObject {
         }
         
         //Effettua la login
-        Auth.auth().signIn(withEmail: emailField, password: passField)
+        Auth.auth().signIn(withEmail: emailField, password: passField) { _, err in
+            if let error = err {
+                print(error.localizedDescription) /// gestione dell'errore
+                return
+            }
+        }
         
         print("Login effettuato")
     }
