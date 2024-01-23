@@ -1,5 +1,7 @@
 import SwiftUI
 import WidgetKit
+import Intents
+import Firebase
 
 struct ToDoItemsWidget: Widget {
     private let kind = "TooDoo Widget"
@@ -73,9 +75,40 @@ extension ToDoItemsWidget {
         
         func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
             
-            let arrTest: [String] = ["Task 1", "Task 2", "Task 3", "Task 4"]
-            let entry = Entry(date: Date(), documentNames: arrTest)
-            completion(Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(3600))))
+            
+            fetchDataFromFirebase { documentNames in
+                let entry = Entry(date: Date(), documentNames: documentNames)
+                completion(Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(3600))))
+            }
         }
+        
+        func fetchDataFromFirebase(completion: @escaping ([String]) -> Void) {
+            let db = Firestore.firestore()
+
+            var arrTest: [String] = []
+
+            db.collection("users").document("fcEziy2Qz7ONdyXCdqwVEefgOG02").collection("todos").getDocuments { (querySnapshot, error) in
+                do {
+                    if let error = error {
+                        throw error
+                    }
+
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+
+                        if let taskTitle = data["title"] as? String {
+                            arrTest.append(taskTitle)
+                        }
+                    }
+
+                    completion(arrTest)
+                } catch {
+                    print("Errore nel recupero dei dati da Firebase: \(error)")
+                    arrTest.append("ciaeeee")
+                    completion(arrTest)
+                }
+            }
+        }
+
     }
 }

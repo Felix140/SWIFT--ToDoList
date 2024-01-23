@@ -1,5 +1,6 @@
 import SwiftUI
 import FirebaseFirestoreSwift
+import WidgetKit
 
 struct ToDoListView: View {
     
@@ -109,6 +110,11 @@ struct ToDoListView: View {
                     Button(action: {
                         self.haptic.feedbackMedium()
                         viewModel.isPresentingView = true
+                        print("Widget 2")
+                        if let bundleIdentifier = Bundle.main.bundleIdentifier {
+                            WidgetCenter.shared.reloadTimelines(ofKind: "TooDoo Widget")
+                            print("Widget 1")
+                        }
                     }) {
                         Image(systemName: "plus.circle")
                     }
@@ -123,6 +129,12 @@ struct ToDoListView: View {
                         Image(systemName: "ellipsis")
                     }
                     .accessibilityLabel("Edit Item")
+                }
+            }
+            .onAppear {
+                print("Apri Widget")
+                if let bundleIdentifier = Bundle.main.bundleIdentifier {
+                    WidgetCenter.shared.reloadTimelines(ofKind: "TooDoo Widget")
                 }
             }
             

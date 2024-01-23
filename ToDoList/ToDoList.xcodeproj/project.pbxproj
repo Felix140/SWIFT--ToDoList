@@ -29,6 +29,9 @@
 		496E1BCA2B2D10D30036AC23 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */; };
 		496F10002B331957005CCA4B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496F0FFF2B331957005CCA4B /* StartView.swift */; };
 		4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970661E2B462C4200C16D88 /* CategoryTask.swift */; };
+		4991E1562B5F41EE00D6ED63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */; };
+		4991E1582B5F440200D6ED63 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4991E1572B5F440200D6ED63 /* FirebaseAuth */; };
+		4991E15A2B5F440200D6ED63 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4991E1592B5F440200D6ED63 /* FirebaseFirestore */; };
 		499531132B52083700547910 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499531122B52083700547910 /* NotificationView.swift */; };
 		499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E1DDF2B46FA5200A7EF9A /* Routes.swift */; };
 		49A60C242B55299800A2C133 /* UserContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A60C232B55299800A2C133 /* UserContacts.swift */; };
@@ -165,6 +168,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4941EF052B5DE8BA000A759D /* SwiftUI.framework in Frameworks */,
+				4991E15A2B5F440200D6ED63 /* FirebaseFirestore in Frameworks */,
+				4991E1582B5F440200D6ED63 /* FirebaseAuth in Frameworks */,
 				4941EF032B5DE8BA000A759D /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -370,9 +375,9 @@
 				49B862C42B1BC45500FED137 /* Assets.xcassets */,
 				49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */,
 				49B862C02B1BC45200FED137 /* ToDoListApp.swift */,
+				49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */,
 				49E11F912B1FC989009E72E8 /* Extensions.swift */,
 				4952FE482B3D009800B52C65 /* Launch Screen.storyboard */,
-				49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -393,6 +398,10 @@
 			dependencies = (
 			);
 			name = WidgetExtension;
+			packageProductDependencies = (
+				4991E1572B5F440200D6ED63 /* FirebaseAuth */,
+				4991E1592B5F440200D6ED63 /* FirebaseFirestore */,
+			);
 			productName = WidgetExtension;
 			productReference = 4941EF002B5DE8B9000A759D /* WidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -467,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4941EF0C2B5DE8BF000A759D /* Assets.xcassets in Resources */,
+				4991E1562B5F41EE00D6ED63 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -851,6 +861,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4991E1572B5F440200D6ED63 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49FE57192B1CB65500E4A0E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		4991E1592B5F440200D6ED63 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49FE57192B1CB65500E4A0E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
 		49FE571A2B1CB65500E4A0E2 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 49FE57192B1CB65500E4A0E2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
