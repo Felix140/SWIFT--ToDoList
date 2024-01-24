@@ -4,7 +4,7 @@ import Intents
 import Firebase
 
 struct ToDoItemsWidget: Widget {
-    private let kind = "TooDoo Widget"
+    private let kind = "TooDooWidget"
     
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
@@ -99,6 +99,12 @@ extension ToDoItemsWidget {
             let db = Firestore.firestore()
 
             var arr: [String] = []
+            
+            //            guard let currentUserID = Auth.auth().currentUser?.uid else {
+            //                print("Utente non valido per il fetch db widget: \(String(describing: Auth.auth().currentUser))")
+            //                completion(["Please Login"])
+            //                return
+            //            }
 
             db.collection("users").document("fcEziy2Qz7ONdyXCdqwVEefgOG02").collection("todos").getDocuments { (querySnapshot, error) in
                 do {
@@ -125,6 +131,7 @@ extension ToDoItemsWidget {
                     completion(arr)
                 } catch {
                     print("Errore nel recupero dei dati da Firebase: \(error)")
+                    print(error.localizedDescription)
                     completion([])
                 }
             }

@@ -16,6 +16,9 @@ struct ToDoListView: View {
     private var itemsForToday: [ToDoListItem] {
         fetchedItems.filter { item in
             let itemDate = Date(timeIntervalSince1970: item.dueDate) /// convert to Date
+            if Bundle.main.bundleIdentifier != nil {
+                WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
+            }
             return Calendar.current.isDateInToday(itemDate)
         }
     }
@@ -110,10 +113,8 @@ struct ToDoListView: View {
                     Button(action: {
                         self.haptic.feedbackMedium()
                         viewModel.isPresentingView = true
-                        print("Widget 2")
-                        if let bundleIdentifier = Bundle.main.bundleIdentifier {
-                            WidgetCenter.shared.reloadTimelines(ofKind: "TooDoo Widget")
-                            print("Widget 1")
+                        if Bundle.main.bundleIdentifier != nil {
+                            WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
                         }
                     }) {
                         Image(systemName: "plus.circle")
@@ -132,9 +133,8 @@ struct ToDoListView: View {
                 }
             }
             .onAppear {
-                print("Apri Widget")
-                if let bundleIdentifier = Bundle.main.bundleIdentifier {
-                    WidgetCenter.shared.reloadTimelines(ofKind: "TooDoo Widget")
+                if Bundle.main.bundleIdentifier != nil {
+                    WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
                 }
             }
             
@@ -273,6 +273,11 @@ struct ToDoListView: View {
                             viewModel.delete(idItem: itemsForToday[index].id)
                         }
                     }
+                }
+            }
+            .onAppear {
+                if Bundle.main.bundleIdentifier != nil {
+                    WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
                 }
             }
         }
