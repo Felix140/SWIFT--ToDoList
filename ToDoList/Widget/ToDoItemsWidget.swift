@@ -20,6 +20,7 @@ struct ToDoItemsWidget: Widget {
 
 extension ToDoItemsWidget {
     struct Entry: TimelineEntry {
+        
         let date: Date
         let documentNames: [String]
         
@@ -29,11 +30,10 @@ extension ToDoItemsWidget {
     }
 }
 
-// MARK: - EntryView
+// MARK: - WIDGET VIEW
 
 extension ToDoItemsWidget {
     struct EntryView: View {
-        
         
         let entry: Entry
         var tasks: [String] {
@@ -77,6 +77,7 @@ extension View {
 
 extension ToDoItemsWidget {
     class Provider: TimelineProvider {
+        
         func placeholder(in context: Context) -> Entry {
             .placeholder
         }
@@ -86,10 +87,8 @@ extension ToDoItemsWidget {
         }
         
         func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
-            
-            
             fetchDataFromFirebase { documentNames in
-                let lastThreeEntries: [String] = documentNames.suffix(3)
+                let lastThreeEntries: [String] = documentNames.suffix(5) // print number of entries(TASKS)
                 let entry = Entry(date: Date(), documentNames: lastThreeEntries)
                 completion(Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(3600))))
             }
@@ -97,7 +96,7 @@ extension ToDoItemsWidget {
         
         func fetchDataFromFirebase(completion: @escaping ([String]) -> Void) {
             let db = Firestore.firestore()
-
+            
             var arr: [String] = []
             
             //            guard let currentUserID = Auth.auth().currentUser?.uid else {
@@ -105,13 +104,15 @@ extension ToDoItemsWidget {
             //                completion(["Please Login"])
             //                return
             //            }
-
-            db.collection("users").document("fcEziy2Qz7ONdyXCdqwVEefgOG02").collection("todos").getDocuments { (querySnapshot, error) in
+            
+            var fetchTodos = db.collection("users").document("fcEziy2Qz7ONdyXCdqwVEefgOG02").collection("todos")
+            
+            fetchTodos.getDocuments { (querySnapshot, error) in
                 do {
                     if let error = error {
                         throw error
                     }
-
+                    
                     var itemsForToday: [String] {
                         let today = Calendar.current.startOfDay(for: Date()) // Data odierna
                         return querySnapshot!.documents.compactMap { document in
@@ -125,10 +126,10 @@ extension ToDoItemsWidget {
                             return nil // Se l'oggetto non ha una data o non è di oggi, lo escludiamo
                         }
                     }
-
+                    
                     arr.append(contentsOf: itemsForToday)
-
                     completion(arr)
+                    
                 } catch {
                     print("Errore nel recupero dei dati da Firebase: \(error)")
                     print(error.localizedDescription)
@@ -136,7 +137,5 @@ extension ToDoItemsWidget {
                 }
             }
         }
-
-
     }
 }
