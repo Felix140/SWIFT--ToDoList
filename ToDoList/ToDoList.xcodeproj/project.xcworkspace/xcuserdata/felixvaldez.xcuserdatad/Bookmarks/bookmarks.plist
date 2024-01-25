@@ -308,16 +308,16 @@ class DoneListViewViewModel: ObservableObject {
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>                                /// modifica SE la task è stata creata da te
+				<string>    
 </string>
 				<key>leading</key>
-				<string>                        .swipeActions {
-                            Button("Edit") {
+				<string>        .listStyle(PlainListStyle())
+    }
 </string>
 				<key>trailing</key>
-				<string>                            }
-                            .tint(.blue)
-                        }
+				<string>    @ViewBuilder
+    func filterToDoList() -&gt; some View {
+        List {
 </string>
 			</dict>
 			<key>title</key>
@@ -358,13 +358,13 @@ class DoneListViewViewModel: ObservableObject {
 				<string>
 </string>
 				<key>leading</key>
-				<string>                    Button(action: {
-                        self.haptic.feedbackMedium()
-                        // Select All Items (Picker)</string>
-				<key>trailing</key>
 				<string>                    }) {
-                        Image(systemName: "ellipsis")
-                    }
+                        Image(systemName: "plus.circle")
+                    }</string>
+				<key>trailing</key>
+				<string>                    .accessibilityLabel("Add new Item")
+                }
+                
 </string>
 			</dict>
 			<key>title</key>
@@ -427,13 +427,13 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>108</string>
+					<string>114</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>107</string>
+					<string>114</string>
 					<key>Timestamp</key>
-					<string>727894382.06045</string>
+					<string>727919114.319115</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -449,11 +449,10 @@ class DoneListViewViewModel: ObservableObject {
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>            var fetchTodos = db.collection("users").document("fcEziy2Qz7ONdyXCdqwVEefgOG02").collection("todos")
-</string>
+				<string></string>
 				<key>leading</key>
-				<string>            //            }
-            
+				<string>            
+            var fetchTodos = db.collection("users").document("fcEziy2Qz7ONdyXCdqwVEefgOG02").collection("todos")
 </string>
 				<key>trailing</key>
 				<string>            

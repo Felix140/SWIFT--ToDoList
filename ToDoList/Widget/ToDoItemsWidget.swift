@@ -43,13 +43,19 @@ extension ToDoItemsWidget {
         var body: some View {
             HStack {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Task for Today:").font(.headline)
+                    
+                    Text("Task for TODAY: ")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                    
                     ForEach(entry.documentNames, id: \.self) { documentName in
                         HStack {
-                            Image(systemName: "circle")
-                            Text(documentName).font(.caption)
+                            Image(systemName: "arrow.right")
+                            Text(documentName)
+                                .font(.caption)
                         }
                     }
+                    
                 }
                 .widgetBackground(Theme.redGradient.gradient)
                 .padding(12)
@@ -114,13 +120,17 @@ extension ToDoItemsWidget {
                     }
                     
                     var itemsForToday: [String] {
+                        
                         let today = Calendar.current.startOfDay(for: Date()) // Data odierna
                         return querySnapshot!.documents.compactMap { document in
                             let data = document.data()
-                            if let itemDateTimestamp = data["dueDate"] as? TimeInterval, let taskTitle = data["title"] as? String {
-                                let itemDate = Date(timeIntervalSince1970: itemDateTimestamp) // Converti la data in un oggetto Date
+                            if let itemDateTimestamp = data["dueDate"] as? TimeInterval,
+                               let taskTitle = data["title"] as? String,
+                               let isDone = data["isDone"] as? Bool,
+                               !isDone {  // Filtra solo le attività non completate
+                                let itemDate = Date(timeIntervalSince1970: itemDateTimestamp)
                                 if Calendar.current.isDate(itemDate, inSameDayAs: today) {
-                                    return taskTitle // Restituisci solo il titolo dell'attività se è stata pubblicata oggi
+                                    return taskTitle // Restituisci il titolo dell'attività se è di oggi e non completata
                                 }
                             }
                             return nil // Se l'oggetto non ha una data o non è di oggi, lo escludiamo

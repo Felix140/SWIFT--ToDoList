@@ -202,8 +202,8 @@
 			children = (
 				4941EF072B5DE8BA000A759D /* WidgetBundle.swift */,
 				4941EF092B5DE8BA000A759D /* ToDoItemsWidget.swift */,
-				4941EF172B5DE999000A759D /* WidgetType.swift */,
 				4941EF1A2B5DE9E9000A759D /* Shared.swift */,
+				4941EF172B5DE999000A759D /* WidgetType.swift */,
 				4941EF0B2B5DE8BF000A759D /* Assets.xcassets */,
 				4941EF0D2B5DE8BF000A759D /* Info.plist */,
 			);
