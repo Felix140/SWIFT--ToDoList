@@ -15,11 +15,15 @@ struct RequestNewItemView: View {
         VStack(alignment: .leading) {
             
             //Component Title
-            Text("Send Request")
-                .font(.title2)
-                .fontWeight(.bold)
-                .padding(.top, 15)
-                .padding(.leading, 20)
+            HStack {
+                Spacer()
+                Text("Invia una Task")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .padding(.top, 15)
+                    .padding(.leading, 20)
+                Spacer()
+            }
             
             // Form
             Form {

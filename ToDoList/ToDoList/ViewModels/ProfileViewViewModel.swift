@@ -1,6 +1,7 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import WidgetKit
 
 class ProfileViewViewModel: ObservableObject {
     
@@ -37,5 +38,6 @@ class ProfileViewViewModel: ObservableObject {
         } catch {
             print(error)
         }
+        WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
     }
 }

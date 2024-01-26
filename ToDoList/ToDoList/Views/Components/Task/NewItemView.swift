@@ -11,11 +11,15 @@ struct NewItemView: View {
         VStack(alignment: .leading) {
             
             //Component Title
-            Text("TooDoo Task")
-                .font(.title2)
-                .fontWeight(.bold)
-                .padding(.top, 15)
-                .padding(.leading, 20)
+            HStack {
+                Spacer()
+                Text("Inserisci la tua Task")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .padding(.top, 15)
+                    .padding(.leading, 20)
+                Spacer()
+            }
             
             // Form
             Form {

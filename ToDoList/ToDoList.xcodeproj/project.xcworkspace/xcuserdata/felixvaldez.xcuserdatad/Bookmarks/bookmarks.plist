@@ -239,13 +239,13 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>62</string>
+					<string>66</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>61</string>
+					<string>65</string>
 					<key>Timestamp</key>
-					<string>727305241.742111</string>
+					<string>727921734.892386</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
