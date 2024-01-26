@@ -1,5 +1,6 @@
 import Foundation
 import FirebaseAuth /// Da funzionalità per effettuare la Login su Firebase
+import WidgetKit
 
 /// La ViewModel astrae tutta la logica della View
 
@@ -21,13 +22,19 @@ class LoginViewViewModel: ObservableObject {
         }
         
         //Effettua la login
-        Auth.auth().signIn(withEmail: emailField, password: passField) { _, err in
+        Auth.auth().signIn(withEmail: emailField, password: passField) { [weak self] authResult, err in
             if let error = err {
                 print(error.localizedDescription) /// gestione dell'errore
                 return
             }
+            
+            if let user = authResult?.user {
+                let defaults = UserDefaults(suiteName: "group.com.felixvaldez.ToDoList")
+                defaults?.set(user.uid, forKey: "currentUserIdKey")
+                // Aggiorna l'interfaccia utente o compi altre azioni necessarie
+            }
         }
-        
+        WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
         print("Login effettuato")
     }
     
@@ -37,7 +44,7 @@ class LoginViewViewModel: ObservableObject {
         
         /// CHECK verifica se i campi input NON sono vuoti
         guard !emailField.trimmingCharacters(in: .whitespaces).isEmpty,
-                !passField.trimmingCharacters(in: .whitespaces).isEmpty else {
+              !passField.trimmingCharacters(in: .whitespaces).isEmpty else {
             errorMessage = "Riempi i campi testo."
             print("testo da riempire")
             return false

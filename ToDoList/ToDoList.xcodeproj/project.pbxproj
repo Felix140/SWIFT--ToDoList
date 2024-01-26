@@ -12,6 +12,9 @@
 		4928F3A52B4611DD008B2F94 /* SettingsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A42B4611DD008B2F94 /* SettingsViewViewModel.swift */; };
 		4928F3A72B4614B2008B2F94 /* InsertDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */; };
 		4928F3A92B461A8F008B2F94 /* InfoToDoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */; };
+		492A37EE2B632AE900702B5B /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */; };
+		492A37F02B632CA600702B5B /* ToDoItemsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941EF092B5DE8BA000A759D /* ToDoItemsWidget.swift */; };
+		492A37F12B632FAB00702B5B /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE57382B1CDB3C00E4A0E2 /* MainViewViewModel.swift */; };
 		492B54C52B2266DF00041139 /* ListItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492B54C42B2266DF00041139 /* ListItemViewViewModel.swift */; };
 		492E29792B1D4BE600021383 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E29782B1D4BE600021383 /* HeaderView.swift */; };
 		492E297B2B1D522900021383 /* ButtonFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E297A2B1D522900021383 /* ButtonFormView.swift */; };
@@ -500,6 +503,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4941EF082B5DE8BA000A759D /* WidgetBundle.swift in Sources */,
+				492A37EE2B632AE900702B5B /* LoginViewViewModel.swift in Sources */,
+				492A37F12B632FAB00702B5B /* MainViewViewModel.swift in Sources */,
 				4941EF0A2B5DE8BA000A759D /* ToDoItemsWidget.swift in Sources */,
 				4991E1622B5F5CA700D6ED63 /* Theme.swift in Sources */,
 				4941EF1C2B5DE9E9000A759D /* Shared.swift in Sources */,
@@ -555,6 +560,7 @@
 				49E11F922B1FC989009E72E8 /* Extensions.swift in Sources */,
 				492E297B2B1D522900021383 /* ButtonFormView.swift in Sources */,
 				49FE57372B1CDAEF00E4A0E2 /* ToDoListItem.swift in Sources */,
+				492A37F02B632CA600702B5B /* ToDoItemsWidget.swift in Sources */,
 				49DDA1802B44BF7B009218C4 /* Theme.swift in Sources */,
 				49B862C12B1BC45200FED137 /* ToDoListApp.swift in Sources */,
 				49FE573F2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift in Sources */,

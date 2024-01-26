@@ -12,7 +12,7 @@ struct ToDoItemsWidget: Widget {
         }
         .configurationDisplayName("TooDoo Widget")
         .description("See your tasks.")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemMedium])
     }
 }
 
@@ -68,7 +68,7 @@ extension ToDoItemsWidget {
 
 extension View {
     func widgetBackground(_ backgroundView: some View) -> some View {
-        if #available(iOSApplicationExtension 17.0, *) {
+        if #available(iOS 17.0, *) {
             return containerBackground(for: .widget) {
                 backgroundView
             }
@@ -110,8 +110,13 @@ extension ToDoItemsWidget {
             //                completion(["Please Login"])
             //                return
             //            }
+            let defaults = UserDefaults(suiteName: "group.com.felixvaldez.ToDoList")
+            guard let userId = defaults?.string(forKey: "currentUserIdKey") else {
+                print("Utente non valido per il fetch db widget: \(String(describing: Auth.auth().currentUser))")
+                return
+            }
             
-            var fetchTodos = db.collection("users").document("fcEziy2Qz7ONdyXCdqwVEefgOG02").collection("todos")
+            let fetchTodos = db.collection("users").document(userId).collection("todos")
             
             fetchTodos.getDocuments { (querySnapshot, error) in
                 do {
