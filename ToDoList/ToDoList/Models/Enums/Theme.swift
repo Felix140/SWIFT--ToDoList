@@ -9,12 +9,12 @@ enum Theme {
         case .redGradient:
             return LinearGradient(
                 stops: [
-                    Gradient.Stop(color: Color(red: 0.94, green: 0.31, blue: 0.31), location: 0.00),
-                    Gradient.Stop(color: Color(red: 1, green: 0.09, blue: 0.37), location: 1.00),
+                Gradient.Stop(color: Color(red: 1, green: 0.04, blue: 0.32), location: 0.27),
+                Gradient.Stop(color: Color(red: 0.93, green: 0.06, blue: 0.38), location: 1.00),
                 ],
                 startPoint: UnitPoint(x: 0.5, y: 0),
                 endPoint: UnitPoint(x: 0.5, y: 1)
-            )
+                )
         }
     }
 }

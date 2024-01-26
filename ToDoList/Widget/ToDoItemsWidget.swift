@@ -36,32 +36,48 @@ extension ToDoItemsWidget {
     struct EntryView: View {
         
         let entry: Entry
-        var tasks: [String] {
-            return entry.documentNames
-        }
         
         var body: some View {
-            HStack {
-                VStack(alignment: .leading, spacing: 5) {
-                    
-                    Text("Task for TODAY: ")
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                    
-                    ForEach(entry.documentNames, id: \.self) { documentName in
-                        HStack {
-                            Image(systemName: "arrow.right")
-                            Text(documentName)
-                                .font(.caption)
-                        }
-                    }
-                    
-                }
-                .widgetBackground(Theme.redGradient.gradient)
-                .padding(12)
+            
+            VStack(alignment: .leading, spacing: 8) {
                 
                 Spacer()
+                
+                
+                HStack {
+                    Image(systemName: "calendar.circle.fill")
+                        .font(.system(size: 30))
+                    Text("Today")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    
+                    Spacer()
+                }
+                
+                
+                
+                ForEach(entry.documentNames, id: \.self) { documentName in
+                    HStack {
+                        Spacer()
+                            .frame(width: 10)
+                        Image(systemName: "arrow.right")
+                        Spacer()
+                            .frame(width: 18)
+                        Text(documentName)
+                            .font(.system(size: 14))
+                    }
+                }
+                
+                Spacer()
+                
+                
             }
+            .widgetBackground(Theme.redGradient.gradient)
+            .padding(.horizontal, 4)
+            .padding(.vertical, 14)
+            
+            
+            
         }
     }
 }
@@ -94,7 +110,7 @@ extension ToDoItemsWidget {
         
         func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> Void) {
             fetchDataFromFirebase { documentNames in
-                let lastThreeEntries: [String] = documentNames.suffix(5) // print number of entries(TASKS)
+                let lastThreeEntries: [String] = documentNames.suffix(4) // print number of entries(TASKS)
                 let entry = Entry(date: Date(), documentNames: lastThreeEntries)
                 completion(Timeline(entries: [entry], policy: .after(Date().addingTimeInterval(3600))))
             }
