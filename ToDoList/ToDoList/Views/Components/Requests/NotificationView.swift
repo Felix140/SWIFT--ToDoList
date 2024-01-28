@@ -3,6 +3,7 @@ import SwiftUI
 struct NotificationView: View {
     
     @StateObject var viewModel = NotificationViewViewModel()
+    let taskObject: Notification
     var textTask: String
     var sendFrom: String
     var haptic = HapticTrigger()
@@ -47,7 +48,7 @@ struct NotificationView: View {
         .simultaneousGesture(TapGesture().onEnded {
             self.haptic.feedbackLight()
             alert = true
-            viewModel.sendResponseAccepted()
+            viewModel.sendResponseAccepted(notification: taskObject)
         })
         
         Spacer()
@@ -74,11 +75,18 @@ struct NotificationView: View {
     }
 }
 
-struct NotificationView_Preview: PreviewProvider {
-    static var previews: some View {
-        NotificationView(
-            textTask: "Questa è una task",
-            sendFrom: "mittente",
-            alert: .constant(false))
-    }
-}
+//struct NotificationView_Preview: PreviewProvider {
+//    static var previews: some View {
+//        NotificationView(
+//            taskObject: Notification(
+//                id: <#T##String#>,
+//                sender: <#T##String#>,
+//                senderName: <#T##String#>,
+//                recipient: <#T##String#>,
+//                task: <#T##ToDoListItem#>,
+//                isAccepted: <#T##Bool#>),
+//            textTask: "Questa è una task",
+//            sendFrom: "mittente",
+//            alert: .constant(false))
+//    }
+//}

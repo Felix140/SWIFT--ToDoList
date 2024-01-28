@@ -9,6 +9,7 @@ class ListItemViewViewModel: ObservableObject {
     init() {}
     
     func toggleIsDone(item: ToDoListItem) {
+        
         var copyItem = item /// trasformo in variabile VAR perchè item è una costante
         copyItem.setDone(!item.isDone) /// item = !item
         

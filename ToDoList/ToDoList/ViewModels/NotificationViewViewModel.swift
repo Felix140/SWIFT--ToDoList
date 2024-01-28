@@ -99,6 +99,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .document(userId)
             .collection("requests")
             .addSnapshotListener { [weak self] (querySnapshot, err) in
+                
                 if let err = err {
                     print("Error getting documents: \(err)")
                     return
@@ -137,11 +138,46 @@ class NotificationViewViewModel: NewItemViewViewModel {
             }
     }
     
-    func sendResponseAccepted() {
-        print("Accepted")
+    func sendResponseAccepted(notification: Notification) {
+        
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("Errore: ID utente non disponibile.")
+            return
+        }
+        
+        let notificationId = notification.id
+        let task = notification.task
+        
+        // Aggiorna lo stato della notifica su Firestore
+        db.collection("notifications")
+            .document(userId)
+            .collection("requests")
+            .document(notificationId)
+            .updateData(["isAccepted": true]) { error in
+                if let error = error {
+                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                } else {
+                    print("Notifica aggiornata con successo.")
+                }
+            }
+        
+        // Aggiunge la task accettata alla collezione "todos" dell'utente
+        db.collection("users")
+            .document(userId)
+            .collection("todos")
+            .document(task.id)
+            .setData(task.asDictionary()) { error in
+                if let error = error {
+                    print("Errore nel salvare la task: \(error)")
+                } else {
+                    print("Task salvata con successo.")
+                }
+            }
+        
+        print("Request accepted")
     }
     
-    func sendResponseRejected() { 
+    func sendResponseRejected() {
         print("Rejected")
     }
     

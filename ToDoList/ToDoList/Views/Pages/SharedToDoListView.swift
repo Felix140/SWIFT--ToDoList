@@ -78,6 +78,7 @@ struct SharedToDoListView: View {
         List{
             ForEach(viewModelNotification.notifications) { notification in
                 NotificationView(
+                    taskObject: notification,
                     textTask: notification.task.title,
                     sendFrom: notification.senderName,
                     alert: $alertTest
@@ -100,6 +101,7 @@ struct SharedToDoListView: View {
         List {
             ForEach(sendNotifications) { sended in
                 NotificationView(
+                    taskObject: sended,
                     textTask: sended.task.title,
                     sendFrom: sended.recipient,
                     alert: $alertTest)
