@@ -38,7 +38,7 @@
 		4991E1622B5F5CA700D6ED63 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DDA17F2B44BF7B009218C4 /* Theme.swift */; };
 		499531132B52083700547910 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499531122B52083700547910 /* NotificationView.swift */; };
 		499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E1DDF2B46FA5200A7EF9A /* Routes.swift */; };
-		49A60C242B55299800A2C133 /* UserContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A60C232B55299800A2C133 /* UserContacts.swift */; };
+		49A60C242B55299800A2C133 /* UserContactsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A60C232B55299800A2C133 /* UserContactsList.swift */; };
 		49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */; };
 		49B584F22B5211B200F3D004 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B584F12B5211B200F3D004 /* Notification.swift */; };
 		49B584F42B5213D300F3D004 /* NotificationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B584F32B5213D300F3D004 /* NotificationViewViewModel.swift */; };
@@ -50,6 +50,7 @@
 		49C61BC62B436B3D00F1999C /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C61BC52B436B3D00F1999C /* ProgressBarView.swift */; };
 		49C61BC82B43852300F1999C /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C61BC72B43852300F1999C /* TimerView.swift */; };
 		49C61BCA2B4385C300F1999C /* TimerArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C61BC92B4385C300F1999C /* TimerArc.swift */; };
+		49D5307F2B683D6100C9206E /* UserContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5307E2B683D6100C9206E /* UserContact.swift */; };
 		49D5CE562B291824009CF312 /* ToDoListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5CE552B291824009CF312 /* ToDoListItemView.swift */; };
 		49DB4B9B2B49866300811C93 /* InfoToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */; };
 		49DB4B9D2B49868000811C93 /* InfoToDoItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DB4B9C2B49868000811C93 /* InfoToDoItemViewViewModel.swift */; };
@@ -128,7 +129,7 @@
 		4970661E2B462C4200C16D88 /* CategoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTask.swift; sourceTree = "<group>"; };
 		499531122B52083700547910 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		499E1DDF2B46FA5200A7EF9A /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
-		49A60C232B55299800A2C133 /* UserContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContacts.swift; sourceTree = "<group>"; };
+		49A60C232B55299800A2C133 /* UserContactsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContactsList.swift; sourceTree = "<group>"; };
 		49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTrigger.swift; sourceTree = "<group>"; };
 		49B584F12B5211B200F3D004 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		49B584F32B5213D300F3D004 /* NotificationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewViewModel.swift; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 		49C61BC52B436B3D00F1999C /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		49C61BC72B43852300F1999C /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		49C61BC92B4385C300F1999C /* TimerArc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerArc.swift; sourceTree = "<group>"; };
+		49D5307E2B683D6100C9206E /* UserContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContact.swift; sourceTree = "<group>"; };
 		49D5CE552B291824009CF312 /* ToDoListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListItemView.swift; sourceTree = "<group>"; };
 		49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToDoItem.swift; sourceTree = "<group>"; };
 		49DB4B9C2B49868000811C93 /* InfoToDoItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToDoItemViewViewModel.swift; sourceTree = "<group>"; };
@@ -306,8 +308,8 @@
 				499531162B52091B00547910 /* Task */,
 				499531152B5208FF00547910 /* Profile */,
 				499531142B5208CD00547910 /* Requests */,
+				49D5307D2B682D0100C9206E /* Contacts */,
 				49C61BCB2B43862600F1999C /* Timer */,
-				49F0D3752B5569F30053206A /* ContactItemView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -320,6 +322,14 @@
 				49C61BC92B4385C300F1999C /* TimerArc.swift */,
 			);
 			path = Timer;
+			sourceTree = "<group>";
+		};
+		49D5307D2B682D0100C9206E /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				49F0D3752B5569F30053206A /* ContactItemView.swift */,
+			);
+			path = Contacts;
 			sourceTree = "<group>";
 		};
 		49DDA1812B44C2B6009218C4 /* Enums */ = {
@@ -364,10 +374,11 @@
 			isa = PBXGroup;
 			children = (
 				49FE57342B1CDADC00E4A0E2 /* User.swift */,
+				49D5307E2B683D6100C9206E /* UserContact.swift */,
+				49A60C232B55299800A2C133 /* UserContactsList.swift */,
 				49FE57362B1CDAEF00E4A0E2 /* ToDoListItem.swift */,
 				49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */,
 				49B584F12B5211B200F3D004 /* Notification.swift */,
-				49A60C232B55299800A2C133 /* UserContacts.swift */,
 				49DDA1812B44C2B6009218C4 /* Enums */,
 			);
 			path = Models;
@@ -524,7 +535,7 @@
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
 				49B584F62B52178800F3D004 /* RequestNewItemView.swift in Sources */,
 				49E946882B50848700148273 /* SharedToDoListView.swift in Sources */,
-				49A60C242B55299800A2C133 /* UserContacts.swift in Sources */,
+				49A60C242B55299800A2C133 /* UserContactsList.swift in Sources */,
 				49FE572F2B1CDA5100E4A0E2 /* LoginView.swift in Sources */,
 				496F10002B331957005CCA4B /* StartView.swift in Sources */,
 				49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */,
@@ -534,6 +545,7 @@
 				4941EF182B5DE999000A759D /* WidgetType.swift in Sources */,
 				49FE57432B1CDBD800E4A0E2 /* LoginViewViewModel.swift in Sources */,
 				49FE57332B1CDA9D00E4A0E2 /* ToDoListView.swift in Sources */,
+				49D5307F2B683D6100C9206E /* UserContact.swift in Sources */,
 				4928F3A72B4614B2008B2F94 /* InsertDescriptionView.swift in Sources */,
 				49C61BC82B43852300F1999C /* TimerView.swift in Sources */,
 				49FE573B2B1CDB6100E4A0E2 /* ProfileViewViewModel.swift in Sources */,

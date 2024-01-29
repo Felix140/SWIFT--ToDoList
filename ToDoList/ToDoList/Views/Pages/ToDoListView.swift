@@ -92,17 +92,12 @@ struct ToDoListView: View {
                 .padding(.horizontal, 10)
                 
                 
-                if selectedPicker == 0 {
-                    // TASK LIST ALL
-                    taskListAll()
-                }
-                if selectedPicker == 1 {
-                    // TODO LIST
-                    filterToDoList()
-                }
-                if selectedPicker == 2 {
-                    // DONE LIST
-                    filterDoneList()
+                switch selectedPicker {
+                case 0: taskListAll()  // TASK LIST ALL
+                case 1: filterToDoList() // TODO LIST
+                case 2: filterDoneList() // DONE LIST
+                default:
+                    Text("ERROR: Informations not available")
                 }
                 
             }

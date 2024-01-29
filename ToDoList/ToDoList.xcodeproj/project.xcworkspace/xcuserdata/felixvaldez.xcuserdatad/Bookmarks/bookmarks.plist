@@ -286,13 +286,13 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>224</string>
+					<string>219</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>223</string>
+					<string>218</string>
 					<key>Timestamp</key>
-					<string>727477510.268357</string>
+					<string>728248702.318548</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -333,13 +333,13 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>121</string>
+					<string>116</string>
 					<key>StartingColumnNumber</key>
-					<string>24</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>120</string>
+					<string>115</string>
 					<key>Timestamp</key>
-					<string>727477673.793766</string>
+					<string>728248702.318616</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -355,12 +355,12 @@ class DoneListViewViewModel: ObservableObject {
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>                    }
 </string>
 				<key>leading</key>
 				<string>                    }) {
                         Image(systemName: "plus.circle")
-                    }</string>
+</string>
 				<key>trailing</key>
 				<string>                    .accessibilityLabel("Add new Item")
                 }

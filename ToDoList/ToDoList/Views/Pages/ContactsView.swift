@@ -5,7 +5,7 @@ struct ContactsView: View {
     
     @State private var searchText: String = ""
     @StateObject var viewModel = ContactsViewViewModel()
-    @FirestoreQuery var fetchedUser: [User]
+    @FirestoreQuery var fetchedUser: [UserContact]
     @State var selectedPicker: Int = 0
     
     init() {
@@ -37,14 +37,15 @@ struct ContactsView: View {
                 .padding(.horizontal, 10)
                 
                 
-                if selectedPicker == 0 {
-                    listContacts()
+                switch selectedPicker {
+                case 0: listContacts()
+                case 1: saveContacts()
+                default:
+                    Text("Error, informations not available")
                 }
                 
-                if selectedPicker == 1 {
-                    saveContacts()
-                }
             }
+            .navigationTitle("Contacts")
         }
         .searchable(text: $searchText, prompt: "Search")
         .onAppear {
@@ -60,7 +61,7 @@ struct ContactsView: View {
                     ForEach(fetchedUser.filter { user in
                         user.name.lowercased().contains(searchText.lowercased())
                     }) { user in
-                        ContactItemView(user: user)
+                        ContactItemView(user: user, type: "searchSection")
                     }
                 } 
             }
@@ -73,7 +74,15 @@ struct ContactsView: View {
     func saveContacts()-> some View {
         List {
             ForEach(viewModel.privateContacts) { privateUser in
-                ContactItemView(user: privateUser)
+                ContactItemView(user: privateUser, type: "savedSection")
+            }
+            .onDelete { indexSet in
+                withAnimation {
+                    // Esegui l'eliminazione degli elementi qui, avvolta da withAnimation
+                    for index in indexSet {
+                        viewModel.deleteContact(userContactId: viewModel.privateContacts[index].id)
+                    }
+                }
             }
         }
         .listStyle(PlainListStyle())

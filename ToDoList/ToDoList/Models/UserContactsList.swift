@@ -1,6 +1,6 @@
 import Foundation
 
-struct UserContacts: Identifiable, Codable {
+struct UserContactsList: Identifiable, Codable {
     let id: String
     let contacts: [User]
     
