@@ -5,13 +5,7 @@ struct ContactsView: View {
     
     @State private var searchText: String = ""
     @StateObject var viewModel = ContactsViewViewModel()
-    @FirestoreQuery var fetchedUser: [UserContact]
     @State var selectedPicker: Int = 0
-    
-    init() {
-        self._fetchedUser = FirestoreQuery(collectionPath: "users/") // GET all users
-    }
-    
     
     var body: some View {
         NavigationStack {
@@ -58,10 +52,13 @@ struct ContactsView: View {
         List {
             Section {
                 if searchText.count >= 1 {  // Modifica qui
-                    ForEach(fetchedUser.filter { user in
+                    ForEach(viewModel.allUsers.filter { user in
                         user.name.lowercased().contains(searchText.lowercased())
                     }) { user in
-                        ContactItemView(user: user, type: "searchSection")
+                        ContactItemView(
+                            viewModel: viewModel,
+                            user: user,
+                            type: "searchSection")
                     }
                 } 
             }
@@ -74,7 +71,10 @@ struct ContactsView: View {
     func saveContacts()-> some View {
         List {
             ForEach(viewModel.privateContacts) { privateUser in
-                ContactItemView(user: privateUser, type: "savedSection")
+                ContactItemView(
+                    viewModel: viewModel,
+                    user: privateUser,
+                    type: "savedSection")
             }
             .onDelete { indexSet in
                 withAnimation {

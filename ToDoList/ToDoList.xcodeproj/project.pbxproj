@@ -293,8 +293,8 @@
 				49FE57302B1CDA7800E4A0E2 /* RegisterView.swift */,
 				49FE57322B1CDA9D00E4A0E2 /* ToDoListView.swift */,
 				49E946872B50848700148273 /* SharedToDoListView.swift */,
-				49FE57262B1CD99000E4A0E2 /* ProfileView.swift */,
 				49F0D3712B5566BA0053206A /* ContactsView.swift */,
+				49FE57262B1CD99000E4A0E2 /* ProfileView.swift */,
 				4928F3A22B460B21008B2F94 /* SettingsView.swift */,
 			);
 			path = Pages;

@@ -2,8 +2,8 @@ import SwiftUI
 
 struct ContactItemView: View {
     
-    
-    @StateObject var viewModel = ContactsViewViewModel()
+    /// ObservedObject viewModel: Un riferimento condiviso a ContactsViewViewModel che permette a questa vista di reagire ai cambiamenti di stato come aggiornamenti della lista di contatti, mantenendo sincronizzati i dati visualizzati con il modello sottostante.
+    @ObservedObject var viewModel: ContactsViewViewModel
     var haptic = HapticTrigger()
     var user: UserContact
     var type: String
@@ -38,6 +38,7 @@ struct ContactItemView: View {
                 
                 Image(systemName: user.isSaved ? "person.crop.circle.badge.checkmark" : "person.crop.circle.badge.plus")
                            .foregroundColor(user.isSaved ? .green : .blue)
+                           .font(.system(size: 18))
                 
             })
         }
@@ -56,6 +57,7 @@ struct ContactItemView: View {
             }
             Spacer()
             Image(systemName: "info.circle.fill")
+                .font(.system(size: 18))
         }
     }
 }
