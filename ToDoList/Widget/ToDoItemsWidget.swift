@@ -60,7 +60,7 @@ extension ToDoItemsWidget {
                     HStack {
                         Spacer()
                             .frame(width: 10)
-                        Image(systemName: "arrow.right")
+                        Image(systemName: "circle.bottomrighthalf.checkered")
                         Spacer()
                             .frame(width: 18)
                         Text(documentName)
