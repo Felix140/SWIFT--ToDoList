@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4916EA942B403CA90031B40C /* PomodoroTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916EA932B403CA90031B40C /* PomodoroTimerView.swift */; };
+		491EB63E2B6DB04300ABF3B3 /* EditPrivateInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EB63D2B6DB04300ABF3B3 /* EditPrivateInfoView.swift */; };
+		491EB6402B6DB2AF00ABF3B3 /* UserTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EB63F2B6DB2AF00ABF3B3 /* UserTheme.swift */; };
 		4928F3A32B460B21008B2F94 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A22B460B21008B2F94 /* SettingsView.swift */; };
-		4928F3A52B4611DD008B2F94 /* SettingsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A42B4611DD008B2F94 /* SettingsViewViewModel.swift */; };
 		4928F3A72B4614B2008B2F94 /* InsertDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */; };
 		4928F3A92B461A8F008B2F94 /* InfoToDoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */; };
 		492A37EE2B632AE900702B5B /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */; };
@@ -105,8 +106,9 @@
 
 /* Begin PBXFileReference section */
 		4916EA932B403CA90031B40C /* PomodoroTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerView.swift; sourceTree = "<group>"; };
+		491EB63D2B6DB04300ABF3B3 /* EditPrivateInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPrivateInfoView.swift; sourceTree = "<group>"; };
+		491EB63F2B6DB2AF00ABF3B3 /* UserTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTheme.swift; sourceTree = "<group>"; };
 		4928F3A22B460B21008B2F94 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		4928F3A42B4611DD008B2F94 /* SettingsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewViewModel.swift; sourceTree = "<group>"; };
 		4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertDescriptionView.swift; sourceTree = "<group>"; };
 		4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToDoItemView.swift; sourceTree = "<group>"; };
 		492B54C42B2266DF00041139 /* ListItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemViewViewModel.swift; sourceTree = "<group>"; };
@@ -193,6 +195,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		491EB63B2B6DAF4300ABF3B3 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				492E297A2B1D522900021383 /* ButtonFormView.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		491EB63C2B6DB01500ABF3B3 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4928F3A22B460B21008B2F94 /* SettingsView.swift */,
+				491EB63D2B6DB04300ABF3B3 /* EditPrivateInfoView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		4941EF012B5DE8B9000A759D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,7 +304,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		49C32CA12B1E5F98003B44EA /* Pages */ = {
+		49C32CA12B1E5F98003B44EA /* MainScreens */ = {
 			isa = PBXGroup;
 			children = (
 				496F0FFF2B331957005CCA4B /* StartView.swift */,
@@ -295,20 +314,20 @@
 				49E946872B50848700148273 /* SharedToDoListView.swift */,
 				49F0D3712B5566BA0053206A /* ContactsView.swift */,
 				49FE57262B1CD99000E4A0E2 /* ProfileView.swift */,
-				4928F3A22B460B21008B2F94 /* SettingsView.swift */,
 			);
-			path = Pages;
+			path = MainScreens;
 			sourceTree = "<group>";
 		};
 		49C32CA22B1E5FB5003B44EA /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				492E29782B1D4BE600021383 /* HeaderView.swift */,
-				492E297A2B1D522900021383 /* ButtonFormView.swift */,
+				491EB63B2B6DAF4300ABF3B3 /* Buttons */,
 				499531162B52091B00547910 /* Task */,
 				499531152B5208FF00547910 /* Profile */,
 				499531142B5208CD00547910 /* Requests */,
 				49D5307D2B682D0100C9206E /* Contacts */,
+				491EB63C2B6DB01500ABF3B3 /* Settings */,
 				49C61BCB2B43862600F1999C /* Timer */,
 			);
 			path = Components;
@@ -338,6 +357,7 @@
 				49DDA17F2B44BF7B009218C4 /* Theme.swift */,
 				4970661E2B462C4200C16D88 /* CategoryTask.swift */,
 				499E1DDF2B46FA5200A7EF9A /* Routes.swift */,
+				491EB63F2B6DB2AF00ABF3B3 /* UserTheme.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -346,7 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				49B862C22B1BC45200FED137 /* MainView.swift */,
-				49C32CA12B1E5F98003B44EA /* Pages */,
+				49C32CA12B1E5F98003B44EA /* MainScreens */,
 				49C32CA22B1E5FB5003B44EA /* Components */,
 			);
 			path = Views;
@@ -363,7 +383,6 @@
 				49FE573E2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift */,
 				49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */,
 				49FE57452B1CDBED00E4A0E2 /* RegisterViewViewModel.swift */,
-				4928F3A42B4611DD008B2F94 /* SettingsViewViewModel.swift */,
 				49DB4B9C2B49868000811C93 /* InfoToDoItemViewViewModel.swift */,
 				49F0D3732B5567860053206A /* ContactsViewViewModel.swift */,
 			);
@@ -551,9 +570,11 @@
 				49FE573B2B1CDB6100E4A0E2 /* ProfileViewViewModel.swift in Sources */,
 				499531132B52083700547910 /* NotificationView.swift in Sources */,
 				49D5CE562B291824009CF312 /* ToDoListItemView.swift in Sources */,
+				491EB6402B6DB2AF00ABF3B3 /* UserTheme.swift in Sources */,
 				49C61BC62B436B3D00F1999C /* ProgressBarView.swift in Sources */,
 				49F0D3762B5569F30053206A /* ContactItemView.swift in Sources */,
 				49DB4B9B2B49866300811C93 /* InfoToDoItem.swift in Sources */,
+				491EB63E2B6DB04300ABF3B3 /* EditPrivateInfoView.swift in Sources */,
 				4928F3A32B460B21008B2F94 /* SettingsView.swift in Sources */,
 				4941EF1B2B5DE9E9000A759D /* Shared.swift in Sources */,
 				49B862C32B1BC45200FED137 /* MainView.swift in Sources */,
@@ -565,7 +586,6 @@
 				49F0D3722B5566BA0053206A /* ContactsView.swift in Sources */,
 				49FE57272B1CD99000E4A0E2 /* ProfileView.swift in Sources */,
 				49FE573D2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift in Sources */,
-				4928F3A52B4611DD008B2F94 /* SettingsViewViewModel.swift in Sources */,
 				496E1BCA2B2D10D30036AC23 /* ProfileImageView.swift in Sources */,
 				49B584F22B5211B200F3D004 /* Notification.swift in Sources */,
 				49FE57312B1CDA7800E4A0E2 /* RegisterView.swift in Sources */,
