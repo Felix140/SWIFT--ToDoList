@@ -92,13 +92,19 @@ struct ToDoListView: View {
                 .padding(.horizontal, 10)
                 
                 
-                switch selectedPicker {
-                case 0: taskListAll()  // TASK LIST ALL
-                case 1: filterToDoList() // TODO LIST
-                case 2: filterDoneList() // DONE LIST
-                default:
-                    Text("ERROR: Informations not available")
+                // Carosello
+                TabView(selection: $selectedPicker) {
+                    taskListAll()
+                        .tag(0)
+                    filterToDoList()
+                        .tag(1)
+                    filterDoneList()
+                        .tag(2)
                 }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                
+                Spacer()
+                
                 
             }
             .navigationTitle("TooDoo List")
@@ -241,7 +247,7 @@ struct ToDoListView: View {
                 }
             }
         }
-        .listStyle(InsetGroupedListStyle())
+        .listStyle(PlainListStyle())
     }
     
     @ViewBuilder
@@ -276,7 +282,7 @@ struct ToDoListView: View {
                 }
             }
         }
-        .listStyle(InsetGroupedListStyle())
+        .listStyle(PlainListStyle())
     }
 }
 
