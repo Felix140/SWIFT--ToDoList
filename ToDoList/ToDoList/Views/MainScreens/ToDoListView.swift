@@ -145,13 +145,10 @@ struct ToDoListView: View {
                             InfoToDoItemView(descriptionText: itemToday.description.description)
                         }
                     }
-                }
-                .onDelete { indexSet in
-                    withAnimation {
-                        // Esegui l'eliminazione degli elementi qui, avvolta da withAnimation
-                        for index in indexSet {
+                    .onLongPressGesture {
+                        withAnimation(.default) {
                             self.haptic.feedbackLight()
-                            viewModel.delete(idItem: itemsForToday[index].id)
+                            viewModel.promptForDeleteConfirmation(item: itemToday)
                         }
                     }
                 }
@@ -168,15 +165,13 @@ struct ToDoListView: View {
                             InfoToDoItemView(descriptionText: itemTomorrow.description.description)
                         }
                     }
-                }
-                .onDelete { indexSet in
-                    withAnimation {
-                        // Esegui l'eliminazione degli elementi qui, avvolta da withAnimation
-                        for index in indexSet {
+                    .onLongPressGesture {
+                        withAnimation(.default) {
                             self.haptic.feedbackLight()
-                            viewModel.delete(idItem: itemsForTomorrow[index].id)
+                            viewModel.promptForDeleteConfirmation(item: itemTomorrow)
                         }
                     }
+                    
                 }
             }
             
@@ -190,19 +185,24 @@ struct ToDoListView: View {
                             InfoToDoItemView(descriptionText: itemAfter.description.description)
                         }
                     }
-                }
-                .onDelete { indexSet in
-                    withAnimation {
-                        // Esegui l'eliminazione degli elementi qui, avvolta da withAnimation
-                        for index in indexSet {
+                    .onLongPressGesture {
+                        withAnimation(.default) {
                             self.haptic.feedbackLight()
-                            viewModel.delete(idItem: itemsAfterTomorrow[index].id)
+                            viewModel.promptForDeleteConfirmation(item: itemAfter)
                         }
                     }
                 }
             }
         }
         .listStyle(PlainListStyle())
+        .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
+            ActionSheet(title: Text("Conferma eliminazione"), message: Text("Vuoi eliminare questa task?"), buttons: [
+                .destructive(Text("Elimina")) {
+                    viewModel.confirmAndDelete()
+                },
+                .cancel()
+            ])
+        }
     }
     
     @ViewBuilder
