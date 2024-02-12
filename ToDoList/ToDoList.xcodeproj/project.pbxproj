@@ -33,6 +33,7 @@
 		496E1BCA2B2D10D30036AC23 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */; };
 		496F10002B331957005CCA4B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496F0FFF2B331957005CCA4B /* StartView.swift */; };
 		4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970661E2B462C4200C16D88 /* CategoryTask.swift */; };
+		497738DE2B7AC85200789847 /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497738DD2B7AC85200789847 /* CustomPickerView.swift */; };
 		4991E1562B5F41EE00D6ED63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */; };
 		4991E1582B5F440200D6ED63 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4991E1572B5F440200D6ED63 /* FirebaseAuth */; };
 		4991E15A2B5F440200D6ED63 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4991E1592B5F440200D6ED63 /* FirebaseFirestore */; };
@@ -129,6 +130,7 @@
 		496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		496F0FFF2B331957005CCA4B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		4970661E2B462C4200C16D88 /* CategoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTask.swift; sourceTree = "<group>"; };
+		497738DD2B7AC85200789847 /* CustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
 		499531122B52083700547910 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		499E1DDF2B46FA5200A7EF9A /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		49A60C232B55299800A2C133 /* UserContactsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContactsList.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */,
 				49C61BC52B436B3D00F1999C /* ProgressBarView.swift */,
 				4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */,
+				497738DD2B7AC85200789847 /* CustomPickerView.swift */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				49FE573D2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift in Sources */,
 				496E1BCA2B2D10D30036AC23 /* ProfileImageView.swift in Sources */,
 				49B584F22B5211B200F3D004 /* Notification.swift in Sources */,
+				497738DE2B7AC85200789847 /* CustomPickerView.swift in Sources */,
 				49FE57312B1CDA7800E4A0E2 /* RegisterView.swift in Sources */,
 				49E11F922B1FC989009E72E8 /* Extensions.swift in Sources */,
 				492E297B2B1D522900021383 /* ButtonFormView.swift in Sources */,

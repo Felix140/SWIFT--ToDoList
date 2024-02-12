@@ -70,26 +70,8 @@ struct ToDoListView: View {
                     valueBar: Double(isDoneItemsForToday.count),
                     totalValueBar: Double(itemsForToday.count))
                 
-                HStack {
-                    if #available(iOS 17.0, *) {
-                        Picker("TooDoo List", selection: $selectedPicker) {
-                            Text("All Task").tag(0)
-                            Text("To Do").tag(1)
-                            Text("Done").tag(2)
-                        }
-                        .pickerStyle(.palette)
-                    } else {
-                        
-                        Picker("TooDoo List", selection: $selectedPicker) {
-                            Text("All Task").tag(0)
-                            Text("To Do").tag(1)
-                            Text("Done").tag(2)
-                        }
-                        .pickerStyle(.segmented)
-                    }
-                    
-                }
-                .padding(.horizontal, 10)
+                
+                CustomPickerView(selectedPicker: $selectedPicker)
                 
                 
                 // Carosello
