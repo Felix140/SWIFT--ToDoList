@@ -27,7 +27,7 @@ enum CategoryTask: String, Codable, CaseIterable {
 
 let categoryThemeMap: [CategoryTask: UserTheme] = [
     .work: .indigo,
-    .study: .seafoam,
+    .study: .poppy,
     .home: .orange,
     .project: .oxblood,
     .creativity: .magenta

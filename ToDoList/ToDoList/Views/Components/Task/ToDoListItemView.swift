@@ -5,7 +5,6 @@ struct ToDoListItemView: View {
     @StateObject var viewModel = ListItemViewViewModel()
     let listItem: ToDoListItem
     @State var fontSize: Int
-    @Binding var descriptionIsClicked: Bool
     var haptic = HapticTrigger()
     
     var body: some View {
@@ -26,9 +25,17 @@ struct ToDoListItemView: View {
                 .frame(width: 20)
             
             VStack(alignment: .leading, spacing: 4.0) {
-                // Categoria
-                if listItem.category != .none {
-                    categoryTag()
+                HStack {
+                    // Categoria
+                    if listItem.category != .none {
+                        categoryTag()
+                    }
+                    // Descrizione Icona
+                    if listItem.description.description != "" {
+                        Image(systemName: "info.circle")
+                            .font(.subheadline)
+                            .foregroundColor(.green)
+                    }
                 }
                 // Titolo
                 Text(listItem.title)
@@ -46,8 +53,8 @@ struct ToDoListItemView: View {
             VStack(alignment: .trailing) {
                 Text("\(Date(timeIntervalSince1970: listItem.dueDate).formatted(.dateTime.day(.twoDigits).month()))")
                     .font(.headline)
-                    .fontWeight(.regular)
-                    .foregroundColor(.primary)
+                    .fontWeight(.medium)
+                    .foregroundColor(.accentColor)
                 
                 Text("\(Date(timeIntervalSince1970: listItem.dueDate).formatted(date: .omitted, time: .shortened))")
                     .font(.footnote)
@@ -101,8 +108,7 @@ struct ToDoListItemView_Previews: PreviewProvider {
                         id: "IdUser",
                         description: "Lorem ipsum")),
             
-            fontSize: 25,
-            descriptionIsClicked: .constant(false)
+            fontSize: 25
         )
         .previewLayout(.sizeThatFits)
     }

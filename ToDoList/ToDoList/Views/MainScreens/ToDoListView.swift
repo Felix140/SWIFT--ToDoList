@@ -101,7 +101,10 @@ struct ToDoListView: View {
                         }
                     }) {
                         Image(systemName: "plus.circle.fill")
-                            .font(.title2)
+                            .font(.system(size: 25))
+                            .foregroundColor(Color.clear) /// Make the original icon transparent
+                            .background(Theme.redGradient.gradient) /// Apply the gradient as background
+                            .mask(Image(systemName: "plus.circle.fill").font(.system(size: 23))) /// generate a mask
                     }
                     .accessibilityLabel("Add New Task")
                 }
@@ -139,8 +142,7 @@ struct ToDoListView: View {
             Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
                 ForEach(itemsForToday) { itemToday in
                     ToDoListItemView(
-                        listItem: itemToday, fontSize: 18,
-                        descriptionIsClicked: $viewModel.isOpenDescription)
+                        listItem: itemToday, fontSize: 18)
                     .sheet(isPresented: $viewModel.isOpenDescription) {
                         NavigationStack {
                             InfoToDoItemView(descriptionText: itemToday.description.description)
@@ -159,8 +161,7 @@ struct ToDoListView: View {
             Section(header: Text("Tomorrow").font(.headline)) {
                 ForEach(itemsForTomorrow) { itemTomorrow in
                     ToDoListItemView(
-                        listItem: itemTomorrow, fontSize: 15,
-                        descriptionIsClicked: $viewModel.isOpenDescription)
+                        listItem: itemTomorrow, fontSize: 15)
                     .sheet(isPresented: $viewModel.isOpenDescription) {
                         NavigationStack {
                             InfoToDoItemView(descriptionText: itemTomorrow.description.description)
@@ -179,8 +180,7 @@ struct ToDoListView: View {
             Section(header: Text("After Tomorrow").font(.headline)) {
                 ForEach(itemsAfterTomorrow) { itemAfter in
                     ToDoListItemView(
-                        listItem: itemAfter, fontSize: 15,
-                        descriptionIsClicked: $viewModel.isOpenDescription)
+                        listItem: itemAfter, fontSize: 15)
                     .sheet(isPresented: $viewModel.isOpenDescription) {
                         NavigationStack {
                             InfoToDoItemView(descriptionText: itemAfter.description.description)
@@ -194,7 +194,10 @@ struct ToDoListView: View {
                     }
                 }
                 .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
-                    ActionSheet(title: Text("Conferma eliminazione"), message: Text("Vuoi eliminare questa task?"), buttons: [
+                    ActionSheet(title: Text("Seleziona un azione"), buttons: [
+                        .default(Text("Vedi Dettagli")) {
+                            viewModel.isOpenDescription = true
+                        },
                         .default(Text("Modifica")) {
                             viewModel.modifyTask()
                         },
@@ -216,14 +219,7 @@ struct ToDoListView: View {
                 ForEach(itemsForToday) { itemToday in
                     if !itemToday.isDone {
                         ToDoListItemView(
-                            listItem: itemToday, fontSize: 18,
-                            descriptionIsClicked: $viewModel.isOpenDescription)
-                        .swipeActions {
-                            Button("Edit") {
-                                /// modifica SE la task è stata creata da te
-                            }
-                            .tint(.blue)
-                        }
+                            listItem: itemToday, fontSize: 18)
                         .sheet(isPresented: $viewModel.isOpenDescription) {
                             NavigationStack {
                                 InfoToDoItemView(descriptionText: itemToday.description.description)
@@ -243,8 +239,7 @@ struct ToDoListView: View {
                 ForEach(itemsForToday) { itemToday in
                     if itemToday.isDone {
                         ToDoListItemView(
-                            listItem: itemToday, fontSize: 18,
-                            descriptionIsClicked: $viewModel.isOpenDescription)
+                            listItem: itemToday, fontSize: 18)
                         .sheet(isPresented: $viewModel.isOpenDescription) {
                             NavigationStack {
                                 InfoToDoItemView(descriptionText: itemToday.description.description)
