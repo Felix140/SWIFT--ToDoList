@@ -29,7 +29,7 @@ struct CustomPickerView: View {
                     underlineOffset = calculateUnderlineOffset(fullGeometry: fullGeometry)
                 }
                 .onChange(of: selectedPicker) { _ in
-                    withAnimation(.easeInOut(duration: 0.3)) {
+                    withAnimation(.easeInOut(duration: 0.2)) {
                         underlineOffset = calculateUnderlineOffset(fullGeometry: fullGeometry)
                     }
                 }

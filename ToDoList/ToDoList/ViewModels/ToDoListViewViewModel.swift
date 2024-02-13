@@ -37,6 +37,10 @@ class ToDoListViewViewModel: ObservableObject {
         }
     }
     
+    func modifyTask() {
+        // Implementare logica di modifica delle task
+    }
+    
     
 
 }

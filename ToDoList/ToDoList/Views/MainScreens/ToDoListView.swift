@@ -192,17 +192,20 @@ struct ToDoListView: View {
                         }
                     }
                 }
+                .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
+                    ActionSheet(title: Text("Conferma eliminazione"), message: Text("Vuoi eliminare questa task?"), buttons: [
+                        .default(Text("Modifica")) {
+                            viewModel.modifyTask()
+                        },
+                        .destructive(Text("Elimina")) {
+                            viewModel.confirmAndDelete()
+                        },
+                        .cancel()
+                    ])
+                }
             }
         }
         .listStyle(PlainListStyle())
-        .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
-            ActionSheet(title: Text("Conferma eliminazione"), message: Text("Vuoi eliminare questa task?"), buttons: [
-                .destructive(Text("Elimina")) {
-                    viewModel.confirmAndDelete()
-                },
-                .cancel()
-            ])
-        }
     }
     
     @ViewBuilder
