@@ -84,11 +84,13 @@ struct SharedToDoListView: View {
                     alert: $alertTest
                 )
             }
-            .swipeActions {
-                Button("Delete") {
-                    /// Elimina notifica
+            .onDelete { indexSet in
+                withAnimation {
+                    for index in indexSet {
+                        self.haptic.feedbackLight()
+                        viewModelNotification.deleteNotification(notification: viewModelNotification.notifications[index])
+                    }
                 }
-                .tint(.red)
             }
         }
         .listStyle(PlainListStyle())

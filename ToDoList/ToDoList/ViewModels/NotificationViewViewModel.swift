@@ -182,5 +182,21 @@ class NotificationViewViewModel: NewItemViewViewModel {
     }
     
     
+    func deleteNotification(notification: Notification) {
+        
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("Eliminazione notifica: utente non autorizzato")
+            return
+        }
+        
+        db.collection("notifications")
+            .document(userId)
+            .collection("requests")
+            .document(notification.id)
+            .delete()
+        
+    }
+    
+    
 }
 
