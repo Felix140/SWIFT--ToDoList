@@ -8,16 +8,6 @@ struct WidgetExamplesWidgetBundle: WidgetBundle {
     
     init() {
         FirebaseApp.configure()
-        
-//        do {
-//            
-//            try Auth.auth().useUserAccessGroup("com.felixvaldez.ToDoList")
-//            
-//        } catch {
-//            
-//            print(error.localizedDescription)
-//            print("ERRORE AUTH @main widget")
-//        }
     }
     
     var body: some Widget {

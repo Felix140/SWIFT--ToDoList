@@ -75,6 +75,7 @@ extension ToDoItemsWidget {
             .widgetBackground(Theme.redGradient.gradient)
             .padding(.horizontal, 4)
             .padding(.vertical, 14)
+            .background(Theme.redGradient.gradient)
             
             
             
