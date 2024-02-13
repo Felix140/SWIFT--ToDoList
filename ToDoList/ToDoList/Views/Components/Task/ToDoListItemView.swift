@@ -28,38 +28,37 @@ struct ToDoListItemView: View {
             VStack(alignment: .leading, spacing: 4.0) {
                 // Categoria
                 if listItem.category != .none {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 4.0)
-                            .fill(Color.blue)
-                            .frame(width: 90, height: 18)
-                        
-                        HStack {
-                            Text("#\(listItem.category.categoryName)")
-                                .font(.caption)
-                                .fontWeight(.semibold)
-                                .foregroundColor(Color.white)
-                                .padding(.leading, 5)
-                            
-                            Spacer()
-                        }
-                        .frame(width: 90, height: 18)
-                    }
+                    categoryTag()
                 }
                 // Titolo
                 Text(listItem.title)
                     .font(.system(size: CGFloat(fontSize)))
-                // Data + Ora
-                Text("\(Date(timeIntervalSince1970: listItem.dueDate).formatted(date: .abbreviated, time: .shortened))")
-                    .font(.footnote)
-                    .foregroundColor(Color(.secondaryLabel))
+                
+                // Description + Other info
+//                if listItem.description.description != "" {
+//                    viewDescription()
+//                }
+                
             }
             
             Spacer()
             
-            if listItem.description.description != "" {
-                viewDescription()
-            }
+            Divider()
+                .frame(height: 40)
             
+            
+            // Data + Ora
+            VStack(alignment: .trailing) {
+                Text("\(Date(timeIntervalSince1970: listItem.dueDate).formatted(.dateTime.day(.twoDigits).month()))")
+                    .font(.headline)
+                    .fontWeight(.regular)
+                    .foregroundColor(.primary)
+                
+                Text("\(Date(timeIntervalSince1970: listItem.dueDate).formatted(date: .omitted, time: .shortened))")
+                    .font(.footnote)
+                    .foregroundColor(Color(.secondaryLabel))
+            }
+            .padding()
         }
         .onTapGesture { /// quando clicco sull'item NON MI APRE LA MODALE, isolando l'evento
             viewModel.toggleIsDone(item: listItem)
@@ -68,43 +67,59 @@ struct ToDoListItemView: View {
     
     
     
-    @ViewBuilder
-    func viewDescription() -> some View {
-        Button(action: {
+//    @ViewBuilder
+//    func viewDescription() -> some View {
+//        Button(action: {
+////            self.haptic.feedbackLight()
+////            descriptionIsClicked = true
+//        }, label: {
+//            ZStack {
+//                RoundedRectangle(cornerRadius: 50.0)
+//                    .fill(Color.blue)
+//                    .frame(width: 90, height: 28)
+//                
+//                HStack {
+//                    Text("Details")
+//                        .font(.caption)
+//                        .fontWeight(.semibold)
+//                        .foregroundColor(Color.white)
+//                        .padding(.leading, 5)
+//                    
+//                    Image(systemName: "info.circle.fill")
+//                        .font(.caption)
+//                        .fontWeight(.semibold)
+//                        .foregroundColor(Color.white)
+//                }
+//                .frame(width: 90, height: 18)
+//            }
+//        })
+//        .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
 //            self.haptic.feedbackLight()
 //            descriptionIsClicked = true
-        }, label: {
-            ZStack {
+//        })
+//    }
+    
+    
+    @ViewBuilder
+    func categoryTag() -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 4.0)
+                .fill(Color.blue)
+                .frame(width: 90, height: 18)
+            
+            HStack {
+                Text("#\(listItem.category.categoryName)")
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                    .foregroundColor(Color.white)
+                    .padding(.leading, 5)
                 
-                if #available(iOS 17.0, *) {
-                    Circle()
-                        .stroke(Theme.redGradient.gradient, lineWidth: 3)
-                        .fill(Color.clear)
-                        .cornerRadius(100.0)
-                        .frame(width: 38)
-                } else {
-                    Circle()
-                        .fill(Theme.redGradient.gradient)
-                        .cornerRadius(100.0)
-                        .frame(width: 38)
-                }
-                
-                Image(systemName: "list.bullet")
-                    .font(.system(size: 18))
-                    .foregroundColor(Color.clear) // Make the original icon transparent
-                    .background(Theme.redGradient.gradient) // Apply the gradient as background
-                    .mask(Image(systemName: "list.bullet").font(.system(size: 18))) // gee=nerate a mask
+                Spacer()
             }
-        })
-        .frame(width: 50 / 1.1)
-        .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
-            self.haptic.feedbackLight()
-            descriptionIsClicked = true
-        })
-        
-        Spacer()
-            .frame(width: 10)
+            .frame(width: 90, height: 18)
+        }
     }
+    
 }
 
 struct ToDoListItemView_Previews: PreviewProvider {
