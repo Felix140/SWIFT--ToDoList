@@ -100,9 +100,10 @@ struct ToDoListView: View {
                             WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
                         }
                     }) {
-                        Image(systemName: "plus.circle")
+                        Image(systemName: "plus.circle.fill")
+                            .font(.title2)
                     }
-                    .accessibilityLabel("Add new Item")
+                    .accessibilityLabel("Add New Task")
                 }
                 
                 ToolbarItem(placement: .topBarLeading) {

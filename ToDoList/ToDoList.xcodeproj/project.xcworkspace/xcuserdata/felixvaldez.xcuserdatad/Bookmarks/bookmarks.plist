@@ -474,13 +474,13 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>222</string>
+					<string>223</string>
 					<key>StartingColumnNumber</key>
-					<string>75</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>221</string>
+					<string>222</string>
 					<key>Timestamp</key>
-					<string>729541412.43689</string>
+					<string>729544725.662747</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -496,12 +496,12 @@ class DoneListViewViewModel: ObservableObject {
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>e
+				<string>                                /// modifica SE la task è stata creata da te
 </string>
 				<key>leading</key>
 				<string>                        .swipeActions {
                             Button("Edit") {
-                                /// modifica SE la task è stata creata da t</string>
+</string>
 				<key>trailing</key>
 				<string>                            }
                             .tint(.blue)
@@ -521,13 +521,13 @@ class DoneListViewViewModel: ObservableObject {
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>111</string>
+					<string>112</string>
 					<key>StartingColumnNumber</key>
-					<string>52</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>110</string>
+					<string>111</string>
 					<key>Timestamp</key>
-					<string>729541439.6939321</string>
+					<string>729544725.662766</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -543,12 +543,12 @@ class DoneListViewViewModel: ObservableObject {
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>                        // Select All Items (Picker)
 </string>
 				<key>leading</key>
 				<string>                    Button(action: {
                         self.haptic.feedbackMedium()
-                        // Select All Items (Picker)</string>
+</string>
 				<key>trailing</key>
 				<string>                    }) {
                         Image(systemName: "ellipsis")

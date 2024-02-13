@@ -20,3 +20,22 @@ enum CategoryTask: String, Codable, CaseIterable {
         }
     }
 }
+
+
+
+// Dizionario che mappa le categorie ai temi
+
+let categoryThemeMap: [CategoryTask: UserTheme] = [
+    .work: .indigo,
+    .study: .seafoam,
+    .home: .orange,
+    .project: .oxblood,
+    .creativity: .magenta
+]
+
+// Funzione che restituisce il colore del tema basato sulla categoria
+func themeColorForCategory(category: CategoryTask) -> Color {
+    /// Ottieni il tema corrispondente alla categoria, altrimenti usa un tema di default
+    let theme = categoryThemeMap[category] ?? .navy /// Utilizza un tema di default se non presente
+    return theme.mainColor
+}

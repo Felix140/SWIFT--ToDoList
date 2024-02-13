@@ -34,11 +34,6 @@ struct ToDoListItemView: View {
                 Text(listItem.title)
                     .font(.system(size: CGFloat(fontSize)))
                 
-                // Description + Other info
-//                if listItem.description.description != "" {
-//                    viewDescription()
-//                }
-                
             }
             
             Spacer()
@@ -58,7 +53,7 @@ struct ToDoListItemView: View {
                     .font(.footnote)
                     .foregroundColor(Color(.secondaryLabel))
             }
-            .padding()
+            .padding(.horizontal)
         }
         .onTapGesture { /// quando clicco sull'item NON MI APRE LA MODALE, isolando l'evento
             viewModel.toggleIsDone(item: listItem)
@@ -66,45 +61,14 @@ struct ToDoListItemView: View {
     }
     
     
-    
-//    @ViewBuilder
-//    func viewDescription() -> some View {
-//        Button(action: {
-////            self.haptic.feedbackLight()
-////            descriptionIsClicked = true
-//        }, label: {
-//            ZStack {
-//                RoundedRectangle(cornerRadius: 50.0)
-//                    .fill(Color.blue)
-//                    .frame(width: 90, height: 28)
-//                
-//                HStack {
-//                    Text("Details")
-//                        .font(.caption)
-//                        .fontWeight(.semibold)
-//                        .foregroundColor(Color.white)
-//                        .padding(.leading, 5)
-//                    
-//                    Image(systemName: "info.circle.fill")
-//                        .font(.caption)
-//                        .fontWeight(.semibold)
-//                        .foregroundColor(Color.white)
-//                }
-//                .frame(width: 90, height: 18)
-//            }
-//        })
-//        .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
-//            self.haptic.feedbackLight()
-//            descriptionIsClicked = true
-//        })
-//    }
-    
-    
     @ViewBuilder
     func categoryTag() -> some View {
+        
+        let categoryColor = themeColorForCategory(category: listItem.category)
+        
         ZStack {
             RoundedRectangle(cornerRadius: 4.0)
-                .fill(Color.blue)
+                .fill(categoryColor)
                 .frame(width: 90, height: 18)
             
             HStack {
@@ -140,5 +104,6 @@ struct ToDoListItemView_Previews: PreviewProvider {
             fontSize: 25,
             descriptionIsClicked: .constant(false)
         )
+        .previewLayout(.sizeThatFits)
     }
 }
