@@ -16,6 +16,8 @@ struct SharedToDoListView: View {
         self._sendNotifications = FirestoreQuery(collectionPath: "users/\(userId)/sendNotifications/")
     }
     
+    //MARK: - Body
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -74,6 +76,7 @@ struct SharedToDoListView: View {
         
     }
     
+    @ViewBuilder
     func notifications() -> some View {
         List{
             ForEach(viewModelNotification.notifications) { notification in
@@ -99,6 +102,7 @@ struct SharedToDoListView: View {
         }
     }
     
+    @ViewBuilder
     func sendRequests() -> some View {
         List {
             ForEach(sendNotifications) { sended in
@@ -112,11 +116,10 @@ struct SharedToDoListView: View {
         .listStyle(SidebarListStyle())
     }
     
+    @ViewBuilder
     func doneListRequested() -> some View {
         List {
-            
-            
-            
+
         }
         .listStyle(SidebarListStyle())
     }

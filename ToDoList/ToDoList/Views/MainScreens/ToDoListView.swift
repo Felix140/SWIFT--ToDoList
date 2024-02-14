@@ -161,10 +161,7 @@ struct ToDoListView: View {
                     }
                 }
                 .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
-                    ActionSheet(title: Text("Seleziona un azione"), buttons: [
-                        .default(Text("Vedi Dettagli")) {
-                            viewModel.isOpenDescription = true
-                        },
+                    ActionSheet(title: Text("Seleziona un'azione"), buttons: [
                         .default(Text("Modifica")) {
                             viewModel.modifyTask()
                         },
@@ -195,7 +192,7 @@ struct ToDoListView: View {
                     }
                 }
                 .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
-                    ActionSheet(title: Text("Seleziona un azione"), buttons: [
+                    ActionSheet(title: Text("Seleziona un'azione"), buttons: [
                         .default(Text("Modifica")) {
                             viewModel.modifyTask()
                         },
@@ -225,10 +222,7 @@ struct ToDoListView: View {
                     }
                 }
                 .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
-                    ActionSheet(title: Text("Seleziona un azione"), buttons: [
-                        .default(Text("Vedi Dettagli")) {
-                            viewModel.isOpenDescription = true
-                        },
+                    ActionSheet(title: Text("Seleziona un'azione"), buttons: [
                         .default(Text("Modifica")) {
                             viewModel.modifyTask()
                         },
