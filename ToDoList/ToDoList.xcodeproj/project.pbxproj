@@ -12,7 +12,6 @@
 		491EB6402B6DB2AF00ABF3B3 /* UserTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EB63F2B6DB2AF00ABF3B3 /* UserTheme.swift */; };
 		4928F3A32B460B21008B2F94 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A22B460B21008B2F94 /* SettingsView.swift */; };
 		4928F3A72B4614B2008B2F94 /* InsertDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */; };
-		4928F3A92B461A8F008B2F94 /* InfoToDoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */; };
 		492A37EE2B632AE900702B5B /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */; };
 		492A37F02B632CA600702B5B /* ToDoItemsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941EF092B5DE8BA000A759D /* ToDoItemsWidget.swift */; };
 		492A37F12B632FAB00702B5B /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE57382B1CDB3C00E4A0E2 /* MainViewViewModel.swift */; };
@@ -111,7 +110,6 @@
 		491EB63F2B6DB2AF00ABF3B3 /* UserTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTheme.swift; sourceTree = "<group>"; };
 		4928F3A22B460B21008B2F94 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertDescriptionView.swift; sourceTree = "<group>"; };
-		4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToDoItemView.swift; sourceTree = "<group>"; };
 		492B54C42B2266DF00041139 /* ListItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemViewViewModel.swift; sourceTree = "<group>"; };
 		492E29782B1D4BE600021383 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		492E297A2B1D522900021383 /* ButtonFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFormView.swift; sourceTree = "<group>"; };
@@ -258,7 +256,6 @@
 			children = (
 				49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */,
 				49D5CE552B291824009CF312 /* ToDoListItemView.swift */,
-				4928F3A82B461A8F008B2F94 /* InfoToDoItemView.swift */,
 				49C61BC52B436B3D00F1999C /* ProgressBarView.swift */,
 				4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */,
 				497738DD2B7AC85200789847 /* CustomPickerView.swift */,
@@ -550,7 +547,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */,
-				4928F3A92B461A8F008B2F94 /* InfoToDoItemView.swift in Sources */,
 				49C61BCA2B4385C300F1999C /* TimerArc.swift in Sources */,
 				49DB4B9D2B49868000811C93 /* InfoToDoItemViewViewModel.swift in Sources */,
 				49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */,

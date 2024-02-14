@@ -7,6 +7,8 @@ struct ToDoListItemView: View {
     @State var fontSize: Int
     var haptic = HapticTrigger()
     
+    //MARK: - Body
+    
     var body: some View {
         HStack {
             Spacer()
@@ -25,18 +27,12 @@ struct ToDoListItemView: View {
                 .frame(width: 20)
             
             VStack(alignment: .leading, spacing: 4.0) {
-                HStack {
-                    // Categoria
-                    if listItem.category != .none {
-                        categoryTag()
-                    }
-                    // Descrizione Icona
-                    if listItem.description.description != "" {
-                        Image(systemName: "info.circle")
-                            .font(.subheadline)
-                            .foregroundColor(.green)
-                    }
+                
+                // CategoryTag
+                if listItem.category != .none {
+                    categoryTag()
                 }
+                
                 // Titolo
                 Text(listItem.title)
                     .font(.system(size: CGFloat(fontSize)))

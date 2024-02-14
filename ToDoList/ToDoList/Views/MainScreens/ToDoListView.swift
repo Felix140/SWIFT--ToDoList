@@ -62,6 +62,8 @@ struct ToDoListView: View {
         self._viewModel = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
     }
     
+    //MARK: - Body
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -100,11 +102,11 @@ struct ToDoListView: View {
                             WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
                         }
                     }) {
-                        Image(systemName: "plus.circle.fill")
+                        Image(systemName: "plus.app")
                             .font(.system(size: 25))
                             .foregroundColor(Color.clear) /// Make the original icon transparent
                             .background(Theme.red.gradient) /// Apply the gradient as background
-                            .mask(Image(systemName: "plus.circle.fill").font(.system(size: 23))) /// generate a mask
+                            .mask(Image(systemName: "plus.app").font(.system(size: 23))) /// generate a mask
                     }
                     .accessibilityLabel("Add New Task")
                 }
@@ -143,17 +145,18 @@ struct ToDoListView: View {
         List {
             Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
                 ForEach(itemsForToday) { itemToday in
-                    ToDoListItemView(
-                        listItem: itemToday, fontSize: 17)
-                    .sheet(isPresented: $viewModel.isOpenDescription) {
-                        NavigationStack {
-                            InfoToDoItemView(descriptionText: itemToday.description.description)
+                    VStack {
+                        ToDoListItemView(
+                            listItem: itemToday, fontSize: 17)
+                        .onLongPressGesture {
+                            withAnimation(.default) {
+                                self.haptic.feedbackLight()
+                                viewModel.promptForDeleteConfirmation(item: itemToday)
+                            }
                         }
-                    }
-                    .onLongPressGesture {
-                        withAnimation(.default) {
-                            self.haptic.feedbackLight()
-                            viewModel.promptForDeleteConfirmation(item: itemToday)
+                        
+                        if itemToday.description.description != "" {
+                            description(text: itemToday.description.description)
                         }
                     }
                 }
@@ -176,25 +179,23 @@ struct ToDoListView: View {
             
             Section(header: Text("Tomorrow").font(.headline)) {
                 ForEach(itemsForTomorrow) { itemTomorrow in
-                    ToDoListItemView(
-                        listItem: itemTomorrow, fontSize: 15)
-                    .sheet(isPresented: $viewModel.isOpenDescription) {
-                        NavigationStack {
-                            InfoToDoItemView(descriptionText: itemTomorrow.description.description)
+                    VStack {
+                        ToDoListItemView(
+                            listItem: itemTomorrow, fontSize: 15)
+                        .onLongPressGesture {
+                            withAnimation(.default) {
+                                self.haptic.feedbackLight()
+                                viewModel.promptForDeleteConfirmation(item: itemTomorrow)
+                            }
                         }
-                    }
-                    .onLongPressGesture {
-                        withAnimation(.default) {
-                            self.haptic.feedbackLight()
-                            viewModel.promptForDeleteConfirmation(item: itemTomorrow)
+                        
+                        if itemTomorrow.description.description != "" {
+                            description(text: itemTomorrow.description.description)
                         }
                     }
                 }
                 .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
                     ActionSheet(title: Text("Seleziona un azione"), buttons: [
-                        .default(Text("Vedi Dettagli")) {
-                            viewModel.isOpenDescription = true
-                        },
                         .default(Text("Modifica")) {
                             viewModel.modifyTask()
                         },
@@ -208,17 +209,18 @@ struct ToDoListView: View {
             
             Section(header: Text("After Tomorrow").font(.headline)) {
                 ForEach(itemsAfterTomorrow) { itemAfter in
-                    ToDoListItemView(
-                        listItem: itemAfter, fontSize: 15)
-                    .sheet(isPresented: $viewModel.isOpenDescription) {
-                        NavigationStack {
-                            InfoToDoItemView(descriptionText: itemAfter.description.description)
+                    VStack {
+                        ToDoListItemView(
+                            listItem: itemAfter, fontSize: 15)
+                        .onLongPressGesture {
+                            withAnimation(.default) {
+                                self.haptic.feedbackLight()
+                                viewModel.promptForDeleteConfirmation(item: itemAfter)
+                            }
                         }
-                    }
-                    .onLongPressGesture {
-                        withAnimation(.default) {
-                            self.haptic.feedbackLight()
-                            viewModel.promptForDeleteConfirmation(item: itemAfter)
+                        
+                        if itemAfter.description.description != "" {
+                            description(text: itemAfter.description.description)
                         }
                     }
                 }
@@ -246,16 +248,11 @@ struct ToDoListView: View {
     @ViewBuilder
     func filterToDoList() -> some View {
         List {
-            Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
+            Section(header: Text("Doing Today").font(.headline).foregroundColor(Color.blue)) {
                 ForEach(itemsForToday) { itemToday in
                     if !itemToday.isDone {
                         ToDoListItemView(
-                            listItem: itemToday, fontSize: 18)
-                        .sheet(isPresented: $viewModel.isOpenDescription) {
-                            NavigationStack {
-                                InfoToDoItemView(descriptionText: itemToday.description.description)
-                            }
-                        }
+                            listItem: itemToday, fontSize: 17)
                     }
                 }
             }
@@ -268,16 +265,11 @@ struct ToDoListView: View {
     @ViewBuilder
     func filterDoneList() -> some View {
         List {
-            Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
+            Section(header: Text("Done Today").font(.headline).foregroundColor(Color.blue)) {
                 ForEach(itemsForToday) { itemToday in
                     if itemToday.isDone {
                         ToDoListItemView(
-                            listItem: itemToday, fontSize: 18)
-                        .sheet(isPresented: $viewModel.isOpenDescription) {
-                            NavigationStack {
-                                InfoToDoItemView(descriptionText: itemToday.description.description)
-                            }
-                        }
+                            listItem: itemToday, fontSize: 17)
                     }
                 }
                 .onDelete { indexSet in
@@ -298,6 +290,23 @@ struct ToDoListView: View {
         }
         .listStyle(PlainListStyle())
     }
+    
+    //MARK: - Dascription
+    
+    @ViewBuilder
+    func description(text: String) -> some View {
+        DisclosureGroup("") {
+            HStack {
+                Image(systemName: "info.circle")
+                    .font(.callout)
+                Text(text)
+                    .font(.subheadline)
+                    .padding()
+            }
+            .padding(.leading, 4)
+        }
+        .font(.caption2)
+    }
 }
 
 struct ToDoListView_Previews: PreviewProvider {
@@ -305,29 +314,3 @@ struct ToDoListView_Previews: PreviewProvider {
         ToDoListView(userId: "dK6CG6dD7vUwHggvLO2jjTauQGA3")
     }
 }
-
-
-//MARK: - LongPressTaskButton
-
-//struct LongPressTaskButton: ViewModifier {
-//
-//    @State var viewModelTaskEdit: ToDoListViewViewModel
-//
-//    func body(content: Content) -> some View {
-//        content
-//            .actionSheet(isPresented: $viewModelTaskEdit.showingDeleteConfirmation) {
-//                ActionSheet(title: Text("Seleziona un azione"), buttons: [
-//                    .default(Text("Vedi Dettagli")) {
-//                        viewModelTaskEdit.isOpenDescription = true
-//                    },
-//                    .default(Text("Modifica")) {
-//                        viewModelTaskEdit.modifyTask()
-//                    },
-//                    .destructive(Text("Elimina")) {
-//                        viewModelTaskEdit.confirmAndDelete()
-//                    },
-//                    .cancel()
-//                ])
-//            }
-//    }
-//}
