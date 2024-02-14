@@ -103,7 +103,7 @@ struct ToDoListView: View {
                         Image(systemName: "plus.circle.fill")
                             .font(.system(size: 25))
                             .foregroundColor(Color.clear) /// Make the original icon transparent
-                            .background(Theme.redGradient.gradient) /// Apply the gradient as background
+                            .background(Theme.red.gradient) /// Apply the gradient as background
                             .mask(Image(systemName: "plus.circle.fill").font(.system(size: 23))) /// generate a mask
                     }
                     .accessibilityLabel("Add New Task")
@@ -135,6 +135,8 @@ struct ToDoListView: View {
         }
     }
     
+    //MARK: - TaskListAll
+    
     @ViewBuilder
     func taskListAll() -> some View {
         
@@ -142,7 +144,7 @@ struct ToDoListView: View {
             Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
                 ForEach(itemsForToday) { itemToday in
                     ToDoListItemView(
-                        listItem: itemToday, fontSize: 18)
+                        listItem: itemToday, fontSize: 17)
                     .sheet(isPresented: $viewModel.isOpenDescription) {
                         NavigationStack {
                             InfoToDoItemView(descriptionText: itemToday.description.description)
@@ -154,6 +156,20 @@ struct ToDoListView: View {
                             viewModel.promptForDeleteConfirmation(item: itemToday)
                         }
                     }
+                }
+                .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
+                    ActionSheet(title: Text("Seleziona un azione"), buttons: [
+                        .default(Text("Vedi Dettagli")) {
+                            viewModel.isOpenDescription = true
+                        },
+                        .default(Text("Modifica")) {
+                            viewModel.modifyTask()
+                        },
+                        .destructive(Text("Elimina")) {
+                            viewModel.confirmAndDelete()
+                        },
+                        .cancel()
+                    ])
                 }
             }
             
@@ -173,7 +189,20 @@ struct ToDoListView: View {
                             viewModel.promptForDeleteConfirmation(item: itemTomorrow)
                         }
                     }
-                    
+                }
+                .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
+                    ActionSheet(title: Text("Seleziona un azione"), buttons: [
+                        .default(Text("Vedi Dettagli")) {
+                            viewModel.isOpenDescription = true
+                        },
+                        .default(Text("Modifica")) {
+                            viewModel.modifyTask()
+                        },
+                        .destructive(Text("Elimina")) {
+                            viewModel.confirmAndDelete()
+                        },
+                        .cancel()
+                    ])
                 }
             }
             
@@ -212,6 +241,8 @@ struct ToDoListView: View {
         .listStyle(PlainListStyle())
     }
     
+    //MARK: - Filter_ToDo_Today
+    
     @ViewBuilder
     func filterToDoList() -> some View {
         List {
@@ -231,6 +262,8 @@ struct ToDoListView: View {
         }
         .listStyle(PlainListStyle())
     }
+    
+    //MARK: - Filter_Done_Today
     
     @ViewBuilder
     func filterDoneList() -> some View {
@@ -272,3 +305,29 @@ struct ToDoListView_Previews: PreviewProvider {
         ToDoListView(userId: "dK6CG6dD7vUwHggvLO2jjTauQGA3")
     }
 }
+
+
+//MARK: - LongPressTaskButton
+
+//struct LongPressTaskButton: ViewModifier {
+//
+//    @State var viewModelTaskEdit: ToDoListViewViewModel
+//
+//    func body(content: Content) -> some View {
+//        content
+//            .actionSheet(isPresented: $viewModelTaskEdit.showingDeleteConfirmation) {
+//                ActionSheet(title: Text("Seleziona un azione"), buttons: [
+//                    .default(Text("Vedi Dettagli")) {
+//                        viewModelTaskEdit.isOpenDescription = true
+//                    },
+//                    .default(Text("Modifica")) {
+//                        viewModelTaskEdit.modifyTask()
+//                    },
+//                    .destructive(Text("Elimina")) {
+//                        viewModelTaskEdit.confirmAndDelete()
+//                    },
+//                    .cancel()
+//                ])
+//            }
+//    }
+//}

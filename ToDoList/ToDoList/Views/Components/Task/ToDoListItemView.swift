@@ -50,23 +50,15 @@ struct ToDoListItemView: View {
             
             
             // Data + Ora
-            VStack(alignment: .trailing) {
-                Text("\(Date(timeIntervalSince1970: listItem.dueDate).formatted(.dateTime.day(.twoDigits).month()))")
-                    .font(.headline)
-                    .fontWeight(.medium)
-                    .foregroundColor(.accentColor)
-                
-                Text("\(Date(timeIntervalSince1970: listItem.dueDate).formatted(date: .omitted, time: .shortened))")
-                    .font(.footnote)
-                    .foregroundColor(Color(.secondaryLabel))
-            }
-            .padding(.horizontal)
+            dateAndTime()
+
         }
         .onTapGesture { /// quando clicco sull'item NON MI APRE LA MODALE, isolando l'evento
             viewModel.toggleIsDone(item: listItem)
         }
     }
     
+    //MARK: - Category_Tag
     
     @ViewBuilder
     func categoryTag() -> some View {
@@ -89,6 +81,23 @@ struct ToDoListItemView: View {
             }
             .frame(width: 90, height: 18)
         }
+    }
+    
+    //MARK: - Date_and_time
+    
+    @ViewBuilder
+    func dateAndTime() -> some View {
+        VStack(alignment: .trailing) {
+            Text("\(Date(timeIntervalSince1970: listItem.dueDate).formatted(.dateTime.day(.twoDigits).month()))")
+                .font(.headline)
+                .fontWeight(.medium)
+                .foregroundColor(.accentColor)
+            
+            Text("\(Date(timeIntervalSince1970: listItem.dueDate).formatted(date: .omitted, time: .shortened))")
+                .font(.footnote)
+                .foregroundColor(Color(.secondaryLabel))
+        }
+        .padding(.horizontal)
     }
     
 }
