@@ -52,6 +52,11 @@ extension ToDoItemsWidget {
                         .fontWeight(.semibold)
                     
                     Spacer()
+                    
+                    Text("\(Date().formatted(.dateTime.day(.twoDigits).month()))")
+                        .font(.title3)
+                        .fontWeight(.medium)
+                        .padding(.trailing)
                 }
                 
                 
@@ -59,8 +64,8 @@ extension ToDoItemsWidget {
                 ForEach(entry.documentNames, id: \.self) { documentName in
                     HStack {
                         Spacer()
-                            .frame(width: 10)
-                        Image(systemName: "circle.bottomrighthalf.checkered")
+                            .frame(width: 8)
+                        Image(systemName: "circle.righthalf.filled")
                         Spacer()
                             .frame(width: 18)
                         Text(documentName)
