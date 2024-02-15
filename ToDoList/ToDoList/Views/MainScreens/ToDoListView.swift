@@ -9,8 +9,10 @@ struct ToDoListView: View {
     /// passargli il parametro dello userId, inizializzato a sua volta nell'init() di "ToDoListViewViewModel()"
     @StateObject var viewModel: ToDoListViewViewModel
     @FirestoreQuery var fetchedItems: [ToDoListItem]
-    private var haptic = HapticTrigger()
     @State private var selectedPicker = 0
+    @State private var itemToEdit: ToDoListItem?
+    
+    private var haptic = HapticTrigger()
     
     // TODAY items
     private var itemsForToday: [ToDoListItem] {
@@ -151,19 +153,27 @@ struct ToDoListView: View {
                         .onLongPressGesture {
                             withAnimation(.default) {
                                 self.haptic.feedbackLight()
-                                viewModel.promptForDeleteConfirmation(item: itemToday)
+                                self.itemToEdit = itemToday /// Aggiorna itemToEdit con l'elemento corrente
+                                viewModel.onOpenEditButtons(item: itemToday)
                             }
                         }
-                        
                         if itemToday.description.description != "" {
                             description(text: itemToday.description.description)
+                        }
+                    }
+                    .sheet(isPresented: $viewModel.isPresentingSetView) {
+                        /// Aggiornare ItemToEdit
+                        if let itemToEdit = itemToEdit {
+                            NavigationStack {
+                                EditItemTaskView(toggleView: $viewModel.isPresentingSetView, itemToSet: .constant(itemToEdit))
+                            }
                         }
                     }
                 }
                 .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
                     ActionSheet(title: Text("Seleziona un'azione"), buttons: [
                         .default(Text("Modifica")) {
-                            viewModel.modifyTask()
+                            viewModel.isPresentingSetView = true
                         },
                         .destructive(Text("Elimina")) {
                             viewModel.confirmAndDelete()
@@ -182,19 +192,28 @@ struct ToDoListView: View {
                         .onLongPressGesture {
                             withAnimation(.default) {
                                 self.haptic.feedbackLight()
-                                viewModel.promptForDeleteConfirmation(item: itemTomorrow)
+                                self.itemToEdit = itemTomorrow /// Aggiorna itemToEdit con l'elemento corrente
+                                viewModel.onOpenEditButtons(item: itemTomorrow)
                             }
                         }
-                        
                         if itemTomorrow.description.description != "" {
                             description(text: itemTomorrow.description.description)
+                        }
+                    }
+                    .sheet(isPresented: $viewModel.isPresentingSetView) {
+                        if let itemToEdit = itemToEdit {
+                            NavigationStack {
+                                EditItemTaskView(
+                                    toggleView: $viewModel.isPresentingSetView, itemToSet: .constant(itemToEdit)
+                                )
+                            }
                         }
                     }
                 }
                 .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
                     ActionSheet(title: Text("Seleziona un'azione"), buttons: [
                         .default(Text("Modifica")) {
-                            viewModel.modifyTask()
+                            viewModel.isPresentingSetView = true
                         },
                         .destructive(Text("Elimina")) {
                             viewModel.confirmAndDelete()
@@ -212,19 +231,28 @@ struct ToDoListView: View {
                         .onLongPressGesture {
                             withAnimation(.default) {
                                 self.haptic.feedbackLight()
-                                viewModel.promptForDeleteConfirmation(item: itemAfter)
+                                self.itemToEdit = itemAfter /// Aggiorna itemToEdit con l'elemento corrente
+                                viewModel.onOpenEditButtons(item: itemAfter)
                             }
                         }
-                        
                         if itemAfter.description.description != "" {
                             description(text: itemAfter.description.description)
+                        }
+                    }
+                    .sheet(isPresented: $viewModel.isPresentingSetView) {
+                        if let itemToEdit = itemToEdit {
+                            NavigationStack {
+                                EditItemTaskView(
+                                    toggleView: $viewModel.isPresentingSetView, itemToSet: .constant(itemToEdit)
+                                )
+                            }
                         }
                     }
                 }
                 .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
                     ActionSheet(title: Text("Seleziona un'azione"), buttons: [
                         .default(Text("Modifica")) {
-                            viewModel.modifyTask()
+                            viewModel.isPresentingSetView = true
                         },
                         .destructive(Text("Elimina")) {
                             viewModel.confirmAndDelete()
@@ -268,7 +296,6 @@ struct ToDoListView: View {
                 }
                 .onDelete { indexSet in
                     withAnimation {
-                        // Esegui l'eliminazione degli elementi qui, avvolta da withAnimation
                         for index in indexSet {
                             self.haptic.feedbackLight()
                             viewModel.delete(idItem: itemsForToday[index].id)

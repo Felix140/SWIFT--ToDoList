@@ -4,7 +4,7 @@ import FirebaseFirestore
 class ToDoListViewViewModel: ObservableObject {
     
     @Published var isPresentingView: Bool = false
-    @Published var isOpenDescription: Bool = false
+    @Published var isPresentingSetView: Bool = false
     @Published var showingDeleteConfirmation = false
     @Published var itemToDelete: ToDoListItem?
     private var userId: String
@@ -14,7 +14,7 @@ class ToDoListViewViewModel: ObservableObject {
         self.userId = userId
     }
     
-    func promptForDeleteConfirmation(item: ToDoListItem) {
+    func onOpenEditButtons(item: ToDoListItem) {
         itemToDelete = item
         showingDeleteConfirmation = true
     }

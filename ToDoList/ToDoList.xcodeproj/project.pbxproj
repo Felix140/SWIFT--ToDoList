@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4916EA942B403CA90031B40C /* PomodoroTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916EA932B403CA90031B40C /* PomodoroTimerView.swift */; };
+		491839182B7EB2E00054A802 /* EditItemTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491839172B7EB2E00054A802 /* EditItemTaskView.swift */; };
 		491EB63E2B6DB04300ABF3B3 /* EditPrivateInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EB63D2B6DB04300ABF3B3 /* EditPrivateInfoView.swift */; };
 		491EB6402B6DB2AF00ABF3B3 /* UserTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EB63F2B6DB2AF00ABF3B3 /* UserTheme.swift */; };
 		4928F3A32B460B21008B2F94 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A22B460B21008B2F94 /* SettingsView.swift */; };
@@ -106,6 +107,7 @@
 
 /* Begin PBXFileReference section */
 		4916EA932B403CA90031B40C /* PomodoroTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerView.swift; sourceTree = "<group>"; };
+		491839172B7EB2E00054A802 /* EditItemTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemTaskView.swift; sourceTree = "<group>"; };
 		491EB63D2B6DB04300ABF3B3 /* EditPrivateInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPrivateInfoView.swift; sourceTree = "<group>"; };
 		491EB63F2B6DB2AF00ABF3B3 /* UserTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTheme.swift; sourceTree = "<group>"; };
 		4928F3A22B460B21008B2F94 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */,
+				491839172B7EB2E00054A802 /* EditItemTaskView.swift */,
 				49D5CE552B291824009CF312 /* ToDoListItemView.swift */,
 				49C61BC52B436B3D00F1999C /* ProgressBarView.swift */,
 				4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */,
@@ -573,6 +576,7 @@
 				49C61BC62B436B3D00F1999C /* ProgressBarView.swift in Sources */,
 				49F0D3762B5569F30053206A /* ContactItemView.swift in Sources */,
 				49DB4B9B2B49866300811C93 /* InfoToDoItem.swift in Sources */,
+				491839182B7EB2E00054A802 /* EditItemTaskView.swift in Sources */,
 				491EB63E2B6DB04300ABF3B3 /* EditPrivateInfoView.swift in Sources */,
 				4928F3A32B460B21008B2F94 /* SettingsView.swift in Sources */,
 				4941EF1B2B5DE9E9000A759D /* Shared.swift in Sources */,
