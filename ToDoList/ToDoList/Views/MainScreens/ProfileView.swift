@@ -17,9 +17,9 @@ struct ProfileView: View {
                 
                 HStack {
                     ZStack {
-                        RoundedRectangle(cornerRadius: 28)
-                            .fill(Theme.redGradient.gradient)
-                            .frame(width: 150, height: 150)
+//                        RoundedRectangle(cornerRadius: 28)
+//                            .fill(Theme.redGradient.gradient)
+//                            .frame(width: 150, height: 150)
                         Circle()
                             .strokeBorder(lineWidth: 10)
                             .frame(width: 120, height: 120)
@@ -31,9 +31,9 @@ struct ProfileView: View {
                     }
                     
                     ZStack {
-                        RoundedRectangle(cornerRadius: 28)
-                            .fill(Theme.redGradient.gradient)
-                            .frame(width: 150, height: 150)
+//                        RoundedRectangle(cornerRadius: 28)
+//                            .fill(Theme.redGradient.gradient)
+//                            .frame(width: 150, height: 150)
                         Circle()
                             .strokeBorder(lineWidth: 10)
                             .frame(width: 120, height: 120)
@@ -49,9 +49,9 @@ struct ProfileView: View {
                 
                 HStack {
                     ZStack {
-                        RoundedRectangle(cornerRadius: 28)
-                            .fill(Theme.redGradient.gradient)
-                            .frame(width: 150, height: 150)
+//                        RoundedRectangle(cornerRadius: 28)
+//                            .fill(Theme.redGradient.gradient)
+//                            .frame(width: 150, height: 150)
                         Circle()
                             .strokeBorder(lineWidth: 10)
                             .frame(width: 120, height: 120)
@@ -63,9 +63,9 @@ struct ProfileView: View {
                     }
                     
                     ZStack {
-                        RoundedRectangle(cornerRadius: 28)
-                            .fill(Theme.redGradient.gradient)
-                            .frame(width: 150, height: 150)
+//                        RoundedRectangle(cornerRadius: 28)
+//                            .fill(Theme.redGradient.gradient)
+//                            .frame(width: 150, height: 150)
                         Circle()
                             .strokeBorder(lineWidth: 10)
                             .frame(width: 120, height: 120)

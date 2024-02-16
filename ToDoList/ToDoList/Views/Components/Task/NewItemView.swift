@@ -83,6 +83,7 @@ struct NewItemView: View {
                         viewModel.showAlert = true
                     }
                 }
+                .foregroundColor(.green)
             }
         }
     }
