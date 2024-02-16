@@ -43,6 +43,7 @@ struct ToDoListView: View {
             let itemDate = Date(timeIntervalSince1970: item.dueDate)
             return itemDate >= dayAfterTomorrow
         }
+        .sorted(by: { $0.dueDate < $1.dueDate }) /// Li ordino dal giorno più recente al più lontano
     }
     
     // PROGRESSBAR value items
