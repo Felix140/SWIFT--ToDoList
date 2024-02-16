@@ -71,6 +71,4 @@ class NewItemViewViewModel: ObservableObject {
         
         return true
     }
-    
-    
 }

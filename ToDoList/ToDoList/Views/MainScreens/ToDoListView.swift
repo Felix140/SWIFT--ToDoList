@@ -170,7 +170,7 @@ struct ToDoListView: View {
                                 EditItemTaskView(
                                     toggleView: $viewModel.isPresentingSetView,
                                     itemToSet: .constant(itemToEdit),
-                                    userId: currentUserId
+                                    viewModelEdit: viewModel
                                 )
                             }
                         }
@@ -212,7 +212,7 @@ struct ToDoListView: View {
                                 EditItemTaskView(
                                     toggleView: $viewModel.isPresentingSetView, 
                                     itemToSet: .constant(itemToEdit),
-                                    userId: currentUserId
+                                    viewModelEdit: viewModel
                                 )
                             }
                         }
@@ -253,7 +253,7 @@ struct ToDoListView: View {
                                 EditItemTaskView(
                                     toggleView: $viewModel.isPresentingSetView, 
                                     itemToSet: .constant(itemToEdit),
-                                    userId: currentUserId
+                                    viewModelEdit: viewModel
                                 )
                             }
                         }

@@ -3,7 +3,7 @@ import SwiftUI
 struct EditItemTaskView: View {
     
     @StateObject var viewModel = NewItemViewViewModel()
-    @StateObject var viewModelEdit: ToDoListViewViewModel
+    @ObservedObject var viewModelEdit: ToDoListViewViewModel /// ObservedObject per prendere la viewModel dal padre
     @Binding var toggleView: Bool
     @State private var showDescriptionView = false
     var haptic = HapticTrigger()
@@ -16,14 +16,15 @@ struct EditItemTaskView: View {
     @State private var category: CategoryTask = .none
     
     /// Inizializza le variabili di stato con i valori dell'item da modificare
-    init(toggleView: Binding<Bool>, itemToSet: Binding<ToDoListItem>, userId: String) {
+    init(toggleView: Binding<Bool>, itemToSet: Binding<ToDoListItem>, viewModelEdit: ToDoListViewViewModel) {
         self._toggleView = toggleView
         self._itemToSet = itemToSet
         self._title = State(initialValue: itemToSet.wrappedValue.title)
         self._dueDate = State(initialValue: Date(timeIntervalSince1970: itemToSet.wrappedValue.dueDate))
         self._description = State(initialValue: itemToSet.wrappedValue.description.description)
         self._category = State(initialValue: itemToSet.wrappedValue.category)
-        self._viewModelEdit = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
+        
+        self.viewModelEdit = viewModelEdit
     }
     
     var body: some View {
@@ -94,16 +95,19 @@ struct EditItemTaskView: View {
             ToolbarItem(placement: .confirmationAction) {
                 Button("Update") {
                     self.haptic.feedbackMedium()
-                    viewModelEdit.onEditTask(item: itemToSet)
-                    toggleView = false
+                       let updatedItem = ToDoListItem(
+                           id: itemToSet.id,
+                           title: title,
+                           dueDate: dueDate.timeIntervalSince1970,
+                           createdDate: itemToSet.createdDate, // Usa l'originale createdDate
+                           isDone: itemToSet.isDone, // Mantieni lo stato originale o permetti all'utente di modificarlo
+                           category: category,
+                           description: InfoToDoItem(id: itemToSet.description.id, description: description) // Assicurati che questa conversione sia corretta
+                       )
+                       viewModelEdit.updateTask(item: updatedItem)
+                       toggleView = false
                 }
             }
-        }
-        .onAppear {
-            // Aggiorna le variabili di stato con i valori correnti di itemToSet
-            self.title = self.itemToSet.title
-            self.dueDate = Date(timeIntervalSince1970: self.itemToSet.dueDate)
-            self.description = self.itemToSet.description.description
         }
     }
     

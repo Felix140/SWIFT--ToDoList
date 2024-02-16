@@ -55,7 +55,6 @@
 		49D5307F2B683D6100C9206E /* UserContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5307E2B683D6100C9206E /* UserContact.swift */; };
 		49D5CE562B291824009CF312 /* ToDoListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D5CE552B291824009CF312 /* ToDoListItemView.swift */; };
 		49DB4B9B2B49866300811C93 /* InfoToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */; };
-		49DB4B9D2B49868000811C93 /* InfoToDoItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DB4B9C2B49868000811C93 /* InfoToDoItemViewViewModel.swift */; };
 		49DDA1802B44BF7B009218C4 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DDA17F2B44BF7B009218C4 /* Theme.swift */; };
 		49E11F922B1FC989009E72E8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E11F912B1FC989009E72E8 /* Extensions.swift */; };
 		49E946882B50848700148273 /* SharedToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E946872B50848700148273 /* SharedToDoListView.swift */; };
@@ -149,7 +148,6 @@
 		49D5307E2B683D6100C9206E /* UserContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContact.swift; sourceTree = "<group>"; };
 		49D5CE552B291824009CF312 /* ToDoListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListItemView.swift; sourceTree = "<group>"; };
 		49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToDoItem.swift; sourceTree = "<group>"; };
-		49DB4B9C2B49868000811C93 /* InfoToDoItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoToDoItemViewViewModel.swift; sourceTree = "<group>"; };
 		49DDA17F2B44BF7B009218C4 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		49E11F912B1FC989009E72E8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		49E946872B50848700148273 /* SharedToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedToDoListView.swift; sourceTree = "<group>"; };
@@ -386,7 +384,6 @@
 				49FE573E2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift */,
 				49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */,
 				49FE57452B1CDBED00E4A0E2 /* RegisterViewViewModel.swift */,
-				49DB4B9C2B49868000811C93 /* InfoToDoItemViewViewModel.swift */,
 				49F0D3732B5567860053206A /* ContactsViewViewModel.swift */,
 			);
 			path = ViewModels;
@@ -551,7 +548,6 @@
 			files = (
 				4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */,
 				49C61BCA2B4385C300F1999C /* TimerArc.swift in Sources */,
-				49DB4B9D2B49868000811C93 /* InfoToDoItemViewViewModel.swift in Sources */,
 				49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */,
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
 				49B584F62B52178800F3D004 /* RequestNewItemView.swift in Sources */,

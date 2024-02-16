@@ -36,35 +36,26 @@ class ToDoListViewViewModel: ObservableObject {
             .delete() /// DELETE ITEM
     }
     
-    func onEditTask(item: ToDoListItem) {
+    
+    func updateTask(item: ToDoListItem) {
         
-        // Creazione del dizionario da mandare
-        let setItem: [String: Any] = [
+        let documentRef = db.collection("users").document(userId).collection("todos").document(item.id)
+
+        documentRef.setData([
             "id": item.id,
             "title": item.title,
             "dueDate": item.dueDate,
             "createdDate": item.createdDate,
             "isDone": item.isDone,
-            "category": item.category,
-            "description": item.description 
-        ]
-        
-        /// Salvare il Modello nel DB con merge: true per aggiornare i campi esistenti
-        db.collection("users")
-            .document(userId)
-            .collection("todos")
-            .document(item.id)
-            .setData(setItem, merge: true) { error in
-                if let error = error {
-                    print("Errore nell'aggiornamento del documento: \(error)")
-                } else {
-                    print("Documento aggiornato con successo")
-                }
+            "category": item.category.rawValue,
+            "description": item.description.asDictionary() // Converto in Dizionario
+        ], merge: true) { error in
+            if let error = error {
+                print("Errore nell'aggiornamento del task: \(error)")
+            } else {
+                print("Task aggiornato con successo.")
             }
-        
-        print("Edit Item Saved")
+        }
     }
-    
-    
-    
+
 }
