@@ -3,23 +3,27 @@ import SwiftUI
 struct EditItemTaskView: View {
     
     @StateObject var viewModel = NewItemViewViewModel()
+    @StateObject var viewModelEdit: ToDoListViewViewModel
     @Binding var toggleView: Bool
     @State private var showDescriptionView = false
     var haptic = HapticTrigger()
     @Binding var itemToSet: ToDoListItem
     
-    // Variabili di stato locali per modificare i valori
+    /// Variabili di stato locali per modificare i valori
     @State private var title: String = ""
     @State private var dueDate: Date = Date()
     @State private var description: String = ""
+    @State private var category: CategoryTask = .none
     
-    // Inizializza le variabili di stato con i valori dell'item da modificare
-    init(toggleView: Binding<Bool>, itemToSet: Binding<ToDoListItem>) {
+    /// Inizializza le variabili di stato con i valori dell'item da modificare
+    init(toggleView: Binding<Bool>, itemToSet: Binding<ToDoListItem>, userId: String) {
         self._toggleView = toggleView
         self._itemToSet = itemToSet
         self._title = State(initialValue: itemToSet.wrappedValue.title)
         self._dueDate = State(initialValue: Date(timeIntervalSince1970: itemToSet.wrappedValue.dueDate))
         self._description = State(initialValue: itemToSet.wrappedValue.description.description)
+        self._category = State(initialValue: itemToSet.wrappedValue.category)
+        self._viewModelEdit = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
     }
     
     var body: some View {
@@ -60,14 +64,14 @@ struct EditItemTaskView: View {
                 .frame(maxWidth: .infinity)
                 
                 
-                //                Section(header: Text("Seleziona una categoria")) {
-                //                    Picker("Categoria", selection: $itemToSet.selectedCategory) {
-                //                        ForEach(viewModel.categories, id: \.self) { category in
-                //                            Text(category.categoryName).tag(category)
-                //                        }
-                //                    }
-                //                    .pickerStyle(MenuPickerStyle())
-                //                }
+                Section(header: Text("Seleziona una categoria")) {
+                    Picker("Categoria", selection: $category) {
+                        ForEach(viewModel.categories, id: \.self) { category in
+                            Text(category.categoryName).tag(category)
+                        }
+                    }
+                    .pickerStyle(MenuPickerStyle())
+                }
             }
             .frame(height: 440)
             .scrollDisabled(true)
@@ -89,14 +93,9 @@ struct EditItemTaskView: View {
             
             ToolbarItem(placement: .confirmationAction) {
                 Button("Update") {
-                    if viewModel.canSave() {
-                        self.haptic.feedbackMedium()
-                        viewModel.save()
-                        toggleView = false
-                    } else {
-                        self.haptic.feedbackHeavy()
-                        viewModel.showAlert = true
-                    }
+                    self.haptic.feedbackMedium()
+                    viewModelEdit.onEditTask(item: itemToSet)
+                    toggleView = false
                 }
             }
         }

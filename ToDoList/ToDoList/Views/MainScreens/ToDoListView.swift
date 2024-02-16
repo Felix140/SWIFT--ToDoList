@@ -10,9 +10,10 @@ struct ToDoListView: View {
     @StateObject var viewModel: ToDoListViewViewModel
     @FirestoreQuery var fetchedItems: [ToDoListItem]
     @State private var selectedPicker = 0
-    @State private var itemToEdit: ToDoListItem?
+    @State private var itemToEdit: ToDoListItem? /// qui vado a storare la task premuta per renderla accessibile
     
     private var haptic = HapticTrigger()
+    @State private var currentUserId: String = ""
     
     // TODAY items
     private var itemsForToday: [ToDoListItem] {
@@ -54,14 +55,15 @@ struct ToDoListView: View {
         }
     }
     
+    //MARK: - INIT
+    
     init(userId: String) {
-        
         /// users/<id>/todos/<entries>
         self._fetchedItems = FirestoreQuery(
             collectionPath: "users/\(userId)/todos/") // GET query
-        
         /// inizializzo qui sotto viewModel come StateObject
         self._viewModel = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
+        self._currentUserId = State(wrappedValue: userId)
     }
     
     //MARK: - Body
@@ -165,7 +167,11 @@ struct ToDoListView: View {
                         /// Aggiornare ItemToEdit
                         if let itemToEdit = itemToEdit {
                             NavigationStack {
-                                EditItemTaskView(toggleView: $viewModel.isPresentingSetView, itemToSet: .constant(itemToEdit))
+                                EditItemTaskView(
+                                    toggleView: $viewModel.isPresentingSetView,
+                                    itemToSet: .constant(itemToEdit),
+                                    userId: currentUserId
+                                )
                             }
                         }
                     }
@@ -204,7 +210,9 @@ struct ToDoListView: View {
                         if let itemToEdit = itemToEdit {
                             NavigationStack {
                                 EditItemTaskView(
-                                    toggleView: $viewModel.isPresentingSetView, itemToSet: .constant(itemToEdit)
+                                    toggleView: $viewModel.isPresentingSetView, 
+                                    itemToSet: .constant(itemToEdit),
+                                    userId: currentUserId
                                 )
                             }
                         }
@@ -243,7 +251,9 @@ struct ToDoListView: View {
                         if let itemToEdit = itemToEdit {
                             NavigationStack {
                                 EditItemTaskView(
-                                    toggleView: $viewModel.isPresentingSetView, itemToSet: .constant(itemToEdit)
+                                    toggleView: $viewModel.isPresentingSetView, 
+                                    itemToSet: .constant(itemToEdit),
+                                    userId: currentUserId
                                 )
                             }
                         }

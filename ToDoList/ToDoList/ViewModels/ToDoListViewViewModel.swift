@@ -19,6 +19,14 @@ class ToDoListViewViewModel: ObservableObject {
         showingDeleteConfirmation = true
     }
     
+    func confirmAndDelete() {
+        if let item = itemToDelete {
+            delete(idItem: item.id)
+            itemToDelete = nil
+            showingDeleteConfirmation = false
+        }
+    }
+    
     func delete(idItem: String) {
         
         db.collection("users") /// indicate COLLECTION
@@ -28,19 +36,35 @@ class ToDoListViewViewModel: ObservableObject {
             .delete() /// DELETE ITEM
     }
     
-    
-    func confirmAndDelete() {
-        if let item = itemToDelete {
-            delete(idItem: item.id)
-            itemToDelete = nil
-            showingDeleteConfirmation = false
-        }
+    func onEditTask(item: ToDoListItem) {
+        
+        // Creazione del dizionario da mandare
+        let setItem: [String: Any] = [
+            "id": item.id,
+            "title": item.title,
+            "dueDate": item.dueDate,
+            "createdDate": item.createdDate,
+            "isDone": item.isDone,
+            "category": item.category,
+            "description": item.description 
+        ]
+        
+        /// Salvare il Modello nel DB con merge: true per aggiornare i campi esistenti
+        db.collection("users")
+            .document(userId)
+            .collection("todos")
+            .document(item.id)
+            .setData(setItem, merge: true) { error in
+                if let error = error {
+                    print("Errore nell'aggiornamento del documento: \(error)")
+                } else {
+                    print("Documento aggiornato con successo")
+                }
+            }
+        
+        print("Edit Item Saved")
     }
     
-    func modifyTask() {
-        // Implementare logica di modifica delle task
-    }
     
     
-
 }
