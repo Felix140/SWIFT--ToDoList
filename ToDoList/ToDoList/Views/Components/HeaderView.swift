@@ -9,16 +9,16 @@ struct HeaderView: View {
     
     var body: some View {
             VStack {
-                Image("logo")
+                Image("logo_gradientRed")
                     .resizable()
-                    .frame(width: 150, height: 100)
+                    .frame(width: 140, height: 100)
                     .padding()
-                
+                    
                 HStack {
                     Text(subTitle)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.primary)
                     Image(systemName: icon)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.primary)
                 }
             }
             .frame(width: UIScreen.main.bounds.width * 3, height: 600)

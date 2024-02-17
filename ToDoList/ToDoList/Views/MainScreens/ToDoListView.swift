@@ -24,6 +24,7 @@ struct ToDoListView: View {
             }
             return Calendar.current.isDateInToday(itemDate)
         }
+        .sorted(by: { $0.dueDate < $1.dueDate }) /// ordina per orario
     }
     
     // TOMORROW items
@@ -32,6 +33,7 @@ struct ToDoListView: View {
             let itemDate = Date(timeIntervalSince1970: item.dueDate) /// converto to Date
             return Calendar.current.isDateInTomorrow(itemDate)
         }
+        .sorted(by: { $0.dueDate < $1.dueDate }) /// ordina per orario
     }
     
     // AFTER TOMORROW items
