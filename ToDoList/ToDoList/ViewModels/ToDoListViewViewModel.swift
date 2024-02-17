@@ -36,6 +36,12 @@ class ToDoListViewViewModel: ObservableObject {
             .delete() /// DELETE ITEM
     }
     
+    func deleteByGroup(idItems: [String]) {
+        idItems.forEach { id in
+            delete(idItem: id)
+        }
+    }
+    
     
     func updateTask(item: ToDoListItem) {
         

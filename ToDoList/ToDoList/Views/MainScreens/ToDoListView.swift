@@ -14,6 +14,8 @@ struct ToDoListView: View {
     
     private var haptic = HapticTrigger()
     @State private var currentUserId: String = ""
+    @State private var selectedTaskIds: Set<String> = []
+    @State private var isSelectingItems: Bool = false
     
     // TODAY items
     private var itemsForToday: [ToDoListItem] {
@@ -119,13 +121,33 @@ struct ToDoListView: View {
                 }
                 
                 ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {
-                        self.haptic.feedbackMedium()
-                        // Select All Items (Picker)
-                    }) {
-                        Image(systemName: "ellipsis")
+                    Menu {
+                        Button("Delete Selection") {
+                            isSelectingItems = true
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
                     }
-                    .accessibilityLabel("Edit Item")
+                }
+                
+                if isSelectingItems {
+                    ToolbarItem(placement: .principal)  {
+                        HStack(spacing: 10) {
+                            
+                            Button("Cancel") {
+                                isSelectingItems = false
+                                selectedTaskIds.removeAll()
+                            }
+                            
+                            Button("Delete", action: {
+                                viewModel.deleteByGroup(idItems: Array(selectedTaskIds))
+                                isSelectingItems = false
+                                selectedTaskIds.removeAll()
+                            })
+                            .foregroundStyle(Color.red)
+                            .disabled(selectedTaskIds.isEmpty)
+                        }
+                    }
                 }
             }
             .onAppear {
@@ -152,30 +174,44 @@ struct ToDoListView: View {
         List {
             Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
                 ForEach(itemsForToday) { itemToday in
-                    VStack {
-                        ToDoListItemView(
-                            listItem: itemToday, fontSize: 17)
-                        .onLongPressGesture {
-                            withAnimation(.default) {
-                                self.haptic.feedbackLight()
-                                self.itemToEdit = itemToday /// Aggiorna itemToEdit con l'elemento corrente
-                                viewModel.onOpenEditButtons(item: itemToday)
+                    HStack {
+                        VStack {
+                            ToDoListItemView(
+                                listItem: itemToday, fontSize: 17)
+                            .onLongPressGesture {
+                                withAnimation(.default) {
+                                    self.haptic.feedbackLight()
+                                    self.itemToEdit = itemToday /// Aggiorna itemToEdit con l'elemento corrente
+                                    viewModel.onOpenEditButtons(item: itemToday)
+                                }
+                            }
+                            if itemToday.description.description != "" {
+                                description(text: itemToday.description.description)
                             }
                         }
-                        if itemToday.description.description != "" {
-                            description(text: itemToday.description.description)
-                        }
-                    }
-                    .sheet(isPresented: $viewModel.isPresentingSetView) {
-                        /// Aggiornare ItemToEdit
-                        if let itemToEdit = itemToEdit {
-                            NavigationStack {
-                                EditItemTaskView(
-                                    toggleView: $viewModel.isPresentingSetView,
-                                    itemToSet: .constant(itemToEdit),
-                                    viewModelEdit: viewModel
-                                )
+                        .sheet(isPresented: $viewModel.isPresentingSetView) {
+                            /// Aggiornare ItemToEdit
+                            if let itemToEdit = itemToEdit {
+                                NavigationStack {
+                                    EditItemTaskView(
+                                        toggleView: $viewModel.isPresentingSetView,
+                                        itemToSet: .constant(itemToEdit),
+                                        viewModelEdit: viewModel
+                                    )
+                                }
                             }
+                        }
+                        
+                        if isSelectingItems {
+                            Image(systemName: selectedTaskIds.contains(itemToday.id) ? "checkmark.square.fill" : "square")
+                                .onTapGesture {
+                                    if selectedTaskIds.contains(itemToday.id) {
+                                        selectedTaskIds.remove(itemToday.id)
+                                    } else {
+                                        selectedTaskIds.insert(itemToday.id)
+                                    }
+                                }
+                                .foregroundColor(Color.red)
                         }
                     }
                 }
@@ -195,29 +231,43 @@ struct ToDoListView: View {
             
             Section(header: Text("Tomorrow").font(.headline)) {
                 ForEach(itemsForTomorrow) { itemTomorrow in
-                    VStack {
-                        ToDoListItemView(
-                            listItem: itemTomorrow, fontSize: 15)
-                        .onLongPressGesture {
-                            withAnimation(.default) {
-                                self.haptic.feedbackLight()
-                                self.itemToEdit = itemTomorrow /// Aggiorna itemToEdit con l'elemento corrente
-                                viewModel.onOpenEditButtons(item: itemTomorrow)
+                    HStack {
+                        VStack {
+                            ToDoListItemView(
+                                listItem: itemTomorrow, fontSize: 15)
+                            .onLongPressGesture {
+                                withAnimation(.default) {
+                                    self.haptic.feedbackLight()
+                                    self.itemToEdit = itemTomorrow /// Aggiorna itemToEdit con l'elemento corrente
+                                    viewModel.onOpenEditButtons(item: itemTomorrow)
+                                }
+                            }
+                            if itemTomorrow.description.description != "" {
+                                description(text: itemTomorrow.description.description)
                             }
                         }
-                        if itemTomorrow.description.description != "" {
-                            description(text: itemTomorrow.description.description)
-                        }
-                    }
-                    .sheet(isPresented: $viewModel.isPresentingSetView) {
-                        if let itemToEdit = itemToEdit {
-                            NavigationStack {
-                                EditItemTaskView(
-                                    toggleView: $viewModel.isPresentingSetView, 
-                                    itemToSet: .constant(itemToEdit),
-                                    viewModelEdit: viewModel
-                                )
+                        .sheet(isPresented: $viewModel.isPresentingSetView) {
+                            if let itemToEdit = itemToEdit {
+                                NavigationStack {
+                                    EditItemTaskView(
+                                        toggleView: $viewModel.isPresentingSetView,
+                                        itemToSet: .constant(itemToEdit),
+                                        viewModelEdit: viewModel
+                                    )
+                                }
                             }
+                        }
+                        
+                        if isSelectingItems {
+                            Image(systemName: selectedTaskIds.contains(itemTomorrow.id) ? "checkmark.square.fill" : "square")
+                                .onTapGesture {
+                                    if selectedTaskIds.contains(itemTomorrow.id) {
+                                        selectedTaskIds.remove(itemTomorrow.id)
+                                    } else {
+                                        selectedTaskIds.insert(itemTomorrow.id)
+                                    }
+                                }
+                                .foregroundColor(Color.red)
                         }
                     }
                 }
@@ -236,29 +286,43 @@ struct ToDoListView: View {
             
             Section(header: Text("After Tomorrow").font(.headline)) {
                 ForEach(itemsAfterTomorrow) { itemAfter in
-                    VStack {
-                        ToDoListItemView(
-                            listItem: itemAfter, fontSize: 15)
-                        .onLongPressGesture {
-                            withAnimation(.default) {
-                                self.haptic.feedbackLight()
-                                self.itemToEdit = itemAfter /// Aggiorna itemToEdit con l'elemento corrente
-                                viewModel.onOpenEditButtons(item: itemAfter)
+                    HStack {
+                        VStack {
+                            ToDoListItemView(
+                                listItem: itemAfter, fontSize: 15)
+                            .onLongPressGesture {
+                                withAnimation(.default) {
+                                    self.haptic.feedbackLight()
+                                    self.itemToEdit = itemAfter /// Aggiorna itemToEdit con l'elemento corrente
+                                    viewModel.onOpenEditButtons(item: itemAfter)
+                                }
+                            }
+                            if itemAfter.description.description != "" {
+                                description(text: itemAfter.description.description)
                             }
                         }
-                        if itemAfter.description.description != "" {
-                            description(text: itemAfter.description.description)
-                        }
-                    }
-                    .sheet(isPresented: $viewModel.isPresentingSetView) {
-                        if let itemToEdit = itemToEdit {
-                            NavigationStack {
-                                EditItemTaskView(
-                                    toggleView: $viewModel.isPresentingSetView, 
-                                    itemToSet: .constant(itemToEdit),
-                                    viewModelEdit: viewModel
-                                )
+                        .sheet(isPresented: $viewModel.isPresentingSetView) {
+                            if let itemToEdit = itemToEdit {
+                                NavigationStack {
+                                    EditItemTaskView(
+                                        toggleView: $viewModel.isPresentingSetView,
+                                        itemToSet: .constant(itemToEdit),
+                                        viewModelEdit: viewModel
+                                    )
+                                }
                             }
+                        }
+                        
+                        if isSelectingItems {
+                            Image(systemName: selectedTaskIds.contains(itemAfter.id) ? "checkmark.square.fill" : "square")
+                                .onTapGesture {
+                                    if selectedTaskIds.contains(itemAfter.id) {
+                                        selectedTaskIds.remove(itemAfter.id)
+                                    } else {
+                                        selectedTaskIds.insert(itemAfter.id)
+                                    }
+                                }
+                                .foregroundColor(Color.red)
                         }
                     }
                 }
