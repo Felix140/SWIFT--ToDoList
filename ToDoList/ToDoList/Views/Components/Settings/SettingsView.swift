@@ -10,23 +10,20 @@ struct SettingsView: View {
         
         VStack(alignment: .leading){
             Form {
+                
                 Section {
                     NavigationLink(
                         destination: EditPrivateInfoView(dataUserviewModel: viewModel), label: {
                         Label("Modifica Profilo", systemImage: "pencil")
                     })
-                }
-                
-                Section {
                     NavigationLink(destination: {}, label: {
                         Label("Theme", systemImage: "paintpalette")
                     })
-                }
-                Section {
                     NavigationLink(destination: {}, label: {
                         Label("Assistenza", systemImage: "questionmark.circle")
                     })
                 }
+
                 Section {
                     HStack {
                         Button(action: {
@@ -45,7 +42,6 @@ struct SettingsView: View {
             Spacer()
             
         }
-        .navigationTitle("Settings")
     }
 }
 

@@ -15,81 +15,13 @@ struct ProfileView: View {
                     Text("Loading profile...")
                 }
                 
-                HStack {
-                    ZStack {
-//                        RoundedRectangle(cornerRadius: 28)
-//                            .fill(Theme.redGradient.gradient)
-//                            .frame(width: 150, height: 150)
-                        Circle()
-                            .strokeBorder(lineWidth: 10)
-                            .frame(width: 120, height: 120)
-                            .foregroundColor(.green)
-                            .overlay(content: {
-                                Text("10")
-                                    .font(.title)
-                            })
-                    }
-                    
-                    ZStack {
-//                        RoundedRectangle(cornerRadius: 28)
-//                            .fill(Theme.redGradient.gradient)
-//                            .frame(width: 150, height: 150)
-                        Circle()
-                            .strokeBorder(lineWidth: 10)
-                            .frame(width: 120, height: 120)
-                            .foregroundColor(.green)
-                            .overlay(content: {
-                                Text("10")
-                                    .foregroundColor(.primary)
-                                    .font(.title)
-                            })
-                        
-                    }
-                }
-                
-                HStack {
-                    ZStack {
-//                        RoundedRectangle(cornerRadius: 28)
-//                            .fill(Theme.redGradient.gradient)
-//                            .frame(width: 150, height: 150)
-                        Circle()
-                            .strokeBorder(lineWidth: 10)
-                            .frame(width: 120, height: 120)
-                            .foregroundColor(.green)
-                            .overlay(content: {
-                                Text("10")
-                                    .font(.title)
-                            })
-                    }
-                    
-                    ZStack {
-//                        RoundedRectangle(cornerRadius: 28)
-//                            .fill(Theme.redGradient.gradient)
-//                            .frame(width: 150, height: 150)
-                        Circle()
-                            .strokeBorder(lineWidth: 10)
-                            .frame(width: 120, height: 120)
-                            .foregroundColor(.green)
-                            .overlay(content: {
-                                Text("10")
-                                    .foregroundColor(.primary)
-                                    .font(.title)
-                            })
-                        
-                    }
-                }
+                SettingsView(viewModel: viewModelProfile)
                 
                 Spacer()
                     .frame(height: 100)
             }
             .navigationTitle("Profile")
-            .toolbar {
-                // Pulsante che porta a SettingsView
-                NavigationLink(destination: SettingsView(viewModel: viewModelProfile)) {
-                    Image(systemName: "gear")
-                }
-                .accessibilityLabel("Impostazioni")
-            }
+            
         }
         .onAppear {
             viewModelProfile.fetchUser()

@@ -17,6 +17,9 @@ struct ToDoListView: View {
     @State private var selectedTaskIds: Set<String> = []
     @State private var isSelectingItems: Bool = false
     
+    @State private var selectByDate: Date = Date()
+    @State private var isOpenCalendar: Bool = false
+    
     // TODAY items
     private var itemsForToday: [ToDoListItem] {
         fetchedItems.filter { item in
@@ -84,6 +87,14 @@ struct ToDoListView: View {
                 
                 CustomPickerView(selectedPicker: $selectedPicker)
                 
+                if isOpenCalendar {
+                    withAnimation(.smooth) {
+                        DatePicker("Select Date", selection: $selectByDate, displayedComponents: [.date])
+                                .padding(.horizontal)
+                                .datePickerStyle(.graphical)
+                    }
+                }
+                
                 
                 // Carosello
                 TabView(selection: $selectedPicker) {
@@ -102,23 +113,6 @@ struct ToDoListView: View {
             }
             .navigationTitle("TooDoo List")
             .toolbar{
-                
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(action: {
-                        self.haptic.feedbackMedium()
-                        viewModel.isPresentingView = true
-                        if Bundle.main.bundleIdentifier != nil {
-                            WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
-                        }
-                    }) {
-                        Image(systemName: "plus.app")
-                            .font(.system(size: 25))
-                            .foregroundColor(Color.clear) /// Make the original icon transparent
-                            .background(Theme.red.gradient) /// Apply the gradient as background
-                            .mask(Image(systemName: "plus.app").font(.system(size: 23))) /// generate a mask
-                    }
-                    .accessibilityLabel("Add New Task")
-                }
                 
                 ToolbarItem(placement: .topBarLeading) {
                     Menu {
@@ -149,6 +143,34 @@ struct ToDoListView: View {
                         }
                     }
                 }
+                
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(action: {
+                        self.isOpenCalendar.toggle()
+                    }) {
+                        Image(systemName: isOpenCalendar ? "xmark.square.fill" : "calendar")
+                            .font(.system(size: 20))
+                    }
+                    .accessibilityLabel("Calendar")
+                }
+                
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(action: {
+                        self.haptic.feedbackMedium()
+                        viewModel.isPresentingView = true
+                        if Bundle.main.bundleIdentifier != nil {
+                            WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
+                        }
+                    }) {
+                        Image(systemName: "plus.app")
+                            .font(.system(size: 25))
+                            .foregroundColor(Color.clear) /// Make the original icon transparent
+                            .background(Theme.red.gradient) /// Apply the gradient as background
+                            .mask(Image(systemName: "plus.app").font(.system(size: 23))) /// generate a mask
+                    }
+                    .accessibilityLabel("Add New Task")
+                }
+                
             }
             .onAppear {
                 if Bundle.main.bundleIdentifier != nil {
