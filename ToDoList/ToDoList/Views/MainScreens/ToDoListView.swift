@@ -110,13 +110,22 @@ struct ToDoListView: View {
                         haptic.feedbackMedium()
                         self.selectByDate = nil /// Pulisce la selezione della data
                     }) {
-                        HStack {
-                            Image(systemName: "list.bullet.below.rectangle")
-                                .font(.system(size: 20))
-                            Text("Show All Tasks")
+                        ZStack {
+                            Rectangle()
+                                .fill(Theme.redGradient.gradient)
+                                .cornerRadius(12.0)
+                                .frame(width: UIScreen.main.bounds.width / 1.2,height: 40)
+                            
+                            HStack {
+                                Image(systemName: "list.bullet.below.rectangle")
+                                    .font(.system(size: 20))
+                                    .foregroundColor(.white)
+                                Text("Show All Tasks")
+                                    .foregroundColor(.white)
+                            }
                         }
                     }
-                    .padding(0)
+                    
                     /// Mostra task filtrate se selectByDate NON è nil
                     TabView(selection: $selectedPicker) {
                         taskFilteredByDate()
@@ -522,7 +531,7 @@ struct ToDoListView: View {
         .listStyle(PlainListStyle())
     }
     
-    //MARK: - Dascription
+    //MARK: - Description
     
     @ViewBuilder
     func description(text: String) -> some View {
@@ -539,6 +548,8 @@ struct ToDoListView: View {
         .font(.caption2)
     }
 }
+
+//MARK: - PREVIEW
 
 struct ToDoListView_Previews: PreviewProvider {
     static var previews: some View {

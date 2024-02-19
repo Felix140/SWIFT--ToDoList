@@ -62,7 +62,8 @@ class NotificationViewViewModel: NewItemViewViewModel {
                     description: description
                 )
             ),
-            isAccepted: false
+            isAccepted: false,
+            isShowed: true
         )
         
         /// Salva la notifica nel database users SENDTO
@@ -109,26 +110,31 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 
                 for document in querySnapshot!.documents {
                     let data = document.data()
-                    
-                    /// Converti il campo 'task' in ToDoListItem
-                    var task: ToDoListItem?
-                    if let taskData = data["task"] as? [String: Any],
-                       let jsonData = try? JSONSerialization.data(withJSONObject: taskData),
-                       let decodedTask = try? JSONDecoder().decode(ToDoListItem.self, from: jsonData) {
-                        task = decodedTask
-                    }
-                    
-                    /// Crea un'istanza di Notification se task esiste
-                    if let task = task {
-                        let newNotification = Notification(
-                            id: data["id"] as? String ?? "",
-                            sender: data["sender"] as? String ?? "",
-                            senderName: data["senderName"] as? String ?? "Unknown",
-                            recipient: data["recipient"] as? String ?? "",
-                            task: task,
-                            isAccepted: data["isAccepted"] as? Bool ?? false
-                        )
-                        fetchedNotifications.append(newNotification)
+                    // Verifica se la notifica è stata gestita
+                    let isShowed = data["isShowed"] as? Bool ?? false
+                    // Solo se la notifica è visibile, la aggiungi all'elenco
+                    if isShowed {
+                        /// Converti il campo 'task' in ToDoListItem
+                        var task: ToDoListItem?
+                        if let taskData = data["task"] as? [String: Any],
+                           let jsonData = try? JSONSerialization.data(withJSONObject: taskData),
+                           let decodedTask = try? JSONDecoder().decode(ToDoListItem.self, from: jsonData) {
+                            task = decodedTask
+                        }
+                        
+                        /// Crea un'istanza di Notification se task esiste
+                        if let task = task {
+                            let newNotification = Notification(
+                                id: data["id"] as? String ?? "",
+                                sender: data["sender"] as? String ?? "",
+                                senderName: data["senderName"] as? String ?? "Unknown",
+                                recipient: data["recipient"] as? String ?? "",
+                                task: task,
+                                isAccepted: data["isAccepted"] as? Bool ?? false,
+                                isShowed: data["isShowed"] as? Bool ?? true
+                            )
+                            fetchedNotifications.append(newNotification)
+                        }
                     }
                 }
                 
@@ -153,7 +159,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .document(userId)
             .collection("requests")
             .document(notificationId)
-            .updateData(["isAccepted": true]) { error in
+            .updateData(["isAccepted": true, "isShowed": false]) { error in
                 if let error = error {
                     print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                 } else {
@@ -177,8 +183,27 @@ class NotificationViewViewModel: NewItemViewViewModel {
         print("Request accepted")
     }
     
-    func sendResponseRejected() {
-        print("Rejected")
+    func sendResponseRejected(notification: Notification) {
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("Errore: ID utente non disponibile.")
+            return
+        }
+        let notificationId = notification.id
+        let task = notification.task
+        // Aggiorna lo stato della notifica su Firestore
+        db.collection("notifications")
+            .document(userId)
+            .collection("requests")
+            .document(notificationId)
+            .updateData(["isAccepted": false, "isShowed": false]) { error in
+                if let error = error {
+                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                } else {
+                    print("Notifica aggiornata con successo.")
+                }
+            }
+
+        print("Request rejected")
     }
     
     

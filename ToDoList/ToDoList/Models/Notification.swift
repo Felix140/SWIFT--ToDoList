@@ -8,15 +8,17 @@ struct Notification: Identifiable, Codable {
     let recipient: String
     let task: ToDoListItem
     var isAccepted: Bool
+    var isShowed: Bool
     
     
-    init(id: String, sender: String, senderName: String, recipient: String, task: ToDoListItem, isAccepted: Bool) {
+    init(id: String, sender: String, senderName: String, recipient: String, task: ToDoListItem, isAccepted: Bool, isShowed: Bool) {
         self.id = id
         self.sender = sender
         self.senderName = senderName
         self.recipient = recipient
         self.task = task
         self.isAccepted = isAccepted
+        self.isShowed = isShowed
     }
     
     

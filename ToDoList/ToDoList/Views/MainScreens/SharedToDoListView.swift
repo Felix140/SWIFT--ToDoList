@@ -9,8 +9,6 @@ struct SharedToDoListView: View {
     private var haptic = HapticTrigger()
     @State private var selectionPicker = 0
     
-    @State private var alertTest: Bool = false
-    
     init(userId: String) {
         self._viewModelToDoList = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
         self._sendNotifications = FirestoreQuery(collectionPath: "users/\(userId)/sendNotifications/")
@@ -28,7 +26,6 @@ struct SharedToDoListView: View {
                     Picker("menu", selection: $selectionPicker) {
                         Text("Notifications").tag(0)
                         Text("Send Requests").tag(1)
-                        Text("Done").tag(2)
                     }
                     .pickerStyle(.segmented)
                 }
@@ -36,16 +33,11 @@ struct SharedToDoListView: View {
                 
                 Spacer()
                 
-                if selectionPicker == 0 {
-                    notifications()
-                }
                 
-                if selectionPicker == 1 {
-                    sendRequests()
-                }
-                
-                if selectionPicker == 2 {
-                    doneListRequested()
+                switch selectionPicker {
+                case 0: notifications()
+                case 1: sendRequests()
+                default: Text("Error")
                 }
                 
             }
@@ -60,12 +52,6 @@ struct SharedToDoListView: View {
                     }
                     .accessibilityLabel("Add new Item")
                 }
-            }
-            .alert(isPresented: $alertTest) {
-                Alert(
-                    title: Text("Test"),
-                    message: Text("Bottone cliccato: ")
-                )
             }
         }
         .sheet(isPresented: $viewModelToDoList.isPresentingView) {
@@ -83,8 +69,7 @@ struct SharedToDoListView: View {
                 NotificationView(
                     taskObject: notification,
                     textTask: notification.task.title,
-                    sendFrom: notification.senderName,
-                    alert: $alertTest
+                    sendFrom: notification.senderName
                 )
             }
             .onDelete { indexSet in
@@ -109,17 +94,17 @@ struct SharedToDoListView: View {
                 NotificationView(
                     taskObject: sended,
                     textTask: sended.task.title,
-                    sendFrom: sended.recipient,
-                    alert: $alertTest)
+                    sendFrom: sended.recipient
+                )
             }
-        }
-        .listStyle(SidebarListStyle())
-    }
-    
-    @ViewBuilder
-    func doneListRequested() -> some View {
-        List {
-
+            .onDelete { indexSet in
+                withAnimation {
+                    for index in indexSet {
+                        self.haptic.feedbackLight()
+                        viewModelNotification.deleteNotification(notification: sendNotifications[index])
+                    }
+                }
+            }
         }
         .listStyle(SidebarListStyle())
     }

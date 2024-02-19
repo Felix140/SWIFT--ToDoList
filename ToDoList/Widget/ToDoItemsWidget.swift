@@ -47,9 +47,11 @@ extension ToDoItemsWidget {
                 HStack {
                     Image(systemName: "calendar.circle.fill")
                         .font(.system(size: 30))
+                        .foregroundColor(.white)
                     Text("Today")
                         .font(.title3)
                         .fontWeight(.semibold)
+                        .foregroundColor(.white)
                     
                     Spacer()
                     
@@ -57,6 +59,7 @@ extension ToDoItemsWidget {
                         .font(.title3)
                         .fontWeight(.medium)
                         .padding(.trailing)
+                        .foregroundColor(.white)
                 }
                 
                 
@@ -66,10 +69,12 @@ extension ToDoItemsWidget {
                         Spacer()
                             .frame(width: 8)
                         Image(systemName: "circle.righthalf.filled")
+                            .foregroundColor(.white)
                         Spacer()
                             .frame(width: 18)
                         Text(documentName)
                             .font(.system(size: 14))
+                            .foregroundColor(.white)
                     }
                 }
                 
