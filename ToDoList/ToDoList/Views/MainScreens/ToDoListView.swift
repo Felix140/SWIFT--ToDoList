@@ -17,7 +17,7 @@ struct ToDoListView: View {
     @State private var selectedTaskIds: Set<String> = []
     @State private var isSelectingItems: Bool = false
     
-    @State private var selectByDate: Date = Date()
+    @State private var selectByDate: Date? = nil /// Valore di partenza per visualizzare taskListAll()
     @State private var isOpenCalendar: Bool = false
     
     // TODAY items
@@ -87,25 +87,58 @@ struct ToDoListView: View {
                 
                 CustomPickerView(selectedPicker: $selectedPicker)
                 
+                
                 if isOpenCalendar {
-                    withAnimation(.smooth) {
-                        DatePicker("Select Date", selection: $selectByDate, displayedComponents: [.date])
-                                .padding(.horizontal)
-                                .datePickerStyle(.graphical)
+                    DatePicker(
+                        "Select Date",
+                        selection: Binding<Date>(
+                            get: { self.selectByDate ?? Date() },
+                            set: { newValue in
+                                self.selectByDate = newValue
+                            }
+                        ),
+                        displayedComponents: [.date]
+                    )
+                        .padding(.horizontal)
+                        .datePickerStyle(.graphical)
+                }
+                
+                
+                if let selectByDate = selectByDate {
+                    
+                    Button(action: {
+                        haptic.feedbackMedium()
+                        self.selectByDate = nil /// Pulisce la selezione della data
+                    }) {
+                        HStack {
+                            Image(systemName: "list.bullet.below.rectangle")
+                                .font(.system(size: 20))
+                            Text("Show All Tasks")
+                        }
                     }
+                    .padding(0)
+                    /// Mostra task filtrate se selectByDate NON è nil
+                    TabView(selection: $selectedPicker) {
+                        taskFilteredByDate()
+                            .tag(0)
+                        filterToDoList()
+                            .tag(1)
+                        filterDoneList()
+                            .tag(2)
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                } else {
+                    /// Mostra tutte le task se selectByDate è nil
+                    TabView(selection: $selectedPicker) {
+                        taskListAll()
+                            .tag(0)
+                        filterToDoList()
+                            .tag(1)
+                        filterDoneList()
+                            .tag(2)
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
-                
-                
-                // Carosello
-                TabView(selection: $selectedPicker) {
-                    taskListAll()
-                        .tag(0)
-                    filterToDoList()
-                        .tag(1)
-                    filterDoneList()
-                        .tag(2)
-                }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
                 Spacer()
                 
@@ -146,10 +179,11 @@ struct ToDoListView: View {
                 
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
+                        haptic.feedbackMedium()
                         self.isOpenCalendar.toggle()
                     }) {
-                        Image(systemName: isOpenCalendar ? "xmark.square.fill" : "calendar")
-                            .font(.system(size: 20))
+                        Image(systemName: isOpenCalendar ? "calendar.badge.minus" : "calendar.badge.plus")
+                            .font(.system(size: 18))
                     }
                     .accessibilityLabel("Calendar")
                 }
@@ -238,11 +272,11 @@ struct ToDoListView: View {
                     }
                 }
                 .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
-                    ActionSheet(title: Text("Seleziona un'azione"), buttons: [
-                        .default(Text("Modifica")) {
+                    ActionSheet(title: Text("Action selection"), buttons: [
+                        .default(Text("Edit")) {
                             viewModel.isPresentingSetView = true
                         },
-                        .destructive(Text("Elimina")) {
+                        .destructive(Text("Delete")) {
                             viewModel.confirmAndDelete()
                         },
                         .cancel()
@@ -294,11 +328,11 @@ struct ToDoListView: View {
                     }
                 }
                 .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
-                    ActionSheet(title: Text("Seleziona un'azione"), buttons: [
-                        .default(Text("Modifica")) {
+                    ActionSheet(title: Text("Actions selection"), buttons: [
+                        .default(Text("Edit")) {
                             viewModel.isPresentingSetView = true
                         },
-                        .destructive(Text("Elimina")) {
+                        .destructive(Text("Delete")) {
                             viewModel.confirmAndDelete()
                         },
                         .cancel()
@@ -349,11 +383,11 @@ struct ToDoListView: View {
                     }
                 }
                 .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
-                    ActionSheet(title: Text("Seleziona un'azione"), buttons: [
-                        .default(Text("Modifica")) {
+                    ActionSheet(title: Text("Actions selection"), buttons: [
+                        .default(Text("Edit")) {
                             viewModel.isPresentingSetView = true
                         },
-                        .destructive(Text("Elimina")) {
+                        .destructive(Text("Delete")) {
                             viewModel.confirmAndDelete()
                         },
                         .cancel()
@@ -362,6 +396,80 @@ struct ToDoListView: View {
             }
         }
         .listStyle(PlainListStyle())
+    }
+    
+    
+    //MARK: - Filtered_By_Day_Selected
+    
+    @ViewBuilder
+    func taskFilteredByDate() -> some View {
+        List {
+            Section(header: Text(selectByDate ?? Date() , format: .dateTime.day().month().year()).font(.headline).foregroundColor(Color.blue)) {
+                ForEach(filteredItemsBySelectedDate) { itemFiltered in
+                    HStack {
+                        VStack {
+                            ToDoListItemView(
+                                listItem: itemFiltered, fontSize: 17)
+                            .onLongPressGesture {
+                                withAnimation(.default) {
+                                    self.haptic.feedbackLight()
+                                    self.itemToEdit = itemFiltered // Aggiorna itemToEdit con l'elemento corrente
+                                    viewModel.onOpenEditButtons(item: itemFiltered)
+                                }
+                            }
+                            if itemFiltered.description.description != "" {
+                                description(text: itemFiltered.description.description)
+                            }
+                        }
+                        .sheet(isPresented: $viewModel.isPresentingSetView) {
+                            if let itemToEdit = itemToEdit {
+                                NavigationStack {
+                                    EditItemTaskView(
+                                        toggleView: $viewModel.isPresentingSetView,
+                                        itemToSet: .constant(itemToEdit),
+                                        viewModelEdit: viewModel
+                                    )
+                                }
+                            }
+                        }
+                        
+                        if isSelectingItems {
+                            Image(systemName: selectedTaskIds.contains(itemFiltered.id) ? "checkmark.square.fill" : "square")
+                                .onTapGesture {
+                                    if selectedTaskIds.contains(itemFiltered.id) {
+                                        selectedTaskIds.remove(itemFiltered.id)
+                                    } else {
+                                        selectedTaskIds.insert(itemFiltered.id)
+                                    }
+                                }
+                                .foregroundColor(Color.red)
+                        }
+                    }
+                }
+                .actionSheet(isPresented: $viewModel.showingDeleteConfirmation) {
+                    ActionSheet(title: Text("Action selection"), buttons: [
+                        .default(Text("Edit")) {
+                            viewModel.isPresentingSetView = true
+                        },
+                        .destructive(Text("Delete")) {
+                            viewModel.confirmAndDelete()
+                        },
+                        .cancel()
+                    ])
+                }
+            }
+        }
+        .listStyle(PlainListStyle())
+    }
+
+    
+    
+    private var filteredItemsBySelectedDate: [ToDoListItem] {
+        fetchedItems.filter { item in
+            let itemDate = Date(timeIntervalSince1970: item.dueDate)
+            let calendar = Calendar.current
+            return calendar.isDate(itemDate, inSameDayAs: selectByDate ?? Date() )
+        }
     }
     
     //MARK: - Filter_ToDo_Today
