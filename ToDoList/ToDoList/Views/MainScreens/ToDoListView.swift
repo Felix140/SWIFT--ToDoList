@@ -94,21 +94,24 @@ struct ToDoListView: View {
                         selection: Binding<Date>(
                             get: { self.selectByDate ?? Date() },
                             set: { newValue in
-                                self.selectByDate = newValue
+                                withAnimation(.easeIn(duration: 0.2)) { /// velocita apparizione bottone
+                                    self.selectByDate = newValue
+                                }
                             }
                         ),
                         displayedComponents: [.date]
                     )
-                        .padding(.horizontal)
-                        .datePickerStyle(.graphical)
+                    .padding(.horizontal)
+                    .datePickerStyle(.graphical)
                 }
                 
                 
                 if let selectByDate = selectByDate {
-                    
                     Button(action: {
                         haptic.feedbackMedium()
-                        self.selectByDate = nil /// Pulisce la selezione della data
+                        withAnimation(.easeInOut(duration: 0.2)) { /// velocita di sparizione bottone
+                            self.selectByDate = nil /// Pulisce la selezione della data
+                        }
                     }) {
                         ZStack {
                             Rectangle()
@@ -125,7 +128,7 @@ struct ToDoListView: View {
                             }
                         }
                     }
-                    
+                    .transition(.asymmetric(insertion: .opacity.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
                     /// Mostra task filtrate se selectByDate NON è nil
                     TabView(selection: $selectedPicker) {
                         taskFilteredByDate()
@@ -473,7 +476,7 @@ struct ToDoListView: View {
         }
         .listStyle(PlainListStyle())
     }
-
+    
     
     
     private var filteredItemsBySelectedDate: [ToDoListItem] {
