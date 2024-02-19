@@ -7,7 +7,9 @@ struct SharedToDoListView: View {
     @StateObject var viewModelNotification = NotificationViewViewModel()
     @FirestoreQuery var sendNotifications: [Notification]
     private var haptic = HapticTrigger()
+    
     @State private var selectionPicker = 0
+    @State private var showBanner: Bool = false
     
     init(userId: String) {
         self._viewModelToDoList = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
@@ -18,39 +20,53 @@ struct SharedToDoListView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
+            ZStack(alignment: .top) {
                 
-                Divider()
+                // Banner
+                if showBanner {
+                    BannerView() // Rimuovi showBanner da qui
+                        .transition(.asymmetric(insertion: .opacity.combined(with: .slide), removal: .scale.combined(with: .opacity)))
+                        .animation(.easeInOut(duration: 0.5), value: showBanner)
+                        .zIndex(1)
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                withAnimation {
+                                    showBanner = false
+                                }
+                            }
+                        }                }
                 
-                HStack {
-                    Picker("menu", selection: $selectionPicker) {
-                        Text("Notifications").tag(0)
-                        Text("Send Requests").tag(1)
+                VStack {
+                    Divider()
+                    HStack {
+                        Picker("menu", selection: $selectionPicker) {
+                            Text("Notifications").tag(0)
+                            Text("Send Requests").tag(1)
+                        }
+                        .pickerStyle(.segmented)
                     }
-                    .pickerStyle(.segmented)
-                }
-                .padding(.horizontal, 10)
-                
-                Spacer()
-                
-                
-                switch selectionPicker {
-                case 0: notifications()
-                case 1: sendRequests()
-                default: Text("Error")
-                }
-                
-            }
-            .navigationTitle("Shared")
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(action: {
-                        self.haptic.feedbackMedium()
-                        viewModelToDoList.isPresentingView = true
-                    }) {
-                        Image(systemName: "paperplane")
+                    .padding(.horizontal, 10)
+                    
+                    Spacer()
+                    
+                    switch selectionPicker {
+                    case 0: notifications()
+                    case 1: sendRequests()
+                    default: Text("Error")
                     }
-                    .accessibilityLabel("Add new Item")
+                    
+                }
+                .navigationTitle("Shared")
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button(action: {
+                            self.haptic.feedbackMedium()
+                            viewModelToDoList.isPresentingView = true
+                        }) {
+                            Image(systemName: "paperplane")
+                        }
+                        .accessibilityLabel("Add new Item")
+                    }
                 }
             }
         }
@@ -62,14 +78,27 @@ struct SharedToDoListView: View {
         
     }
     
+    //MARK: - All_Notification
+    
     @ViewBuilder
     func notifications() -> some View {
         List{
             ForEach(viewModelNotification.notifications) { notification in
                 NotificationView(
+                    isClicked: showBanner,
                     taskObject: notification,
                     textTask: notification.task.title,
-                    sendFrom: notification.senderName
+                    sendFrom: notification.senderName,
+                    onActionCompleted: { // Passa il callback
+                        withAnimation {
+                            showBanner = true
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            withAnimation {
+                                showBanner = false
+                            }
+                        }
+                    }
                 )
             }
             .onDelete { indexSet in
@@ -87,14 +116,27 @@ struct SharedToDoListView: View {
         }
     }
     
+    //MARK: - Sended_Notification
+    
     @ViewBuilder
     func sendRequests() -> some View {
         List {
             ForEach(sendNotifications) { sended in
                 NotificationView(
+                    isClicked: showBanner,
                     taskObject: sended,
                     textTask: sended.task.title,
-                    sendFrom: sended.recipient
+                    sendFrom: sended.recipient,
+                    onActionCompleted: { // Passa il callback
+                        withAnimation {
+                            showBanner = true
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            withAnimation {
+                                showBanner = false
+                            }
+                        }
+                    }
                 )
             }
             .onDelete { indexSet in
@@ -110,6 +152,7 @@ struct SharedToDoListView: View {
     }
 }
 
+//MARK: - PREVIEW
 
 struct SharedToDoListView_Preview: PreviewProvider {
     static var previews: some View {

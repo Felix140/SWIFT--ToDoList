@@ -3,10 +3,13 @@ import SwiftUI
 struct NotificationView: View {
     
     @StateObject var viewModel = NotificationViewViewModel()
+    @State var isClicked: Bool
+    
     let taskObject: Notification
     var textTask: String
     var sendFrom: String
     var haptic = HapticTrigger()
+    var onActionCompleted: () -> Void // Callback aggiunto
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -52,6 +55,7 @@ struct NotificationView: View {
         .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
             self.haptic.feedbackLight()
             viewModel.sendResponseAccepted(notification: taskObject)
+            onActionCompleted() // Chiama il callback nel padre
         })
     }
     
@@ -73,6 +77,7 @@ struct NotificationView: View {
         .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
             self.haptic.feedbackLight()
             viewModel.sendResponseRejected(notification: taskObject)
+            onActionCompleted() // Chiama il callback nel padre
         })
     }
 }
@@ -82,6 +87,7 @@ struct NotificationView: View {
 struct NotificationView_Preview: PreviewProvider {
     static var previews: some View {
         NotificationView(
+            isClicked: false,
             taskObject: Notification(
                 id: "123456789",
                 sender: "sender",
@@ -100,7 +106,8 @@ struct NotificationView_Preview: PreviewProvider {
                 isAccepted: false, 
                 isShowed: true),
             textTask: "Questa è una task",
-            sendFrom: "mittente"
+            sendFrom: "mittente",
+            onActionCompleted: {}
         )
     }
 }

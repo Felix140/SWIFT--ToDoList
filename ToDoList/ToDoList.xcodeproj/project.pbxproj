@@ -39,6 +39,7 @@
 		4991E15A2B5F440200D6ED63 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4991E1592B5F440200D6ED63 /* FirebaseFirestore */; };
 		4991E1622B5F5CA700D6ED63 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DDA17F2B44BF7B009218C4 /* Theme.swift */; };
 		499531132B52083700547910 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499531122B52083700547910 /* NotificationView.swift */; };
+		499A0F692B83F60400527A4C /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A0F682B83F60400527A4C /* BannerView.swift */; };
 		499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E1DDF2B46FA5200A7EF9A /* Routes.swift */; };
 		49A60C242B55299800A2C133 /* UserContactsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A60C232B55299800A2C133 /* UserContactsList.swift */; };
 		49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */; };
@@ -131,6 +132,7 @@
 		4970661E2B462C4200C16D88 /* CategoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTask.swift; sourceTree = "<group>"; };
 		497738DD2B7AC85200789847 /* CustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
 		499531122B52083700547910 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		499A0F682B83F60400527A4C /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		499E1DDF2B46FA5200A7EF9A /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		49A60C232B55299800A2C133 /* UserContactsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContactsList.swift; sourceTree = "<group>"; };
 		49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTrigger.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			children = (
 				499531122B52083700547910 /* NotificationView.swift */,
 				49B584F52B52178800F3D004 /* RequestNewItemView.swift */,
+				499A0F682B83F60400527A4C /* BannerView.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				4941EF1B2B5DE9E9000A759D /* Shared.swift in Sources */,
 				49B862C32B1BC45200FED137 /* MainView.swift in Sources */,
 				4916EA942B403CA90031B40C /* PomodoroTimerView.swift in Sources */,
+				499A0F692B83F60400527A4C /* BannerView.swift in Sources */,
 				49B584F42B5213D300F3D004 /* NotificationViewViewModel.swift in Sources */,
 				49FE57352B1CDADC00E4A0E2 /* User.swift in Sources */,
 				499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */,
