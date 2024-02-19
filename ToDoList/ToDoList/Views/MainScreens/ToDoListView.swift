@@ -154,6 +154,7 @@ struct ToDoListView: View {
                         }
                     } label: {
                         Image(systemName: "ellipsis.circle")
+                            .font(.system(size: 20))
                     }
                 }
                 
@@ -180,10 +181,12 @@ struct ToDoListView: View {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
                         haptic.feedbackMedium()
-                        self.isOpenCalendar.toggle()
+                        withAnimation(.easeInOut(duration: 0.3)) { /// Qui setto la velocità di apertura del calendario
+                            self.isOpenCalendar.toggle()
+                        }
                     }) {
-                        Image(systemName: isOpenCalendar ? "calendar.badge.minus" : "calendar.badge.plus")
-                            .font(.system(size: 18))
+                        Image(systemName: isOpenCalendar ? "calendar.circle.fill" : "calendar.circle")
+                            .font(.system(size: 20))
                     }
                     .accessibilityLabel("Calendar")
                 }
@@ -197,7 +200,7 @@ struct ToDoListView: View {
                         }
                     }) {
                         Image(systemName: "plus.app")
-                            .font(.system(size: 25))
+                            .font(.system(size: 23))
                             .foregroundColor(Color.clear) /// Make the original icon transparent
                             .background(Theme.red.gradient) /// Apply the gradient as background
                             .mask(Image(systemName: "plus.app").font(.system(size: 23))) /// generate a mask
