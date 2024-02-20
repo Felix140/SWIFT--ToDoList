@@ -151,10 +151,6 @@ struct ToDoListView: View {
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
-                
-                Spacer()
-                
-                
             }
             .navigationTitle("TooDoo List")
             .toolbar{
@@ -185,7 +181,6 @@ struct ToDoListView: View {
                     }
                     ToolbarItem(placement: .confirmationAction)  {
                         HStack(spacing: 10) {
-                            
                             Button("Delete", action: {
                                 viewModel.deleteByGroup(idItems: Array(selectedTaskIds))
                                 isSelectingItems = false
@@ -228,16 +223,12 @@ struct ToDoListView: View {
                         .accessibilityLabel("Add New Task")
                     }
                 }
-                
-                
-                
             }
             .onAppear {
                 if Bundle.main.bundleIdentifier != nil {
                     WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
                 }
             }
-            
         }
         .sheet(isPresented: $viewModel.isPresentingView) {
             NavigationStack {

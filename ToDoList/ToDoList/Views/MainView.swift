@@ -8,9 +8,7 @@ struct MainView: View {
         
         if viewModel.isSignedIn,
            !viewModel.currentUserId.isEmpty {
-            
-           navbar
-            
+            navbar
         } else {
             StartView()
         }
@@ -25,7 +23,6 @@ struct MainView: View {
                     Label("Task", systemImage: "list.bullet.circle.fill")
                 }
             
-            
             SharedToDoListView(userId: viewModel.currentUserId)
                 .tabItem {
                     Label("Shared", systemImage: "rectangle.stack.badge.person.crop")
@@ -35,12 +32,18 @@ struct MainView: View {
                 .tabItem {
                     Label("Contacts", systemImage: "person.2.circle")
                 }
-                
             
             ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person.crop.circle")
                 }
+        }
+        .onAppear {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithTransparentBackground()
+            appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
+            UITabBar.appearance().standardAppearance = appearance
+            UITabBar.appearance().scrollEdgeAppearance = appearance
         }
     }
 }
