@@ -94,7 +94,7 @@ struct ToDoListView: View {
                         selection: Binding<Date>(
                             get: { self.selectByDate ?? Date() },
                             set: { newValue in
-                                withAnimation(.easeIn(duration: 0.2)) { /// velocita apparizione bottone
+                                withAnimation(.easeInOut(duration: 0.2)) { /// velocita apparizione bottone
                                     self.selectByDate = newValue
                                 }
                             }
@@ -106,7 +106,7 @@ struct ToDoListView: View {
                 }
                 
                 
-                if let selectByDate = selectByDate {
+                if selectByDate != nil {
                     Button(action: {
                         haptic.feedbackMedium()
                         withAnimation(.easeInOut(duration: 0.2)) { /// velocita di sparizione bottone
@@ -128,7 +128,7 @@ struct ToDoListView: View {
                             }
                         }
                     }
-                    .transition(.asymmetric(insertion: .opacity.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
+                    .transition(.asymmetric(insertion: .scale.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
                     /// Mostra task filtrate se selectByDate NON è nil
                     TabView(selection: $selectedPicker) {
                         taskFilteredByDate()
@@ -158,26 +158,33 @@ struct ToDoListView: View {
             }
             .navigationTitle("TooDoo List")
             .toolbar{
-                
+                //MARK: - TOOLBAR
                 ToolbarItem(placement: .topBarLeading) {
-                    Menu {
-                        Button("Delete Selection") {
-                            isSelectingItems = true
+                    Button(action: {
+                        withAnimation(.easeIn(duration: 0.3)) {
+                            isSelectingItems = !isSelectingItems
                         }
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
-                            .font(.system(size: 20))
-                    }
+                        if !isSelectingItems {
+                            selectedTaskIds.removeAll()
+                        }
+                    }, label: {
+                        if isSelectingItems {
+                            Image(systemName: "trash.fill")
+                                .font(.system(size: 16))
+                        } else {
+                            Image(systemName: "trash")
+                                .font(.system(size: 16))
+                        }
+                    })
                 }
                 
                 if isSelectingItems {
-                    ToolbarItem(placement: .principal)  {
+                    ToolbarItem(placement: .principal) {
+                        Text("Selected Tasks: \(selectedTaskIds.count)")
+                            .foregroundColor(.primary)
+                    }
+                    ToolbarItem(placement: .confirmationAction)  {
                         HStack(spacing: 10) {
-                            
-                            Button("Cancel") {
-                                isSelectingItems = false
-                                selectedTaskIds.removeAll()
-                            }
                             
                             Button("Delete", action: {
                                 viewModel.deleteByGroup(idItems: Array(selectedTaskIds))
@@ -186,39 +193,43 @@ struct ToDoListView: View {
                             })
                             .foregroundStyle(Color.red)
                             .disabled(selectedTaskIds.isEmpty)
+                            .transition(.asymmetric(insertion: .opacity.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
                         }
+                    }
+                } else {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button(action: {
+                            haptic.feedbackMedium()
+                            withAnimation(.easeInOut(duration: 0.3)) { /// Qui setto la velocità di apertura del calendario
+                                self.isOpenCalendar.toggle()
+                            }
+                        }) {
+                            Image(systemName: isOpenCalendar ? "calendar.circle.fill" : "calendar.circle")
+                                .font(.system(size: 20))
+                        }
+                        .accessibilityLabel("Calendar")
+                        .transition(.asymmetric(insertion: .opacity.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
+                    }
+                    
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button(action: {
+                            self.haptic.feedbackMedium()
+                            viewModel.isPresentingView = true
+                            if Bundle.main.bundleIdentifier != nil {
+                                WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
+                            }
+                        }) {
+                            Image(systemName: "plus.app")
+                                .font(.system(size: 23))
+                                .foregroundColor(Color.clear) /// Make the original icon transparent
+                                .background(Theme.red.gradient) /// Apply the gradient as background
+                                .mask(Image(systemName: "plus.app").font(.system(size: 23))) /// generate a mask
+                        }
+                        .accessibilityLabel("Add New Task")
                     }
                 }
                 
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(action: {
-                        haptic.feedbackMedium()
-                        withAnimation(.easeInOut(duration: 0.3)) { /// Qui setto la velocità di apertura del calendario
-                            self.isOpenCalendar.toggle()
-                        }
-                    }) {
-                        Image(systemName: isOpenCalendar ? "calendar.circle.fill" : "calendar.circle")
-                            .font(.system(size: 20))
-                    }
-                    .accessibilityLabel("Calendar")
-                }
                 
-                ToolbarItem(placement: .confirmationAction) {
-                    Button(action: {
-                        self.haptic.feedbackMedium()
-                        viewModel.isPresentingView = true
-                        if Bundle.main.bundleIdentifier != nil {
-                            WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
-                        }
-                    }) {
-                        Image(systemName: "plus.app")
-                            .font(.system(size: 23))
-                            .foregroundColor(Color.clear) /// Make the original icon transparent
-                            .background(Theme.red.gradient) /// Apply the gradient as background
-                            .mask(Image(systemName: "plus.app").font(.system(size: 23))) /// generate a mask
-                    }
-                    .accessibilityLabel("Add New Task")
-                }
                 
             }
             .onAppear {
@@ -249,7 +260,7 @@ struct ToDoListView: View {
                         VStack {
                             ToDoListItemView(
                                 listItem: itemToday, fontSize: 17)
-                            .onLongPressGesture {
+                            .onLongPressGesture(minimumDuration: 0.1) {
                                 withAnimation(.default) {
                                     self.haptic.feedbackLight()
                                     self.itemToEdit = itemToday /// Aggiorna itemToEdit con l'elemento corrente
@@ -306,7 +317,7 @@ struct ToDoListView: View {
                         VStack {
                             ToDoListItemView(
                                 listItem: itemTomorrow, fontSize: 15)
-                            .onLongPressGesture {
+                            .onLongPressGesture(minimumDuration: 0.1) {
                                 withAnimation(.default) {
                                     self.haptic.feedbackLight()
                                     self.itemToEdit = itemTomorrow /// Aggiorna itemToEdit con l'elemento corrente
@@ -361,7 +372,7 @@ struct ToDoListView: View {
                         VStack {
                             ToDoListItemView(
                                 listItem: itemAfter, fontSize: 15)
-                            .onLongPressGesture {
+                            .onLongPressGesture(minimumDuration: 0.1) {
                                 withAnimation(.default) {
                                     self.haptic.feedbackLight()
                                     self.itemToEdit = itemAfter /// Aggiorna itemToEdit con l'elemento corrente
@@ -425,8 +436,8 @@ struct ToDoListView: View {
                         VStack {
                             ToDoListItemView(
                                 listItem: itemFiltered, fontSize: 17)
-                            .onLongPressGesture {
-                                withAnimation(.default) {
+                            .onLongPressGesture(minimumDuration: 0.1) {
+                                withAnimation(.bouncy(duration: 2)) {
                                     self.haptic.feedbackLight()
                                     self.itemToEdit = itemFiltered // Aggiorna itemToEdit con l'elemento corrente
                                     viewModel.onOpenEditButtons(item: itemFiltered)
