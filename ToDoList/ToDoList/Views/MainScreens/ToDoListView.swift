@@ -136,8 +136,16 @@ struct ToDoListView: View {
                     fetchItemsTask: .constant(fetchedItems),
                     scale: 1)
                 .padding(.horizontal)
-                .datePickerStyle(.graphical)
                 .edgesIgnoringSafeArea(.bottom)
+                .gesture(
+                    DragGesture().onEnded{ value in
+                        if value.translation.height < 0 {
+                            withAnimation(.smooth) {
+                                self.isOpenCalendar = false
+                            }
+                        }
+                    }
+                )
             }
             
             
@@ -184,10 +192,10 @@ struct ToDoListView: View {
                 }, label: {
                     if isSelectingItems {
                         Image(systemName: "trash.fill")
-                            .font(.system(size: 16))
+                            .font(.system(size: 17))
                     } else {
                         Image(systemName: "trash")
-                            .font(.system(size: 16))
+                            .font(.system(size: 17))
                     }
                 })
             }
@@ -227,7 +235,7 @@ struct ToDoListView: View {
                         }
                     }) {
                         Image(systemName: isOpenCalendar ? "chevron.up.circle.fill" : "calendar.circle")
-                            .font(.system(size: 20))
+                            .font(.system(size: 21))
                     }
                     .accessibilityLabel("Calendar")
                     .transition(.asymmetric(insertion: .opacity.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
