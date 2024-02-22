@@ -8,6 +8,7 @@ struct ToDoListView: View {
     /// anziche creare uno StateObject come qui sopra, inizializziamo l'oggetto in init() per
     /// passargli il parametro dello userId, inizializzato a sua volta nell'init() di "ToDoListViewViewModel()"
     @StateObject var viewModel: ToDoListViewViewModel
+    @StateObject var calendarViewModel: CalendarViewViewModel
     @FirestoreQuery var fetchedItems: [ToDoListItem]
     @State private var selectedPicker = 0
     @State private var itemToEdit: ToDoListItem? /// qui vado a storare la task premuta per renderla accessibile
@@ -73,13 +74,14 @@ struct ToDoListView: View {
         /// inizializzo qui sotto viewModel come StateObject
         self._viewModel = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
         self._currentUserId = State(wrappedValue: userId)
+        self._calendarViewModel = StateObject(wrappedValue: CalendarViewViewModel())
     }
     
     //MARK: - Body
     
     var body: some View {
         NavigationView {
-            ZStack(alignment: .top) { 
+            ZStack(alignment: .top) {
                 // Banner
                 if showBanner {
                     BannerView() // Rimuovi showBanner da qui
@@ -123,18 +125,29 @@ struct ToDoListView: View {
             
             
             if isOpenCalendar {
-                DatePicker(
-                    "Select Date",
-                    selection: Binding<Date>(
+//                                DatePicker(
+//                                    "Select Date",
+//                                    selection: Binding<Date>(
+//                                        get: { self.selectByDate ?? Date() },
+//                                        set: { newValue in
+//                                            withAnimation(.easeInOut(duration: 0.2)) { /// velocita apparizione bottone
+//                                                self.selectByDate = newValue
+//                                            }
+//                                        }
+//                                    ),
+//                                    displayedComponents: [.date]
+//                                )
+//                                .padding(.horizontal)
+//                                .datePickerStyle(.graphical)
+                CustomCalendarView(
+                    eventStore: calendarViewModel,
+                    selectedDate: Binding<Date?>(
                         get: { self.selectByDate ?? Date() },
                         set: { newValue in
-                            withAnimation(.easeInOut(duration: 0.2)) { /// velocita apparizione bottone
-                                self.selectByDate = newValue
-                            }
+                            self.selectByDate = newValue
                         }
                     ),
-                    displayedComponents: [.date]
-                )
+                    fetchItemsTask: .constant(fetchedItems))
                 .padding(.horizontal)
                 .datePickerStyle(.graphical)
             }
@@ -277,7 +290,7 @@ struct ToDoListView: View {
                 WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
             }
         }
-
+        
     }
     
     

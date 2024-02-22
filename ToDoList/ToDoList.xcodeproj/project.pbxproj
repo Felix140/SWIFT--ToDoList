@@ -35,6 +35,8 @@
 		496F10002B331957005CCA4B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496F0FFF2B331957005CCA4B /* StartView.swift */; };
 		4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970661E2B462C4200C16D88 /* CategoryTask.swift */; };
 		497738DE2B7AC85200789847 /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497738DD2B7AC85200789847 /* CustomPickerView.swift */; };
+		499074D82B87D2E9008C2783 /* CalendarViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499074D72B87D2E9008C2783 /* CalendarViewViewModel.swift */; };
+		499074DA2B87D32D008C2783 /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499074D92B87D32D008C2783 /* CustomCalendarView.swift */; };
 		4991E1562B5F41EE00D6ED63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */; };
 		4991E1582B5F440200D6ED63 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4991E1572B5F440200D6ED63 /* FirebaseAuth */; };
 		4991E15A2B5F440200D6ED63 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4991E1592B5F440200D6ED63 /* FirebaseFirestore */; };
@@ -133,6 +135,8 @@
 		496F0FFF2B331957005CCA4B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		4970661E2B462C4200C16D88 /* CategoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTask.swift; sourceTree = "<group>"; };
 		497738DD2B7AC85200789847 /* CustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
+		499074D72B87D2E9008C2783 /* CalendarViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewViewModel.swift; sourceTree = "<group>"; };
+		499074D92B87D32D008C2783 /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		499531122B52083700547910 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		499A0F682B83F60400527A4C /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		499E1DDF2B46FA5200A7EF9A /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
@@ -239,6 +243,14 @@
 			path = Widget;
 			sourceTree = "<group>";
 		};
+		499074D62B87D2A8008C2783 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				499074D92B87D32D008C2783 /* CustomCalendarView.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		499531142B5208CD00547910 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +346,7 @@
 				499531142B5208CD00547910 /* Requests */,
 				49D5307D2B682D0100C9206E /* Contacts */,
 				491EB63C2B6DB01500ABF3B3 /* Settings */,
+				499074D62B87D2A8008C2783 /* Calendar */,
 				49C61BCB2B43862600F1999C /* Timer */,
 			);
 			path = Components;
@@ -391,6 +404,7 @@
 				49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */,
 				49FE57452B1CDBED00E4A0E2 /* RegisterViewViewModel.swift */,
 				49F0D3732B5567860053206A /* ContactsViewViewModel.swift */,
+				499074D72B87D2E9008C2783 /* CalendarViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -560,6 +574,7 @@
 				49B584F62B52178800F3D004 /* RequestNewItemView.swift in Sources */,
 				49E946882B50848700148273 /* SharedToDoListView.swift in Sources */,
 				49A60C242B55299800A2C133 /* UserContactsList.swift in Sources */,
+				499074D82B87D2E9008C2783 /* CalendarViewViewModel.swift in Sources */,
 				49FE572F2B1CDA5100E4A0E2 /* LoginView.swift in Sources */,
 				496F10002B331957005CCA4B /* StartView.swift in Sources */,
 				49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */,
@@ -568,6 +583,7 @@
 				49F0D3742B5567860053206A /* ContactsViewViewModel.swift in Sources */,
 				4941EF182B5DE999000A759D /* WidgetType.swift in Sources */,
 				49FE57432B1CDBD800E4A0E2 /* LoginViewViewModel.swift in Sources */,
+				499074DA2B87D32D008C2783 /* CustomCalendarView.swift in Sources */,
 				49FE57332B1CDA9D00E4A0E2 /* ToDoListView.swift in Sources */,
 				49D5307F2B683D6100C9206E /* UserContact.swift in Sources */,
 				4928F3A72B4614B2008B2F94 /* InsertDescriptionView.swift in Sources */,
