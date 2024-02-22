@@ -125,20 +125,6 @@ struct ToDoListView: View {
             
             
             if isOpenCalendar {
-//                                DatePicker(
-//                                    "Select Date",
-//                                    selection: Binding<Date>(
-//                                        get: { self.selectByDate ?? Date() },
-//                                        set: { newValue in
-//                                            withAnimation(.easeInOut(duration: 0.2)) { /// velocita apparizione bottone
-//                                                self.selectByDate = newValue
-//                                            }
-//                                        }
-//                                    ),
-//                                    displayedComponents: [.date]
-//                                )
-//                                .padding(.horizontal)
-//                                .datePickerStyle(.graphical)
                 CustomCalendarView(
                     eventStore: calendarViewModel,
                     selectedDate: Binding<Date?>(
@@ -147,35 +133,15 @@ struct ToDoListView: View {
                             self.selectByDate = newValue
                         }
                     ),
-                    fetchItemsTask: .constant(fetchedItems))
+                    fetchItemsTask: .constant(fetchedItems),
+                    scale: 1)
                 .padding(.horizontal)
                 .datePickerStyle(.graphical)
+                .edgesIgnoringSafeArea(.bottom)
             }
             
             
             if selectByDate != nil {
-                Button(action: {
-                    haptic.feedbackMedium()
-                    withAnimation(.easeInOut(duration: 0.2)) { /// velocita di sparizione bottone
-                        self.selectByDate = nil /// Pulisce la selezione della data
-                    }
-                }) {
-                    ZStack {
-                        Rectangle()
-                            .fill(Theme.redGradient.gradient)
-                            .cornerRadius(12.0)
-                            .frame(width: UIScreen.main.bounds.width / 1.2,height: 40)
-                        
-                        HStack {
-                            Image(systemName: "list.bullet.below.rectangle")
-                                .font(.system(size: 20))
-                                .foregroundColor(.white)
-                            Text("Show All Tasks")
-                                .foregroundColor(.white)
-                        }
-                    }
-                }
-                .transition(.asymmetric(insertion: .scale.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
                 /// Mostra task filtrate se selectByDate NON è nil
                 TabView(selection: $selectedPicker) {
                     taskFilteredByDate()
@@ -260,7 +226,7 @@ struct ToDoListView: View {
                             self.isOpenCalendar.toggle()
                         }
                     }) {
-                        Image(systemName: isOpenCalendar ? "calendar.circle.fill" : "calendar.circle")
+                        Image(systemName: isOpenCalendar ? "chevron.up.circle.fill" : "calendar.circle")
                             .font(.system(size: 20))
                     }
                     .accessibilityLabel("Calendar")
@@ -478,6 +444,31 @@ struct ToDoListView: View {
     @ViewBuilder
     func taskFilteredByDate() -> some View {
         List {
+            
+            Section {
+                HStack(alignment: .center) {
+                    Button(action: {
+                        haptic.feedbackMedium()
+                        withAnimation(.easeInOut(duration: 0.2)) { /// velocita di sparizione bottone
+                            self.selectByDate = nil /// Pulisce la selezione della data
+                        }
+                    }) {
+                        
+                        HStack {
+                            Image(systemName: "list.bullet.below.rectangle")
+                                .font(.system(size: 20))
+                                .foregroundStyle(Theme.redGradient.gradient)
+                            Text("Show All Tasks")
+                                .foregroundStyle(Theme.redGradient.gradient)
+                                .fontWeight(.semibold)
+                        }
+                        
+                    }
+                    .transition(.asymmetric(insertion: .scale.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
+                }
+                .frame(width: UIScreen.main.bounds.width)
+            }
+            
             Section(header: Text(selectByDate ?? Date() , format: .dateTime.day().month().year()).font(.headline).foregroundColor(Color.blue)) {
                 ForEach(filteredItemsBySelectedDate) { itemFiltered in
                     HStack {
