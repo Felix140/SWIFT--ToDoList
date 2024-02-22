@@ -34,7 +34,8 @@ struct SharedToDoListView: View {
                                     showBanner = false
                                 }
                             }
-                        }                }
+                        }
+                }
                 
                 VStack {
                     Divider()
@@ -131,7 +132,7 @@ struct SharedToDoListView: View {
                         withAnimation {
                             showBanner = true
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                             withAnimation {
                                 showBanner = false
                             }

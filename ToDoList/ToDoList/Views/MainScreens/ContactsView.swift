@@ -5,7 +5,7 @@ struct ContactsView: View {
     
     @State private var searchText: String = ""
     @StateObject var viewModel = ContactsViewViewModel()
-    @State var selectedPicker: Int = 0
+    @State private var selectedPicker: Int = 0
     
     var body: some View {
         NavigationStack {

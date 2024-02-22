@@ -19,6 +19,7 @@ struct ToDoListView: View {
     
     @State private var selectByDate: Date? = nil /// Valore di partenza per visualizzare taskListAll()
     @State private var isOpenCalendar: Bool = false
+    @State private var showBanner: Bool = false
     
     // TODAY items
     private var itemsForToday: [ToDoListItem] {
@@ -78,158 +79,24 @@ struct ToDoListView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                
-                ProgressBarView(
-                    valueBar: Double(isDoneItemsForToday.count),
-                    totalValueBar: Double(itemsForToday.count))
-                
-                
-                CustomPickerView(selectedPicker: $selectedPicker)
-                
-                
-                if isOpenCalendar {
-                    DatePicker(
-                        "Select Date",
-                        selection: Binding<Date>(
-                            get: { self.selectByDate ?? Date() },
-                            set: { newValue in
-                                withAnimation(.easeInOut(duration: 0.2)) { /// velocita apparizione bottone
-                                    self.selectByDate = newValue
+            ZStack(alignment: .top) { 
+                // Banner
+                if showBanner {
+                    BannerView() // Rimuovi showBanner da qui
+                        .transition(.asymmetric(insertion: .opacity.combined(with: .slide), removal: .scale.combined(with: .opacity)))
+                        .animation(.easeInOut(duration: 0.5), value: showBanner)
+                        .zIndex(1)
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                withAnimation {
+                                    showBanner = false
                                 }
                             }
-                        ),
-                        displayedComponents: [.date]
-                    )
-                    .padding(.horizontal)
-                    .datePickerStyle(.graphical)
+                        }
                 }
                 
+                mainContent()
                 
-                if selectByDate != nil {
-                    Button(action: {
-                        haptic.feedbackMedium()
-                        withAnimation(.easeInOut(duration: 0.2)) { /// velocita di sparizione bottone
-                            self.selectByDate = nil /// Pulisce la selezione della data
-                        }
-                    }) {
-                        ZStack {
-                            Rectangle()
-                                .fill(Theme.redGradient.gradient)
-                                .cornerRadius(12.0)
-                                .frame(width: UIScreen.main.bounds.width / 1.2,height: 40)
-                            
-                            HStack {
-                                Image(systemName: "list.bullet.below.rectangle")
-                                    .font(.system(size: 20))
-                                    .foregroundColor(.white)
-                                Text("Show All Tasks")
-                                    .foregroundColor(.white)
-                            }
-                        }
-                    }
-                    .transition(.asymmetric(insertion: .scale.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
-                    /// Mostra task filtrate se selectByDate NON è nil
-                    TabView(selection: $selectedPicker) {
-                        taskFilteredByDate()
-                            .tag(0)
-                        filterToDoList()
-                            .tag(1)
-                        filterDoneList()
-                            .tag(2)
-                    }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .edgesIgnoringSafeArea(.bottom) /// Permette di andare dietro la tabBar
-                } else {
-                    /// Mostra tutte le task se selectByDate è nil
-                    TabView(selection: $selectedPicker) {
-                        taskListAll()
-                            .tag(0)
-                        filterToDoList()
-                            .tag(1)
-                        filterDoneList()
-                            .tag(2)
-                    }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                    .edgesIgnoringSafeArea(.bottom) /// Permette di andare dietro la tabBar
-                }
-            }
-            .navigationTitle("TooDoo List")
-            .toolbar{
-                //MARK: - TOOLBAR
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(action: {
-                        withAnimation(.easeIn(duration: 0.3)) {
-                            isSelectingItems = !isSelectingItems
-                        }
-                        if !isSelectingItems {
-                            selectedTaskIds.removeAll()
-                        }
-                    }, label: {
-                        if isSelectingItems {
-                            Image(systemName: "trash.fill")
-                                .font(.system(size: 16))
-                        } else {
-                            Image(systemName: "trash")
-                                .font(.system(size: 16))
-                        }
-                    })
-                }
-                
-                if isSelectingItems {
-                    ToolbarItem(placement: .principal) {
-                        Text("Selected Tasks: \(selectedTaskIds.count)")
-                            .foregroundColor(.primary)
-                    }
-                    ToolbarItem(placement: .confirmationAction)  {
-                        HStack(spacing: 10) {
-                            Button("Delete", action: {
-                                viewModel.deleteByGroup(idItems: Array(selectedTaskIds))
-                                isSelectingItems = false
-                                selectedTaskIds.removeAll()
-                            })
-                            .foregroundStyle(Color.red)
-                            .disabled(selectedTaskIds.isEmpty)
-                            .transition(.asymmetric(insertion: .opacity.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
-                        }
-                    }
-                } else {
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button(action: {
-                            haptic.feedbackMedium()
-                            withAnimation(.easeInOut(duration: 0.3)) { /// Qui setto la velocità di apertura del calendario
-                                self.isOpenCalendar.toggle()
-                            }
-                        }) {
-                            Image(systemName: isOpenCalendar ? "calendar.circle.fill" : "calendar.circle")
-                                .font(.system(size: 20))
-                        }
-                        .accessibilityLabel("Calendar")
-                        .transition(.asymmetric(insertion: .opacity.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
-                    }
-                    
-                    ToolbarItem(placement: .confirmationAction) {
-                        Button(action: {
-                            self.haptic.feedbackMedium()
-                            viewModel.isPresentingView = true
-                            if Bundle.main.bundleIdentifier != nil {
-                                WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
-                            }
-                        }) {
-                            Image(systemName: "plus.app")
-                                .font(.system(size: 23))
-                                .foregroundColor(Color.clear) /// Make the original icon transparent
-                                .background(Theme.red.gradient) /// Apply the gradient as background
-                                .mask(Image(systemName: "plus.app").font(.system(size: 23))) /// generate a mask
-                        }
-                        .accessibilityLabel("Add New Task")
-                    }
-                }
-            }
-            .onAppear {
-                if Bundle.main.bundleIdentifier != nil {
-                    WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
-                }
             }
         }
         .sheet(isPresented: $viewModel.isPresentingView) {
@@ -240,6 +107,179 @@ struct ToDoListView: View {
             }
         }
     }
+    
+    //MARK: - Main_Content
+    
+    @ViewBuilder
+    func mainContent() -> some View {
+        VStack {
+            
+            ProgressBarView(
+                valueBar: Double(isDoneItemsForToday.count),
+                totalValueBar: Double(itemsForToday.count))
+            
+            
+            CustomPickerView(selectedPicker: $selectedPicker)
+            
+            
+            if isOpenCalendar {
+                DatePicker(
+                    "Select Date",
+                    selection: Binding<Date>(
+                        get: { self.selectByDate ?? Date() },
+                        set: { newValue in
+                            withAnimation(.easeInOut(duration: 0.2)) { /// velocita apparizione bottone
+                                self.selectByDate = newValue
+                            }
+                        }
+                    ),
+                    displayedComponents: [.date]
+                )
+                .padding(.horizontal)
+                .datePickerStyle(.graphical)
+            }
+            
+            
+            if selectByDate != nil {
+                Button(action: {
+                    haptic.feedbackMedium()
+                    withAnimation(.easeInOut(duration: 0.2)) { /// velocita di sparizione bottone
+                        self.selectByDate = nil /// Pulisce la selezione della data
+                    }
+                }) {
+                    ZStack {
+                        Rectangle()
+                            .fill(Theme.redGradient.gradient)
+                            .cornerRadius(12.0)
+                            .frame(width: UIScreen.main.bounds.width / 1.2,height: 40)
+                        
+                        HStack {
+                            Image(systemName: "list.bullet.below.rectangle")
+                                .font(.system(size: 20))
+                                .foregroundColor(.white)
+                            Text("Show All Tasks")
+                                .foregroundColor(.white)
+                        }
+                    }
+                }
+                .transition(.asymmetric(insertion: .scale.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
+                /// Mostra task filtrate se selectByDate NON è nil
+                TabView(selection: $selectedPicker) {
+                    taskFilteredByDate()
+                        .tag(0)
+                    filterToDoList()
+                        .tag(1)
+                    filterDoneList()
+                        .tag(2)
+                }
+                .padding(.horizontal)
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .edgesIgnoringSafeArea(.bottom) /// Permette di andare dietro la tabBar
+            } else {
+                /// Mostra tutte le task se selectByDate è nil
+                TabView(selection: $selectedPicker) {
+                    taskListAll()
+                        .tag(0)
+                    filterToDoList()
+                        .tag(1)
+                    filterDoneList()
+                        .tag(2)
+                }
+                .padding(.horizontal)
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .edgesIgnoringSafeArea(.bottom) /// Permette di andare dietro la tabBar
+            }
+        }
+        .navigationTitle("TooDoo List")
+        .toolbar{
+            //MARK: - TOOLBAR
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: {
+                    withAnimation(.easeIn(duration: 0.3)) {
+                        self.haptic.feedbackMedium()
+                        isSelectingItems = !isSelectingItems
+                    }
+                    if !isSelectingItems {
+                        selectedTaskIds.removeAll()
+                    }
+                }, label: {
+                    if isSelectingItems {
+                        Image(systemName: "trash.fill")
+                            .font(.system(size: 16))
+                    } else {
+                        Image(systemName: "trash")
+                            .font(.system(size: 16))
+                    }
+                })
+            }
+            
+            if isSelectingItems {
+                ToolbarItem(placement: .principal) {
+                    Text("Selected Tasks: \(selectedTaskIds.count)")
+                        .foregroundColor(.primary)
+                }
+                ToolbarItem(placement: .confirmationAction)  {
+                    HStack(spacing: 10) {
+                        Button("Delete", action: {
+                            self.haptic.feedbackHeavy()
+                            viewModel.deleteByGroup(idItems: Array(selectedTaskIds))
+                            isSelectingItems = false
+                            selectedTaskIds.removeAll()
+                            withAnimation {
+                                showBanner = true
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                withAnimation {
+                                    showBanner = false
+                                }
+                            }
+                        })
+                        .foregroundStyle(Color.red)
+                        .disabled(selectedTaskIds.isEmpty)
+                        .transition(.asymmetric(insertion: .opacity.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
+                    }
+                }
+            } else {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(action: {
+                        haptic.feedbackMedium()
+                        withAnimation(.easeInOut(duration: 0.3)) { /// Qui setto la velocità di apertura del calendario
+                            self.isOpenCalendar.toggle()
+                        }
+                    }) {
+                        Image(systemName: isOpenCalendar ? "calendar.circle.fill" : "calendar.circle")
+                            .font(.system(size: 20))
+                    }
+                    .accessibilityLabel("Calendar")
+                    .transition(.asymmetric(insertion: .opacity.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
+                }
+                
+                ToolbarItem(placement: .confirmationAction) {
+                    Button(action: {
+                        self.haptic.feedbackMedium()
+                        viewModel.isPresentingView = true
+                        if Bundle.main.bundleIdentifier != nil {
+                            WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
+                        }
+                    }) {
+                        Image(systemName: "plus.app")
+                            .font(.system(size: 23))
+                            .foregroundColor(Color.clear) /// Make the original icon transparent
+                            .background(Theme.red.gradient) /// Apply the gradient as background
+                            .mask(Image(systemName: "plus.app").font(.system(size: 23))) /// generate a mask
+                    }
+                    .accessibilityLabel("Add New Task")
+                }
+            }
+        }
+        .onAppear {
+            if Bundle.main.bundleIdentifier != nil {
+                WidgetCenter.shared.reloadTimelines(ofKind: "TooDooWidget")
+            }
+        }
+
+    }
+    
     
     //MARK: - TaskListAll
     

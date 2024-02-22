@@ -8,7 +8,6 @@ struct ProfileView: View {
     var body: some View {
         NavigationView {
             VStack {
-                
                 if let user = viewModelProfile.user {
                     profile(user: user)
                 } else {
@@ -21,7 +20,6 @@ struct ProfileView: View {
                     .frame(height: 100)
             }
             .navigationTitle("Profile")
-            
         }
         .onAppear {
             viewModelProfile.fetchUser()

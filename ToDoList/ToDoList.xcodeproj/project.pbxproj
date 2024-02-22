@@ -203,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				492E297A2B1D522900021383 /* ButtonFormView.swift */,
+				499A0F682B83F60400527A4C /* BannerView.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -243,7 +244,6 @@
 			children = (
 				499531122B52083700547910 /* NotificationView.swift */,
 				49B584F52B52178800F3D004 /* RequestNewItemView.swift */,
-				499A0F682B83F60400527A4C /* BannerView.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
