@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490F02AB2B8782A800B3180D /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F02AA2B8782A800B3180D /* TabBarView.swift */; };
 		4916EA942B403CA90031B40C /* PomodoroTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916EA932B403CA90031B40C /* PomodoroTimerView.swift */; };
 		491839182B7EB2E00054A802 /* EditItemTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491839172B7EB2E00054A802 /* EditItemTaskView.swift */; };
 		491EB63E2B6DB04300ABF3B3 /* EditPrivateInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EB63D2B6DB04300ABF3B3 /* EditPrivateInfoView.swift */; };
@@ -106,6 +107,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		490F02AA2B8782A800B3180D /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		4916EA932B403CA90031B40C /* PomodoroTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerView.swift; sourceTree = "<group>"; };
 		491839172B7EB2E00054A802 /* EditItemTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemTaskView.swift; sourceTree = "<group>"; };
 		491EB63D2B6DB04300ABF3B3 /* EditPrivateInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPrivateInfoView.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				49B862C22B1BC45200FED137 /* MainView.swift */,
+				490F02AA2B8782A800B3180D /* TabBarView.swift */,
 				49C32CA12B1E5F98003B44EA /* MainScreens */,
 				49C32CA22B1E5FB5003B44EA /* Components */,
 			);
@@ -551,6 +554,7 @@
 			files = (
 				4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */,
 				49C61BCA2B4385C300F1999C /* TimerArc.swift in Sources */,
+				490F02AB2B8782A800B3180D /* TabBarView.swift in Sources */,
 				49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */,
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
 				49B584F62B52178800F3D004 /* RequestNewItemView.swift in Sources */,

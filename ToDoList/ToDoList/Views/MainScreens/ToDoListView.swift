@@ -139,6 +139,7 @@ struct ToDoListView: View {
                             .tag(2)
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    .edgesIgnoringSafeArea(.bottom) /// Permette di andare dietro la tabBar
                 } else {
                     /// Mostra tutte le task se selectByDate è nil
                     TabView(selection: $selectedPicker) {
@@ -150,6 +151,7 @@ struct ToDoListView: View {
                             .tag(2)
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    .edgesIgnoringSafeArea(.bottom) /// Permette di andare dietro la tabBar
                 }
             }
             .navigationTitle("TooDoo List")
@@ -411,8 +413,10 @@ struct ToDoListView: View {
                     ])
                 }
             }
+            .edgesIgnoringSafeArea(.bottom)
         }
         .listStyle(PlainListStyle())
+        
     }
     
     

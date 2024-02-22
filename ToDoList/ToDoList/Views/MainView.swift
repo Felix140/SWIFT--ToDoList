@@ -3,48 +3,17 @@ import SwiftUI
 struct MainView: View {
     
     @StateObject var viewModel = MainViewViewModel()
-    
     var body: some View {
         
         if viewModel.isSignedIn,
            !viewModel.currentUserId.isEmpty {
-            navbar
+            
+            TabBarView(userId: viewModel.currentUserId)
+            
         } else {
             StartView()
         }
         
-    }
-    
-    @ViewBuilder
-    var navbar: some View {
-        TabView { /// TAB NAV
-            ToDoListView(userId: viewModel.currentUserId)
-                .tabItem {
-                    Label("Task", systemImage: "list.bullet.circle.fill")
-                }
-            
-            SharedToDoListView(userId: viewModel.currentUserId)
-                .tabItem {
-                    Label("Shared", systemImage: "rectangle.stack.badge.person.crop")
-                }
-            
-            ContactsView()
-                .tabItem {
-                    Label("Contacts", systemImage: "person.2.circle")
-                }
-            
-            ProfileView()
-                .tabItem {
-                    Label("Profile", systemImage: "person.crop.circle")
-                }
-        }
-        .onAppear {
-            let appearance = UITabBarAppearance()
-            appearance.configureWithTransparentBackground()
-            appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
-            UITabBar.appearance().standardAppearance = appearance
-            UITabBar.appearance().scrollEdgeAppearance = appearance
-        }
     }
 }
 
