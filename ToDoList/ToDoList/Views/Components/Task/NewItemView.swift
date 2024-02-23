@@ -5,21 +5,22 @@ struct NewItemView: View {
     @StateObject var viewModel = NewItemViewViewModel()
     @Binding var toggleView: Bool
     @State private var showDescriptionView = false
+    @State private var isEventItem: Bool = false
     var haptic = HapticTrigger()
     
     var body: some View {
         VStack(alignment: .leading) {
             
-            //Component Title
-            HStack {
-                Spacer()
-                Text("Inserisci la tua Task")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .padding(.top, 15)
-                    .padding(.leading, 20)
-                Spacer()
-            }
+//            //Component Title
+//            HStack {
+//                Spacer()
+//                Text("Inserisci la tua Task")
+//                    .font(.title3)
+//                    .fontWeight(.bold)
+//                    .padding(.top, 15)
+//                    .padding(.leading, 20)
+//                Spacer()
+//            }
             
             // Form
             Form {
@@ -32,17 +33,46 @@ struct NewItemView: View {
                     
                 }
                 
-                
                 HStack {
-                    Image(systemName: "calendar")
-                    Text("Date")
-                    Spacer()
-                    DatePicker(selection: $viewModel.date, displayedComponents: [.date, .hourAndMinute]) {
-                        EmptyView()
+                    Image(systemName: "square.fill.and.line.vertical.and.square.fill")
+                    withAnimation(.easeInOut(duration: 1.3)) {
+                        Toggle("Event", isOn: $isEventItem)
                     }
-                    .fixedSize()
                 }
                 .frame(maxWidth: .infinity)
+                
+                
+                
+                Section {
+                    // DATE 1
+                    HStack {
+                        Image(systemName: "calendar")
+                        Text(isEventItem ? "Start Date" : "Date")
+                        Spacer()
+                        DatePicker(
+                            selection: $viewModel.date,
+                            displayedComponents: isEventItem ? [.date] : [.date, .hourAndMinute]) {
+                            EmptyView()
+                        }
+                        .fixedSize()
+                    }
+                    .frame(maxWidth: .infinity)
+                    // DATE 2
+                    if isEventItem {
+                        HStack {
+                            Image(systemName: "calendar")
+                            Text("End Date")
+                            Spacer()
+                            DatePicker(selection: $viewModel.date2, displayedComponents: [.date]) {
+                                EmptyView()
+                            }
+                            .fixedSize()
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                }
+                
+                
                 
                 
                 Section(header: Text("Seleziona una categoria")) {
@@ -76,7 +106,7 @@ struct NewItemView: View {
                 Button("Done") {
                     if viewModel.canSave() {
                         self.haptic.feedbackMedium()
-                        viewModel.save()
+                        isEventItem ? viewModel.saveEvent() : viewModel.save()
                         toggleView = false
                     } else {
                         self.haptic.feedbackHeavy()
@@ -114,6 +144,7 @@ struct NewItemView: View {
     }
 }
 
+// MARK: - Preview
 struct NewItemView_Previews: PreviewProvider {
     static var previews: some View {
         NewItemView(
