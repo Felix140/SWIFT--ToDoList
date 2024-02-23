@@ -35,6 +35,7 @@
 		496F10002B331957005CCA4B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496F0FFF2B331957005CCA4B /* StartView.swift */; };
 		4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970661E2B462C4200C16D88 /* CategoryTask.swift */; };
 		497738DE2B7AC85200789847 /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497738DD2B7AC85200789847 /* CustomPickerView.swift */; };
+		498697762B8936A200C4A3DD /* EventItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498697752B8936A200C4A3DD /* EventItem.swift */; };
 		499074D82B87D2E9008C2783 /* CalendarViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499074D72B87D2E9008C2783 /* CalendarViewViewModel.swift */; };
 		499074DA2B87D32D008C2783 /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499074D92B87D32D008C2783 /* CustomCalendarView.swift */; };
 		4991E1562B5F41EE00D6ED63 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */; };
@@ -44,7 +45,6 @@
 		499531132B52083700547910 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499531122B52083700547910 /* NotificationView.swift */; };
 		499A0F692B83F60400527A4C /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A0F682B83F60400527A4C /* BannerView.swift */; };
 		499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E1DDF2B46FA5200A7EF9A /* Routes.swift */; };
-		49A60C242B55299800A2C133 /* UserContactsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A60C232B55299800A2C133 /* UserContactsList.swift */; };
 		49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */; };
 		49B584F22B5211B200F3D004 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B584F12B5211B200F3D004 /* Notification.swift */; };
 		49B584F42B5213D300F3D004 /* NotificationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B584F32B5213D300F3D004 /* NotificationViewViewModel.swift */; };
@@ -135,12 +135,12 @@
 		496F0FFF2B331957005CCA4B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		4970661E2B462C4200C16D88 /* CategoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTask.swift; sourceTree = "<group>"; };
 		497738DD2B7AC85200789847 /* CustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
+		498697752B8936A200C4A3DD /* EventItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItem.swift; sourceTree = "<group>"; };
 		499074D72B87D2E9008C2783 /* CalendarViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewViewModel.swift; sourceTree = "<group>"; };
 		499074D92B87D32D008C2783 /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		499531122B52083700547910 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		499A0F682B83F60400527A4C /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		499E1DDF2B46FA5200A7EF9A /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
-		49A60C232B55299800A2C133 /* UserContactsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserContactsList.swift; sourceTree = "<group>"; };
 		49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTrigger.swift; sourceTree = "<group>"; };
 		49B584F12B5211B200F3D004 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		49B584F32B5213D300F3D004 /* NotificationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewViewModel.swift; sourceTree = "<group>"; };
@@ -414,8 +414,8 @@
 			children = (
 				49FE57342B1CDADC00E4A0E2 /* User.swift */,
 				49D5307E2B683D6100C9206E /* UserContact.swift */,
-				49A60C232B55299800A2C133 /* UserContactsList.swift */,
 				49FE57362B1CDAEF00E4A0E2 /* ToDoListItem.swift */,
+				498697752B8936A200C4A3DD /* EventItem.swift */,
 				49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */,
 				49B584F12B5211B200F3D004 /* Notification.swift */,
 				49DDA1812B44C2B6009218C4 /* Enums */,
@@ -573,7 +573,6 @@
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
 				49B584F62B52178800F3D004 /* RequestNewItemView.swift in Sources */,
 				49E946882B50848700148273 /* SharedToDoListView.swift in Sources */,
-				49A60C242B55299800A2C133 /* UserContactsList.swift in Sources */,
 				499074D82B87D2E9008C2783 /* CalendarViewViewModel.swift in Sources */,
 				49FE572F2B1CDA5100E4A0E2 /* LoginView.swift in Sources */,
 				496F10002B331957005CCA4B /* StartView.swift in Sources */,
@@ -620,6 +619,7 @@
 				49DDA1802B44BF7B009218C4 /* Theme.swift in Sources */,
 				49B862C12B1BC45200FED137 /* ToDoListApp.swift in Sources */,
 				49FE573F2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift in Sources */,
+				498697762B8936A200C4A3DD /* EventItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@ class NewItemViewViewModel: ObservableObject {
     @Published var title = ""
     @Published var category = ""
     @Published var date = Date()
+    @Published var date2 = Date()
     @Published var showAlert = false
     @Published var description = ""
     @Published var selectedCategory: CategoryTask = .none
@@ -17,14 +18,9 @@ class NewItemViewViewModel: ObservableObject {
     
     func save() {
         /// Check canSave() function
-        guard  canSave() else {
-            return
-        }
-        
+        guard  canSave() else { return }
         /// Get userID corrente
-        guard let userId = Auth.auth().currentUser?.uid else {
-            return
-        }
+        guard let userId = Auth.auth().currentUser?.uid else { return }
         
         /// Creazione Modello da mandare
         let newId = UUID().uuidString
@@ -47,8 +43,6 @@ class NewItemViewViewModel: ObservableObject {
         print("New Item Saved")
     }
     
-    
-    
     /// Check dei campi prima del salvataggio
     func canSave() -> Bool {
         guard !title.trimmingCharacters(in: .whitespaces).isEmpty else {
@@ -70,5 +64,27 @@ class NewItemViewViewModel: ObservableObject {
         }
         
         return true
+    }
+    
+    func saveEvent() {
+        guard  canSave() else { return }
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        let newId = UUID().uuidString
+        
+        let newEventItem = EventItem(id: newId,
+                                title: title,
+                                startDate: date.timeIntervalSince1970,
+                                endDate: date2.timeIntervalSince1970,
+                                createdDate: Date().timeIntervalSince1970,
+                                category: selectedCategory,
+                                description: InfoToDoItem(id: newId, description: description))
+        
+        db.collection("users")
+            .document(userId)
+            .collection("events")
+            .document(newId)
+            .setData(newEventItem.asDictionary())
+        
+        print("New Event Saved")
     }
 }

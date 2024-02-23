@@ -31,7 +31,7 @@ class UserContact: User {
         _ = try container.decode(TimeInterval.self, forKey: .joined)
         self.isSaved = try container.decode(Bool.self, forKey: .isSaved)
         
-        // Non dimenticare di chiamare l'inizializzatore della superclasse!
+        // Chiama l'inizializzatore della superclasse
         try super.init(from: decoder)
     }
     
