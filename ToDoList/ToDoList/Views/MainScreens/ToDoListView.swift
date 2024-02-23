@@ -84,17 +84,7 @@ struct ToDoListView: View {
             ZStack(alignment: .top) {
                 // Banner
                 if showBanner {
-                    BannerView() // Rimuovi showBanner da qui
-                        .transition(.asymmetric(insertion: .opacity.combined(with: .slide), removal: .scale.combined(with: .opacity)))
-                        .animation(.easeInOut(duration: 0.5), value: showBanner)
-                        .zIndex(1)
-                        .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                withAnimation {
-                                    showBanner = false
-                                }
-                            }
-                        }
+                    BannerView(testMessage: "Deleted", colorBanner: .red, showBanner: $showBanner)
                 }
                 
                 mainContent()
@@ -184,6 +174,7 @@ struct ToDoListView: View {
                 Button(action: {
                     withAnimation(.easeIn(duration: 0.3)) {
                         self.haptic.feedbackMedium()
+                        self.isOpenCalendar = false /// Se elimino delle task, chiudo sempre il calendario
                         isSelectingItems = !isSelectingItems
                     }
                     if !isSelectingItems {
