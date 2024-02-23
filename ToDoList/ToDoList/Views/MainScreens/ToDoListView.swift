@@ -173,7 +173,7 @@ struct ToDoListView: View {
             ToolbarItem(placement: .topBarLeading) {
                 Button(action: {
                     withAnimation(.easeIn(duration: 0.3)) {
-                        self.haptic.feedbackMedium()
+                        self.haptic.feedbackLight()
                         self.isOpenCalendar = false /// Se elimino delle task, chiudo sempre il calendario
                         isSelectingItems = !isSelectingItems
                     }
@@ -220,7 +220,7 @@ struct ToDoListView: View {
             } else {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: {
-                        haptic.feedbackMedium()
+                        haptic.feedbackLight()
                         withAnimation(.easeInOut(duration: 0.3)) { /// Qui setto la velocità di apertura del calendario
                             self.isOpenCalendar.toggle()
                         }
@@ -443,24 +443,52 @@ struct ToDoListView: View {
     @ViewBuilder
     func taskFilteredByDate() -> some View {
         List {
-            
             Section {
                 HStack(alignment: .center) {
                     Button(action: {
-                        haptic.feedbackMedium()
+                        haptic.feedbackHeavy()
                         withAnimation(.easeInOut(duration: 0.2)) { /// velocita di sparizione bottone
                             self.selectByDate = nil /// Pulisce la selezione della data
                         }
                     }) {
                         
                         HStack {
+                            // NextDay
+                            Button(action: {
+                                haptic.feedbackLight()
+                                let nextDay = Calendar.current.date(byAdding: .day, value: -1, to: selectByDate ?? Date())
+                                withAnimation(.default) {
+                                    selectByDate = nextDay
+                                }
+                            }, label: {
+                                Image(systemName: "chevron.left.circle")
+                                    .font(.system(size: 25))
+                                    .foregroundStyle(.blue)
+                            })
+                            
+                            Spacer()
                             Image(systemName: "list.bullet.below.rectangle")
                                 .font(.system(size: 20))
                                 .foregroundStyle(Theme.redGradient.gradient)
                             Text("Show All Tasks")
                                 .foregroundStyle(Theme.redGradient.gradient)
                                 .fontWeight(.semibold)
+                            Spacer()
+                            
+                            // PreviousDay
+                            Button(action: {
+                                haptic.feedbackLight()
+                                let previousDay = Calendar.current.date(byAdding: .day, value: 1, to: selectByDate ?? Date())
+                                withAnimation(.default) {
+                                    selectByDate = previousDay
+                                }
+                            }, label: {
+                                Image(systemName: "chevron.forward.circle")
+                                    .font(.system(size: 25))
+                                    .foregroundStyle(.blue)
+                            })
                         }
+                        .padding(.horizontal)
                         
                     }
                     .transition(.asymmetric(insertion: .scale.combined(with: .opacity), removal: .scale.combined(with: .opacity)))
