@@ -16,7 +16,7 @@ struct SharedToDoListView: View {
         self._sendNotifications = FirestoreQuery(collectionPath: "users/\(userId)/sendNotifications/")
     }
     
-    //MARK: - Bodys
+    //MARK: - Body
     
     var body: some View {
         NavigationView {
@@ -24,9 +24,9 @@ struct SharedToDoListView: View {
                 
                 // Banner
                 if showBanner {
-                    BannerView(testMessage: "Task Sended", colorBanner: .green, showBanner: $showBanner)
+                    BannerView(testMessage: "Task Added", colorBanner: .green, showBanner: $showBanner)
                 }
-                
+
                 VStack {
                     Divider()
                     HStack {
@@ -118,7 +118,7 @@ struct SharedToDoListView: View {
                     taskObject: sended,
                     textTask: sended.task.title,
                     sendFrom: sended.recipient,
-                    onActionCompleted: { // Passa il callback
+                    onActionCompleted: { /// Passa il callback
                         withAnimation {
                             showBanner = true
                         }
