@@ -10,6 +10,7 @@ struct ToDoListView: View {
     @StateObject var viewModel: ToDoListViewViewModel
     @StateObject var calendarViewModel: CalendarViewViewModel
     @FirestoreQuery var fetchedItems: [ToDoListItem]
+    @FirestoreQuery var fetchedEventitems: [EventItem]
     @State private var selectedPicker = 0
     @State private var itemToEdit: ToDoListItem? /// qui vado a storare la task premuta per renderla accessibile
     
@@ -65,12 +66,28 @@ struct ToDoListView: View {
         }
     }
     
+    // EVENTS items
+    private var eventsForToday: [EventItem] {
+        let calendar = Calendar.current
+        let startOfDay = calendar.startOfDay(for: Date())
+        let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)
+
+        return fetchedEventitems.filter { eventItem in
+            let startDate = Date(timeIntervalSince1970: eventItem.startDate)
+            let endDate = Date(timeIntervalSince1970: eventItem.endDate)
+            // Verifica che l'evento inizi prima della fine del giorno e finisca dopo l'inizio del giorno
+            return startDate < endOfDay! && endDate >= startOfDay
+        }
+    }
+
+
     //MARK: - INIT
     
     init(userId: String) {
         /// users/<id>/todos/<entries>
-        self._fetchedItems = FirestoreQuery(
-            collectionPath: "users/\(userId)/todos/") // GET query
+        self._fetchedItems = FirestoreQuery(collectionPath: "users/\(userId)/todos/") // GET query
+        /// users/<id>/events/<entries>
+        self._fetchedEventitems = FirestoreQuery(collectionPath: "users/\(userId)/events/")
         /// inizializzo qui sotto viewModel come StateObject
         self._viewModel = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
         self._currentUserId = State(wrappedValue: userId)
@@ -266,6 +283,11 @@ struct ToDoListView: View {
         
         List {
             Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
+                
+                VStack {
+                    allEventsForToday()
+                }
+                
                 ForEach(itemsForToday) { itemToday in
                     HStack {
                         VStack {
@@ -626,6 +648,14 @@ struct ToDoListView: View {
             .padding(.leading, 4)
         }
         .font(.caption2)
+    }
+    
+    //MARK: - AllEvents
+    @ViewBuilder
+    func allEventsForToday() -> some View {
+            ForEach(eventsForToday) { event in
+                EventItemView(titleEvent: .constant(event.title))
+            }
     }
 }
 

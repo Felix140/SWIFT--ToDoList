@@ -44,6 +44,7 @@
 		4991E1622B5F5CA700D6ED63 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DDA17F2B44BF7B009218C4 /* Theme.swift */; };
 		499531132B52083700547910 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499531122B52083700547910 /* NotificationView.swift */; };
 		499A0F692B83F60400527A4C /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A0F682B83F60400527A4C /* BannerView.swift */; };
+		499DBCA72B894C7400A1FD4C /* EventItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499DBCA62B894C7400A1FD4C /* EventItemView.swift */; };
 		499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E1DDF2B46FA5200A7EF9A /* Routes.swift */; };
 		49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */; };
 		49B584F22B5211B200F3D004 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B584F12B5211B200F3D004 /* Notification.swift */; };
@@ -140,6 +141,7 @@
 		499074D92B87D32D008C2783 /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		499531122B52083700547910 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		499A0F682B83F60400527A4C /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		499DBCA62B894C7400A1FD4C /* EventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItemView.swift; sourceTree = "<group>"; };
 		499E1DDF2B46FA5200A7EF9A /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTrigger.swift; sourceTree = "<group>"; };
 		49B584F12B5211B200F3D004 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */,
 				491839172B7EB2E00054A802 /* EditItemTaskView.swift */,
 				49D5CE552B291824009CF312 /* ToDoListItemView.swift */,
+				499DBCA62B894C7400A1FD4C /* EventItemView.swift */,
 				49C61BC52B436B3D00F1999C /* ProgressBarView.swift */,
 				4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */,
 				497738DD2B7AC85200789847 /* CustomPickerView.swift */,
@@ -593,6 +596,7 @@
 				491EB6402B6DB2AF00ABF3B3 /* UserTheme.swift in Sources */,
 				49C61BC62B436B3D00F1999C /* ProgressBarView.swift in Sources */,
 				49F0D3762B5569F30053206A /* ContactItemView.swift in Sources */,
+				499DBCA72B894C7400A1FD4C /* EventItemView.swift in Sources */,
 				49DB4B9B2B49866300811C93 /* InfoToDoItem.swift in Sources */,
 				491839182B7EB2E00054A802 /* EditItemTaskView.swift in Sources */,
 				491EB63E2B6DB04300ABF3B3 /* EditPrivateInfoView.swift in Sources */,
