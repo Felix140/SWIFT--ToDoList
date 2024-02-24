@@ -654,7 +654,7 @@ struct ToDoListView: View {
     @ViewBuilder
     func allEventsForToday() -> some View {
             ForEach(eventsForToday) { event in
-                EventItemView(titleEvent: .constant(event.title))
+                EventItemView(eventItem: .constant(event))
             }
     }
 }

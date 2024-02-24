@@ -54,6 +54,11 @@ class NewItemViewViewModel: ObservableObject {
             print("Giorno non Valido")
             return false
         }
+        ///Check su  DATE2 > di DATE1 ( giorno corrente: Date(), sottratto da -86400: ovver secondi in un giorno )
+        guard date2 >= date else {
+            print("Secondo giorno è minore del primo giorno")
+            return false
+        }
         return true
     }
     

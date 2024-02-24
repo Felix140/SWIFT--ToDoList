@@ -11,17 +11,6 @@ struct NewItemView: View {
     var body: some View {
         VStack(alignment: .leading) {
             
-//            //Component Title
-//            HStack {
-//                Spacer()
-//                Text("Inserisci la tua Task")
-//                    .font(.title3)
-//                    .fontWeight(.bold)
-//                    .padding(.top, 15)
-//                    .padding(.leading, 20)
-//                Spacer()
-//            }
-            
             // Form
             Form {
                 Section(header: Text("Titolo task")) {
