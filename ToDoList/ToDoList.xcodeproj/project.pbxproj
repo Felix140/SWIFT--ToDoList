@@ -54,6 +54,8 @@
 		49B862C32B1BC45200FED137 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B862C22B1BC45200FED137 /* MainView.swift */; };
 		49B862C52B1BC45500FED137 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B862C42B1BC45500FED137 /* Assets.xcassets */; };
 		49B862C82B1BC45500FED137 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B862C72B1BC45500FED137 /* Preview Assets.xcassets */; };
+		49B90D7B2B8A19260019F438 /* EventInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B90D7A2B8A19260019F438 /* EventInfoView.swift */; };
+		49B90D7D2B8A23070019F438 /* EventInfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B90D7C2B8A23070019F438 /* EventInfoCardView.swift */; };
 		49C61BC62B436B3D00F1999C /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C61BC52B436B3D00F1999C /* ProgressBarView.swift */; };
 		49C61BC82B43852300F1999C /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C61BC72B43852300F1999C /* TimerView.swift */; };
 		49C61BCA2B4385C300F1999C /* TimerArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C61BC92B4385C300F1999C /* TimerArc.swift */; };
@@ -152,6 +154,8 @@
 		49B862C22B1BC45200FED137 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		49B862C42B1BC45500FED137 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		49B862C72B1BC45500FED137 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		49B90D7A2B8A19260019F438 /* EventInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoView.swift; sourceTree = "<group>"; };
+		49B90D7C2B8A23070019F438 /* EventInfoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCardView.swift; sourceTree = "<group>"; };
 		49C61BC52B436B3D00F1999C /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		49C61BC72B43852300F1999C /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		49C61BC92B4385C300F1999C /* TimerArc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerArc.swift; sourceTree = "<group>"; };
@@ -276,7 +280,7 @@
 				49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */,
 				491839172B7EB2E00054A802 /* EditItemTaskView.swift */,
 				49D5CE552B291824009CF312 /* ToDoListItemView.swift */,
-				499DBCA62B894C7400A1FD4C /* EventItemView.swift */,
+				49B90D7E2B8A23110019F438 /* Event */,
 				49C61BC52B436B3D00F1999C /* ProgressBarView.swift */,
 				4928F3A62B4614B2008B2F94 /* InsertDescriptionView.swift */,
 				497738DD2B7AC85200789847 /* CustomPickerView.swift */,
@@ -323,6 +327,16 @@
 				49B862C72B1BC45500FED137 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		49B90D7E2B8A23110019F438 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				499DBCA62B894C7400A1FD4C /* EventItemView.swift */,
+				49B90D7A2B8A19260019F438 /* EventInfoView.swift */,
+				49B90D7C2B8A23070019F438 /* EventInfoCardView.swift */,
+			);
+			path = Event;
 			sourceTree = "<group>";
 		};
 		49C32CA12B1E5F98003B44EA /* MainScreens */ = {
@@ -576,9 +590,11 @@
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
 				49B584F62B52178800F3D004 /* RequestNewItemView.swift in Sources */,
 				49E946882B50848700148273 /* SharedToDoListView.swift in Sources */,
+				49B90D7B2B8A19260019F438 /* EventInfoView.swift in Sources */,
 				499074D82B87D2E9008C2783 /* CalendarViewViewModel.swift in Sources */,
 				49FE572F2B1CDA5100E4A0E2 /* LoginView.swift in Sources */,
 				496F10002B331957005CCA4B /* StartView.swift in Sources */,
+				49B90D7D2B8A23070019F438 /* EventInfoCardView.swift in Sources */,
 				49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */,
 				49FE57462B1CDBED00E4A0E2 /* RegisterViewViewModel.swift in Sources */,
 				49FE57392B1CDB3C00E4A0E2 /* MainViewViewModel.swift in Sources */,

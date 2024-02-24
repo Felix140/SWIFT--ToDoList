@@ -284,9 +284,7 @@ struct ToDoListView: View {
         List {
             Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
                 
-                VStack {
-                    allEventsForToday()
-                }
+                allEventsForToday()
                 
                 ForEach(itemsForToday) { itemToday in
                     HStack {
@@ -653,9 +651,13 @@ struct ToDoListView: View {
     //MARK: - AllEvents
     @ViewBuilder
     func allEventsForToday() -> some View {
-            ForEach(eventsForToday) { event in
-                EventItemView(eventItem: .constant(event))
+        NavigationLink(destination: EventInfoView(eventListItem: .constant(eventsForToday)), label: {
+            VStack {
+                ForEach(eventsForToday) { event in
+                    EventItemView(eventItem: .constant(event))
+                }
             }
+        })
     }
 }
 
