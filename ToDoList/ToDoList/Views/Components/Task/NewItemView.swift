@@ -23,7 +23,8 @@ struct NewItemView: View {
                 }
                 
                 HStack {
-                    Image(systemName: "square.fill.and.line.vertical.and.square.fill")
+                    Image(systemName: "calendar.day.timeline.left")
+                        .font(.system(size: 14))
                     withAnimation(.easeInOut(duration: 1.3)) {
                         Toggle("Event", isOn: $isEventItem)
                     }

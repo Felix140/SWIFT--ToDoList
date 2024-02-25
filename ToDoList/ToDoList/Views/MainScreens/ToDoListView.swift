@@ -453,7 +453,7 @@ struct ToDoListView: View {
             }
             .edgesIgnoringSafeArea(.bottom)
         }
-        .listStyle(PlainListStyle())
+        .listStyle(.sidebar)
         
     }
     
@@ -654,6 +654,9 @@ struct ToDoListView: View {
         Section {
             NavigationLink(destination: EventInfoView(eventListItem: .constant(eventsForToday)), label: {
                 HStack(alignment: .center) {
+                    
+                    
+                    
                     ForEach(eventsForToday) { event in
                         EventItemView(eventItem: .constant(event))
                     }
@@ -662,9 +665,12 @@ struct ToDoListView: View {
                     
                     Text("\(eventsForToday.count) Events")
                         .font(.caption)
+                    Image(systemName: "calendar.day.timeline.left")
+                        .font(.system(size: 14))
                 }
             })
         }
+        .padding(.leading, 5)
     }
 }
 
