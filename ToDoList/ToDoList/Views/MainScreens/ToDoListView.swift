@@ -121,7 +121,7 @@ struct ToDoListView: View {
     
     @ViewBuilder
     func mainContent() -> some View {
-        VStack {
+        VStack(spacing: nil) {
             
             ProgressBarView(
                 valueBar: Double(isDoneItemsForToday.count),
@@ -154,7 +154,6 @@ struct ToDoListView: View {
                     }
                 )
             }
-            
             
             if selectByDate != nil {
                 /// Mostra task filtrate se selectByDate NON è nil
@@ -200,10 +199,10 @@ struct ToDoListView: View {
                 }, label: {
                     if isSelectingItems {
                         Image(systemName: "trash.fill")
-                            .font(.system(size: 17))
+                            .font(.system(size: 15))
                     } else {
                         Image(systemName: "trash")
-                            .font(.system(size: 17))
+                            .font(.system(size: 15))
                     }
                 })
             }
@@ -280,11 +279,12 @@ struct ToDoListView: View {
     
     @ViewBuilder
     func taskListAll() -> some View {
-        
         List {
             Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
                 
-                allEventsForToday()
+                if eventsForToday.count != 0 {
+                    allEventsForToday()
+                }
                 
                 ForEach(itemsForToday) { itemToday in
                     HStack {
@@ -651,13 +651,20 @@ struct ToDoListView: View {
     //MARK: - AllEvents
     @ViewBuilder
     func allEventsForToday() -> some View {
-        NavigationLink(destination: EventInfoView(eventListItem: .constant(eventsForToday)), label: {
-            VStack {
-                ForEach(eventsForToday) { event in
-                    EventItemView(eventItem: .constant(event))
+        Section {
+            NavigationLink(destination: EventInfoView(eventListItem: .constant(eventsForToday)), label: {
+                HStack(alignment: .center) {
+                    ForEach(eventsForToday) { event in
+                        EventItemView(eventItem: .constant(event))
+                    }
+                    
+                    Spacer()
+                    
+                    Text("\(eventsForToday.count) Events")
+                        .font(.caption)
                 }
-            }
-        })
+            })
+        }
     }
 }
 

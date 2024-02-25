@@ -5,31 +5,11 @@ struct EventItemView: View {
     @Binding var eventItem: EventItem
     
     var body: some View {
-        Button(action: {
-            
-        }, label: {
-            
-            let categoryColor = themeColorForCategory(category: eventItem.category)
-            ZStack {
-                Rectangle()
+        let categoryColor = themeColorForCategory(category: eventItem.category)
+                Circle()
                     .fill(categoryColor)
                     .cornerRadius(5.0)
-                    .frame(height: 18)
-                
-                HStack {
-                    Text(eventItem.title)
-                        .font(.caption)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color.white)
-                        .padding(.leading, 50)
-                    Spacer()
-                }
-                
-            }
-            .padding(.horizontal)
-            
-        })
-
+                    .frame(width: 10 ,height: 20)
     }
 }
 
@@ -49,5 +29,6 @@ struct EventItem_Preview: PreviewProvider {
                         description: "Description"))
             )
         )
+        .previewLayout(.sizeThatFits)
     }
 }

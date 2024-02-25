@@ -41,9 +41,15 @@ struct NewItemView: View {
                         DatePicker(
                             selection: $viewModel.date,
                             displayedComponents: isEventItem ? [.date] : [.date, .hourAndMinute]) {
-                            EmptyView()
-                        }
-                        .fixedSize()
+                                EmptyView()
+                            }
+                            .onChange(of: viewModel.date) { _ in
+                                if !isEventItem {
+                                    // Aggiorna date2 solo se non è selezionato come evento
+                                    viewModel.date2 = viewModel.date
+                                }
+                            }
+                            .fixedSize()
                     }
                     .frame(maxWidth: .infinity)
                     // DATE 2
@@ -77,6 +83,12 @@ struct NewItemView: View {
             .scrollDisabled(true)
             
             Spacer()
+        }
+        .onChange(of: isEventItem) { newValue in
+            /// Se isEventItem è false, allinea date2 con date
+            if !newValue {
+                viewModel.date2 = viewModel.date
+            }
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(
