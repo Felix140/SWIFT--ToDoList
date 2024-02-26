@@ -45,6 +45,17 @@ struct EventInfoView: View {
 
 struct EventInfoView_Preview: PreviewProvider {
     static var previews: some View {
-        EventInfoView(eventListItem: .constant([]))
+        EventInfoView(eventListItem: .constant([
+            EventItem(
+                id: "12345678",
+                title: "titolo",
+                startDate: Date().timeIntervalSince1970,
+                endDate: Date().timeIntervalSince1970,
+                createdDate: Date().timeIntervalSince1970,
+                category: .home,
+                description: InfoToDoItem(
+                    id: "12345678",
+                    description: "Description"))
+        ]))
     }
 }

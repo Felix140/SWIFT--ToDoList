@@ -23,7 +23,7 @@ class EventViewViewModel: ObservableObject {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
         let documentRef = db.collection("users").document(userId).collection("events").document(event.id)
-    
+        
         documentRef.setData([
             "id": event.id,
             "title": event.title,
@@ -41,5 +41,19 @@ class EventViewViewModel: ObservableObject {
         }
         
     }
-
+    
+    
+    func isSameDay(date1: TimeInterval, date2: TimeInterval) -> Bool { ///    Check start e end sono uguali
+        let calendar = Calendar.current
+        let date1 = Date(timeIntervalSince1970: date1)
+        let date2 = Date(timeIntervalSince1970: date2)
+        let day1 = calendar.component(.day, from: date1)
+        let month1 = calendar.component(.month, from: date1)
+        let year1 = calendar.component(.year, from: date1)
+        let day2 = calendar.component(.day, from: date2)
+        let month2 = calendar.component(.month, from: date2)
+        let year2 = calendar.component(.year, from: date2)
+        return day1 == day2 && month1 == month2 && year1 == year2
+    }
+    
 }

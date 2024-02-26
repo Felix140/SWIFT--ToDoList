@@ -66,7 +66,7 @@ struct ToDoListView: View {
         }
     }
     
-    // EVENTS items
+    // EVENTS for TODAY items
     private var eventsForToday: [EventItem] {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: Date())
@@ -77,6 +77,27 @@ struct ToDoListView: View {
             let endDate = Date(timeIntervalSince1970: eventItem.endDate)
             // Verifica che l'evento inizi prima della fine del giorno e finisca dopo l'inizio del giorno
             return startDate < endOfDay! && endDate >= startOfDay
+        }
+    }
+    
+    // EVENTS for TOMORROW items
+    private var eventsForTomorrow: [EventItem] {
+        let calendar = Calendar.current
+        /// inizio del giorno successivo
+        guard let startOfTomorrow = calendar.date(byAdding: .day, value: 1, to: calendar.startOfDay(for: Date())) else {
+            return []
+        }
+        /// Calcola l'inizio del giorno dopo il giorno successivo
+        guard let startOfTheDayAfterTomorrow = calendar.date(byAdding: .day, value: 1, to: startOfTomorrow) else {
+            return []
+        }
+
+        return fetchedEventitems.filter { eventItem in
+            let startDate = Date(timeIntervalSince1970: eventItem.startDate)
+            let endDate = Date(timeIntervalSince1970: eventItem.endDate)
+            /// Verifica che l'evento inizi in qualsiasi momento durante il giorno successivo
+            /// e che l'evento finisca dopo l'inizio del giorno successivo
+            return (startDate >= startOfTomorrow && startDate < startOfTheDayAfterTomorrow) || (endDate > startOfTomorrow && startDate < startOfTheDayAfterTomorrow)
         }
     }
 
@@ -280,12 +301,12 @@ struct ToDoListView: View {
     @ViewBuilder
     func taskListAll() -> some View {
         List {
+            
+            //MARK: - TODAY
             Section(header: Text("Today").font(.headline).foregroundColor(Color.blue)) {
-                
                 if eventsForToday.count != 0 {
                     allEventsForToday()
                 }
-                
                 ForEach(itemsForToday) { itemToday in
                     HStack {
                         VStack {
@@ -341,8 +362,11 @@ struct ToDoListView: View {
                 }
             }
             
-            
+            //MARK: - TOMORROW
             Section(header: Text("Tomorrow").font(.headline)) {
+                if eventsForTomorrow.count != 0 {
+                    allEventsForTomorrow()
+                }
                 ForEach(itemsForTomorrow) { itemTomorrow in
                     HStack {
                         VStack {
@@ -397,6 +421,7 @@ struct ToDoListView: View {
                 }
             }
             
+            //MARK: - AFTER TOMORROW
             Section(header: Text("After Tomorrow").font(.headline)) {
                 ForEach(itemsAfterTomorrow) { itemAfter in
                     HStack {
@@ -654,16 +679,30 @@ struct ToDoListView: View {
         Section {
             NavigationLink(destination: EventInfoView(eventListItem: .constant(eventsForToday)), label: {
                 HStack(alignment: .center) {
-                    
-                    
-                    
                     ForEach(eventsForToday) { event in
                         EventItemView(eventItem: .constant(event))
                     }
-                    
                     Spacer()
-                    
                     Text("\(eventsForToday.count) Events")
+                        .font(.caption)
+                    Image(systemName: "calendar.day.timeline.left")
+                        .font(.system(size: 14))
+                }
+            })
+        }
+        .padding(.leading, 5)
+    }
+    
+    @ViewBuilder
+    func allEventsForTomorrow() -> some View {
+        Section {
+            NavigationLink(destination: EventInfoView(eventListItem: .constant(eventsForTomorrow)), label: {
+                HStack(alignment: .center) {
+                    ForEach(eventsForTomorrow) { event in
+                        EventItemView(eventItem: .constant(event))
+                    }
+                    Spacer()
+                    Text("\(eventsForTomorrow.count) Events")
                         .font(.caption)
                     Image(systemName: "calendar.day.timeline.left")
                         .font(.system(size: 14))

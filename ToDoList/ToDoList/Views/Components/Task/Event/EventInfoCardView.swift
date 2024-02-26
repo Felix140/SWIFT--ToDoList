@@ -3,23 +3,27 @@ import SwiftUI
 struct EventInfoCardView: View {
     
     let eventItem: EventItem
+    @StateObject var viewModel = EventViewViewModel()
     
     var body: some View {
         
         VStack {
             HStack {
                 VStack(alignment: .leading) {
-                    Text(eventItem.category.categoryName)
-                        .font(.caption)
+                    if eventItem.category != .none {
+                        Text(eventItem.category.categoryName)
+                            .font(.caption)
+                    }
                     Text(eventItem.title)
                         .foregroundStyle(.primary)
-                        .font(.title2)
+                        .font(.system(size: 18))
+                        .fontWeight(.semibold)
                 }
                 
                 Spacer()
                 Divider()
                 
-                if isSameDay(date1: eventItem.startDate, date2: eventItem.endDate){
+                if viewModel.isSameDay(date1: eventItem.startDate, date2: eventItem.endDate){
                     VStack(alignment: .leading) {
                         Text("\(Date(timeIntervalSince1970: eventItem.startDate).formatted(.dateTime.day(.twoDigits).month()))")
                             .foregroundStyle(.primary)
@@ -35,27 +39,29 @@ struct EventInfoCardView: View {
                             .bold()
                     }
                 }
+                
+                Spacer()
+                    .frame(width: 20)
+                
+                if viewModel.isSameDay(date1: eventItem.startDate, date2: eventItem.endDate) {
+                    Circle()
+                        .fill(.primary)
+                        .cornerRadius(5.0)
+                        .frame(width: 8 ,height: 8)
+                } else {
+                    Image(systemName: "circle.circle")
+                        .font(.system(size: 8))
+                        .foregroundColor(.primary)
+                }
             }
+            .padding(.vertical)
             
             if eventItem.description.description != "" {
                 description(text: eventItem.description.description)
             }
         }
     }
-    
-    private func isSameDay(date1: TimeInterval, date2: TimeInterval) -> Bool { ///    Check start e end sono uguali
-        let calendar = Calendar.current
-        let date1 = Date(timeIntervalSince1970: date1)
-        let date2 = Date(timeIntervalSince1970: date2)
-        let day1 = calendar.component(.day, from: date1)
-        let month1 = calendar.component(.month, from: date1)
-        let year1 = calendar.component(.year, from: date1)
-        let day2 = calendar.component(.day, from: date2)
-        let month2 = calendar.component(.month, from: date2)
-        let year2 = calendar.component(.year, from: date2)
-        return day1 == day2 && month1 == month2 && year1 == year2
-    }
-    
+
     //MARK: - Description
     
     @ViewBuilder
