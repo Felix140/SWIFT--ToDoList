@@ -290,7 +290,7 @@ struct ToDoListView: View {
                     HStack {
                         VStack {
                             ToDoListItemView(
-                                listItem: itemToday, fontSize: 17)
+                                listItem: itemToday, fontSize: 15)
                             .onLongPressGesture(minimumDuration: 0.1) {
                                 withAnimation(.default) {
                                     self.haptic.feedbackLight()
@@ -521,7 +521,7 @@ struct ToDoListView: View {
                     HStack {
                         VStack {
                             ToDoListItemView(
-                                listItem: itemFiltered, fontSize: 17)
+                                listItem: itemFiltered, fontSize: 15)
                             .onLongPressGesture(minimumDuration: 0.1) {
                                 withAnimation(.bouncy(duration: 2)) {
                                     self.haptic.feedbackLight()
@@ -593,7 +593,7 @@ struct ToDoListView: View {
                 ForEach(itemsForToday) { itemToday in
                     if !itemToday.isDone {
                         ToDoListItemView(
-                            listItem: itemToday, fontSize: 17)
+                            listItem: itemToday, fontSize: 15)
                     }
                 }
             }
@@ -610,7 +610,7 @@ struct ToDoListView: View {
                 ForEach(itemsForToday) { itemToday in
                     if itemToday.isDone {
                         ToDoListItemView(
-                            listItem: itemToday, fontSize: 17)
+                            listItem: itemToday, fontSize: 15)
                     }
                 }
                 .onDelete { indexSet in

@@ -6,33 +6,39 @@ struct EventInfoCardView: View {
     
     var body: some View {
         
-        HStack {
-            VStack(alignment: .leading) {
-                Text(eventItem.category.categoryName)
-                    .font(.caption)
-                Text(eventItem.title)
-                    .foregroundStyle(.primary)
-                    .font(.title2)
+        VStack {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(eventItem.category.categoryName)
+                        .font(.caption)
+                    Text(eventItem.title)
+                        .foregroundStyle(.primary)
+                        .font(.title2)
+                }
+                
+                Spacer()
+                Divider()
+                
+                if isSameDay(date1: eventItem.startDate, date2: eventItem.endDate){
+                    VStack(alignment: .leading) {
+                        Text("\(Date(timeIntervalSince1970: eventItem.startDate).formatted(.dateTime.day(.twoDigits).month()))")
+                            .foregroundStyle(.primary)
+                            .bold()
+                    }
+                } else {
+                    VStack(alignment: .leading) {
+                        Text("\(Date(timeIntervalSince1970: eventItem.startDate).formatted(.dateTime.day(.twoDigits).month()))")
+                            .foregroundStyle(.primary)
+                            .bold()
+                        Text("\(Date(timeIntervalSince1970: eventItem.endDate).formatted(.dateTime.day(.twoDigits).month()))")
+                            .foregroundStyle(.primary)
+                            .bold()
+                    }
+                }
             }
             
-            Spacer()
-            Divider()
-            
-            if isSameDay(date1: eventItem.startDate, date2: eventItem.endDate){
-                VStack(alignment: .leading) {
-                    Text("\(Date(timeIntervalSince1970: eventItem.startDate).formatted(.dateTime.day(.twoDigits).month()))")
-                        .foregroundStyle(.primary)
-                        .bold()
-                }
-            } else {
-                VStack(alignment: .leading) {
-                    Text("\(Date(timeIntervalSince1970: eventItem.startDate).formatted(.dateTime.day(.twoDigits).month()))")
-                        .foregroundStyle(.primary)
-                        .bold()
-                    Text("\(Date(timeIntervalSince1970: eventItem.endDate).formatted(.dateTime.day(.twoDigits).month()))")
-                        .foregroundStyle(.primary)
-                        .bold()
-                }
+            if eventItem.description.description != "" {
+                description(text: eventItem.description.description)
             }
         }
     }
@@ -48,6 +54,23 @@ struct EventInfoCardView: View {
         let month2 = calendar.component(.month, from: date2)
         let year2 = calendar.component(.year, from: date2)
         return day1 == day2 && month1 == month2 && year1 == year2
+    }
+    
+    //MARK: - Description
+    
+    @ViewBuilder
+    func description(text: String) -> some View {
+        DisclosureGroup("") {
+            HStack {
+                Image(systemName: "info.circle")
+                    .font(.callout)
+                Text(text)
+                    .font(.subheadline)
+                    .padding()
+            }
+            .padding(.leading, 4)
+        }
+        .font(.caption2)
     }
 }
 
