@@ -69,6 +69,7 @@
 		49F0D3722B5566BA0053206A /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0D3712B5566BA0053206A /* ContactsView.swift */; };
 		49F0D3742B5567860053206A /* ContactsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0D3732B5567860053206A /* ContactsViewViewModel.swift */; };
 		49F0D3762B5569F30053206A /* ContactItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0D3752B5569F30053206A /* ContactItemView.swift */; };
+		49F4CE542B8D124C009F9895 /* EditEventItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F4CE532B8D124C009F9895 /* EditEventItemView.swift */; };
 		49FE571B2B1CB65500E4A0E2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571A2B1CB65500E4A0E2 /* FirebaseAuth */; };
 		49FE571D2B1CB65500E4A0E2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571C2B1CB65500E4A0E2 /* FirebaseFirestore */; };
 		49FE571F2B1CB65500E4A0E2 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571E2B1CB65500E4A0E2 /* FirebaseFirestoreSwift */; };
@@ -170,6 +171,7 @@
 		49F0D3712B5566BA0053206A /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		49F0D3732B5567860053206A /* ContactsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewViewModel.swift; sourceTree = "<group>"; };
 		49F0D3752B5569F30053206A /* ContactItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactItemView.swift; sourceTree = "<group>"; };
+		49F4CE532B8D124C009F9895 /* EditEventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventItemView.swift; sourceTree = "<group>"; };
 		49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49FE57262B1CD99000E4A0E2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		49FE572C2B1CDA3700E4A0E2 /* NewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemView.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				499DBCA62B894C7400A1FD4C /* EventItemView.swift */,
 				49B90D7A2B8A19260019F438 /* EventInfoView.swift */,
 				49B90D7C2B8A23070019F438 /* EventInfoCardView.swift */,
+				49F4CE532B8D124C009F9895 /* EditEventItemView.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -625,6 +628,7 @@
 				4916EA942B403CA90031B40C /* PomodoroTimerView.swift in Sources */,
 				499A0F692B83F60400527A4C /* BannerView.swift in Sources */,
 				49B584F42B5213D300F3D004 /* NotificationViewViewModel.swift in Sources */,
+				49F4CE542B8D124C009F9895 /* EditEventItemView.swift in Sources */,
 				49FE57352B1CDADC00E4A0E2 /* User.swift in Sources */,
 				499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */,
 				492B54C52B2266DF00041139 /* ListItemViewViewModel.swift in Sources */,

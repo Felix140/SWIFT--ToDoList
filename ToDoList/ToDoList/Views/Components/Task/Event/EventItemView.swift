@@ -6,10 +6,11 @@ struct EventItemView: View {
     
     var body: some View {
         let categoryColor = themeColorForCategory(category: eventItem.category)
-                Circle()
-                    .fill(categoryColor)
-                    .cornerRadius(5.0)
-                    .frame(width: 10 ,height: 20)
+        
+        Circle()
+            .fill(eventItem.category == .none ? Color.primary : categoryColor)
+            .cornerRadius(5.0)
+            .frame(width: 10 ,height: 20)
     }
 }
 

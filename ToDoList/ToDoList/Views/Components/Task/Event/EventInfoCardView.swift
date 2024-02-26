@@ -8,26 +8,46 @@ struct EventInfoCardView: View {
         
         HStack {
             VStack(alignment: .leading) {
+                Text(eventItem.category.categoryName)
+                    .font(.caption)
                 Text(eventItem.title)
                     .foregroundStyle(.primary)
-                HStack {
-                    Text(eventItem.category.categoryName)
-                        .foregroundStyle(.primary)
-                }
+                    .font(.title2)
             }
             
             Spacer()
             Divider()
-
-            VStack(alignment: .leading) {
-                Text("\(Date(timeIntervalSince1970: eventItem.startDate).formatted(.dateTime.day(.twoDigits).month()))")
-                    .foregroundStyle(.primary)
-                    .bold()
-                Text("\(Date(timeIntervalSince1970: eventItem.endDate).formatted(.dateTime.day(.twoDigits).month()))")
-                    .foregroundStyle(.primary)
-                    .bold()
+            
+            if isSameDay(date1: eventItem.startDate, date2: eventItem.endDate){
+                VStack(alignment: .leading) {
+                    Text("\(Date(timeIntervalSince1970: eventItem.startDate).formatted(.dateTime.day(.twoDigits).month()))")
+                        .foregroundStyle(.primary)
+                        .bold()
+                }
+            } else {
+                VStack(alignment: .leading) {
+                    Text("\(Date(timeIntervalSince1970: eventItem.startDate).formatted(.dateTime.day(.twoDigits).month()))")
+                        .foregroundStyle(.primary)
+                        .bold()
+                    Text("\(Date(timeIntervalSince1970: eventItem.endDate).formatted(.dateTime.day(.twoDigits).month()))")
+                        .foregroundStyle(.primary)
+                        .bold()
+                }
             }
         }
+    }
+    
+    private func isSameDay(date1: TimeInterval, date2: TimeInterval) -> Bool { ///    Check start e end sono uguali
+        let calendar = Calendar.current
+        let date1 = Date(timeIntervalSince1970: date1)
+        let date2 = Date(timeIntervalSince1970: date2)
+        let day1 = calendar.component(.day, from: date1)
+        let month1 = calendar.component(.month, from: date1)
+        let year1 = calendar.component(.year, from: date1)
+        let day2 = calendar.component(.day, from: date2)
+        let month2 = calendar.component(.month, from: date2)
+        let year2 = calendar.component(.year, from: date2)
+        return day1 == day2 && month1 == month2 && year1 == year2
     }
 }
 
