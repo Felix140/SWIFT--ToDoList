@@ -47,10 +47,10 @@ struct EventInfoCardView: View {
                     Circle()
                         .fill(.primary)
                         .cornerRadius(5.0)
-                        .frame(width: 8 ,height: 8)
+                        .frame(width: 10 ,height: 10)
                 } else {
                     Image(systemName: "circle.circle")
-                        .font(.system(size: 8))
+                        .font(.system(size: 10))
                         .foregroundColor(.primary)
                 }
             }

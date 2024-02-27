@@ -4,6 +4,7 @@ struct EventInfoView: View {
     
     @StateObject var viewModel = EventViewViewModel()
     @Binding var eventListItem: [EventItem]
+    @State private var eventToEdit: EventItem?
     var haptic = HapticTrigger()
     
     var body: some View {
@@ -25,6 +26,8 @@ struct EventInfoView: View {
                     .tint(themeColorForCategory(category: item.category))
                     // Edit
                     Button {
+                        self.eventToEdit = nil
+                        self.eventToEdit = item
                         viewModel.isOpenEditModal = true
                         haptic.feedbackLight()
                     } label: {
@@ -33,8 +36,10 @@ struct EventInfoView: View {
                     .tint(themeColorForCategory(category: item.category))
                 }
                 .sheet(isPresented: $viewModel.isOpenEditModal) {
-                    NavigationStack {
-                        EditEventItemView(itemToSet: .constant(item), viewModelEdit: viewModel)
+                    if let item = eventToEdit {
+                        NavigationStack {
+                            EditEventItemView(itemToSet: .constant(item), viewModelEdit: viewModel)
+                        }
                     }
                 }
             }
