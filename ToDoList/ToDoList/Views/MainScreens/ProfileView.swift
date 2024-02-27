@@ -10,6 +10,7 @@ struct ProfileView: View {
             VStack {
                 if let user = viewModelProfile.user {
                     profile(user: user)
+                    dataProfile(user: user)
                 } else {
                     Text("Loading profile...")
                 }
@@ -19,7 +20,7 @@ struct ProfileView: View {
                 Spacer()
                     .frame(height: 100)
             }
-            .navigationTitle("Profile")
+            .padding()
         }
         .onAppear {
             viewModelProfile.fetchUser()
@@ -30,29 +31,31 @@ struct ProfileView: View {
     @ViewBuilder
     func profile(user: User) -> some View {
         //Avatar
-        ProfileImageView(profileImg: "turtlerock")
-            .padding(.top, 50)
-        
-        //Info: Name, Email, Member Since
-        VStack(alignment: .leading){
-            HStack {
-                Text("Name: ")
-                    .bold()
+        HStack(alignment: .center) {
+            ProfileImageView(profileImg: "turtlerock")
+            
+            VStack(alignment: .leading) {
                 Text(user.name)
-            }
-            HStack {
-                Text("Email: ")
+                    .font(.title)
                     .bold()
                 Text(user.email)
             }
-            HStack {
-                Text("Iscritto il: ")
-                    .bold()
-                Text("\(Date(timeIntervalSince1970: user.joined).formatted(date: .abbreviated, time: .shortened))")
-            }
+            .padding(.leading, 10)
+            
+            Spacer()
         }
-        .padding(.top, 50)
-        Spacer()
+        .padding()
+    }
+    
+    @ViewBuilder
+    func dataProfile(user: User) -> some View {
+        HStack {
+            Image(systemName: "person.2")
+            Text("\(Text("5").fontWeight(.bold)) friends")
+            
+            Spacer()
+        }
+        .padding(.horizontal)
     }
 }
 

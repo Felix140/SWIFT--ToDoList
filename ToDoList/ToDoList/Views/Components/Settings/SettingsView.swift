@@ -14,13 +14,16 @@ struct SettingsView: View {
                 Section {
                     NavigationLink(
                         destination: EditPrivateInfoView(dataUserviewModel: viewModel), label: {
-                        Label("Modifica Profilo", systemImage: "pencil")
+                        Label("Edit Profile", systemImage: "pencil")
                     })
                     NavigationLink(destination: {}, label: {
                         Label("Theme", systemImage: "paintpalette")
                     })
                     NavigationLink(destination: {}, label: {
-                        Label("Assistenza", systemImage: "questionmark.circle")
+                        Label("Support", systemImage: "questionmark.circle")
+                    })
+                    NavigationLink(destination: {}, label: {
+                        Label("Privacy Policy", systemImage: "hand.raised.circle")
                     })
                 }
 
