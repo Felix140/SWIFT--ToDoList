@@ -71,7 +71,7 @@ struct ToDoListView: View {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: Date())
         let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)
-
+        
         return fetchedEventitems.filter { eventItem in
             let startDate = Date(timeIntervalSince1970: eventItem.startDate)
             let endDate = Date(timeIntervalSince1970: eventItem.endDate)
@@ -91,7 +91,7 @@ struct ToDoListView: View {
         guard let startOfTheDayAfterTomorrow = calendar.date(byAdding: .day, value: 1, to: startOfTomorrow) else {
             return []
         }
-
+        
         return fetchedEventitems.filter { eventItem in
             let startDate = Date(timeIntervalSince1970: eventItem.startDate)
             let endDate = Date(timeIntervalSince1970: eventItem.endDate)
@@ -100,8 +100,30 @@ struct ToDoListView: View {
             return (startDate >= startOfTomorrow && startDate < startOfTheDayAfterTomorrow) || (endDate > startOfTomorrow && startDate < startOfTheDayAfterTomorrow)
         }
     }
-
-
+    
+    // Filter Task by Date selected
+    private var filteredItemsBySelectedDate: [ToDoListItem] {
+        fetchedItems.filter { item in
+            let itemDate = Date(timeIntervalSince1970: item.dueDate)
+            let calendar = Calendar.current
+            return calendar.isDate(itemDate, inSameDayAs: selectByDate ?? Date() )
+        }
+    }
+    // Filter Event by Date selected
+    private var filteredEventsBySelectedDate: [EventItem] {
+        fetchedEventitems.filter { event in
+            let eventStartDate = Date(timeIntervalSince1970: event.startDate)
+            let eventEndDate = Date(timeIntervalSince1970: event.endDate)
+            guard let selectedDate = selectByDate else { return false }
+            let calendar = Calendar.current
+            let startOfDay = calendar.startOfDay(for: selectedDate)
+            let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay)!
+            /// L'evento è incluso se inizia prima della fine del giorno selezionato e finisce dopo l'inizio del giorno selezionato
+            return eventStartDate < endOfDay && eventEndDate >= startOfDay
+        }
+    }
+    
+    
     //MARK: - INIT
     
     init(userId: String) {
@@ -161,7 +183,7 @@ struct ToDoListView: View {
                             self.selectByDate = newValue
                         }
                     ),
-                    fetchItemsTask: .constant(fetchedItems),
+                    fetchItemsTask: .constant(fetchedItems), fetchEventItems: .constant(fetchedEventitems),
                     scale: 1)
                 .padding(.horizontal)
                 .edgesIgnoringSafeArea(.bottom)
@@ -542,6 +564,10 @@ struct ToDoListView: View {
             }
             
             Section(header: Text(selectByDate ?? Date() , format: .dateTime.day().month().year()).font(.headline).foregroundColor(Color.blue)) {
+                
+                // Events
+                allEventsForSelectedDay()
+                
                 ForEach(filteredItemsBySelectedDate) { itemFiltered in
                     HStack {
                         VStack {
@@ -597,16 +623,6 @@ struct ToDoListView: View {
             }
         }
         .listStyle(PlainListStyle())
-    }
-    
-    
-    
-    private var filteredItemsBySelectedDate: [ToDoListItem] {
-        fetchedItems.filter { item in
-            let itemDate = Date(timeIntervalSince1970: item.dueDate)
-            let calendar = Calendar.current
-            return calendar.isDate(itemDate, inSameDayAs: selectByDate ?? Date() )
-        }
     }
     
     //MARK: - Filter_ToDo_Today
@@ -703,6 +719,25 @@ struct ToDoListView: View {
                     }
                     Spacer()
                     Text("\(eventsForTomorrow.count) Events")
+                        .font(.caption)
+                    Image(systemName: "calendar.day.timeline.left")
+                        .font(.system(size: 14))
+                }
+            })
+        }
+        .padding(.leading, 5)
+    }
+    
+    @ViewBuilder
+    func allEventsForSelectedDay() -> some View {
+        Section {
+            NavigationLink(destination: EventInfoView(eventListItem: .constant(filteredEventsBySelectedDate)), label: {
+                HStack(alignment: .center) {
+                    ForEach(filteredEventsBySelectedDate) { event in
+                        EventItemView(eventItem: .constant(event))
+                    }
+                    Spacer()
+                    Text("\(filteredEventsBySelectedDate.count) Events")
                         .font(.caption)
                     Image(systemName: "calendar.day.timeline.left")
                         .font(.system(size: 14))

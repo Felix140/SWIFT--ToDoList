@@ -6,6 +6,7 @@ struct CustomCalendarView: UIViewRepresentable {
     @ObservedObject var eventStore: CalendarViewViewModel
     @Binding var selectedDate: Date?
     @Binding var fetchItemsTask: [ToDoListItem]
+    @Binding var fetchEventItems: [EventItem] /// ! non utilizzato -> fai apparire un segnalino i giorni con evento
     var scale: CGFloat
     
     func makeUIView(context: Context) -> UICalendarView {
@@ -70,6 +71,11 @@ struct CustomCalendarView: UIViewRepresentable {
 // Preview
 struct CustomCalendarView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomCalendarView(eventStore: CalendarViewViewModel(), selectedDate: .constant(Date()), fetchItemsTask: .constant([]), scale: 0.75)
+        CustomCalendarView(
+            eventStore: CalendarViewViewModel(),
+            selectedDate: .constant(Date()),
+            fetchItemsTask: .constant([]),
+            fetchEventItems: .constant([]),
+            scale: 0.75)
     }
 }
