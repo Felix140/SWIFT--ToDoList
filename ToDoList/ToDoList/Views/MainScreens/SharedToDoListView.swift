@@ -10,6 +10,7 @@ struct SharedToDoListView: View {
     
     @State private var selectionPicker = 0
     @State private var showBanner: Bool = false
+    @State private var bannerColor: Color = .green
     
     init(userId: String) {
         self._viewModelToDoList = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
@@ -24,7 +25,10 @@ struct SharedToDoListView: View {
                 
                 // Banner
                 if showBanner {
-                    BannerView(testMessage: "Task Added", colorBanner: .green, showBanner: $showBanner)
+                    BannerView(
+                        testMessage: bannerColor == .green ? "Task Accepted" : "Tasj Rejected",
+                        colorBanner: bannerColor,
+                        showBanner: $showBanner)
                 }
 
                 VStack {
@@ -80,8 +84,9 @@ struct SharedToDoListView: View {
                     taskObject: notification,
                     textTask: notification.task.title,
                     sendFrom: notification.senderName,
-                    onActionCompleted: { // Passa il callback
+                    onActionCompleted: {  actionType in// Passa il callback
                         withAnimation {
+                            bannerColor = actionType == .accept ? .green : .red
                             showBanner = true
                         }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -118,7 +123,7 @@ struct SharedToDoListView: View {
                     taskObject: sended,
                     textTask: sended.task.title,
                     sendFrom: sended.recipient,
-                    onActionCompleted: { /// Passa il callback
+                    onActionCompleted: { _ in /// Passa il callback
                         withAnimation {
                             showBanner = true
                         }

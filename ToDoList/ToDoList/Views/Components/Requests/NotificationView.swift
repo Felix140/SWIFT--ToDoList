@@ -2,6 +2,10 @@ import SwiftUI
 
 struct NotificationView: View {
     
+    enum ActionType {
+        case accept, reject
+    }
+    
     @StateObject var viewModel = NotificationViewViewModel()
     @State var isClicked: Bool
     
@@ -9,7 +13,7 @@ struct NotificationView: View {
     var textTask: String
     var sendFrom: String
     var haptic = HapticTrigger()
-    var onActionCompleted: () -> Void // Callback aggiunto
+    var onActionCompleted: (ActionType) -> Void /// Callback con inserimento di parametro di tipo
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -55,7 +59,7 @@ struct NotificationView: View {
         .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
             self.haptic.feedbackLight()
             viewModel.sendResponseAccepted(notification: taskObject)
-            onActionCompleted() // Chiama il callback nel padre
+            onActionCompleted(.accept) /// Passa il tipo di azione al padre
         })
     }
     
@@ -77,7 +81,7 @@ struct NotificationView: View {
         .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
             self.haptic.feedbackLight()
             viewModel.sendResponseRejected(notification: taskObject)
-            onActionCompleted() // Chiama il callback nel padre
+            onActionCompleted(.reject) /// Passa il tipo di azione al padre
         })
     }
 }
@@ -107,7 +111,7 @@ struct NotificationView_Preview: PreviewProvider {
                 isShowed: true),
             textTask: "Questa è una task",
             sendFrom: "mittente",
-            onActionCompleted: {}
+            onActionCompleted: {_ in }
         )
     }
 }
