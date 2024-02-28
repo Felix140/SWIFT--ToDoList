@@ -69,6 +69,8 @@
 		49F0D3722B5566BA0053206A /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0D3712B5566BA0053206A /* ContactsView.swift */; };
 		49F0D3742B5567860053206A /* ContactsViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0D3732B5567860053206A /* ContactsViewViewModel.swift */; };
 		49F0D3762B5569F30053206A /* ContactItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F0D3752B5569F30053206A /* ContactItemView.swift */; };
+		49F363B72B8F5836009E5E89 /* ToDoItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F363B62B8F5836009E5E89 /* ToDoItemViewViewModel.swift */; };
+		49F363B92B8F5844009E5E89 /* EventItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F363B82B8F5844009E5E89 /* EventItemViewViewModel.swift */; };
 		49F4CE542B8D124C009F9895 /* EditEventItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49F4CE532B8D124C009F9895 /* EditEventItemView.swift */; };
 		49FE571B2B1CB65500E4A0E2 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571A2B1CB65500E4A0E2 /* FirebaseAuth */; };
 		49FE571D2B1CB65500E4A0E2 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 49FE571C2B1CB65500E4A0E2 /* FirebaseFirestore */; };
@@ -171,6 +173,8 @@
 		49F0D3712B5566BA0053206A /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		49F0D3732B5567860053206A /* ContactsViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewViewModel.swift; sourceTree = "<group>"; };
 		49F0D3752B5569F30053206A /* ContactItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactItemView.swift; sourceTree = "<group>"; };
+		49F363B62B8F5836009E5E89 /* ToDoItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemViewViewModel.swift; sourceTree = "<group>"; };
+		49F363B82B8F5844009E5E89 /* EventItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItemViewViewModel.swift; sourceTree = "<group>"; };
 		49F4CE532B8D124C009F9895 /* EditEventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEventItemView.swift; sourceTree = "<group>"; };
 		49FE57202B1CB85400E4A0E2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		49FE57262B1CD99000E4A0E2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -403,6 +407,15 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		49F363B52B8F581B009E5E89 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				49F363B62B8F5836009E5E89 /* ToDoItemViewViewModel.swift */,
+				49F363B82B8F5844009E5E89 /* EventItemViewViewModel.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
 		49FE57222B1CD81200E4A0E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +435,7 @@
 				49B584F32B5213D300F3D004 /* NotificationViewViewModel.swift */,
 				49FE573C2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift */,
 				4998F35C2B8BFCE70082B60F /* EventViewViewModel.swift */,
+				49F363B52B8F581B009E5E89 /* Items */,
 				492B54C42B2266DF00041139 /* ListItemViewViewModel.swift */,
 				49FE573E2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift */,
 				49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */,
@@ -627,6 +641,7 @@
 				49B862C32B1BC45200FED137 /* MainView.swift in Sources */,
 				4916EA942B403CA90031B40C /* PomodoroTimerView.swift in Sources */,
 				499A0F692B83F60400527A4C /* BannerView.swift in Sources */,
+				49F363B92B8F5844009E5E89 /* EventItemViewViewModel.swift in Sources */,
 				49B584F42B5213D300F3D004 /* NotificationViewViewModel.swift in Sources */,
 				49F4CE542B8D124C009F9895 /* EditEventItemView.swift in Sources */,
 				49FE57352B1CDADC00E4A0E2 /* User.swift in Sources */,
@@ -635,6 +650,7 @@
 				49F0D3722B5566BA0053206A /* ContactsView.swift in Sources */,
 				49FE57272B1CD99000E4A0E2 /* ProfileView.swift in Sources */,
 				49FE573D2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift in Sources */,
+				49F363B72B8F5836009E5E89 /* ToDoItemViewViewModel.swift in Sources */,
 				496E1BCA2B2D10D30036AC23 /* ProfileImageView.swift in Sources */,
 				49B584F22B5211B200F3D004 /* Notification.swift in Sources */,
 				497738DE2B7AC85200789847 /* CustomPickerView.swift in Sources */,

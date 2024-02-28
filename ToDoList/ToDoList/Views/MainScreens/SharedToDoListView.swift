@@ -26,7 +26,7 @@ struct SharedToDoListView: View {
                 // Banner
                 if showBanner {
                     BannerView(
-                        testMessage: bannerColor == .green ? "Task Accepted" : "Tasj Rejected",
+                        testMessage: bannerColor == .green ? "Task Accepted" : "Task Rejected",
                         colorBanner: bannerColor,
                         showBanner: $showBanner)
                 }
