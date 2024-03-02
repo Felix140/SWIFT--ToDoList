@@ -20,7 +20,7 @@ struct ProfileView: View {
                 Spacer()
                     .frame(height: 100)
             }
-            .padding()
+            
         }
         .onAppear {
             viewModelProfile.fetchUser()
@@ -44,6 +44,7 @@ struct ProfileView: View {
             
             Spacer()
         }
+        .padding(.top, UIScreen.main.bounds.height / 20)
         .padding()
     }
     

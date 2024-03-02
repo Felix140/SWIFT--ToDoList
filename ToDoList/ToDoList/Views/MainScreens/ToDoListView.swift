@@ -694,13 +694,21 @@ struct ToDoListView: View {
     func allEventsForToday() -> some View {
         Section {
             NavigationLink(destination: EventInfoView(eventListItem: .constant(eventsForToday)), label: {
-                HStack(alignment: .center) {
-                    ForEach(eventsForToday) { event in
-                        EventItemView(eventItem: .constant(event))
+                HStack {
+                    Spacer()
+                    VStack(alignment: .center) {
+                        HStack(alignment: .center) {
+                            ForEach(eventsForToday) { event in
+                                EventItemView(eventItem: .constant(event))
+                            }
+                            
+                        }
+                        HStack(alignment: .center) {
+                            Text("\(eventsForToday.count) Events")
+                                .font(.caption)
+                        }
                     }
                     Spacer()
-                    Text("\(eventsForToday.count) Events")
-                        .font(.caption)
                     Image(systemName: "calendar.day.timeline.left")
                         .font(.system(size: 14))
                 }
@@ -713,13 +721,21 @@ struct ToDoListView: View {
     func allEventsForTomorrow() -> some View {
         Section {
             NavigationLink(destination: EventInfoView(eventListItem: .constant(eventsForTomorrow)), label: {
-                HStack(alignment: .center) {
-                    ForEach(eventsForTomorrow) { event in
-                        EventItemView(eventItem: .constant(event))
+                HStack {
+                    Spacer()
+                    VStack(alignment: .center) {
+                        HStack(alignment: .center) {
+                            ForEach(eventsForTomorrow) { event in
+                                EventItemView(eventItem: .constant(event))
+                            }
+                            
+                        }
+                        HStack(alignment: .center) {
+                            Text("\(eventsForTomorrow.count) Events")
+                                .font(.caption)
+                        }
                     }
                     Spacer()
-                    Text("\(eventsForTomorrow.count) Events")
-                        .font(.caption)
                     Image(systemName: "calendar.day.timeline.left")
                         .font(.system(size: 14))
                 }
@@ -732,13 +748,21 @@ struct ToDoListView: View {
     func allEventsForSelectedDay() -> some View {
         Section {
             NavigationLink(destination: EventInfoView(eventListItem: .constant(filteredEventsBySelectedDate)), label: {
-                HStack(alignment: .center) {
-                    ForEach(filteredEventsBySelectedDate) { event in
-                        EventItemView(eventItem: .constant(event))
+                HStack {
+                    Spacer()
+                    VStack(alignment: .center) {
+                        HStack(alignment: .center) {
+                            ForEach(filteredEventsBySelectedDate) { event in
+                                EventItemView(eventItem: .constant(event))
+                            }
+                            
+                        }
+                        HStack(alignment: .center) {
+                            Text("\(filteredEventsBySelectedDate.count) Events")
+                                .font(.caption)
+                        }
                     }
                     Spacer()
-                    Text("\(filteredEventsBySelectedDate.count) Events")
-                        .font(.caption)
                     Image(systemName: "calendar.day.timeline.left")
                         .font(.system(size: 14))
                 }
