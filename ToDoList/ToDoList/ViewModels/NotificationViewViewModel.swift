@@ -189,7 +189,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             return
         }
         let notificationId = notification.id
-        let task = notification.task
+        let _ = notification.task
         // Aggiorna lo stato della notifica su Firestore
         db.collection("notifications")
             .document(userId)
@@ -220,6 +220,20 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .document(notification.id)
             .delete()
         
+    }
+    
+    func deleteSendRequest(sendNotification: Notification) {
+        
+        guard canSave() else { return }
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+        
+        db.collection("users") /// DB ereditato
+            .document(currentUserID)
+            .collection("sendNotifications")
+            .document(sendNotification.id)
+            .delete()
+        
+        print("Eliminazione sendNotification")
     }
     
     

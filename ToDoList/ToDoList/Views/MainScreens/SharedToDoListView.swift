@@ -81,6 +81,8 @@ struct SharedToDoListView: View {
             ForEach(viewModelNotification.notifications) { notification in
                 NotificationView(
                     isClicked: showBanner,
+                    isShowingButtons: true, 
+                    isSendNotification: false, 
                     taskObject: notification,
                     textTask: notification.task.title,
                     sendFrom: notification.senderName,
@@ -120,6 +122,8 @@ struct SharedToDoListView: View {
             ForEach(sendNotifications) { sended in
                 NotificationView(
                     isClicked: showBanner,
+                    isShowingButtons: false, 
+                    isSendNotification: true,
                     taskObject: sended,
                     textTask: sended.task.title,
                     sendFrom: sended.recipient,
@@ -139,12 +143,12 @@ struct SharedToDoListView: View {
                 withAnimation {
                     for index in indexSet {
                         self.haptic.feedbackLight()
-                        viewModelNotification.deleteNotification(notification: sendNotifications[index])
+                        viewModelNotification.deleteSendRequest(sendNotification: sendNotifications[index])
                     }
                 }
             }
         }
-        .listStyle(SidebarListStyle())
+        .listStyle(PlainListStyle())
     }
 }
 

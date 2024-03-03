@@ -695,18 +695,11 @@ struct ToDoListView: View {
         Section {
             NavigationLink(destination: EventInfoView(eventListItem: .constant(eventsForToday)), label: {
                 HStack {
+                    Text("\(eventsForToday.count) Events")
+                        .font(.caption)
                     Spacer()
-                    VStack(alignment: .center) {
-                        HStack(alignment: .center) {
-                            ForEach(eventsForToday) { event in
-                                EventItemView(eventItem: .constant(event))
-                            }
-                            
-                        }
-                        HStack(alignment: .center) {
-                            Text("\(eventsForToday.count) Events")
-                                .font(.caption)
-                        }
+                    ForEach(eventsForToday) { event in
+                        EventItemView(eventItem: .constant(event))
                     }
                     Spacer()
                     Image(systemName: "calendar.day.timeline.left")
@@ -722,18 +715,11 @@ struct ToDoListView: View {
         Section {
             NavigationLink(destination: EventInfoView(eventListItem: .constant(eventsForTomorrow)), label: {
                 HStack {
+                    Text("\(eventsForTomorrow.count) Events")
+                        .font(.caption)
                     Spacer()
-                    VStack(alignment: .center) {
-                        HStack(alignment: .center) {
-                            ForEach(eventsForTomorrow) { event in
-                                EventItemView(eventItem: .constant(event))
-                            }
-                            
-                        }
-                        HStack(alignment: .center) {
-                            Text("\(eventsForTomorrow.count) Events")
-                                .font(.caption)
-                        }
+                    ForEach(eventsForTomorrow) { event in
+                        EventItemView(eventItem: .constant(event))
                     }
                     Spacer()
                     Image(systemName: "calendar.day.timeline.left")
@@ -749,18 +735,11 @@ struct ToDoListView: View {
         Section {
             NavigationLink(destination: EventInfoView(eventListItem: .constant(filteredEventsBySelectedDate)), label: {
                 HStack {
+                    Text("\(filteredEventsBySelectedDate.count) Events")
+                        .font(.caption)
                     Spacer()
-                    VStack(alignment: .center) {
-                        HStack(alignment: .center) {
-                            ForEach(filteredEventsBySelectedDate) { event in
-                                EventItemView(eventItem: .constant(event))
-                            }
-                            
-                        }
-                        HStack(alignment: .center) {
-                            Text("\(filteredEventsBySelectedDate.count) Events")
-                                .font(.caption)
-                        }
+                    ForEach(filteredEventsBySelectedDate) { event in
+                        EventItemView(eventItem: .constant(event))
                     }
                     Spacer()
                     Image(systemName: "calendar.day.timeline.left")

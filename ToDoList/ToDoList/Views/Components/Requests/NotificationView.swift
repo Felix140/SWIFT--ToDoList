@@ -2,12 +2,15 @@ import SwiftUI
 
 struct NotificationView: View {
     
+    /// Action button su onActionCompleted
     enum ActionType {
         case accept, reject
     }
     
     @StateObject var viewModel = NotificationViewViewModel()
     @State var isClicked: Bool
+    var isShowingButtons: Bool
+    var isSendNotification: Bool
     
     let taskObject: Notification
     var textTask: String
@@ -22,21 +25,33 @@ struct NotificationView: View {
                 Text(textTask)
                     .font(.system(size: CGFloat(18)))
                 
-                HStack {
-                    Text("Inviato da: ")
-                        .font(.footnote)
-                    Text("\(sendFrom)")
-                        .font(.footnote)
-                        .fontWeight(.bold)
+                if !isSendNotification {
+                    HStack {
+                        Text("Inviato da: ")
+                            .font(.footnote)
+                        Text("\(sendFrom)")
+                            .font(.footnote)
+                            .fontWeight(.bold)
+                    }
+                } else {
+                    HStack {
+                        Text("Inviato a: ")
+                            .font(.footnote)
+                        Text("\(taskObject.recipient)")
+                            .font(.footnote)
+                            .fontWeight(.bold)
+                    }
                 }
             }
             .padding(.horizontal)
             
-            HStack(alignment: .center) {
-                acceptButton()
-                rejectButton()
+            if isShowingButtons {
+                HStack(alignment: .center) {
+                    acceptButton()
+                    rejectButton()
+                }
+                .frame(width: UIScreen.main.bounds.width)
             }
-            .frame(width: UIScreen.main.bounds.width)
         }
     }
     
@@ -92,6 +107,8 @@ struct NotificationView_Preview: PreviewProvider {
     static var previews: some View {
         NotificationView(
             isClicked: false,
+            isShowingButtons: true, 
+            isSendNotification: false,
             taskObject: Notification(
                 id: "123456789",
                 sender: "sender",
