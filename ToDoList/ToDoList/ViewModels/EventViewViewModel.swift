@@ -5,13 +5,16 @@ import FirebaseAuth
 class EventViewViewModel: ObservableObject {
     
     @Published var isOpenEditModal: Bool = false
-    
+    @Published var itemToEdit: EventItem?
+    @Published var showingEditButtons = false
     let db = Firestore.firestore()
     
+    
     func deleteEvent(event: EventItem) {
-        
-        guard let userId = Auth.auth().currentUser?.uid else { return }
-        
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("deleteEvent userId ERROR")
+            return
+        }
         db.collection("users") /// indicate COLLECTION
             .document(userId) /// passing user ID
             .collection("events")
@@ -19,11 +22,21 @@ class EventViewViewModel: ObservableObject {
             .delete() /// DELETE ITEM
     }
     
+    func deleteEventItem() {
+        if let eventItem = itemToEdit {
+            deleteEvent(event: eventItem)
+            itemToEdit = nil
+            showingEditButtons = false
+            print("deleteEventItem Succeded")
+        }
+    }
+    
     func updateEvent(event: EventItem) {
-        guard let userId = Auth.auth().currentUser?.uid else { return }
-        
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("updateEvent userId ERROR")
+            return
+        }
         let documentRef = db.collection("users").document(userId).collection("events").document(event.id)
-        
         documentRef.setData([
             "id": event.id,
             "title": event.title,
@@ -54,6 +67,13 @@ class EventViewViewModel: ObservableObject {
         let month2 = calendar.component(.month, from: date2)
         let year2 = calendar.component(.year, from: date2)
         return day1 == day2 && month1 == month2 && year1 == year2
+    }
+    
+    
+    func onOpenEditButtons(item: EventItem) {
+        itemToEdit = item
+        showingEditButtons = true
+        print("Edit Buttons Opened")
     }
     
 }

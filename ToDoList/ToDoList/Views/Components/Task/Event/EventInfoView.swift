@@ -14,33 +14,35 @@ struct EventInfoView: View {
                     EventInfoCardView(eventItem: item)
                         .background(themeColorForCategory(category: item.category))
                 }
-                .listRowBackground(themeColorForCategory(category: item.category))
-                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                    // Delete
-                    Button {
-                        viewModel.deleteEvent(event: item)
-                        haptic.feedbackLight()
-                    } label: {
-                        Image(systemName: "trash")
+                .onLongPressGesture(minimumDuration: 0.1) {
+                    withAnimation(.default) {
+                        self.haptic.feedbackLight()
+                        self.eventToEdit = item /// Aggiorna itemToEdit con l'elemento corrente
+                        viewModel.onOpenEditButtons(item: item)
+                        print("Modale aperta in attivazione")
                     }
-                    .tint(themeColorForCategory(category: item.category))
-                    // Edit
-                    Button {
-                        self.eventToEdit = nil
-                        self.eventToEdit = item
+                }
+                .listRowBackground(themeColorForCategory(category: item.category))
+                
+            }
+            .actionSheet(isPresented: $viewModel.showingEditButtons) {
+                ActionSheet(title: Text("Actions selection"), buttons: [
+                    .default(Text("Edit Event")) {
                         viewModel.isOpenEditModal = true
                         haptic.feedbackLight()
-                    } label: {
-                        Image(systemName: "pencil")
-                    }
-                    .tint(themeColorForCategory(category: item.category))
-                }
-                .sheet(isPresented: $viewModel.isOpenEditModal) {
-                    if let item = eventToEdit {
-                        NavigationStack {
-                            EditEventItemView(itemToSet: .constant(item), viewModelEdit: viewModel)
-                        }
-                    }
+                    },
+                    .destructive(Text("Delete Event")) {
+                        viewModel.deleteEventItem()
+                        haptic.feedbackLight()
+                    },
+                    .cancel()
+                ])
+            }
+        }
+        .sheet(isPresented: $viewModel.isOpenEditModal) {
+            if let item = eventToEdit {
+                NavigationStack {
+                    EditEventItemView(itemToSet: .constant(item), viewModelEdit: viewModel)
                 }
             }
         }
