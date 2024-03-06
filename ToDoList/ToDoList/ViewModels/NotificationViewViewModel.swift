@@ -14,21 +14,17 @@ class NotificationViewViewModel: NewItemViewViewModel {
         super.init() /// Chiamata al costruttore della superclasse
     }
     
-    func sendRequest(sendTo userId: String) {
-        
+    func sendRequest(recipient: User) {
         guard canSave() else { return }
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-        
         db.collection("users") /// DB ereditato
             .document(currentUserID)
             .getDocument { [weak self] document, error in
                 if let document = document, document.exists {
                     do {
                         let currentUser = try document.data(as: User.self)
-                        // Qui estraggo il nome dell'utente corrente
-                        let currentUserName = currentUser.name
-                        print("Utente mittente: \(currentUserName)")
-                        self?.createAndSendNotification(senderName: currentUserName, sendTo: userId)
+                        print("Utente mittente: \(currentUser.name)")
+                        self?.createAndSendNotification(sender: currentUser, recipient: recipient)
                         print("Richiesta inviata")
                     } catch {
                         print(error)
@@ -40,17 +36,14 @@ class NotificationViewViewModel: NewItemViewViewModel {
     }
     
     
-    func createAndSendNotification(senderName: String, sendTo: String) {
-        
+    func createAndSendNotification(sender: User, recipient: User) {
         let newIdNotification = UUID().uuidString
         let newIdTask = UUID().uuidString
         let currentUserID = Auth.auth().currentUser?.uid ?? ""
-        
         let newNotification = Notification(
             id: newIdNotification,
-            sender: currentUserID,
-            senderName: senderName, /// Assegna il nome recuperato
-            recipient: sendTo,
+            sender: User(id: currentUserID, name: sender.name, email: sender.email, joined: sender.joined),
+            recipient: User(id: recipient.id, name: recipient.name, email: recipient.email, joined: recipient.joined),
             task: ToDoListItem(
                 id: newIdTask,
                 title: title,
@@ -71,7 +64,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
         db.collection("users")
             .document(currentUserID)
             .collection("sendTo")
-            .document(newNotification.recipient)
+            .document(recipient.id)
             .collection("notifications")
             .document(newNotification.id)
             .setData(newNotification.asDictionary())
@@ -85,7 +78,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
         
         /// Salvare il Modello nel DB NOTIFICHE IN DESTINATARIO
         db.collection("notifications")
-            .document(newNotification.recipient)
+            .document(recipient.id)
             .collection("requests")
             .document(newIdNotification)
             .setData(newNotification.asDictionary())
@@ -111,9 +104,9 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 
                 for document in querySnapshot!.documents {
                     let data = document.data()
-                    // Verifica se la notifica è stata gestita
+                    /// Verifica se la notifica è stata gestita
                     let isShowed = data["isShowed"] as? Bool ?? false
-                    // Solo se la notifica è visibile, la aggiungi all'elenco
+                    /// Solo se la notifica è visibile, la aggiungi all'elenco
                     if isShowed {
                         /// Converti il campo 'task' in ToDoListItem
                         var task: ToDoListItem?
@@ -124,18 +117,32 @@ class NotificationViewViewModel: NewItemViewViewModel {
                         }
                         
                         /// Crea un'istanza di Notification se task esiste
-                        if let task = task {
+                        if let task = task,
+                           let senderData = data["sender"] as? [String: Any],
+                           let recipientData = data["recipient"] as? [String: Any] {
+                            let sender = User(
+                                id: senderData["id"] as? String ?? "",
+                                name: senderData["name"] as? String ?? "Unknown",
+                                email: senderData["email"] as? String ?? "no-email",
+                                joined: senderData["joined"] as? TimeInterval ?? 0
+                            )
+                            let recipient = User(
+                                id: recipientData["id"] as? String ?? "",
+                                name: recipientData["name"] as? String ?? "Unknown",
+                                email: recipientData["email"] as? String ?? "no-email",
+                                joined: recipientData["joined"] as? TimeInterval ?? 0
+                            )
                             let newNotification = Notification(
                                 id: data["id"] as? String ?? "",
-                                sender: data["sender"] as? String ?? "",
-                                senderName: data["senderName"] as? String ?? "Unknown",
-                                recipient: data["recipient"] as? String ?? "",
+                                sender: sender,
+                                recipient: recipient,
                                 task: task,
                                 isAccepted: data["isAccepted"] as? Bool ?? false,
                                 isShowed: data["isShowed"] as? Bool ?? true
                             )
                             fetchedNotifications.append(newNotification)
                         }
+                        
                     }
                 }
                 
@@ -155,7 +162,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
         let notificationId = notification.id
         let task = notification.task
         
-        // Aggiorna lo stato della notifica su Firestore
+        /// Aggiorna lo stato della notifica su Firestore
         db.collection("notifications")
             .document(userId)
             .collection("requests")
@@ -168,7 +175,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 }
             }
         
-        // Aggiunge la task accettata alla collezione "todos" dell'utente
+        /// Aggiunge la task accettata alla collezione "todos" dell'utente
         db.collection("users")
             .document(userId)
             .collection("todos")
@@ -191,7 +198,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
         }
         let notificationId = notification.id
         let _ = notification.task
-        // Aggiorna lo stato della notifica su Firestore
+        /// Aggiorna lo stato della notifica su Firestore
         db.collection("notifications")
             .document(userId)
             .collection("requests")
@@ -203,7 +210,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                     print("Notifica aggiornata con successo.")
                 }
             }
-
+        
         print("Request rejected")
     }
     

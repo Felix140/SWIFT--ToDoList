@@ -86,7 +86,7 @@ struct RequestNewItemView: View {
                     } else if viewModelNotification.canSave() {
                         if let selectedUserId = selectedUser?.id {
                             self.haptic.feedbackMedium()
-                            viewModelNotification.sendRequest(sendTo: selectedUserId)
+                            viewModelNotification.sendRequest(recipient: selectedUser!)
                             toggleView = false
                         }
                     } else {
@@ -131,9 +131,11 @@ struct RequestNewItemView: View {
             HStack {
                 Image(systemName: "person")
                 Picker("Select the user", selection: $selectedUser) {
-                    Text("List contacts").tag(nil as User?)
+                    Text("List contacts")
+                        .tag(nil as User?)
                     ForEach(viewModelContacts.privateContacts, id: \.self) { contact in
-                        Text(contact.name).tag(contact as User?)
+                        Text(contact.name)
+                            .tag(contact as User?)
                     }
                 }
                 .pickerStyle(.navigationLink)

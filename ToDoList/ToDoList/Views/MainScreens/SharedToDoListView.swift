@@ -88,7 +88,7 @@ struct SharedToDoListView: View {
                     isSendNotification: false, 
                     taskObject: notification,
                     textTask: notification.task.title,
-                    sendFrom: notification.senderName,
+                    sendFrom: notification.sender.name,
                     onActionCompleted: {  actionType in// Passa il callback
                         withAnimation {
                             bannerColor = actionType == .accept ? .green : .red
@@ -129,7 +129,7 @@ struct SharedToDoListView: View {
                     isSendNotification: true,
                     taskObject: sended,
                     textTask: sended.task.title,
-                    sendFrom: sended.recipient,
+                    sendFrom: sended.sender.name,
                     onActionCompleted: { _ in /// Passa il callback
                         withAnimation {
                             showBanner = true

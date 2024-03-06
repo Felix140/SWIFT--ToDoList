@@ -11,7 +11,6 @@ struct NotificationView: View {
     @State var isClicked: Bool
     var isShowingButtons: Bool
     var isSendNotification: Bool
-    
     let taskObject: Notification
     var textTask: String
     var sendFrom: String
@@ -37,7 +36,7 @@ struct NotificationView: View {
                     HStack {
                         Text("Inviato a: ")
                             .font(.footnote)
-                        Text("\(taskObject.recipient)")
+                        Text("\(taskObject.recipient.name)")
                             .font(.footnote)
                             .fontWeight(.bold)
                     }
@@ -111,9 +110,8 @@ struct NotificationView_Preview: PreviewProvider {
             isSendNotification: false,
             taskObject: Notification(
                 id: "123456789",
-                sender: "sender",
-                senderName: "Test",
-                recipient: "123445",
+                sender: User(id: "1234", name: "1234", email: "1234", joined: Date().timeIntervalSince1970),
+                recipient: User(id: "1234", name: "1234", email: "1234", joined: Date().timeIntervalSince1970),
                 task: ToDoListItem(
                     id: "12345678",
                     title: "Ciao",
