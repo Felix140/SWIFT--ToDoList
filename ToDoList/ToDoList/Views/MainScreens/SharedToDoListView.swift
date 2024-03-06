@@ -4,7 +4,7 @@ import FirebaseFirestore
 struct SharedToDoListView: View {
     
     @StateObject var viewModelToDoList: ToDoListViewViewModel
-    @StateObject var viewModelNotification = NotificationViewViewModel()
+    @ObservedObject var viewModelNotification : NotificationViewViewModel
     @FirestoreQuery var sendNotifications: [Notification]
     private var haptic = HapticTrigger()
     
@@ -12,9 +12,10 @@ struct SharedToDoListView: View {
     @State private var showBanner: Bool = false
     @State private var bannerColor: Color = .green
     
-    init(userId: String) {
+    init(userId: String, viewModelNotification: NotificationViewViewModel) {
         self._viewModelToDoList = StateObject(wrappedValue: ToDoListViewViewModel(userId: userId))
         self._sendNotifications = FirestoreQuery(collectionPath: "users/\(userId)/sendNotifications/")
+        self.viewModelNotification = viewModelNotification
     }
     
     //MARK: - Body
@@ -70,7 +71,9 @@ struct SharedToDoListView: View {
                 RequestNewItemView(toggleView: $viewModelToDoList.isPresentingView)
             }
         }
-        
+        .onChange(of: viewModelNotification.isShowingBadge) { _ in
+            viewModelNotification.isShowingBadge = false
+        }
     }
     
     //MARK: - All_Notification
@@ -99,14 +102,14 @@ struct SharedToDoListView: View {
                     }
                 )
             }
-            .onDelete { indexSet in
-                withAnimation {
-                    for index in indexSet {
-                        self.haptic.feedbackLight()
-                        viewModelNotification.deleteNotification(notification: viewModelNotification.notifications[index])
-                    }
-                }
-            }
+//            .onDelete { indexSet in
+//                withAnimation {
+//                    for index in indexSet {
+//                        self.haptic.feedbackLight()
+//                        viewModelNotification.deleteNotification(notification: viewModelNotification.notifications[index])
+//                    }
+//                }
+//            }
         }
         .listStyle(PlainListStyle())
         .onAppear {
@@ -156,6 +159,6 @@ struct SharedToDoListView: View {
 
 struct SharedToDoListView_Preview: PreviewProvider {
     static var previews: some View {
-        SharedToDoListView(userId: "dK6CG6dD7vUwHggvLO2jjTauQGA3")
+        SharedToDoListView(userId: "dK6CG6dD7vUwHggvLO2jjTauQGA3", viewModelNotification: NotificationViewViewModel())
     }
 }

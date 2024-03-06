@@ -3,6 +3,7 @@ import SwiftUI
 struct TabBarView: View {
     
     @State var userId: String
+    @StateObject var viewModelNotification = NotificationViewViewModel()
     
     var body: some View {
         TabView { /// TAB NAV
@@ -11,7 +12,8 @@ struct TabBarView: View {
                     Label("Task", systemImage: "list.bullet.circle.fill")
                 }
             
-            SharedToDoListView(userId: userId)
+            SharedToDoListView(userId: userId, viewModelNotification: viewModelNotification)
+                .onAppearBadge(viewModelNotification.notifications.count , condition: viewModelNotification.isShowingBadge)
                 .tabItem {
                     Label("Shared", systemImage: "rectangle.stack.badge.person.crop")
                 }
@@ -27,11 +29,23 @@ struct TabBarView: View {
                 }
         }
         .onAppear {
+            // Style TABBAR
             let appearance = UITabBarAppearance()
             appearance.configureWithTransparentBackground()
             appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
             UITabBar.appearance().standardAppearance = appearance
             UITabBar.appearance().scrollEdgeAppearance = appearance
+        }
+    }
+}
+
+/// Estensione di View che aggiunge condizionalmente un badge se isShowingBadge è true
+extension View {
+    @ViewBuilder func onAppearBadge(_ count: Int, condition: Bool) -> some View {
+        if condition && count != nil || count != 0 {
+            self.badge(count)
+        } else {
+            self
         }
     }
 }

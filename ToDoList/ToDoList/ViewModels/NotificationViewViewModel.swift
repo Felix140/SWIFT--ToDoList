@@ -8,6 +8,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
     
     @Published var notifications: [Notification] = []
     @Published var sendRequests: [Notification] = []
+    @Published var isShowingBadge: Bool = true
     
     override init() {
         super.init() /// Chiamata al costruttore della superclasse
