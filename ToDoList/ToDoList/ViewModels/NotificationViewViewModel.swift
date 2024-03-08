@@ -57,7 +57,8 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 )
             ),
             isAccepted: false,
-            isShowed: true
+            isShowed: true,
+            timeCreation: Date().timeIntervalSince1970
         )
         
         /// Salva la notifica nel database users SENDTO
@@ -138,7 +139,8 @@ class NotificationViewViewModel: NewItemViewViewModel {
                                 recipient: recipient,
                                 task: task,
                                 isAccepted: data["isAccepted"] as? Bool ?? false,
-                                isShowed: data["isShowed"] as? Bool ?? true
+                                isShowed: data["isShowed"] as? Bool ?? true, 
+                                timeCreation: data["timeCreation"] as? TimeInterval ?? Date().timeIntervalSince1970
                             )
                             fetchedNotifications.append(newNotification)
                         }

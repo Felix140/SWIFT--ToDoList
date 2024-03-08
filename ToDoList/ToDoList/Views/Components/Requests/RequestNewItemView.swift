@@ -84,7 +84,7 @@ struct RequestNewItemView: View {
                         self.haptic.feedbackHeavy()
                         viewModelNotification.showAlert = true
                     } else if viewModelNotification.canSave() {
-                        if let selectedUserId = selectedUser?.id {
+                        if let _ = selectedUser?.id {
                             self.haptic.feedbackMedium()
                             viewModelNotification.sendRequest(recipient: selectedUser!)
                             toggleView = false
