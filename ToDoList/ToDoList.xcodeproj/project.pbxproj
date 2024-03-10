@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49068BDB2B9B64690034F2A8 /* TaskNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49068BDA2B9B64690034F2A8 /* TaskNotification.swift */; };
+		49068BDD2B9B64840034F2A8 /* FriendRequestNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49068BDC2B9B64840034F2A8 /* FriendRequestNotification.swift */; };
 		490F02AB2B8782A800B3180D /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F02AA2B8782A800B3180D /* TabBarView.swift */; };
 		4916EA942B403CA90031B40C /* PomodoroTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916EA932B403CA90031B40C /* PomodoroTimerView.swift */; };
 		491839182B7EB2E00054A802 /* EditItemTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491839172B7EB2E00054A802 /* EditItemTaskView.swift */; };
@@ -116,6 +118,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		49068BDA2B9B64690034F2A8 /* TaskNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNotification.swift; sourceTree = "<group>"; };
+		49068BDC2B9B64840034F2A8 /* FriendRequestNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequestNotification.swift; sourceTree = "<group>"; };
 		490F02AA2B8782A800B3180D /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		4916EA932B403CA90031B40C /* PomodoroTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerView.swift; sourceTree = "<group>"; };
 		491839172B7EB2E00054A802 /* EditItemTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemTaskView.swift; sourceTree = "<group>"; };
@@ -217,6 +221,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49068BDE2B9B64970034F2A8 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				49B584F12B5211B200F3D004 /* Notification.swift */,
+				49068BDA2B9B64690034F2A8 /* TaskNotification.swift */,
+				49068BDC2B9B64840034F2A8 /* FriendRequestNotification.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		491EB63B2B6DAF4300ABF3B3 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -454,7 +468,7 @@
 				49FE57362B1CDAEF00E4A0E2 /* ToDoListItem.swift */,
 				498697752B8936A200C4A3DD /* EventItem.swift */,
 				49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */,
-				49B584F12B5211B200F3D004 /* Notification.swift */,
+				49068BDE2B9B64970034F2A8 /* Notifications */,
 				49DDA1812B44C2B6009218C4 /* Enums */,
 			);
 			path = Models;
@@ -604,6 +618,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */,
+				49068BDB2B9B64690034F2A8 /* TaskNotification.swift in Sources */,
 				49C61BCA2B4385C300F1999C /* TimerArc.swift in Sources */,
 				490F02AB2B8782A800B3180D /* TabBarView.swift in Sources */,
 				49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */,
@@ -661,6 +676,7 @@
 				49FE57372B1CDAEF00E4A0E2 /* ToDoListItem.swift in Sources */,
 				492A37F02B632CA600702B5B /* ToDoItemsWidget.swift in Sources */,
 				49DDA1802B44BF7B009218C4 /* Theme.swift in Sources */,
+				49068BDD2B9B64840034F2A8 /* FriendRequestNotification.swift in Sources */,
 				49B862C12B1BC45200FED137 /* ToDoListApp.swift in Sources */,
 				49FE573F2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift in Sources */,
 				498697762B8936A200C4A3DD /* EventItem.swift in Sources */,

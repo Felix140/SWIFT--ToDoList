@@ -11,7 +11,7 @@ struct NotificationView: View {
     @State var isClicked: Bool
     var isShowingButtons: Bool
     var isSendNotification: Bool
-    let taskObject: Notification
+    let taskObject: TaskNotification
     var textTask: String
     var sendFrom: String
     var haptic = HapticTrigger()
@@ -116,23 +116,24 @@ struct NotificationView_Preview: PreviewProvider {
             isClicked: false,
             isShowingButtons: false,
             isSendNotification: true,
-            taskObject: Notification(
-                id: "123456789",
-                sender: User(id: "1234", name: "1234", email: "1234", joined: Date().timeIntervalSince1970),
-                recipient: User(id: "1234", name: "1234", email: "1234", joined: Date().timeIntervalSince1970),
-                task: ToDoListItem(
-                    id: "12345678",
-                    title: "Ciao",
-                    dueDate: 122312,
-                    createdDate: 122312,
-                    isDone: false,
-                    category: .none,
-                    description: InfoToDoItem(
-                        id: "12345678",
-                        description: "description")),
-                isAccepted: false,
+            taskObject: TaskNotification(
+                id: "1234",
+                sender: User(id: "1234", name: "Pippo", email: "Email", joined: Date().timeIntervalSince1970),
+                recipient: User(id: "1234", name: "Pippo", email: "Email", joined: Date().timeIntervalSince1970),
                 isShowed: true,
-                timeCreation: Date().timeIntervalSince1970),
+                timeCreation: Date().timeIntervalSince1970,
+                task: ToDoListItem(
+                    id: "IdUser",
+                    title: "Title",
+                    dueDate: 122312,
+                    createdDate: 123123,
+                    isDone: false,
+                    category: CategoryTask(rawValue: "Work") ?? .none,
+                    description:
+                        InfoToDoItem(
+                            id: "IdUser",
+                            description: "Lorem ipsum")),
+                isAccepted: false),
             textTask: "Questa è una task Questa è una task Questa è una task Questa è una task Questa è una task",
             sendFrom: "mittente",
             onActionCompleted: {_ in }

@@ -6,7 +6,6 @@ extension Encodable {
         guard let data = try? JSONEncoder().encode(self) else {
             return [:] /// Dizionario Vuoto
         }
-        
         do {
             let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
             return json ?? [:] ///ritorna un Dizionario ALTRIMENTI un Dizionario Vuoto
@@ -14,4 +13,13 @@ extension Encodable {
             return [:] /// Dizionario Vuoto
         }
     }
+    
+    
+    func taskNotificationsAsDictionary(for notification: TaskNotification) -> [String: Any] {
+        var dict = notification.asDictionary()
+        dict["task"] = notification.task.asDictionary()
+        dict["isAccepted"] = notification.isAccepted
+        return dict
+    }
+
 }

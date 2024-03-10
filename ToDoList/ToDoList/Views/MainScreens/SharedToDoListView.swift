@@ -5,7 +5,7 @@ struct SharedToDoListView: View {
     
     @StateObject var viewModelToDoList: ToDoListViewViewModel
     @ObservedObject var viewModelNotification : NotificationViewViewModel
-    @FirestoreQuery var sendNotifications: [Notification]
+    @FirestoreQuery var sendNotifications: [TaskNotification]
     private var haptic = HapticTrigger()
     
     @State private var selectionPicker = 0

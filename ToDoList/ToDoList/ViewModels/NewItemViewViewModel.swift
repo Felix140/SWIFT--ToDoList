@@ -5,7 +5,6 @@ import FirebaseFirestore
 class NewItemViewViewModel: ObservableObject {
     
     @Published var title = ""
-    @Published var category = ""
     @Published var date = Date()
     @Published var date2 = Date()
     @Published var showAlert = false

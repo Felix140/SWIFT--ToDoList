@@ -6,8 +6,8 @@ import FirebaseFirestore
 class NotificationViewViewModel: NewItemViewViewModel {
     
     
-    @Published var notifications: [Notification] = []
-    @Published var sendRequests: [Notification] = []
+    @Published var notifications: [TaskNotification] = []
+    @Published var sendRequests: [TaskNotification] = []
     @Published var isShowingBadge: Bool = true
     
     override init() {
@@ -28,6 +28,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                         print("Richiesta inviata")
                     } catch {
                         print(error)
+                        print("Richiesta NON inviata")
                     }
                 } else {
                     print("Documento NON esistente")
@@ -40,10 +41,13 @@ class NotificationViewViewModel: NewItemViewViewModel {
         let newIdNotification = UUID().uuidString
         let newIdTask = UUID().uuidString
         let currentUserID = Auth.auth().currentUser?.uid ?? ""
-        let newNotification = Notification(
+        
+        let newNotification = TaskNotification(
             id: newIdNotification,
             sender: User(id: currentUserID, name: sender.name, email: sender.email, joined: sender.joined),
             recipient: User(id: recipient.id, name: recipient.name, email: recipient.email, joined: recipient.joined),
+            isShowed: true,
+            timeCreation: Date().timeIntervalSince1970,
             task: ToDoListItem(
                 id: newIdTask,
                 title: title,
@@ -56,9 +60,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                     description: description
                 )
             ),
-            isAccepted: false,
-            isShowed: true,
-            timeCreation: Date().timeIntervalSince1970
+            isAccepted: false
         )
         
         /// Salva la notifica nel database users SENDTO
@@ -68,21 +70,30 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .document(recipient.id)
             .collection("notifications")
             .document(newNotification.id)
-            .setData(newNotification.asDictionary())
+            .setData(
+                newNotification
+                    .taskNotificationsAsDictionary(for: newNotification)
+            )
         
         /// Salva la notifica nel database users sendNotifications
         db.collection("users")
             .document(currentUserID)
             .collection("sendNotifications")
             .document(newNotification.id)
-            .setData(newNotification.asDictionary())
+            .setData(
+                newNotification
+                    .taskNotificationsAsDictionary(for: newNotification)
+            )
         
         /// Salvare il Modello nel DB NOTIFICHE IN DESTINATARIO
         db.collection("notifications")
             .document(recipient.id)
             .collection("requests")
-            .document(newIdNotification)
-            .setData(newNotification.asDictionary())
+            .document(newNotification.id)
+            .setData(
+                newNotification
+                    .taskNotificationsAsDictionary(for: newNotification)
+            )
         
         print("Request Sended")
     }
@@ -101,7 +112,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                     return
                 }
                 
-                var fetchedNotifications: [Notification] = []
+                var fetchedNotifications: [TaskNotification] = []
                 
                 for document in querySnapshot!.documents {
                     let data = document.data()
@@ -133,14 +144,14 @@ class NotificationViewViewModel: NewItemViewViewModel {
                                 email: recipientData["email"] as? String ?? "no-email",
                                 joined: recipientData["joined"] as? TimeInterval ?? 0
                             )
-                            let newNotification = Notification(
-                                id: data["id"] as? String ?? "",
+                            let newNotification = TaskNotification(
+                                id:  data["id"] as? String ?? "",
                                 sender: sender,
                                 recipient: recipient,
+                                isShowed: data["isShowed"] as? Bool ?? true,
+                                timeCreation: data["timeCreation"] as? TimeInterval ?? Date().timeIntervalSince1970,
                                 task: task,
-                                isAccepted: data["isAccepted"] as? Bool ?? false,
-                                isShowed: data["isShowed"] as? Bool ?? true, 
-                                timeCreation: data["timeCreation"] as? TimeInterval ?? Date().timeIntervalSince1970
+                                isAccepted: data["isAccepted"] as? Bool ?? false
                             )
                             fetchedNotifications.append(newNotification)
                         }
@@ -154,7 +165,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             }
     }
     
-    func sendResponseAccepted(notification: Notification) {
+    func sendResponseAccepted(notification: TaskNotification) {
         
         guard let userId = Auth.auth().currentUser?.uid else {
             print("Errore: ID utente non disponibile.")
@@ -193,13 +204,12 @@ class NotificationViewViewModel: NewItemViewViewModel {
         print("Request accepted")
     }
     
-    func sendResponseRejected(notification: Notification) {
+    func sendResponseRejected(notification: TaskNotification) {
         guard let userId = Auth.auth().currentUser?.uid else {
             print("Errore: ID utente non disponibile.")
             return
         }
         let notificationId = notification.id
-        let _ = notification.task
         /// Aggiorna lo stato della notifica su Firestore
         db.collection("notifications")
             .document(userId)
@@ -212,12 +222,11 @@ class NotificationViewViewModel: NewItemViewViewModel {
                     print("Notifica aggiornata con successo.")
                 }
             }
-        
         print("Request rejected")
     }
     
     
-    func deleteNotification(notification: Notification) {
+    func deleteNotification(notification: TaskNotification) {
         
         guard let userId = Auth.auth().currentUser?.uid else {
             print("Eliminazione notifica: utente non autorizzato")
@@ -232,7 +241,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
         
     }
     
-    func deleteSendRequest(sendNotification: Notification) {
+    func deleteSendRequest(sendNotification: TaskNotification) {
         
         guard canSave() else { return }
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
