@@ -2,10 +2,17 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
+enum SheetType {
+    case none
+    case userInfo(UserContact)
+}
+
 class ContactsViewViewModel: ObservableObject {
     
     @Published var privateContacts = [UserContact]()
     @Published var allUsers = [UserContact]()
+    @Published var isShowingInfoUser: Bool = false
+    @Published var userSelected: User?
     let db = Firestore.firestore()
     
     

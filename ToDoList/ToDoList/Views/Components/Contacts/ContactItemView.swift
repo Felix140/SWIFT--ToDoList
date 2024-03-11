@@ -14,7 +14,7 @@ struct ContactItemView: View {
         case "searchSection":  searchContacts()
         case "savedSection":  savedContacts()
         default:
-             Text("informations not available")
+            Text("informations not available")
         }
         
     }
@@ -30,17 +30,18 @@ struct ContactItemView: View {
                     .font(.footnote)
                     .foregroundColor(Color(.secondaryLabel))
             }
+            
             Spacer()
-            Button(action: {
-                haptic.feedbackLight()
-                viewModel.saveContact(user)
-            }, label: {
-                
-                Image(systemName: user.isSaved ? "person.crop.circle.badge.checkmark" : "person.crop.circle.badge.plus")
-                           .foregroundColor(user.isSaved ? .green : .blue)
-                           .font(.system(size: 18))
-                
-            })
+            
+            
+            Grid(alignment: .center, horizontalSpacing: 20) {
+                GridRow {
+                    buttonInfo()
+                    buttonSendRequest()
+                }
+            }
+            .padding()
+            
         }
     }
     
@@ -57,20 +58,44 @@ struct ContactItemView: View {
             }
             Spacer()
             Image(systemName: "info.circle.fill")
-                .font(.system(size: 18))
+                .font(.system(size: 22))
         }
+    }
+    
+    func buttonInfo() -> some View {
+        Image(systemName: "info.circle.fill")
+            .foregroundColor(Color(.secondaryLabel))
+            .font(.system(size: 22))
+            .onTapGesture {
+                haptic.feedbackLight()
+                viewModel.userSelected = user
+                viewModel.isShowingInfoUser = true
+            }
+    }
+    
+    func buttonSendRequest() -> some View {
+        
+        Image(systemName: user.isSaved ? "person.crop.circle.badge.checkmark" : "person.crop.circle.badge.plus")
+            .foregroundColor(user.isSaved ? .green : .blue)
+            .font(.system(size: 22))
+            .onTapGesture {
+                haptic.feedbackLight()
+                viewModel.saveContact(user)
+            }
     }
 }
 
-//struct ContactItemView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContactItemView(
-//            user: User(
-//                id: "ciao",
-//                name: "utente test",
-//                email: "utente@utente.com",
-//                joined: ,
-//                contacts: [])
-//        )
-//    }
-//}
+struct ContactItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContactItemView(
+            viewModel: ContactsViewViewModel(),
+            user: UserContact(
+                id: "qwer",
+                name: "qwer",
+                email: "qwer",
+                joined: Date().timeIntervalSince1970,
+                isSaved: false),
+            type: "searchSection")
+        
+    }
+}

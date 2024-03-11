@@ -59,6 +59,7 @@
 		49B862C82B1BC45500FED137 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49B862C72B1BC45500FED137 /* Preview Assets.xcassets */; };
 		49B90D7B2B8A19260019F438 /* EventInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B90D7A2B8A19260019F438 /* EventInfoView.swift */; };
 		49B90D7D2B8A23070019F438 /* EventInfoCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B90D7C2B8A23070019F438 /* EventInfoCardView.swift */; };
+		49C5EA1B2B9F022900D9E170 /* ContactInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5EA1A2B9F022900D9E170 /* ContactInfoView.swift */; };
 		49C61BC62B436B3D00F1999C /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C61BC52B436B3D00F1999C /* ProgressBarView.swift */; };
 		49C61BC82B43852300F1999C /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C61BC72B43852300F1999C /* TimerView.swift */; };
 		49C61BCA2B4385C300F1999C /* TimerArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C61BC92B4385C300F1999C /* TimerArc.swift */; };
@@ -165,6 +166,7 @@
 		49B862C72B1BC45500FED137 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		49B90D7A2B8A19260019F438 /* EventInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoView.swift; sourceTree = "<group>"; };
 		49B90D7C2B8A23070019F438 /* EventInfoCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventInfoCardView.swift; sourceTree = "<group>"; };
+		49C5EA1A2B9F022900D9E170 /* ContactInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoView.swift; sourceTree = "<group>"; };
 		49C61BC52B436B3D00F1999C /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		49C61BC72B43852300F1999C /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		49C61BC92B4385C300F1999C /* TimerArc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerArc.swift; sourceTree = "<group>"; };
@@ -406,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				49F0D3752B5569F30053206A /* ContactItemView.swift */,
+				49C5EA1A2B9F022900D9E170 /* ContactInfoView.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				491839182B7EB2E00054A802 /* EditItemTaskView.swift in Sources */,
 				491EB63E2B6DB04300ABF3B3 /* EditPrivateInfoView.swift in Sources */,
 				4928F3A32B460B21008B2F94 /* SettingsView.swift in Sources */,
+				49C5EA1B2B9F022900D9E170 /* ContactInfoView.swift in Sources */,
 				4941EF1B2B5DE9E9000A759D /* Shared.swift in Sources */,
 				49B862C32B1BC45200FED137 /* MainView.swift in Sources */,
 				4916EA942B403CA90031B40C /* PomodoroTimerView.swift in Sources */,

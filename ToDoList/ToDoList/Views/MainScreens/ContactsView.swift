@@ -59,6 +59,13 @@ struct ContactsView: View {
                             viewModel: viewModel,
                             user: user,
                             type: "searchSection")
+                        .sheet(isPresented: $viewModel.isShowingInfoUser, content: {
+                            NavigationStack {
+                                if let selection = viewModel.userSelected {
+                                    ContactInfoView(userData: selection)
+                                }
+                            }
+                        })
                     }
                 } 
             }
