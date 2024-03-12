@@ -21,5 +21,12 @@ extension Encodable {
         dict["isAccepted"] = notification.isAccepted
         return dict
     }
+    
+    func friendNotificationsAsDictionary(for friendRequest: FriendRequestNotification) -> [String: Any] {
+        var dict = friendRequest.asDictionary()
+        dict["state"] = friendRequest.asDictionary()
+        dict["userContact"] = friendRequest.asDictionary()
+        return dict
+    }
 
 }

@@ -2,11 +2,6 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-enum SheetType {
-    case none
-    case userInfo(UserContact)
-}
-
 class ContactsViewViewModel: ObservableObject {
     
     @Published var privateContacts = [UserContact]()
@@ -77,10 +72,17 @@ class ContactsViewViewModel: ObservableObject {
         }
     }
     
+    func fetchFriendRequests() {
+        guard let currentUserId = Auth.auth().currentUser?.uid else {
+            print("Errore fetchFriendRequests: ID utente non disponibile.")
+            return
+        }
+        
+    }
     
     func fetchPrivateContacts() {
         guard let currentUserId = Auth.auth().currentUser?.uid else {
-            print("Errore: ID utente non disponibile.")
+            print("Errore fetchPrivateContacts: ID utente non disponibile.")
             return
         }
         db.collection("users")

@@ -226,7 +226,7 @@ struct ToDoListView: View {
                 .edgesIgnoringSafeArea(.bottom) /// Permette di andare dietro la tabBar
             }
         }
-        .navigationTitle("TooDoo List")
+        .navigationTitle("Task")
         .toolbar{
             //MARK: - TOOLBAR
             ToolbarItem(placement: .topBarLeading) {

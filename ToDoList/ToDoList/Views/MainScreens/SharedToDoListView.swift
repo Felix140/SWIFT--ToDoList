@@ -31,13 +31,14 @@ struct SharedToDoListView: View {
                         colorBanner: bannerColor,
                         showBanner: $showBanner)
                 }
-
+                
                 VStack {
                     Divider()
                     HStack {
                         Picker("menu", selection: $selectionPicker) {
-                            Text("Notifications").tag(0)
-                            Text("Send Requests").tag(1)
+                            Text("Task Requests").tag(0)
+                            Text("Friend Requests").tag(1)
+                            Text("Send Requests").tag(2)
                         }
                         .pickerStyle(.segmented)
                     }
@@ -47,7 +48,8 @@ struct SharedToDoListView: View {
                     
                     switch selectionPicker {
                     case 0: notifications()
-                    case 1: sendRequests()
+                    case 1: friendRequests()
+                    case 2: sendRequests()
                     default: Text("Error")
                     }
                     
@@ -84,8 +86,8 @@ struct SharedToDoListView: View {
             ForEach(viewModelNotification.notifications) { notification in
                 NotificationView(
                     isClicked: showBanner,
-                    isShowingButtons: true, 
-                    isSendNotification: false, 
+                    isShowingButtons: true,
+                    isSendNotification: false,
                     taskObject: notification,
                     textTask: notification.task.title,
                     sendFrom: notification.sender.name,
@@ -102,14 +104,6 @@ struct SharedToDoListView: View {
                     }
                 )
             }
-//            .onDelete { indexSet in
-//                withAnimation {
-//                    for index in indexSet {
-//                        self.haptic.feedbackLight()
-//                        viewModelNotification.deleteNotification(notification: viewModelNotification.notifications[index])
-//                    }
-//                }
-//            }
         }
         .listStyle(PlainListStyle())
         .onAppear {
@@ -125,7 +119,7 @@ struct SharedToDoListView: View {
             ForEach(sendNotifications) { sended in
                 NotificationView(
                     isClicked: showBanner,
-                    isShowingButtons: false, 
+                    isShowingButtons: false,
                     isSendNotification: true,
                     taskObject: sended,
                     textTask: sended.task.title,
@@ -152,6 +146,29 @@ struct SharedToDoListView: View {
             }
         }
         .listStyle(PlainListStyle())
+    }
+    
+    //MARK: - Friend_Requests
+    
+    @ViewBuilder
+    func friendRequests() -> some View {
+        List{
+            ForEach(viewModelNotification.friendRequests) { friendRequest in
+                FriendRequestView(
+                    friendRequestObject: friendRequest,
+                    sendFrom: friendRequest.sender.name,
+                    onActionCompleted: {  actionType in// Passa il callback
+                        withAnimation {
+                            bannerColor = actionType == .acceptFriend ? .green : .red
+                        }
+                    }
+                )
+            }
+        }
+        .listStyle(PlainListStyle())
+        .onAppear {
+            viewModelNotification.fetchFriendRequest()
+        }
     }
 }
 

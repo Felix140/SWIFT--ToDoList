@@ -9,9 +9,11 @@ class FriendRequestNotification: Notification {
     }
     
     let state: FriendRequestState
+    let userContact: UserContact
     
     enum CodingKeys: String, CodingKey {
         case state
+        case userContact
     }
     
     required init(
@@ -19,6 +21,7 @@ class FriendRequestNotification: Notification {
     ) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.state = try container.decode(FriendRequestState.self, forKey: .state)
+        self.userContact = try container.decode(UserContact.self, forKey: .userContact)
         /// Chiama l'inizializzatore della superclasse
         try super.init(from: decoder)
     }
@@ -29,9 +32,11 @@ class FriendRequestNotification: Notification {
         recipient: User,
         isShowed: Bool,
         timeCreation: TimeInterval,
-        state: FriendRequestState
+        state: FriendRequestState,
+        userContact: UserContact
     ) {
         self.state = state
+        self.userContact = userContact
         super.init(
             id: id,
             sender: sender,

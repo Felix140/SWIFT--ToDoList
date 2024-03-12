@@ -8,11 +8,14 @@ class NotificationViewViewModel: NewItemViewViewModel {
     
     @Published var notifications: [TaskNotification] = []
     @Published var sendRequests: [TaskNotification] = []
+    @Published var friendRequests: [FriendRequestNotification] = []
     @Published var isShowingBadge: Bool = true
     
     override init() {
         super.init() /// Chiamata al costruttore della superclasse
     }
+    
+    // MARK: - TaskNotification
     
     func sendRequest(recipient: User) {
         guard canSave() else { return }
@@ -35,7 +38,6 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 }
             }
     }
-    
     
     func createAndSendNotification(sender: User, recipient: User) {
         let newIdNotification = UUID().uuidString
@@ -98,6 +100,84 @@ class NotificationViewViewModel: NewItemViewViewModel {
         print("Request Sended")
     }
     
+    // MARK: - FriendNotification
+    
+    func sendFriendRequest(recipient: User) {
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+        db.collection("users") /// DB ereditato
+            .document(currentUserID)
+            .getDocument { [weak self] document, error in
+                if let document = document, document.exists {
+                    do {
+                        let currentUser = try document.data(as: User.self)
+                        print("Utente mittente: \(currentUser.name)")
+                        self?.createAndSendFriendRequest(sender: currentUser, recipient: recipient)
+                        print("Richiesta inviata")
+                    } catch {
+                        print(error)
+                        print("Richiesta NON inviata")
+                    }
+                } else {
+                    print("Documento NON esistente")
+                }
+            }
+    }
+    
+    func createAndSendFriendRequest(sender: User, recipient: User) {
+        let newIdNotification = UUID().uuidString
+        let currentUserID = Auth.auth().currentUser?.uid ?? ""
+        
+        let newFriendNotification = FriendRequestNotification(
+            id: newIdNotification,
+            sender: User(id: currentUserID, name: sender.name, email: sender.email, joined: sender.joined),
+            recipient: User(id: recipient.id, name: recipient.name, email: recipient.email, joined: recipient.joined),
+            isShowed: true,
+            timeCreation: Date().timeIntervalSince1970,
+            state: .pending,
+            userContact: UserContact(
+                id: recipient.id,
+                name: recipient.name,
+                email: recipient.email,
+                joined: recipient.joined,
+                isSaved: true)
+        )
+        
+        /// Salva la notifica nel database users SENDTO
+        db.collection("users")
+            .document(currentUserID)
+            .collection("sendTo")
+            .document(recipient.id)
+            .collection("notifications")
+            .document(newFriendNotification.id)
+            .setData(
+                newFriendNotification
+                    .friendNotificationsAsDictionary(for: newFriendNotification)
+            )
+        
+        /// Salva la notifica nel database users sendNotifications
+        db.collection("users")
+            .document(currentUserID)
+            .collection("sendNotifications")
+            .document(newFriendNotification.id)
+            .setData(
+                newFriendNotification
+                    .friendNotificationsAsDictionary(for: newFriendNotification)
+            )
+        
+        /// Salvare il Modello nel DB NOTIFICHE IN DESTINATARIO
+        db.collection("notifications")
+            .document(recipient.id)
+            .collection("friendRequests")
+            .document(newFriendNotification.id)
+            .setData(
+                newFriendNotification
+                    .friendNotificationsAsDictionary(for: newFriendNotification)
+            )
+        
+        print("Friend Request Sended")
+    }
+    
+    // MARK: - FetchTask & FetchFriendRequest
     
     func fetchNotifications() {
         guard let userId = Auth.auth().currentUser?.uid else { return }
@@ -161,6 +241,68 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 
                 DispatchQueue.main.async {
                     self?.notifications = fetchedNotifications
+                }
+            }
+    }
+    
+    func fetchFriendRequest() {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        db.collection("notifications")
+            .document(userId)
+            .collection("friendRequests")
+            .addSnapshotListener { [weak self] (querySnapshot, err) in
+                
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                    return
+                }
+                
+                var fetchedFriendRequests: [FriendRequestNotification] = []
+                
+                for document in querySnapshot!.documents {
+                    let data = document.data()
+                    /// Verifica se la notifica è stata gestita
+                    let isShowed = data["isShowed"] as? Bool ?? false
+                    /// Solo se la notifica è visibile, la aggiungi all'elenco
+                    if isShowed {
+                        if let senderData = data["sender"] as? [String: Any],
+                           let recipientData = data["recipient"] as? [String: Any] {
+                            let sender = User(
+                                id: senderData["id"] as? String ?? "",
+                                name: senderData["name"] as? String ?? "Unknown",
+                                email: senderData["email"] as? String ?? "no-email",
+                                joined: senderData["joined"] as? TimeInterval ?? 0
+                            )
+                            let recipient = User(
+                                id: recipientData["id"] as? String ?? "",
+                                name: recipientData["name"] as? String ?? "Unknown",
+                                email: recipientData["email"] as? String ?? "no-email",
+                                joined: recipientData["joined"] as? TimeInterval ?? 0
+                            )
+                            let newFriendRequest = FriendRequestNotification(
+                                id: data["id"] as? String ?? "",
+                                sender: sender,
+                                recipient: recipient,
+                                isShowed: data["isShowed"] as? Bool ?? true,
+                                timeCreation: data["timeCreation"] as? TimeInterval ?? Date().timeIntervalSince1970,
+                                state:  data["state"] as? FriendRequestNotification.FriendRequestState ?? .pending,
+                                userContact: UserContact(
+                                    id: data["id"] as? String ?? "",
+                                    name: recipient.name,
+                                    email: recipient.email,
+                                    joined: recipient.joined,
+                                    isSaved: false
+                                )
+                            )
+                            fetchedFriendRequests.append(newFriendRequest)
+                        } else {
+                            print("Error Fetch Friend Notification")
+                        }
+                    }
+                }
+                DispatchQueue.main.async {
+                    self?.friendRequests = fetchedFriendRequests
                 }
             }
     }

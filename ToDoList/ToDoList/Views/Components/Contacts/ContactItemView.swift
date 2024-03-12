@@ -4,6 +4,7 @@ struct ContactItemView: View {
     
     /// ObservedObject viewModel: Un riferimento condiviso a ContactsViewViewModel che permette a questa vista di reagire ai cambiamenti di stato come aggiornamenti della lista di contatti, mantenendo sincronizzati i dati visualizzati con il modello sottostante.
     @ObservedObject var viewModel: ContactsViewViewModel
+    @StateObject var viewModelNotification = NotificationViewViewModel()
     var haptic = HapticTrigger()
     var user: UserContact
     var type: String
@@ -32,7 +33,6 @@ struct ContactItemView: View {
             }
             
             Spacer()
-            
             
             Grid(alignment: .center, horizontalSpacing: 20) {
                 GridRow {
@@ -75,12 +75,12 @@ struct ContactItemView: View {
     
     func buttonSendRequest() -> some View {
         
-        Image(systemName: user.isSaved ? "person.crop.circle.badge.checkmark" : "person.crop.circle.badge.plus")
+        Image(systemName: user.isSaved ? "person.badge.clock" : "person.crop.circle.badge.plus")
             .foregroundColor(user.isSaved ? .green : .blue)
             .font(.system(size: 22))
             .onTapGesture {
                 haptic.feedbackLight()
-                viewModel.saveContact(user)
+                viewModelNotification.sendFriendRequest(recipient: user)
             }
     }
 }
