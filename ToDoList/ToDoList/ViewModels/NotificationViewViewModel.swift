@@ -10,6 +10,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
     @Published var sendRequests: [TaskNotification] = []
     @Published var friendRequests: [FriendRequestNotification] = []
     @Published var isShowingBadge: Bool = true
+    var contactViewModel = ContactsViewViewModel()
     
     override init() {
         super.init() /// Chiamata al costruttore della superclasse
@@ -133,7 +134,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             recipient: User(id: recipient.id, name: recipient.name, email: recipient.email, joined: recipient.joined),
             isShowed: true,
             timeCreation: Date().timeIntervalSince1970,
-            state: .pending,
+            state: FriendRequestNotification.FriendRequestState.pending.rawValue,
             userContact: UserContact(
                 id: recipient.id,
                 name: recipient.name,
@@ -286,7 +287,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                                 recipient: recipient,
                                 isShowed: data["isShowed"] as? Bool ?? true,
                                 timeCreation: data["timeCreation"] as? TimeInterval ?? Date().timeIntervalSince1970,
-                                state:  data["state"] as? FriendRequestNotification.FriendRequestState ?? .pending,
+                                state:  data["state"] as? FriendRequestNotification.FriendRequestState.RawValue ?? FriendRequestNotification.FriendRequestState.pending.rawValue,
                                 userContact: UserContact(
                                     id: data["id"] as? String ?? "",
                                     name: recipient.name,
@@ -306,6 +307,8 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 }
             }
     }
+    
+    // MARK: - TaskNotification actions
     
     func sendResponseAccepted(notification: TaskNotification) {
         
@@ -367,7 +370,6 @@ class NotificationViewViewModel: NewItemViewViewModel {
         print("Request rejected")
     }
     
-    
     func deleteNotification(notification: TaskNotification) {
         
         guard let userId = Auth.auth().currentUser?.uid else {
@@ -395,6 +397,112 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .delete()
         
         print("Eliminazione sendNotification")
+    }
+    
+    // MARK: - FriendNotification actions
+    
+    func acceptFriendRequest(_ friendRequestObj: FriendRequestNotification) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        ///Modifica in Notifications
+        db.collection("notifications")
+            .document(userId)
+            .collection("friendRequests")
+            .document(friendRequestObj.id)
+            .updateData([
+                "isShowed": false,
+                "state": FriendRequestNotification.FriendRequestState.confirmed.rawValue]) { error in
+                if let error = error {
+                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                } else {
+                    print("Notifica aggiornata con successo.")
+                }
+            }
+        
+        /// modifica la notifica nel database users sendNotifications
+        db.collection("users")
+            .document(friendRequestObj.sender.id)
+            .collection("sendNotifications")
+            .document(friendRequestObj.id)
+            .updateData([
+                "isShowed": false,
+                "state": FriendRequestNotification.FriendRequestState.confirmed.rawValue]) { error in
+                if let error = error {
+                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                } else {
+                    print("Notifica aggiornata con successo.")
+                }
+            }
+        
+        db.collection("users")
+            .document(friendRequestObj.sender.id)
+            .collection("sendTo")
+            .document(friendRequestObj.recipient.id)
+            .collection("notifications")
+            .document(friendRequestObj.id)
+            .updateData([
+                "isShowed": false,
+                "state": FriendRequestNotification.FriendRequestState.confirmed.rawValue]) { error in
+                if let error = error {
+                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                } else {
+                    print("Notifica aggiornata con successo.")
+                }
+            }
+        
+        ///Save contact
+//        contactViewModel.saveContact(friendRequestObj.userContact)
+        print("FriendRequest accepted")
+    }
+    
+    func rejectFriendRequest(_ friendRequestObj: FriendRequestNotification) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        ///Modifica in Notifications
+        db.collection("notifications")
+            .document(userId)
+            .collection("friendRequests")
+            .document(friendRequestObj.id)
+            .updateData([
+                "isShowed": false,
+                "state": FriendRequestNotification.FriendRequestState.refused.rawValue]) { error in
+                if let error = error {
+                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                } else {
+                    print("Notifica aggiornata con successo.")
+                }
+            }
+        
+        /// modifica la notifica nel database users sendNotifications
+        db.collection("users")
+            .document(friendRequestObj.sender.id)
+            .collection("sendNotifications")
+            .document(friendRequestObj.id)
+            .updateData([
+                "isShowed": false,
+                "state": FriendRequestNotification.FriendRequestState.refused.rawValue]) { error in
+                if let error = error {
+                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                } else {
+                    print("Notifica aggiornata con successo.")
+                }
+            }
+        
+        db.collection("users")
+            .document(friendRequestObj.sender.id)
+            .collection("sendTo")
+            .document(friendRequestObj.recipient.id)
+            .collection("notifications")
+            .document(friendRequestObj.id)
+            .updateData([
+                "isShowed": false,
+                "state": FriendRequestNotification.FriendRequestState.refused.rawValue]) { error in
+                if let error = error {
+                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                } else {
+                    print("Notifica aggiornata con successo.")
+                }
+            }
+        
+        print("FriendRequest refused")
     }
     
     

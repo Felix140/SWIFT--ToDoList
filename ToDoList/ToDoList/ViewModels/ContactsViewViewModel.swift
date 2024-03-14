@@ -45,9 +45,9 @@ class ContactsViewViewModel: ObservableObject {
         }
     }
     
-    
     func saveContact(_ contact: UserContact) {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        
         db.collection("users")
             .document(currentUserId)
             .collection("contacts")
@@ -70,14 +70,6 @@ class ContactsViewViewModel: ObservableObject {
             allUsers[index].isSaved = true
             print("Utente isSaved: true")
         }
-    }
-    
-    func fetchFriendRequests() {
-        guard let currentUserId = Auth.auth().currentUser?.uid else {
-            print("Errore fetchFriendRequests: ID utente non disponibile.")
-            return
-        }
-        
     }
     
     func fetchPrivateContacts() {
