@@ -10,61 +10,15 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>63</string>
-					<key>EndingLineNumber</key>
-					<string>449</string>
-					<key>StartingColumnNumber</key>
-					<string>63</string>
-					<key>StartingLineNumber</key>
-					<string>449</string>
-					<key>Timestamp</key>
-					<string>732228549.8493741</string>
-				</dict>
-				<key>rebasable-url</key>
-				<dict>
-					<key>base</key>
-					<string>workspace</string>
-					<key>payload</key>
-					<dict>
-						<key>relative-path</key>
-						<string>ToDoList/ViewModels/NotificationViewViewModel.swift</string>
-					</dict>
-				</dict>
-			</dict>
-			<key>text-context</key>
-			<dict>
-				<key>focused</key>
-				<string></string>
-				<key>leading</key>
-				<string>        
-        // Set IsSavedContact to Sender
-        contactViewModel.updateContactAsSaved(friendRequestObj)</string>
-				<key>trailing</key>
-				<string>
-        print("FriendRequest accepted")
-    }
-</string>
-			</dict>
-			<key>title</key>
-			<string>to add</string>
-			<key>type</key>
-			<string>bookmark</string>
-		</dict>
-		<dict>
-			<key>destination</key>
-			<dict>
-				<key>location-parameters</key>
-				<dict>
-					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
+					<string>503</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
 					<string>502</string>
-					<key>StartingColumnNumber</key>
-					<string>0</string>
-					<key>StartingLineNumber</key>
-					<string>501</string>
 					<key>Timestamp</key>
-					<string>732228549.861962</string>
+					<string>732230671.725668</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>

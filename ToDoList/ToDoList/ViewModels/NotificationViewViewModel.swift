@@ -448,6 +448,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
         
         // Set IsSavedContact to Sender
         contactViewModel.updateContactAsSaved(friendRequestObj)
+        contactViewModel.saveContactAfterAccept(senderContact: friendRequestObj.sender, recipient: friendRequestObj.recipient)
         print("FriendRequest accepted")
     }
     

@@ -53,12 +53,12 @@ class ContactsViewViewModel: ObservableObject {
             .document(contact.id)
             .setData(contact.userContactAsDictionary(for: contact))
         print("Set contact to pending")
-        print("\(contact.userContactAsDictionary(for: contact))")  
+        print("\(contact.userContactAsDictionary(for: contact))")
     }
     
     func updateContactAsSaved(_ friendRequestObj: FriendRequestNotification) {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
-
+        
         db.collection("notifications")
             .document(currentUserId)
             .collection("friendRequests")
@@ -108,7 +108,26 @@ class ContactsViewViewModel: ObservableObject {
                     print("users.sendTo.notifications: Notifica aggiornata con successo.")
                 }
             }
-
+    }
+    
+    func saveContactAfterAccept(senderContact: User, recipient: User) {
+        let contactToSave = UserContact(
+            id: senderContact.id,
+            name: senderContact.name,
+            email: senderContact.email,
+            joined: senderContact.joined,
+            isSaved: true)
+        db.collection("users")
+            .document(recipient.id)
+            .collection("contacts")
+            .document(contactToSave.id)
+            .setData(contactToSave.userContactAsDictionary(for: contactToSave)) { error in
+                if let error = error {
+                    print("users.contacts senderContact ERROR: \(error)")
+                } else {
+                    print("users.contacts senderContact: Contatto aggiunto con successo.")
+                }
+            }
     }
     
     func fetchPrivateContacts() {
@@ -147,30 +166,6 @@ class ContactsViewViewModel: ObservableObject {
         if let index = allUsers.firstIndex(where: { $0.id == userContactId }) {
             allUsers[index].isSaved = false
             print("Utente isSaved: false")
-        }
-    }
-    
-    
-    func checkIsSaved(userContactId: String) {
-        guard let currentUserId = Auth.auth().currentUser?.uid else {
-            print("Errore: ID utente non disponibile.")
-            return
-        }
-        /// Riferimento al documento specifico nella collezione 'contacts'
-        let contactRef = db.collection("users")
-            .document(currentUserId)
-            .collection("contacts")
-            .document(userContactId)
-        
-        contactRef.getDocument { [weak self] (documentSnapshot, error) in
-            if let error = error {
-                print("Errore nel recuperare il contatto: \(error.localizedDescription)")
-            } else {
-                /// Cerca l'utente in privateContacts e aggiorna isSaved
-                if let index = self?.privateContacts.firstIndex(where: { $0.id == userContactId }) {
-                    self?.privateContacts[index].isSaved = documentSnapshot?.exists ?? false
-                }
-            }
         }
     }
 }
