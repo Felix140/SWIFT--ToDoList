@@ -52,6 +52,8 @@ class ContactsViewViewModel: ObservableObject {
             .collection("contacts")
             .document(contact.id)
             .setData(contact.userContactAsDictionary(for: contact))
+        print("Set contact to pending")
+        print("\(contact.userContactAsDictionary(for: contact))")  
     }
     
     func updateContactAsSaved(_ contact: UserContact) {

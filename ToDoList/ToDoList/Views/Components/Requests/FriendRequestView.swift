@@ -54,7 +54,6 @@ struct FriendRequestView: View {
         .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
             haptic.feedbackLight()
             viewModel.acceptFriendRequest(friendRequestObject)
-            print("Friend acceptButton pressed")
         })
     }
     
@@ -76,7 +75,6 @@ struct FriendRequestView: View {
         .simultaneousGesture(TapGesture().onEnded { /// previene il BUBBLING
             haptic.feedbackLight()
             viewModel.rejectFriendRequest(friendRequestObject)
-            print("Friend rejectButton pressed")
         })
     }
 }

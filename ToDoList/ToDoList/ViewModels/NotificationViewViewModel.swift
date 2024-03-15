@@ -176,7 +176,6 @@ class NotificationViewViewModel: NewItemViewViewModel {
             )
         
         contactViewModel.setPendingContact(newFriendNotification.userContact)
-        
         print("Friend Request Sended")
     }
     
@@ -331,7 +330,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 if let error = error {
                     print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                 } else {
-                    print("Notifica aggiornata con successo.")
+                    print("sendResponseAccepted: Notifica aggiornata con successo.")
                 }
             }
         
@@ -366,7 +365,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 if let error = error {
                     print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                 } else {
-                    print("Notifica aggiornata con successo.")
+                    print("sendResponseRejected: Notifica aggiornata con successo.")
                 }
             }
         print("Request rejected")
@@ -412,7 +411,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 if let error = error {
                     print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                 } else {
-                    print("Notifica aggiornata con successo.")
+                    print("acceptFriendRequest: Notifica aggiornata con successo.")
                 }
             }
         
@@ -427,7 +426,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 if let error = error {
                     print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                 } else {
-                    print("Notifica aggiornata con successo.")
+                    print("acceptFriendRequest2: Notifica aggiornata con successo.")
                 }
             }
         
@@ -447,7 +446,6 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 }
             }
         // Manda la notifica al sender che recipient ha accettato
-        contactViewModel.updateContactAsSaved(friendRequestObj.userContact)
         print("FriendRequest accepted")
     }
     
@@ -464,7 +462,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 if let error = error {
                     print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                 } else {
-                    print("Notifica aggiornata con successo.")
+                    print("rejectFriendRequest: Notifica aggiornata con successo.")
                 }
             }
         
@@ -479,7 +477,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 if let error = error {
                     print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                 } else {
-                    print("Notifica aggiornata con successo.")
+                    print("rejectFriendRequest2: Notifica aggiornata con successo.")
                 }
             }
         
@@ -495,7 +493,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 if let error = error {
                     print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                 } else {
-                    print("Notifica aggiornata con successo.")
+                    print("rejectFriendRequest3: Notifica aggiornata con successo.")
                 }
             }
         

@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>449</string>
+					<string>448</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>448</string>
+					<string>447</string>
 					<key>Timestamp</key>
-					<string>732191978.546994</string>
+					<string>732225498.760763</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -41,9 +41,9 @@
             }
 </string>
 				<key>trailing</key>
-				<string>        contactViewModel.updateContactAsSaved(friendRequestObj.userContact)
-        print("FriendRequest accepted")
+				<string>        print("FriendRequest accepted")
     }
+    
 </string>
 			</dict>
 			<key>title</key>
@@ -59,13 +59,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>502</string>
+					<string>500</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>501</string>
+					<string>499</string>
 					<key>Timestamp</key>
-					<string>732191978.547013</string>
+					<string>732225498.760792</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
