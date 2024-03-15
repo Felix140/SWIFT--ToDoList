@@ -56,17 +56,56 @@ class ContactsViewViewModel: ObservableObject {
         print("\(contact.userContactAsDictionary(for: contact))")  
     }
     
-    func updateContactAsSaved(_ contact: UserContact) {
+    func updateContactAsSaved(_ friendRequestObj: FriendRequestNotification) {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
-        db.collection("users")
+
+        db.collection("notifications")
             .document(currentUserId)
+            .collection("friendRequests")
+            .document(friendRequestObj.id)
+            .updateData(["userContact.isSaved": true]) { error in
+                if let error = error {
+                    print("notifications.friendRequests ERROR: \(error)")
+                } else {
+                    print("notifications.friendRequests: Notifica aggiornata con successo.")
+                }
+            }
+        
+        db.collection("users")
+            .document(friendRequestObj.sender.id)
             .collection("contacts")
-            .document(contact.id)
+            .document(friendRequestObj.recipient.id)
             .updateData(["isSaved": true]) { error in
                 if let error = error {
-                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                    print("users.friendRequests ERROR: \(error)")
                 } else {
-                    print("Notifica aggiornata con successo.")
+                    print("users.friendRequests: Notifica aggiornata con successo.")
+                }
+            }
+        
+        db.collection("users")
+            .document(friendRequestObj.sender.id)
+            .collection("sendNotifications")
+            .document(friendRequestObj.id)
+            .updateData(["userContact.isSaved": true]) { error in
+                if let error = error {
+                    print("users.friendRequests ERROR: \(error)")
+                } else {
+                    print("users.friendRequests: Notifica aggiornata con successo.")
+                }
+            }
+        
+        db.collection("users")
+            .document(friendRequestObj.sender.id)
+            .collection("sendTo")
+            .document(friendRequestObj.recipient.id)
+            .collection("notifications")
+            .document(friendRequestObj.id)
+            .updateData(["userContact.isSaved": true]) { error in
+                if let error = error {
+                    print("users.sendTo.notifications ERROR: \(error)")
+                } else {
+                    print("users.sendTo.notifications: Notifica aggiornata con successo.")
                 }
             }
 

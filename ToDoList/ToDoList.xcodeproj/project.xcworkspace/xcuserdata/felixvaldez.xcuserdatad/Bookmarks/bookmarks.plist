@@ -10,15 +10,15 @@
 				<key>location-parameters</key>
 				<dict>
 					<key>EndingColumnNumber</key>
-					<string>0</string>
+					<string>63</string>
 					<key>EndingLineNumber</key>
-					<string>448</string>
+					<string>449</string>
 					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>63</string>
 					<key>StartingLineNumber</key>
-					<string>447</string>
+					<string>449</string>
 					<key>Timestamp</key>
-					<string>732225498.760763</string>
+					<string>732228549.8493741</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -34,16 +34,15 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>        // Manda la notifica al sender che recipient ha accettato
-</string>
+				<string></string>
 				<key>leading</key>
-				<string>                }
-            }
-</string>
+				<string>        
+        // Set IsSavedContact to Sender
+        contactViewModel.updateContactAsSaved(friendRequestObj)</string>
 				<key>trailing</key>
-				<string>        print("FriendRequest accepted")
+				<string>
+        print("FriendRequest accepted")
     }
-    
 </string>
 			</dict>
 			<key>title</key>
@@ -59,13 +58,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>500</string>
+					<string>502</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>499</string>
+					<string>501</string>
 					<key>Timestamp</key>
-					<string>732225498.760792</string>
+					<string>732228549.861962</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -84,7 +83,7 @@
 				<string>        // Manda la notifica al sender che recipient ha rifiutato
 </string>
 				<key>leading</key>
-				<string>            }
+				<string>                }
         
 </string>
 				<key>trailing</key>

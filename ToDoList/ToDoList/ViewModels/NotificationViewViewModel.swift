@@ -408,12 +408,12 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .updateData([
                 "isShowed": false,
                 "state": FriendRequestNotification.FriendRequestState.confirmed.rawValue]) { error in
-                if let error = error {
-                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
-                } else {
-                    print("acceptFriendRequest: Notifica aggiornata con successo.")
+                    if let error = error {
+                        print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                    } else {
+                        print("acceptFriendRequest: Notifica aggiornata con successo.")
+                    }
                 }
-            }
         
         /// modifica la notifica nel database users sendNotifications
         db.collection("users")
@@ -423,12 +423,12 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .updateData([
                 "isShowed": false,
                 "state": FriendRequestNotification.FriendRequestState.confirmed.rawValue]) { error in
-                if let error = error {
-                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
-                } else {
-                    print("acceptFriendRequest2: Notifica aggiornata con successo.")
+                    if let error = error {
+                        print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                    } else {
+                        print("acceptFriendRequest2: Notifica aggiornata con successo.")
+                    }
                 }
-            }
         
         db.collection("users")
             .document(friendRequestObj.sender.id)
@@ -439,13 +439,15 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .updateData([
                 "isShowed": false,
                 "state": FriendRequestNotification.FriendRequestState.confirmed.rawValue]) { error in
-                if let error = error {
-                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
-                } else {
-                    print("Notifica aggiornata con successo.")
+                    if let error = error {
+                        print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                    } else {
+                        print("Notifica aggiornata con successo.")
+                    }
                 }
-            }
-        // Manda la notifica al sender che recipient ha accettato
+        
+        // Set IsSavedContact to Sender
+        contactViewModel.updateContactAsSaved(friendRequestObj)
         print("FriendRequest accepted")
     }
     
@@ -459,12 +461,12 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .updateData([
                 "isShowed": false,
                 "state": FriendRequestNotification.FriendRequestState.refused.rawValue]) { error in
-                if let error = error {
-                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
-                } else {
-                    print("rejectFriendRequest: Notifica aggiornata con successo.")
+                    if let error = error {
+                        print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                    } else {
+                        print("rejectFriendRequest: Notifica aggiornata con successo.")
+                    }
                 }
-            }
         
         /// modifica la notifica nel database users sendNotifications
         db.collection("users")
@@ -474,12 +476,12 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .updateData([
                 "isShowed": false,
                 "state": FriendRequestNotification.FriendRequestState.refused.rawValue]) { error in
-                if let error = error {
-                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
-                } else {
-                    print("rejectFriendRequest2: Notifica aggiornata con successo.")
+                    if let error = error {
+                        print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                    } else {
+                        print("rejectFriendRequest2: Notifica aggiornata con successo.")
+                    }
                 }
-            }
         
         db.collection("users")
             .document(friendRequestObj.sender.id)
@@ -490,12 +492,12 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .updateData([
                 "isShowed": false,
                 "state": FriendRequestNotification.FriendRequestState.refused.rawValue]) { error in
-                if let error = error {
-                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
-                } else {
-                    print("rejectFriendRequest3: Notifica aggiornata con successo.")
+                    if let error = error {
+                        print("Errore nell'aggiornamento dello stato della notifica: \(error)")
+                    } else {
+                        print("rejectFriendRequest3: Notifica aggiornata con successo.")
+                    }
                 }
-            }
         
         // Manda la notifica al sender che recipient ha rifiutato
         
