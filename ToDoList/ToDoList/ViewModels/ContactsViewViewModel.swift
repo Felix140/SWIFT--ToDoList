@@ -116,16 +116,19 @@ class ContactsViewViewModel: ObservableObject {
             print("Errore fetchPrivateContacts: ID utente non disponibile.")
             return
         }
+        
+        /// Utilizza `whereField:isEqualTo:` per filtrare i contatti con `isSaved` impostato su `true`
         db.collection("users")
             .document(currentUserId)
             .collection("contacts")
-            .addSnapshotListener { [weak self] (querySnapshot, error) in /// addSnapshotListener è come getDocument, soloche si tiene sempre in ascolto(asincrona)
+            .whereField("isSaved", isEqualTo: true)
+            .addSnapshotListener { [weak self] (querySnapshot, error) in
                 if let error = error {
                     print("Error getting documents: \(error.localizedDescription)")
                 } else {
                     self?.privateContacts = querySnapshot?.documents.compactMap { document in
                         try? document.data(as: UserContact.self)
-                    } as! [UserContact]
+                    } ?? []
                 }
             }
     }
