@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>27</string>
+					<string>449</string>
 					<key>StartingColumnNumber</key>
-					<string>54</string>
+					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>26</string>
+					<string>448</string>
 					<key>Timestamp</key>
-					<string>732142632.6280839</string>
+					<string>732191978.546994</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -27,27 +27,74 @@
 					<key>payload</key>
 					<dict>
 						<key>relative-path</key>
-						<string>ToDoList/Other/Extensions.swift</string>
+						<string>ToDoList/ViewModels/NotificationViewViewModel.swift</string>
 					</dict>
 				</dict>
 			</dict>
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>
+				<string>        // Manda la notifica al sender che recipient ha accettato
 </string>
 				<key>leading</key>
-				<string>    func friendNotificationsAsDictionary(for friendRequest: FriendRequestNotification) -&gt; [String: Any] {
-        var dict = friendRequest.asDictionary()
-//        dict["state"] = friendRequest.asDictionary()</string>
+				<string>                }
+            }
+</string>
 				<key>trailing</key>
-				<string>        dict["userContact"] = friendRequest.asDictionary()
-        return dict
+				<string>        contactViewModel.updateContactAsSaved(friendRequestObj.userContact)
+        print("FriendRequest accepted")
     }
 </string>
 			</dict>
 			<key>title</key>
-			<string>Fix serialization</string>
+			<string>to add</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>502</string>
+					<key>StartingColumnNumber</key>
+					<string>0</string>
+					<key>StartingLineNumber</key>
+					<string>501</string>
+					<key>Timestamp</key>
+					<string>732191978.547013</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>ToDoList/ViewModels/NotificationViewViewModel.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>        // Manda la notifica al sender che recipient ha rifiutato
+</string>
+				<key>leading</key>
+				<string>            }
+        
+</string>
+				<key>trailing</key>
+				<string>        
+        print("FriendRequest refused")
+    }
+</string>
+			</dict>
+			<key>title</key>
+			<string>to add</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>

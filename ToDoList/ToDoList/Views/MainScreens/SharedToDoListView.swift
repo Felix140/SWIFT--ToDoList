@@ -159,7 +159,12 @@ struct SharedToDoListView: View {
                     sendFrom: friendRequest.sender.name,
                     onActionCompleted: {  actionType in// Passa il callback
                         withAnimation {
-                            bannerColor = actionType == .acceptFriend ? .green : .red
+                            showBanner = true
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            withAnimation {
+                                showBanner = false
+                            }
                         }
                     }
                 )

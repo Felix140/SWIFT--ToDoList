@@ -140,7 +140,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 name: recipient.name,
                 email: recipient.email,
                 joined: recipient.joined,
-                isSaved: true)
+                isSaved: false)
         )
         
         /// Salva la notifica nel database users SENDTO
@@ -174,6 +174,8 @@ class NotificationViewViewModel: NewItemViewViewModel {
                 newFriendNotification
                     .friendNotificationsAsDictionary(for: newFriendNotification)
             )
+        
+        contactViewModel.setPendingContact(newFriendNotification.userContact)
         
         print("Friend Request Sended")
     }
@@ -371,12 +373,10 @@ class NotificationViewViewModel: NewItemViewViewModel {
     }
     
     func deleteNotification(notification: TaskNotification) {
-        
         guard let userId = Auth.auth().currentUser?.uid else {
             print("Eliminazione notifica: utente non autorizzato")
             return
         }
-        
         db.collection("notifications")
             .document(userId)
             .collection("requests")
@@ -386,10 +386,8 @@ class NotificationViewViewModel: NewItemViewViewModel {
     }
     
     func deleteSendRequest(sendNotification: TaskNotification) {
-        
         guard canSave() else { return }
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-        
         db.collection("users") /// DB ereditato
             .document(currentUserID)
             .collection("sendNotifications")
@@ -448,9 +446,8 @@ class NotificationViewViewModel: NewItemViewViewModel {
                     print("Notifica aggiornata con successo.")
                 }
             }
-        
-        ///Save contact
-//        contactViewModel.saveContact(friendRequestObj.userContact)
+        // Manda la notifica al sender che recipient ha accettato
+        contactViewModel.updateContactAsSaved(friendRequestObj.userContact)
         print("FriendRequest accepted")
     }
     
@@ -501,6 +498,8 @@ class NotificationViewViewModel: NewItemViewViewModel {
                     print("Notifica aggiornata con successo.")
                 }
             }
+        
+        // Manda la notifica al sender che recipient ha rifiutato
         
         print("FriendRequest refused")
     }

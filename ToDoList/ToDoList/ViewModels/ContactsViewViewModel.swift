@@ -45,31 +45,29 @@ class ContactsViewViewModel: ObservableObject {
         }
     }
     
-    func saveContact(_ contact: UserContact) {
+    func setPendingContact(_ contact: UserContact) {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
-        
         db.collection("users")
             .document(currentUserId)
             .collection("contacts")
             .document(contact.id)
-            .setData([
-                "id": contact.id,
-                "name": contact.name,
-                "email": contact.email,
-                "joined": contact.joined,
-                "isSaved": contact.isSaved
-            ]) { error in
+            .setData(contact.userContactAsDictionary(for: contact))
+    }
+    
+    func updateContactAsSaved(_ contact: UserContact) {
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        db.collection("users")
+            .document(currentUserId)
+            .collection("contacts")
+            .document(contact.id)
+            .updateData(["isSaved": true]) { error in
                 if let error = error {
-                    print("Error saving contact: \(error.localizedDescription)")
+                    print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                 } else {
-                    print("Contact successfully saved")
+                    print("Notifica aggiornata con successo.")
                 }
             }
-        /// Aggiorna lo stato isSaved del contatto nell'array allUsers o privateContacts
-        if let index = allUsers.firstIndex(where: { $0.id == contact.id }) {
-            allUsers[index].isSaved = true
-            print("Utente isSaved: true")
-        }
+
     }
     
     func fetchPrivateContacts() {
