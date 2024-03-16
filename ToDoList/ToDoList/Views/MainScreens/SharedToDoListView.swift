@@ -27,7 +27,7 @@ struct SharedToDoListView: View {
                 // Banner
                 if showBanner {
                     BannerView(
-                        testMessage: bannerColor == .green ? "Task Accepted" : "Task Rejected",
+                        testMessage: bannerColor == .green ? "Accepted" : "Rejected",
                         colorBanner: bannerColor,
                         showBanner: $showBanner)
                 }
@@ -159,6 +159,7 @@ struct SharedToDoListView: View {
                     sendFrom: friendRequest.sender.name,
                     onActionCompleted: {  actionType in// Passa il callback
                         withAnimation {
+                            bannerColor = actionType == .acceptFriend ? .green : .red
                             showBanner = true
                         }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

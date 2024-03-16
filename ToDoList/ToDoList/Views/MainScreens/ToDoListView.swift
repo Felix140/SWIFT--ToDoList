@@ -333,7 +333,9 @@ struct ToDoListView: View {
                     HStack {
                         VStack {
                             ToDoListItemView(
-                                listItem: itemToday, fontSize: 15)
+                                fontSize: 15,
+                                listItem: itemToday,
+                                imageButtonItem: 0)
                             .onLongPressGesture(minimumDuration: 0.1) {
                                 withAnimation(.default) {
                                     self.haptic.feedbackLight()
@@ -393,7 +395,9 @@ struct ToDoListView: View {
                     HStack {
                         VStack {
                             ToDoListItemView(
-                                listItem: itemTomorrow, fontSize: 15)
+                                fontSize: 15,
+                                listItem: itemTomorrow,
+                                imageButtonItem: 1)
                             .onLongPressGesture(minimumDuration: 0.1) {
                                 withAnimation(.default) {
                                     self.haptic.feedbackLight()
@@ -448,8 +452,9 @@ struct ToDoListView: View {
                 ForEach(itemsAfterTomorrow) { itemAfter in
                     HStack {
                         VStack {
-                            ToDoListItemView(
-                                listItem: itemAfter, fontSize: 15)
+                            ToDoListItemView(fontSize: 15,
+                                             listItem: itemAfter,
+                                             imageButtonItem: 1)
                             .onLongPressGesture(minimumDuration: 0.1) {
                                 withAnimation(.default) {
                                     self.haptic.feedbackLight()
@@ -572,7 +577,10 @@ struct ToDoListView: View {
                     HStack {
                         VStack {
                             ToDoListItemView(
-                                listItem: itemFiltered, fontSize: 15)
+                                fontSize: 15,
+                                listItem: itemFiltered,
+                                imageButtonItem: 0
+                            )
                             .onLongPressGesture(minimumDuration: 0.1) {
                                 withAnimation(.bouncy(duration: 2)) {
                                     self.haptic.feedbackLight()
@@ -634,7 +642,10 @@ struct ToDoListView: View {
                 ForEach(itemsForToday) { itemToday in
                     if !itemToday.isDone {
                         ToDoListItemView(
-                            listItem: itemToday, fontSize: 15)
+                            fontSize: 15,
+                            listItem: itemToday,
+                            imageButtonItem: 2
+                        )
                     }
                 }
             }
@@ -651,7 +662,10 @@ struct ToDoListView: View {
                 ForEach(itemsForToday) { itemToday in
                     if itemToday.isDone {
                         ToDoListItemView(
-                            listItem: itemToday, fontSize: 15)
+                            fontSize: 15,
+                            listItem: itemToday,
+                            imageButtonItem: 3
+                        )
                     }
                 }
                 .onDelete { indexSet in
@@ -698,10 +712,6 @@ struct ToDoListView: View {
                     Text("\(eventsForToday.count) Events")
                         .font(.caption)
                     Spacer()
-                    ForEach(eventsForToday) { event in
-                        EventItemView(eventItem: .constant(event))
-                    }
-                    Spacer()
                     Image(systemName: "calendar.day.timeline.left")
                         .font(.system(size: 14))
                 }
@@ -718,10 +728,6 @@ struct ToDoListView: View {
                     Text("\(eventsForTomorrow.count) Events")
                         .font(.caption)
                     Spacer()
-                    ForEach(eventsForTomorrow) { event in
-                        EventItemView(eventItem: .constant(event))
-                    }
-                    Spacer()
                     Image(systemName: "calendar.day.timeline.left")
                         .font(.system(size: 14))
                 }
@@ -737,10 +743,6 @@ struct ToDoListView: View {
                 HStack {
                     Text("\(filteredEventsBySelectedDate.count) Events")
                         .font(.caption)
-                    Spacer()
-                    ForEach(filteredEventsBySelectedDate) { event in
-                        EventItemView(eventItem: .constant(event))
-                    }
                     Spacer()
                     Image(systemName: "calendar.day.timeline.left")
                         .font(.system(size: 14))

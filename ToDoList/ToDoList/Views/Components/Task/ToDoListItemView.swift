@@ -3,8 +3,9 @@ import SwiftUI
 struct ToDoListItemView: View {
     
     @StateObject var viewModel = ListItemViewViewModel()
-    let listItem: ToDoListItem
     @State var fontSize: Int
+    let listItem: ToDoListItem
+    let imageButtonItem: Int
     var haptic = HapticTrigger()
     
     //MARK: - Body
@@ -19,9 +20,28 @@ struct ToDoListItemView: View {
                 self.haptic.feedbackLight()
                 viewModel.toggleIsDone(item: listItem)
             } label: {
-                Image(systemName: listItem.isDone ? "checkmark.circle.fill" : "circle")
+                    switch imageButtonItem {
+                    case 0: Image(systemName: listItem.isDone ? "checkmark.circle.fill" : "circle")
+                            .foregroundColor(Color.clear)
+                            .background(Theme.red.gradient)
+                            .mask(Image(systemName: listItem.isDone ? "checkmark.circle.fill" : "circle"))
+                    case 1: Image(systemName: listItem.isDone ? "checkmark.circle.fill" : "circle")
+                            .foregroundColor(.gray)
+                    case 2: Image(systemName: "arrow.forward")
+                            .foregroundColor(Color.clear)
+                            .background(Theme.red.gradient)
+                            .mask(Image(systemName: "arrow.forward"))
+                    case 3: Image(systemName: "arrow.backward")
+                            .foregroundColor(Color.clear)
+                            .background(Theme.red.gradient)
+                            .mask(Image(systemName: "arrow.backward"))
+                    default: Image(systemName: listItem.isDone ? "checkmark.circle.fill" : "circle")
+                            .foregroundColor(Color.clear)
+                            .background(Theme.red.gradient)
+                            .mask(Image(systemName: listItem.isDone ? "checkmark.circle.fill" : "circle"))
+                    }
             }
-            .foregroundColor(Color.green)
+
             
             Spacer()
                 .frame(width: 20)
@@ -101,6 +121,7 @@ struct ToDoListItemView: View {
 struct ToDoListItemView_Previews: PreviewProvider {
     static var previews: some View {
         ToDoListItemView(
+            fontSize: 25,
             listItem: .init(
                 id: "IdUser",
                 title: "Title",
@@ -112,8 +133,8 @@ struct ToDoListItemView_Previews: PreviewProvider {
                     InfoToDoItem(
                         id: "IdUser",
                         description: "Lorem ipsum")),
+            imageButtonItem: 0
             
-            fontSize: 25
         )
         .previewLayout(.sizeThatFits)
     }

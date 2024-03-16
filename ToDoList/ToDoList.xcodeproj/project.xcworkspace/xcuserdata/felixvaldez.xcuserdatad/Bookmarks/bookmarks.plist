@@ -12,13 +12,13 @@
 					<key>EndingColumnNumber</key>
 					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>503</string>
+					<string>510</string>
 					<key>StartingColumnNumber</key>
 					<string>0</string>
 					<key>StartingLineNumber</key>
-					<string>502</string>
+					<string>510</string>
 					<key>Timestamp</key>
-					<string>732230671.725668</string>
+					<string>732289699.086203</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -34,17 +34,13 @@
 			<key>text-context</key>
 			<dict>
 				<key>focused</key>
-				<string>        // Manda la notifica al sender che recipient ha rifiutato
-</string>
+				<string></string>
 				<key>leading</key>
-				<string>                }
-        
+				<string>}
+
 </string>
 				<key>trailing</key>
-				<string>        
-        print("FriendRequest refused")
-    }
-</string>
+				<string></string>
 			</dict>
 			<key>title</key>
 			<string>to add</string>
