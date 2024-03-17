@@ -9,16 +9,12 @@
 			<dict>
 				<key>location-parameters</key>
 				<dict>
-					<key>EndingColumnNumber</key>
-					<string>0</string>
 					<key>EndingLineNumber</key>
-					<string>510</string>
-					<key>StartingColumnNumber</key>
-					<string>0</string>
+					<string>538</string>
 					<key>StartingLineNumber</key>
-					<string>510</string>
+					<string>538</string>
 					<key>Timestamp</key>
-					<string>732289699.086203</string>
+					<string>732403709.426177</string>
 				</dict>
 				<key>rebasable-url</key>
 				<dict>
@@ -44,6 +40,53 @@
 			</dict>
 			<key>title</key>
 			<string>to add</string>
+			<key>type</key>
+			<string>bookmark</string>
+		</dict>
+		<dict>
+			<key>destination</key>
+			<dict>
+				<key>location-parameters</key>
+				<dict>
+					<key>EndingColumnNumber</key>
+					<string>0</string>
+					<key>EndingLineNumber</key>
+					<string>335</string>
+					<key>StartingColumnNumber</key>
+					<string>25</string>
+					<key>StartingLineNumber</key>
+					<string>334</string>
+					<key>Timestamp</key>
+					<string>732403749.580623</string>
+				</dict>
+				<key>rebasable-url</key>
+				<dict>
+					<key>base</key>
+					<string>workspace</string>
+					<key>payload</key>
+					<dict>
+						<key>relative-path</key>
+						<string>ToDoList/ViewModels/NotificationViewViewModel.swift</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>text-context</key>
+			<dict>
+				<key>focused</key>
+				<string>
+</string>
+				<key>leading</key>
+				<string>                }
+
+                // Action</string>
+				<key>trailing</key>
+				<string>            }
+    }
+
+</string>
+			</dict>
+			<key>title</key>
+			<string>Assign Obj to variable for status</string>
 			<key>type</key>
 			<string>bookmark</string>
 		</dict>

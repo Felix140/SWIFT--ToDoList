@@ -33,6 +33,7 @@
 		4941EF1B2B5DE9E9000A759D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941EF1A2B5DE9E9000A759D /* Shared.swift */; };
 		4941EF1C2B5DE9E9000A759D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941EF1A2B5DE9E9000A759D /* Shared.swift */; };
 		4952FE492B3D009800B52C65 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4952FE482B3D009800B52C65 /* Launch Screen.storyboard */; };
+		495F52BC2BA7906200F2C086 /* NotificationTypology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F52BB2BA7906200F2C086 /* NotificationTypology.swift */; };
 		496E1BCA2B2D10D30036AC23 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */; };
 		496F10002B331957005CCA4B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496F0FFF2B331957005CCA4B /* StartView.swift */; };
 		4970661F2B462C4200C16D88 /* CategoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4970661E2B462C4200C16D88 /* CategoryTask.swift */; };
@@ -143,6 +144,7 @@
 		4941EF172B5DE999000A759D /* WidgetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetType.swift; sourceTree = "<group>"; };
 		4941EF1A2B5DE9E9000A759D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		4952FE482B3D009800B52C65 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		495F52BB2BA7906200F2C086 /* NotificationTypology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypology.swift; sourceTree = "<group>"; };
 		496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		496F0FFF2B331957005CCA4B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		4970661E2B462C4200C16D88 /* CategoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTask.swift; sourceTree = "<group>"; };
@@ -271,6 +273,14 @@
 				4941EF0D2B5DE8BF000A759D /* Info.plist */,
 			);
 			path = Widget;
+			sourceTree = "<group>";
+		};
+		495F52BA2BA7904600F2C086 /* Typology */ = {
+			isa = PBXGroup;
+			children = (
+				495F52BB2BA7906200F2C086 /* NotificationTypology.swift */,
+			);
+			path = Typology;
 			sourceTree = "<group>";
 		};
 		499074D62B87D2A8008C2783 /* Calendar */ = {
@@ -416,6 +426,7 @@
 		49DDA1812B44C2B6009218C4 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				495F52BA2BA7904600F2C086 /* Typology */,
 				49DDA17F2B44BF7B009218C4 /* Theme.swift */,
 				4970661E2B462C4200C16D88 /* CategoryTask.swift */,
 				499E1DDF2B46FA5200A7EF9A /* Routes.swift */,
@@ -662,6 +673,7 @@
 				499A0F692B83F60400527A4C /* BannerView.swift in Sources */,
 				49F363B92B8F5844009E5E89 /* EventItemViewViewModel.swift in Sources */,
 				49B584F42B5213D300F3D004 /* NotificationViewViewModel.swift in Sources */,
+				495F52BC2BA7906200F2C086 /* NotificationTypology.swift in Sources */,
 				49F4CE542B8D124C009F9895 /* EditEventItemView.swift in Sources */,
 				49FE57352B1CDADC00E4A0E2 /* User.swift in Sources */,
 				499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */,

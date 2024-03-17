@@ -173,7 +173,7 @@ struct SharedToDoListView: View {
         }
         .listStyle(PlainListStyle())
         .onAppear {
-            viewModelNotification.fetchFriendRequest()
+            viewModelNotification.fetchFriendRequestReceived()
         }
     }
 }

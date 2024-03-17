@@ -247,7 +247,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             }
     }
     
-    func fetchFriendRequest() {
+    func fetchFriendRequestReceived() {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
         db.collection("notifications")
@@ -309,6 +309,34 @@ class NotificationViewViewModel: NewItemViewViewModel {
             }
     }
     
+    func fetchFriendRequestSended(_ recipient: UserContact) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        // Accesso alla collezione "notifications" per le richieste inviate all'utente specificato.
+        db.collection("users")
+            .document(userId)
+            .collection("sendTo")
+            .document(recipient.id)
+            .collection("notifications")
+            .whereField("recipient.id", isEqualTo: recipient.id)
+            .whereField("type", isEqualTo: "friendRequest")
+            .getDocuments { [weak self] (querySnapshot, err) in
+                if let err = err {
+                    print("Errore nel recuperare le richieste di amicizia: \(err)")
+                    return
+                }
+                guard let documents = querySnapshot?.documents else {
+                    print("Nessuna richiesta di amicizia trovata")
+                    return
+                }
+                let friendRequests = documents.compactMap { (document) -> FriendRequestNotification? in
+                    try? document.data(as: FriendRequestNotification.self)
+                }
+
+                // Action
+            }
+    }
+
+
     // MARK: - TaskNotification actions
     
     func sendResponseAccepted(notification: TaskNotification) {

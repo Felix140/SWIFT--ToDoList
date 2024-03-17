@@ -74,7 +74,6 @@ struct ContactItemView: View {
     }
     
     func buttonSendRequest() -> some View {
-        
         Image(systemName: user.isSaved ? "person.badge.clock" : "person.crop.circle.badge.plus")
             .foregroundColor(user.isSaved ? .green : .blue)
             .font(.system(size: 22))

@@ -42,6 +42,7 @@ class FriendRequestNotification: Notification {
             sender: sender,
             recipient: recipient,
             isShowed: isShowed,
-            timeCreation: timeCreation)
+            timeCreation: timeCreation, 
+            type: .friendRequest)
     }
 }
