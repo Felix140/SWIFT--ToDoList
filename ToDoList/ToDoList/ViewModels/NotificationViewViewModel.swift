@@ -412,13 +412,12 @@ class NotificationViewViewModel: NewItemViewViewModel {
         
     }
     
-    func deleteSendRequest(sendNotification: TaskNotification) {
-        guard canSave() else { return }
+    func deleteSendRequest(sendNotificationId: String) {
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-        db.collection("users") /// DB ereditato
+        db.collection("users") 
             .document(currentUserID)
             .collection("sendNotifications")
-            .document(sendNotification.id)
+            .document(sendNotificationId)
             .delete()
         
         print("Eliminazione sendNotification")

@@ -140,7 +140,7 @@ struct SharedToDoListView: View {
                 withAnimation {
                     for index in indexSet {
                         self.haptic.feedbackLight()
-                        viewModelNotification.deleteSendRequest(sendNotification: sendNotifications[index])
+                        viewModelNotification.deleteSendRequest(sendNotificationId: sendNotifications[index].id)
                     }
                 }
             }
