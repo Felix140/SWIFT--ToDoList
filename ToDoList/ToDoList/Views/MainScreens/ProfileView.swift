@@ -17,10 +17,8 @@ struct ProfileView: View {
                 
                 SettingsView(viewModel: viewModelProfile)
                 
-                Spacer()
-                    .frame(height: 100)
             }
-            
+            .navigationTitle("Profile")
         }
         .onAppear {
             viewModelProfile.fetchUser()
@@ -31,20 +29,16 @@ struct ProfileView: View {
     @ViewBuilder
     func profile(user: User) -> some View {
         //Avatar
-        HStack(alignment: .center) {
+        VStack(alignment: .center) {
             ProfileImageView(profileImg: "turtlerock")
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .center) {
                 Text(user.name)
                     .font(.title)
                     .bold()
                 Text(user.email)
             }
-            .padding(.leading, 10)
-            
-            Spacer()
         }
-        .padding(.top, UIScreen.main.bounds.height / 20)
         .padding()
     }
     

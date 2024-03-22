@@ -13,6 +13,10 @@ struct SettingsView: View {
                 
                 Section {
                     NavigationLink(
+                        destination: {}, label: {
+                        Label("Friends", systemImage: "person.2")
+                    })
+                    NavigationLink(
                         destination: EditPrivateInfoView(dataUserviewModel: viewModel), label: {
                         Label("Edit Profile", systemImage: "pencil")
                     })
