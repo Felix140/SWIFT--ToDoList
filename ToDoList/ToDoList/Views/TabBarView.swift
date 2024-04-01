@@ -12,6 +12,11 @@ struct TabBarView: View {
                     Label("Task", systemImage: "list.bullet.circle.fill")
                 }
             
+            SpendingPlanView()
+                .tabItem {
+                    Label("Spending Plan", systemImage: "dollarsign.arrow.circlepath")
+                }
+            
             SharedToDoListView(userId: userId, viewModelNotification: viewModelNotification)
                 .onAppearBadge(viewModelNotification.notifications.count , condition: viewModelNotification.isShowingBadge)
                 .tabItem {
