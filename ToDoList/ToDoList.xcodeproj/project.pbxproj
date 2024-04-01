@@ -33,6 +33,7 @@
 		4941EF1B2B5DE9E9000A759D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941EF1A2B5DE9E9000A759D /* Shared.swift */; };
 		4941EF1C2B5DE9E9000A759D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941EF1A2B5DE9E9000A759D /* Shared.swift */; };
 		4952FE492B3D009800B52C65 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4952FE482B3D009800B52C65 /* Launch Screen.storyboard */; };
+		495A35522BBB4A4A0017E681 /* SpendingPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A35512BBB4A4A0017E681 /* SpendingPlanView.swift */; };
 		495F52BC2BA7906200F2C086 /* NotificationTypology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F52BB2BA7906200F2C086 /* NotificationTypology.swift */; };
 		496E1BCA2B2D10D30036AC23 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */; };
 		496F10002B331957005CCA4B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496F0FFF2B331957005CCA4B /* StartView.swift */; };
@@ -144,6 +145,7 @@
 		4941EF172B5DE999000A759D /* WidgetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetType.swift; sourceTree = "<group>"; };
 		4941EF1A2B5DE9E9000A759D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		4952FE482B3D009800B52C65 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		495A35512BBB4A4A0017E681 /* SpendingPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingPlanView.swift; sourceTree = "<group>"; };
 		495F52BB2BA7906200F2C086 /* NotificationTypology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypology.swift; sourceTree = "<group>"; };
 		496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		496F0FFF2B331957005CCA4B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -381,6 +383,7 @@
 				49FE572E2B1CDA5100E4A0E2 /* LoginView.swift */,
 				49FE57302B1CDA7800E4A0E2 /* RegisterView.swift */,
 				49FE57322B1CDA9D00E4A0E2 /* ToDoListView.swift */,
+				495A35512BBB4A4A0017E681 /* SpendingPlanView.swift */,
 				49E946872B50848700148273 /* SharedToDoListView.swift */,
 				49F0D3712B5566BA0053206A /* ContactsView.swift */,
 				49FE57262B1CD99000E4A0E2 /* ProfileView.swift */,
@@ -648,6 +651,7 @@
 				49FE57462B1CDBED00E4A0E2 /* RegisterViewViewModel.swift in Sources */,
 				49FE57392B1CDB3C00E4A0E2 /* MainViewViewModel.swift in Sources */,
 				49F0D3742B5567860053206A /* ContactsViewViewModel.swift in Sources */,
+				495A35522BBB4A4A0017E681 /* SpendingPlanView.swift in Sources */,
 				4941EF182B5DE999000A759D /* WidgetType.swift in Sources */,
 				49FE57432B1CDBD800E4A0E2 /* LoginViewViewModel.swift in Sources */,
 				499074DA2B87D32D008C2783 /* CustomCalendarView.swift in Sources */,
