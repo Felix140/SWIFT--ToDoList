@@ -97,6 +97,9 @@
 		49FE573F2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE573E2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift */; };
 		49FE57432B1CDBD800E4A0E2 /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */; };
 		49FE57462B1CDBED00E4A0E2 /* RegisterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE57452B1CDBED00E4A0E2 /* RegisterViewViewModel.swift */; };
+		49FE94012BC3194200E8D13B /* SpendingTypology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE94002BC3194200E8D13B /* SpendingTypology.swift */; };
+		49FE94032BC31AFE00E8D13B /* StateTypology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE94022BC31AFE00E8D13B /* StateTypology.swift */; };
+		49FE94052BC31CA900E8D13B /* CategorySpending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE94042BC31CA900E8D13B /* CategorySpending.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +209,9 @@
 		49FE573E2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewItemViewViewModel.swift; sourceTree = "<group>"; };
 		49FE57422B1CDBD800E4A0E2 /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
 		49FE57452B1CDBED00E4A0E2 /* RegisterViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewViewModel.swift; sourceTree = "<group>"; };
+		49FE94002BC3194200E8D13B /* SpendingTypology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingTypology.swift; sourceTree = "<group>"; };
+		49FE94022BC31AFE00E8D13B /* StateTypology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTypology.swift; sourceTree = "<group>"; };
+		49FE94042BC31CA900E8D13B /* CategorySpending.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySpending.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +301,8 @@
 			isa = PBXGroup;
 			children = (
 				495F52BB2BA7906200F2C086 /* NotificationTypology.swift */,
+				49FE94002BC3194200E8D13B /* SpendingTypology.swift */,
+				49FE94022BC31AFE00E8D13B /* StateTypology.swift */,
 			);
 			path = Typology;
 			sourceTree = "<group>";
@@ -447,6 +455,7 @@
 				495F52BA2BA7904600F2C086 /* Typology */,
 				49DDA17F2B44BF7B009218C4 /* Theme.swift */,
 				4970661E2B462C4200C16D88 /* CategoryTask.swift */,
+				49FE94042BC31CA900E8D13B /* CategorySpending.swift */,
 				499E1DDF2B46FA5200A7EF9A /* Routes.swift */,
 				491EB63F2B6DB2AF00ABF3B3 /* UserTheme.swift */,
 			);
@@ -681,6 +690,7 @@
 				49C61BC82B43852300F1999C /* TimerView.swift in Sources */,
 				49FE573B2B1CDB6100E4A0E2 /* ProfileViewViewModel.swift in Sources */,
 				499531132B52083700547910 /* NotificationView.swift in Sources */,
+				49FE94032BC31AFE00E8D13B /* StateTypology.swift in Sources */,
 				49D5CE562B291824009CF312 /* ToDoListItemView.swift in Sources */,
 				491EB6402B6DB2AF00ABF3B3 /* UserTheme.swift in Sources */,
 				49C61BC62B436B3D00F1999C /* ProgressBarView.swift in Sources */,
@@ -697,6 +707,7 @@
 				499A0F692B83F60400527A4C /* BannerView.swift in Sources */,
 				49F363B92B8F5844009E5E89 /* EventItemViewViewModel.swift in Sources */,
 				49B584F42B5213D300F3D004 /* NotificationViewViewModel.swift in Sources */,
+				49FE94052BC31CA900E8D13B /* CategorySpending.swift in Sources */,
 				495F52BC2BA7906200F2C086 /* NotificationTypology.swift in Sources */,
 				49F4CE542B8D124C009F9895 /* EditEventItemView.swift in Sources */,
 				49FE57352B1CDADC00E4A0E2 /* User.swift in Sources */,
@@ -717,6 +728,7 @@
 				492A37F02B632CA600702B5B /* ToDoItemsWidget.swift in Sources */,
 				49DDA1802B44BF7B009218C4 /* Theme.swift in Sources */,
 				49068BDD2B9B64840034F2A8 /* FriendRequestNotification.swift in Sources */,
+				49FE94012BC3194200E8D13B /* SpendingTypology.swift in Sources */,
 				49B862C12B1BC45200FED137 /* ToDoListApp.swift in Sources */,
 				49FE573F2B1CDBB900E4A0E2 /* NewItemViewViewModel.swift in Sources */,
 				498697762B8936A200C4A3DD /* EventItem.swift in Sources */,

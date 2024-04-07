@@ -22,7 +22,7 @@ struct FinancePlanView: View {
                                             .bold()
                                             .font(.title)
                                     }
-                                    .foregroundStyle(.white)
+                                    .foregroundColor(.primary)
                                 }
                             })
                             Button(action: {}, label: {
@@ -36,7 +36,7 @@ struct FinancePlanView: View {
                                             .bold()
                                             .font(.title)
                                     }
-                                    .foregroundStyle(.white)
+                                    .foregroundColor(.primary)
                                 }
                             })
                         }
@@ -54,7 +54,7 @@ struct FinancePlanView: View {
                                 .bold()
                                 .font(.title)
                         }
-                        .foregroundStyle(.white)
+                        .foregroundColor(.primary)
                         .padding()
                     }
                     .frame(height: 200)

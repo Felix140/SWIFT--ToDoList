@@ -28,7 +28,7 @@ extension Encodable {
         /// modifica sia fatta prima di assegnare dictUserContact a dict
         dictUserContact["isSaved"] = friendRequest.userContact.isSaved
         dict["userContact"] = dictUserContact
-        dict["state"] = friendRequest.state
+        dict["status"] = friendRequest.status
         return dict
     }
     

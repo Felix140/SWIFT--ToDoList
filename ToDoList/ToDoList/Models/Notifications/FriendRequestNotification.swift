@@ -2,17 +2,11 @@ import Foundation
 
 class FriendRequestNotification: Notification {
     
-    enum FriendRequestState: String, Codable {
-        case pending = "pending"
-        case confirmed = "confirmed"
-        case refused = "refused"
-    }
-    
-    let state: FriendRequestState.RawValue
+    let status: StatusTypology.RawValue
     let userContact: UserContact
     
     enum CodingKeys: String, CodingKey {
-        case state
+        case status
         case userContact
     }
     
@@ -20,7 +14,7 @@ class FriendRequestNotification: Notification {
         from decoder: Decoder
     ) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.state = try container.decode(FriendRequestState.RawValue.self, forKey: .state)
+        self.status = try container.decode(StatusTypology.RawValue.self, forKey: .status)
         self.userContact = try container.decode(UserContact.self, forKey: .userContact)
         /// Chiama l'inizializzatore della superclasse
         try super.init(from: decoder)
@@ -32,10 +26,10 @@ class FriendRequestNotification: Notification {
         recipient: User,
         isShowed: Bool,
         timeCreation: TimeInterval,
-        state: FriendRequestState.RawValue,
+        status: StatusTypology.RawValue,
         userContact: UserContact
     ) {
-        self.state = state
+        self.status = status
         self.userContact = userContact
         super.init(
             id: id,

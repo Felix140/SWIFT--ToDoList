@@ -134,7 +134,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             recipient: User(id: recipient.id, name: recipient.name, email: recipient.email, joined: recipient.joined),
             isShowed: true,
             timeCreation: Date().timeIntervalSince1970,
-            state: FriendRequestNotification.FriendRequestState.pending.rawValue,
+            status: StatusTypology.pending.rawValue,
             userContact: UserContact(
                 id: recipient.id,
                 name: recipient.name,
@@ -288,7 +288,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
                                 recipient: recipient,
                                 isShowed: data["isShowed"] as? Bool ?? true,
                                 timeCreation: data["timeCreation"] as? TimeInterval ?? Date().timeIntervalSince1970,
-                                state:  data["state"] as? FriendRequestNotification.FriendRequestState.RawValue ?? FriendRequestNotification.FriendRequestState.pending.rawValue,
+                                status:  data["state"] as? StatusTypology.RawValue ?? StatusTypology.pending.rawValue,
                                 userContact: UserContact(
                                     id: data["id"] as? String ?? "",
                                     name: recipient.name,
@@ -434,7 +434,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .document(friendRequestObj.id)
             .updateData([
                 "isShowed": false,
-                "state": FriendRequestNotification.FriendRequestState.confirmed.rawValue]) { error in
+                "state": StatusTypology.confirmed.rawValue]) { error in
                     if let error = error {
                         print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                     } else {
@@ -449,7 +449,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .document(friendRequestObj.id)
             .updateData([
                 "isShowed": false,
-                "state": FriendRequestNotification.FriendRequestState.confirmed.rawValue]) { error in
+                "state": StatusTypology.confirmed.rawValue]) { error in
                     if let error = error {
                         print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                     } else {
@@ -465,7 +465,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .document(friendRequestObj.id)
             .updateData([
                 "isShowed": false,
-                "state": FriendRequestNotification.FriendRequestState.confirmed.rawValue]) { error in
+                "state": StatusTypology.confirmed.rawValue]) { error in
                     if let error = error {
                         print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                     } else {
@@ -488,7 +488,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .document(friendRequestObj.id)
             .updateData([
                 "isShowed": false,
-                "state": FriendRequestNotification.FriendRequestState.refused.rawValue]) { error in
+                "state": StatusTypology.refused.rawValue]) { error in
                     if let error = error {
                         print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                     } else {
@@ -503,7 +503,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .document(friendRequestObj.id)
             .updateData([
                 "isShowed": false,
-                "state": FriendRequestNotification.FriendRequestState.refused.rawValue]) { error in
+                "state": StatusTypology.refused.rawValue]) { error in
                     if let error = error {
                         print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                     } else {
@@ -519,7 +519,7 @@ class NotificationViewViewModel: NewItemViewViewModel {
             .document(friendRequestObj.id)
             .updateData([
                 "isShowed": false,
-                "state": FriendRequestNotification.FriendRequestState.refused.rawValue]) { error in
+                "state": StatusTypology.refused.rawValue]) { error in
                     if let error = error {
                         print("Errore nell'aggiornamento dello stato della notifica: \(error)")
                     } else {
