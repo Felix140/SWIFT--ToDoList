@@ -9,81 +9,75 @@ struct NewItemView: View {
     var haptic = HapticTrigger()
     
     var body: some View {
-        VStack(alignment: .leading) {
+        
+        // Form
+        Form {
+            Section(header: Text("Titolo task")) {
+                TextField("Inserisci qui il titolo", text: $viewModel.title)
+                    .textInputAutocapitalization(.none)
+                    .autocapitalization(.none)
+                
+                descriptionSelection()
+                
+            }
             
-            // Form
-            Form {
-                Section(header: Text("Titolo task")) {
-                    TextField("Inserisci qui il titolo", text: $viewModel.title)
-                        .textInputAutocapitalization(.none)
-                        .autocapitalization(.none)
-                    
-                    descriptionSelection()
-                    
-                }
-                
-                HStack {
-                    Image(systemName: "calendar.day.timeline.left")
-                        .font(.system(size: 14))
-                    withAnimation(.easeInOut(duration: 1.3)) {
-                        Toggle("Event", isOn: $isEventItem)
-                    }
-                }
-                .frame(maxWidth: .infinity)
-                
-                
-                
-                Section {
-                    // DATE 1
-                    HStack {
-                        Image(systemName: "calendar")
-                        Text(isEventItem ? "Start Date" : "Date")
-                        Spacer()
-                        DatePicker(
-                            selection: $viewModel.date,
-                            displayedComponents: isEventItem ? [.date] : [.date, .hourAndMinute]) {
-                                EmptyView()
-                            }
-                            .onChange(of: viewModel.date) { _ in
-                                if !isEventItem {
-                                    // Aggiorna date2 solo se non è selezionato come evento
-                                    viewModel.date2 = viewModel.date
-                                }
-                            }
-                            .fixedSize()
-                    }
-                    .frame(maxWidth: .infinity)
-                    // DATE 2
-                    if isEventItem {
-                        HStack {
-                            Image(systemName: "calendar")
-                            Text("End Date")
-                            Spacer()
-                            DatePicker(selection: $viewModel.date2, displayedComponents: [.date]) {
-                                EmptyView()
-                            }
-                            .fixedSize()
-                        }
-                        .frame(maxWidth: .infinity)
-                    }
-                }
-                
-                
-                
-                
-                Section(header: Text("Seleziona una categoria")) {
-                    Picker("Categoria", selection: $viewModel.selectedCategory) {
-                        ForEach(viewModel.categories, id: \.self) { category in
-                            Text(category.categoryName).tag(category)
-                        }
-                    }
-                    .pickerStyle(MenuPickerStyle())
+            HStack {
+                Image(systemName: "calendar.day.timeline.left")
+                    .font(.system(size: 14))
+                withAnimation(.easeInOut(duration: 1.3)) {
+                    Toggle("Event", isOn: $isEventItem)
                 }
             }
-            .frame(height: 440)
-            .scrollDisabled(true)
+            .frame(maxWidth: .infinity)
             
-            Spacer()
+            
+            
+            Section {
+                // DATE 1
+                HStack {
+                    Image(systemName: "calendar")
+                    Text(isEventItem ? "Start Date" : "Date")
+                    Spacer()
+                    DatePicker(
+                        selection: $viewModel.date,
+                        displayedComponents: isEventItem ? [.date] : [.date, .hourAndMinute]) {
+                            EmptyView()
+                        }
+                        .onChange(of: viewModel.date) { _ in
+                            if !isEventItem {
+                                // Aggiorna date2 solo se non è selezionato come evento
+                                viewModel.date2 = viewModel.date
+                            }
+                        }
+                        .fixedSize()
+                }
+                .frame(maxWidth: .infinity)
+                // DATE 2
+                if isEventItem {
+                    HStack {
+                        Image(systemName: "calendar")
+                        Text("End Date")
+                        Spacer()
+                        DatePicker(selection: $viewModel.date2, displayedComponents: [.date]) {
+                            EmptyView()
+                        }
+                        .fixedSize()
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+            
+            
+            
+            
+            Section(header: Text("Seleziona una categoria")) {
+                Picker("Categoria", selection: $viewModel.selectedCategory) {
+                    ForEach(viewModel.categories, id: \.self) { category in
+                        Text(category.categoryName).tag(category)
+                    }
+                }
+                .pickerStyle(MenuPickerStyle())
+            }
         }
         .onChange(of: isEventItem) { newValue in
             /// Se isEventItem è false, allinea date2 con date
@@ -118,6 +112,8 @@ struct NewItemView: View {
                 .foregroundColor(.green)
             }
         }
+        
+        
     }
     
     // MARK: - Description

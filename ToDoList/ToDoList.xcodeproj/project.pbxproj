@@ -33,7 +33,7 @@
 		4941EF1B2B5DE9E9000A759D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941EF1A2B5DE9E9000A759D /* Shared.swift */; };
 		4941EF1C2B5DE9E9000A759D /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4941EF1A2B5DE9E9000A759D /* Shared.swift */; };
 		4952FE492B3D009800B52C65 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4952FE482B3D009800B52C65 /* Launch Screen.storyboard */; };
-		495A35522BBB4A4A0017E681 /* SpendingPlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A35512BBB4A4A0017E681 /* SpendingPlanView.swift */; };
+		495A35522BBB4A4A0017E681 /* FinancePlanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A35512BBB4A4A0017E681 /* FinancePlanView.swift */; };
 		495A35552BBB50D00017E681 /* ModalSpendingItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495A35542BBB50D00017E681 /* ModalSpendingItemView.swift */; };
 		495F52BC2BA7906200F2C086 /* NotificationTypology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495F52BB2BA7906200F2C086 /* NotificationTypology.swift */; };
 		496E1BCA2B2D10D30036AC23 /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */; };
@@ -49,6 +49,8 @@
 		4991E1622B5F5CA700D6ED63 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DDA17F2B44BF7B009218C4 /* Theme.swift */; };
 		499531132B52083700547910 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499531122B52083700547910 /* NotificationView.swift */; };
 		4998F35D2B8BFCE70082B60F /* EventViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4998F35C2B8BFCE70082B60F /* EventViewViewModel.swift */; };
+		499967912BC30A5000BD47B6 /* FinanceViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499967902BC30A5000BD47B6 /* FinanceViewViewModel.swift */; };
+		499967932BC30F6400BD47B6 /* SpendingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499967922BC30F6400BD47B6 /* SpendingItem.swift */; };
 		499A0F692B83F60400527A4C /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A0F682B83F60400527A4C /* BannerView.swift */; };
 		499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E1DDF2B46FA5200A7EF9A /* Routes.swift */; };
 		49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */; };
@@ -146,7 +148,7 @@
 		4941EF172B5DE999000A759D /* WidgetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetType.swift; sourceTree = "<group>"; };
 		4941EF1A2B5DE9E9000A759D /* Shared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		4952FE482B3D009800B52C65 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		495A35512BBB4A4A0017E681 /* SpendingPlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingPlanView.swift; sourceTree = "<group>"; };
+		495A35512BBB4A4A0017E681 /* FinancePlanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinancePlanView.swift; sourceTree = "<group>"; };
 		495A35542BBB50D00017E681 /* ModalSpendingItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalSpendingItemView.swift; sourceTree = "<group>"; };
 		495F52BB2BA7906200F2C086 /* NotificationTypology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypology.swift; sourceTree = "<group>"; };
 		496E1BC92B2D10D30036AC23 /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
@@ -158,6 +160,8 @@
 		499074D92B87D32D008C2783 /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		499531122B52083700547910 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		4998F35C2B8BFCE70082B60F /* EventViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewViewModel.swift; sourceTree = "<group>"; };
+		499967902BC30A5000BD47B6 /* FinanceViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceViewViewModel.swift; sourceTree = "<group>"; };
+		499967922BC30F6400BD47B6 /* SpendingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingItem.swift; sourceTree = "<group>"; };
 		499A0F682B83F60400527A4C /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		499E1DDF2B46FA5200A7EF9A /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTrigger.swift; sourceTree = "<group>"; };
@@ -279,12 +283,12 @@
 			path = Widget;
 			sourceTree = "<group>";
 		};
-		495A35532BBB50870017E681 /* SpendingPlan */ = {
+		495A35532BBB50870017E681 /* Finance */ = {
 			isa = PBXGroup;
 			children = (
 				495A35542BBB50D00017E681 /* ModalSpendingItemView.swift */,
 			);
-			path = SpendingPlan;
+			path = Finance;
 			sourceTree = "<group>";
 		};
 		495F52BA2BA7904600F2C086 /* Typology */ = {
@@ -393,7 +397,7 @@
 				49FE572E2B1CDA5100E4A0E2 /* LoginView.swift */,
 				49FE57302B1CDA7800E4A0E2 /* RegisterView.swift */,
 				49FE57322B1CDA9D00E4A0E2 /* ToDoListView.swift */,
-				495A35512BBB4A4A0017E681 /* SpendingPlanView.swift */,
+				495A35512BBB4A4A0017E681 /* FinancePlanView.swift */,
 				49E946872B50848700148273 /* SharedToDoListView.swift */,
 				49F0D3712B5566BA0053206A /* ContactsView.swift */,
 				49FE57262B1CD99000E4A0E2 /* ProfileView.swift */,
@@ -406,7 +410,7 @@
 			children = (
 				492E29782B1D4BE600021383 /* HeaderView.swift */,
 				491EB63B2B6DAF4300ABF3B3 /* Buttons */,
-				495A35532BBB50870017E681 /* SpendingPlan */,
+				495A35532BBB50870017E681 /* Finance */,
 				499531162B52091B00547910 /* Task */,
 				499531152B5208FF00547910 /* Profile */,
 				499531142B5208CD00547910 /* Requests */,
@@ -484,6 +488,7 @@
 				49FE57452B1CDBED00E4A0E2 /* RegisterViewViewModel.swift */,
 				49F0D3732B5567860053206A /* ContactsViewViewModel.swift */,
 				499074D72B87D2E9008C2783 /* CalendarViewViewModel.swift */,
+				499967902BC30A5000BD47B6 /* FinanceViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -496,6 +501,7 @@
 				49FE57362B1CDAEF00E4A0E2 /* ToDoListItem.swift */,
 				498697752B8936A200C4A3DD /* EventItem.swift */,
 				49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */,
+				499967922BC30F6400BD47B6 /* SpendingItem.swift */,
 				49068BDE2B9B64970034F2A8 /* Notifications */,
 				49DDA1812B44C2B6009218C4 /* Enums */,
 			);
@@ -649,7 +655,9 @@
 				49068BDB2B9B64690034F2A8 /* TaskNotification.swift in Sources */,
 				49C61BCA2B4385C300F1999C /* TimerArc.swift in Sources */,
 				490F02AB2B8782A800B3180D /* TabBarView.swift in Sources */,
+				499967912BC30A5000BD47B6 /* FinanceViewViewModel.swift in Sources */,
 				49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */,
+				499967932BC30F6400BD47B6 /* SpendingItem.swift in Sources */,
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
 				49B584F62B52178800F3D004 /* RequestNewItemView.swift in Sources */,
 				49E946882B50848700148273 /* SharedToDoListView.swift in Sources */,
@@ -663,7 +671,7 @@
 				49FE57462B1CDBED00E4A0E2 /* RegisterViewViewModel.swift in Sources */,
 				49FE57392B1CDB3C00E4A0E2 /* MainViewViewModel.swift in Sources */,
 				49F0D3742B5567860053206A /* ContactsViewViewModel.swift in Sources */,
-				495A35522BBB4A4A0017E681 /* SpendingPlanView.swift in Sources */,
+				495A35522BBB4A4A0017E681 /* FinancePlanView.swift in Sources */,
 				4941EF182B5DE999000A759D /* WidgetType.swift in Sources */,
 				49FE57432B1CDBD800E4A0E2 /* LoginViewViewModel.swift in Sources */,
 				499074DA2B87D32D008C2783 /* CustomCalendarView.swift in Sources */,

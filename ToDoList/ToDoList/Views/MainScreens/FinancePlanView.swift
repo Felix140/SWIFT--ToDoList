@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SpendingPlanView: View {
+struct FinancePlanView: View {
     
     @State var isPresentingView = false
     
@@ -14,7 +14,7 @@ struct SpendingPlanView: View {
                             Button(action: {}, label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 16.0)
-                                        .fill(Theme.redGradient.gradient)
+                                        .fill(.ultraThinMaterial)
                                     
                                     VStack {
                                         Text("Total revenue")
@@ -28,7 +28,7 @@ struct SpendingPlanView: View {
                             Button(action: {}, label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 16.0)
-                                        .fill(Theme.redGradient.gradient)
+                                        .fill(.ultraThinMaterial)
                                     
                                     VStack {
                                         Text("Total Spent")
@@ -40,13 +40,13 @@ struct SpendingPlanView: View {
                                 }
                             })
                         }
-                        .frame(height: 100)
+                        .frame(height: 200)
                     }
                     .padding(.horizontal)
                     
                     ZStack {
                         RoundedRectangle(cornerRadius: 16.0)
-                            .fill(Theme.redGradient.gradient)
+                            .fill(.ultraThinMaterial)
                         
                         VStack {
                             Text("Difference")
@@ -57,21 +57,28 @@ struct SpendingPlanView: View {
                         .foregroundStyle(.white)
                         .padding()
                     }
-                    .frame(height: 100)
+                    .frame(height: 200)
                     .padding(.horizontal)
                     
                     Divider()
+                    
+                    ButtonFormView(textBtn: "Edit", action: {
+                        isPresentingView = true
+                    })
+                        .padding()
                 }
-                .navigationTitle("Spending Plan")
+                .navigationTitle("Finance")
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
                         Button(action: {
-                            isPresentingView = true
+                            // open analytics View
                         }) {
-                            Image(systemName: "bag.badge.plus")
+                            Image(systemName: "square.2.layers.3d.bottom.filled")
                         }
-                        .accessibilityLabel("Add new Item")
+                        .accessibilityLabel("analytics")
                     }
+                    
+                    
                 }
             }
         }
@@ -84,5 +91,5 @@ struct SpendingPlanView: View {
 }
 
 #Preview {
-    SpendingPlanView()
+    FinancePlanView()
 }

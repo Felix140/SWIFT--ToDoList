@@ -12,9 +12,9 @@ struct TabBarView: View {
                     Label("Task", systemImage: "list.bullet.circle.fill")
                 }
             
-            SpendingPlanView()
+            FinancePlanView()
                 .tabItem {
-                    Label("Spending Plan", systemImage: "dollarsign.arrow.circlepath")
+                    Label("Finance Plan", systemImage: "dollarsign.arrow.circlepath")
                 }
             
             SharedToDoListView(userId: userId, viewModelNotification: viewModelNotification)
