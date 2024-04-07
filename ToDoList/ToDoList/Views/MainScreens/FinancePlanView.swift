@@ -85,7 +85,7 @@ struct FinancePlanView: View {
         }
         .sheet(isPresented: $viewModel.isPresentingView) {
             NavigationStack {
-                ModalSpendingItemView()
+                ModalSpendingItemView(viewModel: viewModel)
             }
         }
     }

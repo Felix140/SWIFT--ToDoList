@@ -2,29 +2,49 @@ import SwiftUI
 
 struct ModalSpendingItemView: View {
     
-    @State var description = "descrizione"
-    @State var amount = 10
+    @ObservedObject var viewModel: FinanceViewViewModel
+    
+    
+    init(viewModel: FinanceViewViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         Form {
             
             Section(header: Text("Description")) {
-                TextField("Inserisci qui il titolo", text: $description)
-                    .textInputAutocapitalization(.none)
-                    .autocapitalization(.none)
-                
-            }
-            Section {
-                
-            }
-            Section(header: Text("Amount")) {
-                TextField("Inserisci qui il titolo", value: $amount,  formatter: NumberFormatter())
-                    .keyboardType(.decimalPad)
+                TextField("Inserisci qui il titolo", text: $viewModel.descriptionText)
                     .textInputAutocapitalization(.none)
                     .autocapitalization(.none)
                 
             }
             
+            Section(header: Text("Amount")) {
+                TextField("Inserisci qui il titolo", value: $viewModel.amountInput,  formatter: NumberFormatter())
+                    .keyboardType(.decimalPad)
+                    .textInputAutocapitalization(.none)
+                    .autocapitalization(.none)
+            }
+            
+            Section {
+                HStack {
+                    Spacer()
+                    Button("Subtract") {
+                        viewModel.spendingType = .subtract
+                        viewModel.subtractSpending()
+                        viewModel.isPresentingView = false
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    Spacer()
+                    Button("Add") {
+                        viewModel.spendingType = .add
+                        viewModel.addSpending()
+                        viewModel.isPresentingView = false
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    Spacer()
+                }
+            }
             //            Section(header: Text("Seleziona una categoria")) {
             //                Picker("Categoria", selection: $viewModel.selectedCategory) {
             //                    ForEach(viewModel.categories, id: \.self) { category in
@@ -35,22 +55,16 @@ struct ModalSpendingItemView: View {
             //            }
             
         }
-        .toolbar { /// aggiunge i bottoni di edit dello .sheet (modale)
+        .toolbar {
             ToolbarItem(placement: .cancellationAction) {
                 Button("Cancel") {
-                    
+                    viewModel.isPresentingView = false
                 }
-            }
-            
-            ToolbarItem(placement: .confirmationAction) {
-                Button("Done") {
-                }
-                .foregroundColor(.green)
             }
         }
     }
 }
 
 #Preview {
-    ModalSpendingItemView()
+    ModalSpendingItemView(viewModel: FinanceViewViewModel())
 }
