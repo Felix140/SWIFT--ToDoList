@@ -12,58 +12,39 @@ struct RequestNewItemView: View {
     var haptic = HapticTrigger()
     
     var body: some View {
-        VStack(alignment: .leading) {
+        Form {
+            Section(header: Text("Send To")) {
+                conctactSelection()
+            }
             
-            //Component Title
+            Section(header: Text("Titolo task")) {
+                TextField("Inserisci qui il titolo", text: $viewModelNotification.title)
+                    .textInputAutocapitalization(.none)
+                    .autocapitalization(.none)
+                
+                descriptionSelection()
+                
+            }
+            
             HStack {
+                Image(systemName: "calendar")
+                Text("Date")
                 Spacer()
-                Text("Invia una Task")
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .padding(.top, 15)
-                    .padding(.leading, 20)
-                Spacer()
+                DatePicker(selection: $viewModelNotification.date, displayedComponents: [.date, .hourAndMinute]) {
+                    EmptyView()
+                }
+                .fixedSize()
             }
+            .frame(maxWidth: .infinity)
             
-            // Form
-            Form {
-                Section(header: Text("Send To")) {
-                    conctactSelection()
-                }
-                
-                Section(header: Text("Titolo task")) {
-                    TextField("Inserisci qui il titolo", text: $viewModelNotification.title)
-                        .textInputAutocapitalization(.none)
-                        .autocapitalization(.none)
-                    
-                    descriptionSelection()
-                    
-                }
-                
-                HStack {
-                    Image(systemName: "calendar")
-                    Text("Date")
-                    Spacer()
-                    DatePicker(selection: $viewModelNotification.date, displayedComponents: [.date, .hourAndMinute]) {
-                        EmptyView()
+            Section(header: Text("Seleziona una categoria")) {
+                Picker("Categoria", selection: $viewModelNotification.selectedCategory) {
+                    ForEach(viewModelNotification.categories, id: \.self) { category in
+                        Text(category.categoryName).tag(category)
                     }
-                    .fixedSize()
                 }
-                .frame(maxWidth: .infinity)
-                
-                Section(header: Text("Seleziona una categoria")) {
-                    Picker("Categoria", selection: $viewModelNotification.selectedCategory) {
-                        ForEach(viewModelNotification.categories, id: \.self) { category in
-                            Text(category.categoryName).tag(category)
-                        }
-                    }
-                    .pickerStyle(MenuPickerStyle())
-                }
+                .pickerStyle(MenuPickerStyle())
             }
-            .frame(height: 440)
-            .scrollDisabled(true)
-            
-            Spacer()
         }
         .alert(isPresented: $viewModelNotification.showAlert) {
             Alert(
