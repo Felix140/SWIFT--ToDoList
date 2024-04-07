@@ -100,6 +100,7 @@
 		49FE94012BC3194200E8D13B /* SpendingTypology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE94002BC3194200E8D13B /* SpendingTypology.swift */; };
 		49FE94032BC31AFE00E8D13B /* StateTypology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE94022BC31AFE00E8D13B /* StateTypology.swift */; };
 		49FE94052BC31CA900E8D13B /* CategorySpending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE94042BC31CA900E8D13B /* CategorySpending.swift */; };
+		49FE94072BC3255900E8D13B /* SpendingHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FE94062BC3255900E8D13B /* SpendingHistoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +213,7 @@
 		49FE94002BC3194200E8D13B /* SpendingTypology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingTypology.swift; sourceTree = "<group>"; };
 		49FE94022BC31AFE00E8D13B /* StateTypology.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTypology.swift; sourceTree = "<group>"; };
 		49FE94042BC31CA900E8D13B /* CategorySpending.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySpending.swift; sourceTree = "<group>"; };
+		49FE94062BC3255900E8D13B /* SpendingHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingHistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				495A35542BBB50D00017E681 /* ModalSpendingItemView.swift */,
+				49FE94062BC3255900E8D13B /* SpendingHistoryView.swift */,
 			);
 			path = Finance;
 			sourceTree = "<group>";
@@ -714,6 +717,7 @@
 				499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */,
 				492B54C52B2266DF00041139 /* ListItemViewViewModel.swift in Sources */,
 				49F0D3722B5566BA0053206A /* ContactsView.swift in Sources */,
+				49FE94072BC3255900E8D13B /* SpendingHistoryView.swift in Sources */,
 				49FE57272B1CD99000E4A0E2 /* ProfileView.swift in Sources */,
 				49FE573D2B1CDBAE00E4A0E2 /* ToDoListViewViewModel.swift in Sources */,
 				49F363B72B8F5836009E5E89 /* ToDoItemViewViewModel.swift in Sources */,

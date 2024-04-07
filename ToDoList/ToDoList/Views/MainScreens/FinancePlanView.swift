@@ -2,13 +2,14 @@ import SwiftUI
 
 struct FinancePlanView: View {
     
-    @State var isPresentingView = false
+    @StateObject var viewModel = FinanceViewViewModel()
     
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack {
                     Divider()
+                    
                     Grid {
                         GridRow {
                             Button(action: {}, label: {
@@ -18,7 +19,7 @@ struct FinancePlanView: View {
                                     
                                     VStack {
                                         Text("Total revenue")
-                                        Text("0€")
+                                        Text("\(formatNumber(viewModel.totalRevenue)) €")
                                             .bold()
                                             .font(.title)
                                     }
@@ -32,7 +33,7 @@ struct FinancePlanView: View {
                                     
                                     VStack {
                                         Text("Total Spent")
-                                        Text("0€")
+                                        Text("\(formatNumber(viewModel.totalSpent)) €")
                                             .bold()
                                             .font(.title)
                                     }
@@ -50,7 +51,7 @@ struct FinancePlanView: View {
                         
                         VStack {
                             Text("Difference")
-                            Text("0€")
+                            Text("\(formatNumber(viewModel.difference)) €")
                                 .bold()
                                 .font(.title)
                         }
@@ -63,9 +64,9 @@ struct FinancePlanView: View {
                     Divider()
                     
                     ButtonFormView(textBtn: "Edit", action: {
-                        isPresentingView = true
+                        viewModel.isPresentingView = true
                     })
-                        .padding()
+                    .padding()
                 }
                 .navigationTitle("Finance")
                 .toolbar {
@@ -82,11 +83,22 @@ struct FinancePlanView: View {
                 }
             }
         }
-        .sheet(isPresented: $isPresentingView) {
+        .sheet(isPresented: $viewModel.isPresentingView) {
             NavigationStack {
                 ModalSpendingItemView()
             }
         }
+    }
+    
+    
+    
+    
+    func formatNumber(_ number: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+        return formatter.string(from: NSNumber(value: number)) ?? ""
     }
 }
 
