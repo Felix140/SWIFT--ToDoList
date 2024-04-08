@@ -63,12 +63,21 @@ struct FinancePlanView: View {
                     
                     Divider()
                     
-                    ButtonFormView(textBtn: "Edit", action: {
-                        viewModel.isPresentingView = true
-                    })
+                    Section {
+                        Button(action: {
+                            viewModel.isPresentingView = true
+                        }, label: {
+                            HStack {
+                                Image(systemName: "creditcard.fill")
+                                Text("Edit")
+                                    .padding(.leading, 10)
+                            }
+                        })
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                    }
                     .padding()
                 }
-                .navigationTitle("Finance")
+                .navigationTitle("\(Date().formatted(.dateTime.month().year()))")
                 .toolbar {
                     ToolbarItem(placement: .confirmationAction) {
                         Button(action: {

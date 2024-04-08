@@ -26,25 +26,25 @@ struct ModalSpendingItemView: View {
                     .autocapitalization(.none)
             }
             
+        
+            
             Section {
-                HStack {
-                    Spacer()
-                    Button("Subtract") {
-                        viewModel.spendingType = .subtract
-                        viewModel.subtractSpending()
-                        viewModel.isPresentingView = false
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    Spacer()
-                    Button("Add") {
-                        viewModel.spendingType = .add
-                        viewModel.addSpending()
-                        viewModel.isPresentingView = false
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    Spacer()
+                Button("Subtract") {
+                    viewModel.spendingType = .subtract
+                    viewModel.subtractSpending(value: viewModel.amountInput)
+                    viewModel.isPresentingView = false
                 }
+                .frame(minWidth: 0, maxWidth: .infinity)
             }
+            Section {
+                Button("Add") {
+                    viewModel.spendingType = .add
+                    viewModel.addSpending(value: viewModel.amountInput)
+                    viewModel.isPresentingView = false
+                }
+                .frame(minWidth: 0, maxWidth: .infinity)
+            }
+            
             //            Section(header: Text("Seleziona una categoria")) {
             //                Picker("Categoria", selection: $viewModel.selectedCategory) {
             //                    ForEach(viewModel.categories, id: \.self) { category in
