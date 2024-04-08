@@ -2,7 +2,21 @@ import SwiftUI
 
 struct SpendingHistoryView: View {
     var body: some View {
-        Text("History")
+        NavigationView {
+            VStack{
+                ScrollView {
+                    Section {
+                        ForEach(0..<5, id: \.self) { _ in
+                            
+                            HistoryItemView()
+                                .padding()
+                            
+                        }
+                    }
+                }
+            }
+            .navigationTitle("History")
+        }
     }
 }
 

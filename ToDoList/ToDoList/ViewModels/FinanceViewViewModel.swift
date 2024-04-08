@@ -16,6 +16,7 @@ class FinanceViewViewModel: ObservableObject {
     @Published var dateTask = Date()
     @Published var spendingType: SpendingTypology = .add
     @Published var selectedCategory: CategorySpending = .none
+    
     let db = Firestore.firestore()
     
     init() {
@@ -29,7 +30,7 @@ class FinanceViewViewModel: ObservableObject {
         financeReference.getDocument { [weak self] (document, error) in
             if let document = document, document.exists, let data = document.data() {
                 DispatchQueue.main.async {
-                    // Assegna i valori recuperati da Firebase alle proprietà dell'oggetto
+                    /// Assegna i valori recuperati da Firebase alle proprietà dell'oggetto
                     self?.totalRevenue = data["totalRevenue"] as? Double ?? 0
                     self?.totalSpent = data["totalSpent"] as? Double ?? 0
                     self?.totalAmount = data["totalAmount"] as? Double ?? 0

@@ -9,10 +9,9 @@ struct FinancePlanView: View {
             ScrollView {
                 VStack {
                     Divider()
-                    
                     Grid {
                         GridRow {
-                            Button(action: {}, label: {
+                            NavigationLink(destination: SpendingHistoryView(), label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 16.0)
                                         .fill(.ultraThinMaterial)
@@ -22,11 +21,12 @@ struct FinancePlanView: View {
                                         Text("\(formatNumber(viewModel.totalRevenue)) €")
                                             .bold()
                                             .font(.title)
+                                        Image(systemName: "arrow.right")
                                     }
                                     .foregroundColor(.primary)
                                 }
                             })
-                            Button(action: {}, label: {
+                            NavigationLink(destination: SpendingHistoryView(), label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 16.0)
                                         .fill(.ultraThinMaterial)
@@ -36,6 +36,7 @@ struct FinancePlanView: View {
                                         Text("\(formatNumber(viewModel.totalSpent)) €")
                                             .bold()
                                             .font(.title)
+                                        Image(systemName: "arrow.right")
                                     }
                                     .foregroundColor(.primary)
                                 }
@@ -45,21 +46,31 @@ struct FinancePlanView: View {
                     }
                     .padding(.horizontal)
                     
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 16.0)
-                            .fill(.ultraThinMaterial)
-                        
-                        VStack {
-                            Text("Difference")
-                            Text("\(formatNumber(viewModel.totalAmount)) €")
-                                .bold()
-                                .font(.title)
+                    
+                    Grid {
+                        GridRow {
+                            NavigationLink(destination: SpendingHistoryView(), label: {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 16.0)
+                                        .fill(.ultraThinMaterial)
+                                    
+                                    VStack {
+                                        Text("Difference")
+                                        Text("\(formatNumber(viewModel.totalAmount)) €")
+                                            .bold()
+                                            .font(.title)
+                                        Image(systemName: "arrow.right")
+                                    }
+                                    .foregroundColor(.primary)
+                                    .padding()
+                                }
+                            })
                         }
-                        .foregroundColor(.primary)
-                        .padding()
+                        .frame(height: 200)
                     }
-                    .frame(height: 200)
                     .padding(.horizontal)
+                    
+                    
                     
                     Divider()
                     
@@ -87,8 +98,6 @@ struct FinancePlanView: View {
                         }
                         .accessibilityLabel("analytics")
                     }
-                    
-                    
                 }
             }
         }
@@ -100,7 +109,7 @@ struct FinancePlanView: View {
     }
     
     
-    
+    //MARK: - FormatNumber
     
     func formatNumber(_ number: Double) -> String {
         let formatter = NumberFormatter()
