@@ -51,7 +51,7 @@ struct FinancePlanView: View {
                         
                         VStack {
                             Text("Difference")
-                            Text("\(formatNumber(viewModel.difference)) €")
+                            Text("\(formatNumber(viewModel.totalAmount)) €")
                                 .bold()
                                 .font(.title)
                         }

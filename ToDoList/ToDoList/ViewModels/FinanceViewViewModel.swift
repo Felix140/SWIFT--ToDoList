@@ -8,9 +8,7 @@ class FinanceViewViewModel: ObservableObject {
     @Published var isPresentingView: Bool = false
     @Published var totalRevenue: Double = 0 
     @Published var totalSpent: Double = 0 /// Assicurato essere sempre positivo attraverso la logica di aggiunta
-    var difference: Double {
-        return totalRevenue - totalSpent
-    }
+    @Published var totalAmount: Double = 0
     
     @Published var amountInput: Double = 0
     @Published var descriptionText = ""
@@ -34,6 +32,7 @@ class FinanceViewViewModel: ObservableObject {
                     // Assegna i valori recuperati da Firebase alle proprietà dell'oggetto
                     self?.totalRevenue = data["totalRevenue"] as? Double ?? 0
                     self?.totalSpent = data["totalSpent"] as? Double ?? 0
+                    self?.totalAmount = data["totalAmount"] as? Double ?? 0
                 }
             } else {
                 print("Document does not exist or error: \(error?.localizedDescription ?? "Unknown error")")
@@ -80,22 +79,24 @@ class FinanceViewViewModel: ObservableObject {
     }
     
     func addSpending(value: Double) {
-        updateTotalAmount { [weak self] exists in
-            guard exists, let self = self else { return }
-            guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-            let documentReference = self.db.collection("users").document(currentUserID).collection("finance").document("totals")
-            let incrementAmount = FieldValue.increment(value)
-            let updateFields: [String: Any] = self.spendingType == .add ? ["totalRevenue": incrementAmount] : [:]
-            documentReference.updateData(updateFields) { [weak self] error in
-                if let error = error {
-                    print("Error updating document: \(error)")
-                } else {
-                    print("Document successfully updated: Increment")
-                    self?.fetchFinanceData() /// Aggiorna i valori dopo l'aggiornamento del db
+            updateTotalAmount { [weak self] exists in
+                guard exists, let self = self else { return }
+                guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+                let documentReference = self.db.collection("users").document(currentUserID).collection("finance").document("totals")
+                let incrementAmount = FieldValue.increment(value)
+                
+                let updateFields: [String: Any] = self.spendingType == .add ? ["totalRevenue": incrementAmount, "totalAmount": FieldValue.increment(value)] : [:]
+                
+                documentReference.updateData(updateFields) { [weak self] error in
+                    if let error = error {
+                        print("Error updating document: \(error)")
+                    } else {
+                        print("Document successfully updated: Increment")
+                        self?.fetchFinanceData() // Aggiorna i valori dopo l'aggiornamento del db
+                    }
                 }
             }
         }
-    }
     
     func subtractSpending(value: Double) {
         updateTotalAmount { [weak self] exists in
@@ -109,7 +110,7 @@ class FinanceViewViewModel: ObservableObject {
             let incrementSpent = FieldValue.increment(positiveValue)
             
             /// Prepariamo l'aggiornamento per totalSpent.
-            let updateFields: [String: Any] = ["totalSpent": incrementSpent]
+            let updateFields: [String: Any] = ["totalSpent": incrementSpent, "totalAmount": FieldValue.increment(-positiveValue)]
             
             /// Qui potresti voler aggiungere una logica per controllare e aggiustare totalRevenue se necessario, basato sulla tua logica di app.
             
