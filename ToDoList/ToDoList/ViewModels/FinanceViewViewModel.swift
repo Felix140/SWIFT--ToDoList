@@ -6,7 +6,7 @@ import FirebaseFirestore
 class FinanceViewViewModel: ObservableObject {
     
     @Published var isPresentingView: Bool = false
-    @Published var totalRevenue: Double = 0 
+    @Published var totalRevenue: Double = 0
     @Published var totalSpent: Double = 0 /// Assicurato essere sempre positivo attraverso la logica di aggiunta
     @Published var totalAmount: Double = 0
     
@@ -18,6 +18,9 @@ class FinanceViewViewModel: ObservableObject {
     @Published var selectedCategory: CategorySpending = .none
     
     let db = Firestore.firestore()
+    var currentYear: String {
+        creationDate.formatted(.dateTime.year())
+    }
     
     init() {
         fetchFinanceData()
@@ -25,7 +28,7 @@ class FinanceViewViewModel: ObservableObject {
     
     private func fetchFinanceData() {
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-        let financeReference = db.collection("users").document(currentUserID).collection("finance").document("totals")
+        let financeReference = db.collection("users").document(currentUserID).collection("finance").document(currentYear)
         
         financeReference.getDocument { [weak self] (document, error) in
             if let document = document, document.exists, let data = document.data() {
@@ -44,9 +47,11 @@ class FinanceViewViewModel: ObservableObject {
     
     func initializeTotalAmount() {
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-        let financeReference = db.collection("users").document(currentUserID).collection("finance").document("totals")
-        // Setting totalAmount to 0
-        financeReference.setData(["totalAmount": 0], merge: true) { error in
+        let financeReference = db.collection("users").document(currentUserID).collection("finance").document(currentYear)
+        
+        financeReference.setData([
+            "totalAmount": 0,  /// Setting totalAmount to 0
+        ], merge: true) { error in
             if let error = error {
                 print("Error setting document: \(error)")
             } else {
@@ -61,7 +66,7 @@ class FinanceViewViewModel: ObservableObject {
             completion(false)
             return
         }
-        let documentReference = db.collection("users").document(currentUserID).collection("finance").document("totals")
+        let documentReference = db.collection("users").document(currentUserID).collection("finance").document(currentYear)
         documentReference.getDocument { (document, error) in
             if let document = document, document.exists {
                 completion(true)
@@ -80,30 +85,49 @@ class FinanceViewViewModel: ObservableObject {
     }
     
     func addSpending(value: Double) {
-            updateTotalAmount { [weak self] exists in
-                guard exists, let self = self else { return }
-                guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-                let documentReference = self.db.collection("users").document(currentUserID).collection("finance").document("totals")
-                let incrementAmount = FieldValue.increment(value)
-                
-                let updateFields: [String: Any] = self.spendingType == .add ? ["totalRevenue": incrementAmount, "totalAmount": FieldValue.increment(value)] : [:]
-                
-                documentReference.updateData(updateFields) { [weak self] error in
-                    if let error = error {
-                        print("Error updating document: \(error)")
-                    } else {
-                        print("Document successfully updated: Increment")
-                        self?.fetchFinanceData() // Aggiorna i valori dopo l'aggiornamento del db
-                    }
+        updateTotalAmount { [weak self] exists in
+            guard exists, let self = self else { return }
+            guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+            let documentReference = self.db.collection("users").document(currentUserID).collection("finance").document(currentYear)
+            let incrementAmount = FieldValue.increment(value)
+            
+            let updateFields: [String: Any] = self.spendingType == .add ? ["totalRevenue": incrementAmount, "totalAmount": FieldValue.increment(value)] : [:]
+            
+            documentReference.updateData(updateFields) { [weak self] error in
+                if let error = error {
+                    print("Error updating document: \(error)")
+                } else {
+                    print("Document successfully updated: Increment")
+                    self?.fetchFinanceData() // Aggiorna i valori dopo l'aggiornamento del db
                 }
             }
+            
+            
+            let newId = UUID().uuidString
+            let newItem = SpendingItem(
+                id: newId,
+                amount: value,
+                descriptionText: descriptionText,
+                spendingType: spendingType,
+                creationDate: creationDate.timeIntervalSince1970,
+                dateTask: creationDate.timeIntervalSince1970,
+                category: selectedCategory,
+                status: .confirmed)
+            
+            documentReference
+                .collection("history")
+                .document(newItem.id)
+                .setData(newItem.asDictionary())
+            
+            print("New Spending Item CREATED: increment")
         }
+    }
     
     func subtractSpending(value: Double) {
         updateTotalAmount { [weak self] exists in
             guard exists, let self = self else { return }
             guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-            let documentReference = self.db.collection("users").document(currentUserID).collection("finance").document("totals")
+            let documentReference = self.db.collection("users").document(currentUserID).collection("finance").document(currentYear)
             
             let positiveValue = abs(value) /// Assicura che il valore sia positivo.
             
@@ -123,6 +147,24 @@ class FinanceViewViewModel: ObservableObject {
                     self?.fetchFinanceData() /// Aggiorna i valori dopo l'aggiornamento del database.
                 }
             }
+            
+            let newId = UUID().uuidString
+            let newItem = SpendingItem(
+                id: newId,
+                amount: value,
+                descriptionText: descriptionText,
+                spendingType: spendingType,
+                creationDate: creationDate.timeIntervalSince1970,
+                dateTask: creationDate.timeIntervalSince1970,
+                category: selectedCategory,
+                status: .confirmed)
+            
+            documentReference
+                .collection("history")
+                .document(newItem.id)
+                .setData(newItem.asDictionary())
+            
+            print("New Spending Item CREATED: decrement")
         }
     }
     
