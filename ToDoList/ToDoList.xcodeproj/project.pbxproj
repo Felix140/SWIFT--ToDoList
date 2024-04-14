@@ -12,6 +12,8 @@
 		490F02AB2B8782A800B3180D /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F02AA2B8782A800B3180D /* TabBarView.swift */; };
 		4916EA942B403CA90031B40C /* PomodoroTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4916EA932B403CA90031B40C /* PomodoroTimerView.swift */; };
 		491839182B7EB2E00054A802 /* EditItemTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491839172B7EB2E00054A802 /* EditItemTaskView.swift */; };
+		491BE17E2BCC60B80079951C /* HIstoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491BE17D2BCC60B80079951C /* HIstoryItemView.swift */; };
+		491BE1822BCC61530079951C /* HistoryFinanceViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491BE1812BCC61530079951C /* HistoryFinanceViewViewModel.swift */; };
 		491EB63E2B6DB04300ABF3B3 /* EditPrivateInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EB63D2B6DB04300ABF3B3 /* EditPrivateInfoView.swift */; };
 		491EB6402B6DB2AF00ABF3B3 /* UserTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491EB63F2B6DB2AF00ABF3B3 /* UserTheme.swift */; };
 		4928F3A32B460B21008B2F94 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4928F3A22B460B21008B2F94 /* SettingsView.swift */; };
@@ -133,6 +135,8 @@
 		490F02AA2B8782A800B3180D /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		4916EA932B403CA90031B40C /* PomodoroTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerView.swift; sourceTree = "<group>"; };
 		491839172B7EB2E00054A802 /* EditItemTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemTaskView.swift; sourceTree = "<group>"; };
+		491BE17D2BCC60B80079951C /* HIstoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HIstoryItemView.swift; sourceTree = "<group>"; };
+		491BE1812BCC61530079951C /* HistoryFinanceViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFinanceViewViewModel.swift; sourceTree = "<group>"; };
 		491EB63D2B6DB04300ABF3B3 /* EditPrivateInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPrivateInfoView.swift; sourceTree = "<group>"; };
 		491EB63F2B6DB2AF00ABF3B3 /* UserTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTheme.swift; sourceTree = "<group>"; };
 		4928F3A22B460B21008B2F94 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -296,6 +300,7 @@
 			children = (
 				495A35542BBB50D00017E681 /* ModalSpendingItemView.swift */,
 				49FE94062BC3255900E8D13B /* SpendingHistoryView.swift */,
+				491BE17D2BCC60B80079951C /* HIstoryItemView.swift */,
 			);
 			path = Finance;
 			sourceTree = "<group>";
@@ -501,6 +506,7 @@
 				49F0D3732B5567860053206A /* ContactsViewViewModel.swift */,
 				499074D72B87D2E9008C2783 /* CalendarViewViewModel.swift */,
 				499967902BC30A5000BD47B6 /* FinanceViewViewModel.swift */,
+				491BE1812BCC61530079951C /* HistoryFinanceViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -670,6 +676,7 @@
 				499967912BC30A5000BD47B6 /* FinanceViewViewModel.swift in Sources */,
 				49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */,
 				499967932BC30F6400BD47B6 /* SpendingItem.swift in Sources */,
+				491BE1822BCC61530079951C /* HistoryFinanceViewViewModel.swift in Sources */,
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
 				49B584F62B52178800F3D004 /* RequestNewItemView.swift in Sources */,
 				49E946882B50848700148273 /* SharedToDoListView.swift in Sources */,
@@ -685,6 +692,7 @@
 				49F0D3742B5567860053206A /* ContactsViewViewModel.swift in Sources */,
 				495A35522BBB4A4A0017E681 /* FinancePlanView.swift in Sources */,
 				4941EF182B5DE999000A759D /* WidgetType.swift in Sources */,
+				491BE17E2BCC60B80079951C /* HIstoryItemView.swift in Sources */,
 				49FE57432B1CDBD800E4A0E2 /* LoginViewViewModel.swift in Sources */,
 				499074DA2B87D32D008C2783 /* CustomCalendarView.swift in Sources */,
 				49FE57332B1CDA9D00E4A0E2 /* ToDoListView.swift in Sources */,
