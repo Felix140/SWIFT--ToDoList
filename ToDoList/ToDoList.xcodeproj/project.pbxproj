@@ -52,7 +52,7 @@
 		499531132B52083700547910 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499531122B52083700547910 /* NotificationView.swift */; };
 		4998F35D2B8BFCE70082B60F /* EventViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4998F35C2B8BFCE70082B60F /* EventViewViewModel.swift */; };
 		499967912BC30A5000BD47B6 /* FinanceViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499967902BC30A5000BD47B6 /* FinanceViewViewModel.swift */; };
-		499967932BC30F6400BD47B6 /* SpendingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499967922BC30F6400BD47B6 /* SpendingItem.swift */; };
+		499967932BC30F6400BD47B6 /* HistoryFinanceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499967922BC30F6400BD47B6 /* HistoryFinanceItem.swift */; };
 		499A0F692B83F60400527A4C /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A0F682B83F60400527A4C /* BannerView.swift */; };
 		499E1DE02B46FA5200A7EF9A /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E1DDF2B46FA5200A7EF9A /* Routes.swift */; };
 		49B19B9E2B4F4E490063C755 /* HapticTrigger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */; };
@@ -169,7 +169,7 @@
 		499531122B52083700547910 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		4998F35C2B8BFCE70082B60F /* EventViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewViewModel.swift; sourceTree = "<group>"; };
 		499967902BC30A5000BD47B6 /* FinanceViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceViewViewModel.swift; sourceTree = "<group>"; };
-		499967922BC30F6400BD47B6 /* SpendingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingItem.swift; sourceTree = "<group>"; };
+		499967922BC30F6400BD47B6 /* HistoryFinanceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryFinanceItem.swift; sourceTree = "<group>"; };
 		499A0F682B83F60400527A4C /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		499E1DDF2B46FA5200A7EF9A /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		49B19B9D2B4F4E490063C755 /* HapticTrigger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticTrigger.swift; sourceTree = "<group>"; };
@@ -519,7 +519,7 @@
 				49FE57362B1CDAEF00E4A0E2 /* ToDoListItem.swift */,
 				498697752B8936A200C4A3DD /* EventItem.swift */,
 				49DB4B9A2B49866300811C93 /* InfoToDoItem.swift */,
-				499967922BC30F6400BD47B6 /* SpendingItem.swift */,
+				499967922BC30F6400BD47B6 /* HistoryFinanceItem.swift */,
 				49068BDE2B9B64970034F2A8 /* Notifications */,
 				49DDA1812B44C2B6009218C4 /* Enums */,
 			);
@@ -675,7 +675,7 @@
 				490F02AB2B8782A800B3180D /* TabBarView.swift in Sources */,
 				499967912BC30A5000BD47B6 /* FinanceViewViewModel.swift in Sources */,
 				49FE572D2B1CDA3700E4A0E2 /* NewItemView.swift in Sources */,
-				499967932BC30F6400BD47B6 /* SpendingItem.swift in Sources */,
+				499967932BC30F6400BD47B6 /* HistoryFinanceItem.swift in Sources */,
 				491BE1822BCC61530079951C /* HistoryFinanceViewViewModel.swift in Sources */,
 				492E29792B1D4BE600021383 /* HeaderView.swift in Sources */,
 				49B584F62B52178800F3D004 /* RequestNewItemView.swift in Sources */,

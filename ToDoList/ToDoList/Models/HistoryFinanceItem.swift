@@ -1,7 +1,7 @@
 import Foundation
 
 
-struct SpendingItem: Codable, Identifiable {
+struct HistoryFinanceItem: Codable, Identifiable {
     
     let id: String
     let amount: Double

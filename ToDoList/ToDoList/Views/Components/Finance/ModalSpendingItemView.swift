@@ -29,20 +29,22 @@ struct ModalSpendingItemView: View {
         
             
             Section {
-                Button("Subtract") {
+                Button("Spent") {
                     viewModel.spendingType = .subtract
                     viewModel.subtractSpending(value: viewModel.amountInput)
                     viewModel.isPresentingView = false
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
+                .foregroundColor(.red)
             }
             Section {
-                Button("Add") {
+                Button("Earned") {
                     viewModel.spendingType = .add
                     viewModel.addSpending(value: viewModel.amountInput)
                     viewModel.isPresentingView = false
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
+                .foregroundColor(.green)
             }
             
             //            Section(header: Text("Seleziona una categoria")) {

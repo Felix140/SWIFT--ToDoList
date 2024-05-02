@@ -1,6 +1,7 @@
 import Foundation
 
 enum SpendingTypology: String, Codable {
-    case add = "add"
-    case subtract = "subtract"
+    case add = "earnings"
+    case subtract = "spending"
+    case all = "all"
 }

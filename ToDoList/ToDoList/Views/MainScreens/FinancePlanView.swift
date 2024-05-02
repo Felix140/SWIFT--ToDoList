@@ -11,7 +11,7 @@ struct FinancePlanView: View {
                     Divider()
                     Grid {
                         GridRow {
-                            NavigationLink(destination: SpendingHistoryView(), label: {
+                            NavigationLink(destination: SpendingHistoryView(typeAmount: .add), label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 16.0)
                                         .fill(.ultraThinMaterial)
@@ -26,7 +26,7 @@ struct FinancePlanView: View {
                                     .foregroundColor(.primary)
                                 }
                             })
-                            NavigationLink(destination: SpendingHistoryView(), label: {
+                            NavigationLink(destination: SpendingHistoryView(typeAmount: .subtract), label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 16.0)
                                         .fill(.ultraThinMaterial)
@@ -49,7 +49,7 @@ struct FinancePlanView: View {
                     
                     Grid {
                         GridRow {
-                            NavigationLink(destination: SpendingHistoryView(), label: {
+                            NavigationLink(destination: SpendingHistoryView(typeAmount: .all), label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 16.0)
                                         .fill(.ultraThinMaterial)

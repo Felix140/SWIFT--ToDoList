@@ -104,7 +104,7 @@ class FinanceViewViewModel: ObservableObject {
             
             
             let newId = UUID().uuidString
-            let newItem = SpendingItem(
+            let newItem = HistoryFinanceItem(
                 id: newId,
                 amount: value,
                 descriptionText: descriptionText,
@@ -149,7 +149,7 @@ class FinanceViewViewModel: ObservableObject {
             }
             
             let newId = UUID().uuidString
-            let newItem = SpendingItem(
+            let newItem = HistoryFinanceItem(
                 id: newId,
                 amount: value,
                 descriptionText: descriptionText,
